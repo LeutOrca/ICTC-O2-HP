@@ -1,5 +1,11 @@
 # Trilinear mixed second derivatives, 2026-11-17
 
+Expanded full-E qualification is HOLD: independent FP64 validation at
+C128/M6/full/E131072 finds22 shared-weight gradients beyond the fixed tolerance
+in the committed core. The measurements below remain scoped six-point timing
+and small-E numerical evidence. See [the numerical boundary](hpx-training-numerical-boundary.md)
+for the reproduced failure and a separately identified, unpromoted correction.
+
 Enable `O2_HPX_FORWARD=preload O2_HPX_ADJOINT=replay` before import for the
 qualified experimental path. This replaces the generic Torch reconstruction
 inside double backward with exact forward/first-adjoint identities. Canonical

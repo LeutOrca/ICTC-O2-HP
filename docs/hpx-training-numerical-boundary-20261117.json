@@ -1,0 +1,145 @@
+{
+  "status": "pass",
+  "tolerance": "1e-5+1e-4*abs(FP64 reference), unchanged",
+  "prior_weight_reduction_ast_identical": true,
+  "failed_attempts": [
+    {
+      "file": "receipts/large-numeric-110932-hpx-selective-replay-v1-128-6-full-131072.json",
+      "failures": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 22,
+          "max_abs": 0.0003817369561147643,
+          "max_threshold_ratio": 10.159765949467404
+        }
+      ]
+    },
+    {
+      "file": "receipts/large-numeric-110934-aot-library-v2-128-6-full-131072.json",
+      "failures": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 22,
+          "max_abs": 0.0003817369561147643,
+          "max_threshold_ratio": 10.159765949467404
+        }
+      ]
+    },
+    {
+      "file": "receipts/large-numeric-110938-hpx-accurate-weight-v1-128-6-full-131072.json",
+      "failures": [
+        {
+          "label": "all_rows/mixed_weight",
+          "elements": 19712,
+          "failed": 2,
+          "max_abs": 0.000191958887171495,
+          "max_threshold_ratio": 1.773608145757099
+        }
+      ]
+    }
+  ],
+  "corrected_candidate": "hpx-accurate-weight-v2",
+  "corrected_core_sha256": "ea0e39518ef076a6d967364ab7a392f6c5665c59f37a192eba3d4a829fda3ba7",
+  "large_checks": [
+    {
+      "file": "receipts/large-numeric-110942-hpx-accurate-weight-v2-128-6-full-131072.json",
+      "seed": 20261003,
+      "scale": 1.0,
+      "checks": 770,
+      "weight_checks": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 8.206893880924326e-05,
+          "max_threshold_ratio": 0.0007485727677046296
+        },
+        {
+          "label": "all_rows/mixed_weight",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 0.0001691705574558,
+          "max_threshold_ratio": 0.0007619920017218794
+        }
+      ]
+    },
+    {
+      "file": "receipts/large-numeric-110943-hpx-accurate-weight-v2-128-6-full-131072.json",
+      "seed": 20261004,
+      "scale": 1.0,
+      "checks": 770,
+      "weight_checks": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 8.512372937730106e-05,
+          "max_threshold_ratio": 0.0007533445604627951
+        },
+        {
+          "label": "all_rows/mixed_weight",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 0.00015162902127485722,
+          "max_threshold_ratio": 0.0007604357956526715
+        }
+      ]
+    },
+    {
+      "file": "receipts/large-numeric-110946-hpx-accurate-weight-v2-128-6-full-131072.json",
+      "seed": 20261003,
+      "scale": 0.1,
+      "checks": 770,
+      "weight_checks": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 9.540539069874399e-08,
+          "max_threshold_ratio": 0.0006729456789293048
+        },
+        {
+          "label": "all_rows/mixed_weight",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 1.5972832567712203e-07,
+          "max_threshold_ratio": 0.0006997868726464395
+        }
+      ]
+    },
+    {
+      "file": "receipts/large-numeric-110947-hpx-accurate-weight-v2-128-6-full-131072.json",
+      "seed": 20261004,
+      "scale": 0.1,
+      "checks": 770,
+      "weight_checks": [
+        {
+          "label": "all_rows/weight_gradient",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 8.8421558297469e-08,
+          "max_threshold_ratio": 0.0006719750965897456
+        },
+        {
+          "label": "all_rows/mixed_weight",
+          "elements": 19712,
+          "failed": 0,
+          "max_abs": 1.564360929684483e-07,
+          "max_threshold_ratio": 0.0006894278684941905
+        }
+      ]
+    }
+  ],
+  "small_20step_receipts": [
+    "receipts/train-110941-candidate-32-1-canonical-37-validate.json",
+    "receipts/train-110941-candidate-32-3-full-257-validate.json",
+    "receipts/train-110941-candidate-128-6-canonical-37-validate.json",
+    "receipts/train-110941-candidate-128-6-full-37-validate.json"
+  ],
+  "promoted": false,
+  "precision": "FP32 interface, FP64 grouped weight products/partials and mixed-weight direction accumulation",
+  "full_grid_training_qualified": false,
+  "sota_qualified": false
+}
