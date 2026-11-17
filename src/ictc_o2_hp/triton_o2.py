@@ -19,7 +19,8 @@ from . import __version__
 # Inductor can cache the lowering of a custom op by its operator name. Give
 # each release its own internal namespace so upgraded bodies cannot reuse an
 # older release's lowering. Public Python API and checkpoint keys stay stable.
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline")
+_HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_r1" if _HPX_PRELOAD else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -454,6 +455,66 @@ def _forward_frequencies_deferred(
 
 
 @triton.jit
+def _preloaded_path(first0, first1, second0, second1, weight, channel, mask,
+                    PATHS: tl.constexpr, OUT_KEY: tl.constexpr, P: tl.constexpr):
+    key1: tl.constexpr = PATHS.value[OUT_KEY][P][0]
+    key2: tl.constexpr = PATHS.value[OUT_KEY][P][1]
+    start: tl.constexpr = PATHS.value[OUT_KEY][P][3]
+    a0, a1 = first0[key1], first1[key1]
+    b0, b1 = second0[key2], second1[key2]
+    path0 = tl.full(channel.shape, 0.0, tl.float32)
+    path1 = tl.full(channel.shape, 0.0, tl.float32)
+    for t in tl.static_range(len(PATHS.value[OUT_KEY][P][4])):
+        i = PATHS.value[OUT_KEY][P][4][t][0]
+        j = PATHS.value[OUT_KEY][P][4][t][1]
+        k = PATHS.value[OUT_KEY][P][4][t][2]
+        coefficient = PATHS.value[OUT_KEY][P][4][t][3]
+        term = coefficient * tl.where(i == 0, a0, a1) * tl.where(j == 0, b0, b1)
+        path0 += tl.where(k == 0, term, 0.)
+        path1 += tl.where(k == 1, term, 0.)
+    w = tl.load(weight + start + channel, mask, 0.)
+    return w * path0, w * path1
+
+
+@triton.jit
+def _forward_preloaded(
+    left, right, weight, output,
+    E: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
+    KEYS: tl.constexpr, PATHS: tl.constexpr, FULL: tl.constexpr,
+    MULTIPLICITY: tl.constexpr, BLOCK: tl.constexpr,
+):
+    offsets = tl.program_id(0) * BLOCK + tl.arange(0, BLOCK)
+    mask = offsets < E * MULTIPLICITY
+    edge, channel = offsets // MULTIPLICITY, offsets % MULTIPLICITY
+    first0, first1, second0, second1 = (), (), (), ()
+    for key in tl.static_range(len(KEYS.value)):
+        a0, a1 = _read_canonical(left, edge, channel % KEYS.value[key][1], mask,
+                                 key, WIDTH, C, KEYS, FULL)
+        b0, b1 = _read_canonical(right, edge, channel % KEYS.value[key][1], mask,
+                                 key, WIDTH, C, KEYS, FULL)
+        first0 += (a0,)
+        first1 += (a1,)
+        second0 += (b0,)
+        second1 += (b1,)
+    results0, results1 = (), ()
+    for key in tl.static_range(len(KEYS.value)):
+        accum0 = tl.full((BLOCK,), 0.0, tl.float32)
+        accum1 = tl.full((BLOCK,), 0.0, tl.float32)
+        active = mask & (channel < KEYS.value[key][1])
+        for p in tl.static_range(len(PATHS.value[key])):
+            path0, path1 = _preloaded_path(first0,first1,second0,second1,weight,
+                                           channel,active,PATHS,key,p)
+            accum0 += path0
+            accum1 += path1
+        results0 += (accum0,)
+        results1 += (accum1,)
+    for key in tl.static_range(len(KEYS.value)):
+        active = mask & (channel < KEYS.value[key][1])
+        _write_raw(output, edge, channel, results0[key], results1[key], active,
+                   key, WIDTH, C, KEYS, FULL)
+
+
+@triton.jit
 def _backward_input_path(
     left, right, weight, grad_output, edge, channel, mask,
     WIDTH: tl.constexpr, C: tl.constexpr,
@@ -804,7 +865,12 @@ def _o2_forward_op(
         tuple(path for path in paths if path[2] == output_key)
         for output_key in range(len(keys))
     )
-    if _use_forward_deferred(keys, full):
+    if _HPX_PRELOAD:
+        torch.library.wrap_triton(_forward_preloaded)[
+            (triton.cdiv(edge_count * max_multiplicity, _BLOCK),)
+        ](left, right, weight, output, edge_count, width, channels, keys,
+          paths_by_output, full, max_multiplicity, _BLOCK, num_warps=_FORWARD_WARPS)
+    elif _use_forward_deferred(keys, full):
         scalar_count = 2 if full else 1
         for key_index in range(scalar_count):
             torch.library.wrap_triton(_forward_key)[
