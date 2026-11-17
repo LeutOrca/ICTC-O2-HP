@@ -33,6 +33,7 @@ def weight_metadata(keys, paths):
 def _meta_read(ptr, edge, channel, mask, start, mul, dim, frequency,
                WIDTH: tl.constexpr, C: tl.constexpr,
                FULL: tl.constexpr, LAYOUT: tl.constexpr):
+    edge = edge.to(tl.int64)
     if LAYOUT == 0:
         base = edge * WIDTH + start + channel * dim
         stride = 1

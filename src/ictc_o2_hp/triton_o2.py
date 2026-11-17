@@ -19,7 +19,7 @@ from . import __version__
 # Inductor can cache the lowering of a custom op by its operator name. Give
 # each release its own internal namespace so upgraded bodies cannot reuse an
 # older release's lowering. Public Python API and checkpoint keys stay stable.
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_")
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -102,6 +102,7 @@ def _read_canonical(
     KEY: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, FULL: tl.constexpr,
 ):
+    edge = edge.to(tl.int64)
     start: tl.constexpr = KEYS.value[KEY][0]
     multiplicity: tl.constexpr = KEYS.value[KEY][1]
     dim: tl.constexpr = KEYS.value[KEY][2]
@@ -135,6 +136,7 @@ def _write_raw(
     KEY: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, FULL: tl.constexpr,
 ):
+    edge = edge.to(tl.int64)
     start: tl.constexpr = KEYS.value[KEY][0]
     multiplicity: tl.constexpr = KEYS.value[KEY][1]
     dim: tl.constexpr = KEYS.value[KEY][2]
@@ -247,6 +249,7 @@ def _read_copy(
     KEY: tl.constexpr, COPY: tl.constexpr,
     WIDTH: tl.constexpr, C: tl.constexpr, KEYS: tl.constexpr,
 ):
+    edge = edge.to(tl.int64)
     start: tl.constexpr = KEYS.value[KEY][0]
     multiplicity: tl.constexpr = KEYS.value[KEY][1]
     dim: tl.constexpr = KEYS.value[KEY][2]
@@ -280,6 +283,7 @@ def _write_copy(
     KEY: tl.constexpr, COPY: tl.constexpr,
     WIDTH: tl.constexpr, C: tl.constexpr, KEYS: tl.constexpr,
 ):
+    edge = edge.to(tl.int64)
     start: tl.constexpr = KEYS.value[KEY][0]
     multiplicity: tl.constexpr = KEYS.value[KEY][1]
     layout: tl.constexpr = KEYS.value[KEY][4]
