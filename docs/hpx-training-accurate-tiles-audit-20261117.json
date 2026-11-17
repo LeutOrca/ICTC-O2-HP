@@ -1,0 +1,56 @@
+{
+  "status": "pass",
+  "source_sha256": "f534db9597d5d1899e0ccf573a1822905a41dad2ac014a8a8bfdd47a141919c4",
+  "numerical_receipts": [
+    "receipts/train-110950-candidate-32-1-canonical-37-validate.json",
+    "receipts/train-110950-candidate-32-3-full-257-validate.json",
+    "receipts/train-110950-candidate-128-6-canonical-37-validate.json",
+    "receipts/train-110950-candidate-128-6-full-37-validate.json"
+  ],
+  "large_numerical_receipts": [
+    "receipts/large-numeric-110951-hpx-accurate-weight-v3-128-6-full-131072.json",
+    "receipts/large-numeric-110952-hpx-accurate-weight-v3-128-6-full-131072.json",
+    "receipts/large-numeric-110953-hpx-accurate-weight-v3-128-6-full-131072.json",
+    "receipts/large-numeric-110954-hpx-accurate-weight-v3-128-6-full-131072.json"
+  ],
+  "paired_allocations": [
+    "110955",
+    "110956",
+    "110957",
+    "110958",
+    "110959"
+  ],
+  "confidence": {
+    "event_median_ms": {
+      "process_geomeans": [
+        1.1133722114259743,
+        1.1100451326761995,
+        1.1070980942873927,
+        1.1047293961008349,
+        1.1068170813658549
+      ],
+      "geometric_mean": 1.1084083178431003,
+      "paired_t95": [
+        1.1042496453035728,
+        1.1125826522009172
+      ]
+    },
+    "wall_median_ms": {
+      "process_geomeans": [
+        1.1132147888312478,
+        1.1099422593414165,
+        1.1067991069173362,
+        1.1044120568587084,
+        1.1068286026503285
+      ],
+      "geometric_mean": 1.1082351825974235,
+      "paired_t95": [
+        1.1040184649603089,
+        1.1124680056786003
+      ]
+    }
+  },
+  "reduction_function_ast_unchanged": true,
+  "precision": "FP32 storage/interface; explicit FP64 grouped weight products/partials and mixed-weight direction sums",
+  "scope": "six-point stable improvement over the corrected accumulation baseline; full240/latest-SOTA target OPEN"
+}

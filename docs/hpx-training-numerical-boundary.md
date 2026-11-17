@@ -34,4 +34,6 @@ retains wide values until all directional contributions have been added.
 The correction has performance costs in some cases. It is a numerical fix,
 not a performance promotion. No source/intermediate precision change is hidden.
 Neither the full240 training goal nor a current-SOTA claim is accepted.
+The subsequent [confirmed tile increment](hpx-training-accurate-tiles.md) retains
+this correction and reports its own paired timings and numerical gates.
 The compact receipt is [hpx-training-numerical-boundary-20261117.json](hpx-training-numerical-boundary-20261117.json).

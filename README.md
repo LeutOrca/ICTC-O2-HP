@@ -6,6 +6,15 @@ coefficient source, reference algebra, packed operators and Triton kernels.
 
 Repository: [Parity-LRX/ICTC-O2-HP](https://github.com/Parity-LRX/ICTC-O2-HP).
 
+This branch is the2026-11-17 experimental HPX work. Its
+[dynamic-E inference deployment](docs/hpx-inference-aoti.md) and
+[mixed-derivative work](docs/hpx-training-replay.md) have separate acceptance
+boundaries. Grouped weight gradients now retain explicit FP64 products and
+partials, returning FP32 gradients; see the
+[large-E numerical correction](docs/hpx-training-numerical-boundary.md).
+The full-grid2x/current-SOTA objective remains open. Release results below
+describe their original frozen sources and do not qualify this branch.
+
 Frozen release: **0.1.5**, Git tag **v0.1.5**, stable branch `main`.
 [Release layout and reproduction](docs/RELEASE.md) describes the current
 source, qualified runtime and numerical evidence.

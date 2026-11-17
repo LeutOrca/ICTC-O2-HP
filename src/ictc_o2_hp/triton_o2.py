@@ -21,7 +21,7 @@ from . import __version__
 # older release's lowering. Public Python API and checkpoint keys stay stable.
 _HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
 _HPX_ADJOINT = os.environ.get("O2_HPX_ADJOINT", "0") == "replay"
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_accurate_r2_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_accurate_r3_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -36,10 +36,10 @@ if _WEIGHT_CHANNEL_TILE not in (0, 16, 32, 64, 128, 256):
 _WEIGHT_SCHEDULE = os.environ.get("O2_WEIGHT_SCHEDULE", "grouped")
 if _WEIGHT_SCHEDULE not in ("runtime", "static", "grouped"):
     raise ValueError("O2_WEIGHT_SCHEDULE must be runtime, static, or grouped")
-_RUNTIME_EDGE_TILE = int(os.environ.get("O2_RUNTIME_EDGE_TILE", "16"))
-if _RUNTIME_EDGE_TILE not in (16, 32, 64, 128, 256):
-    raise ValueError("O2_RUNTIME_EDGE_TILE must be 16, 32, 64, 128, or 256")
-_WEIGHT_WARPS = int(os.environ.get("O2_WEIGHT_WARPS", "4"))
+_RUNTIME_EDGE_TILE = int(os.environ.get("O2_RUNTIME_EDGE_TILE", "8"))
+if _RUNTIME_EDGE_TILE not in (8, 16, 32, 64, 128, 256):
+    raise ValueError("O2_RUNTIME_EDGE_TILE must be 8, 16, 32, 64, 128, or 256")
+_WEIGHT_WARPS = int(os.environ.get("O2_WEIGHT_WARPS", "2"))
 if _WEIGHT_WARPS not in (1, 2, 4, 8):
     raise ValueError("O2_WEIGHT_WARPS must be 1, 2, 4, or 8")
 _FORWARD_PAIR = os.environ.get("O2_FORWARD_PAIR", "0") == "1"
