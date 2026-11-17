@@ -21,7 +21,7 @@ from . import __version__
 # older release's lowering. Public Python API and checkpoint keys stay stable.
 _HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
 _HPX_ADJOINT = os.environ.get("O2_HPX_ADJOINT", "0") == "replay"
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_accurate_r3_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_bounded_r5_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -1146,13 +1146,24 @@ def _o2_double_backward(ctx, dd_left, dd_right, dd_weight):
             )
             for target, value in enumerate(contributions):
                 if target != index and ctx.needs_input_grad[target]:
-                    second[target] = value if second[target] is None else second[target] + value
+                    if second[target] is None:
+                        second[target] = value
+                    elif torch.is_grad_enabled():
+                        second[target] = second[target] + value
+                    else:
+                        second[target].add_(value)
             del contributions
             if ctx.needs_input_grad[3]:
                 value = _o2_forward_op(
                     *values, path_info, path_coefficients, ctx.metadata_id,
                 )
-                second[3] = value if second[3] is None else second[3] + value
+                if second[3] is None:
+                    second[3] = value
+                elif torch.is_grad_enabled():
+                    second[3] = second[3] + value
+                else:
+                    second[3].add_(value)
+                del value
         if second[2] is not None:
             second[2] = second[2].to(weight.dtype)
         return *second, None, None, None, None

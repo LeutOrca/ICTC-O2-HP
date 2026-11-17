@@ -17,6 +17,10 @@ describe their original frozen sources and do not qualify this branch.
 Expanded training qualification passes59/60 representation families, with one
 AdamW weight-state failure retained at C256/M6/full/E37. Full training remains
 HOLD; see the [expanded boundary](docs/hpx-training-accurate-tiles.md).
+The [bounded replay profile](docs/hpx-training-bounded-memory.md) enables the
+largest complete training point on40GB A100 with an explicit16-row capacity
+configuration and a common caller-liveness protocol. Its independent numerical
+and repeated-capacity checks do not close the optimizer-trajectory HOLD.
 
 Frozen release: **0.1.5**, Git tag **v0.1.5**, stable branch `main`.
 [Release layout and reproduction](docs/RELEASE.md) describes the current

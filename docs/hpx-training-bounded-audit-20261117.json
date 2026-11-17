@@ -1,0 +1,93 @@
+{
+  "status": "pass",
+  "job": "111100",
+  "source_sha256": "27041d54fdbc47754cf853a383aafc9782ea454ca987c07e84f7ce1b588b9c20",
+  "scope": "bounded replay and common caller liveness; no full training/SOTA acceptance",
+  "precision": "unchanged FP32 interface and FP64 weight products/partials/directional sums",
+  "original_kernel_and_math_AST_unchanged": true,
+  "inplace_adds": 2,
+  "released_temporary": 1,
+  "bitwise_checks": 3200,
+  "large_FP64": [
+    {
+      "job": "111060",
+      "seed": 20261003,
+      "scale": 1.0,
+      "checks": 6146,
+      "max_threshold_ratio": 0.27274306213280664,
+      "receipt": "receipts/large-numeric-v4-111060-hpx-bounded-replay-v5-256-6-full-131072.json"
+    },
+    {
+      "job": "111063",
+      "seed": 20261004,
+      "scale": 1.0,
+      "checks": 6146,
+      "max_threshold_ratio": 0.2650251900723144,
+      "receipt": "receipts/large-numeric-v4-111063-hpx-bounded-replay-v5-256-6-full-131072.json"
+    },
+    {
+      "job": "111064",
+      "seed": 20261003,
+      "scale": 0.1,
+      "checks": 6146,
+      "max_threshold_ratio": 0.0008298125607388171,
+      "receipt": "receipts/large-numeric-v4-111064-hpx-bounded-replay-v5-256-6-full-131072.json"
+    },
+    {
+      "job": "111065",
+      "seed": 20261004,
+      "scale": 0.1,
+      "checks": 6146,
+      "max_threshold_ratio": 0.0009094804417374089,
+      "receipt": "receipts/large-numeric-v4-111065-hpx-bounded-replay-v5-256-6-full-131072.json"
+    }
+  ],
+  "independent_largest_capacity": [
+    {
+      "job": "111062",
+      "allocated_peak": 38388584960,
+      "reserved_peak": 40997224448,
+      "finite_state_after60_steps": true
+    },
+    {
+      "job": "111066",
+      "allocated_peak": 38388584960,
+      "reserved_peak": 40997224448,
+      "finite_state_after60_steps": true
+    },
+    {
+      "job": "111067",
+      "allocated_peak": 38388584960,
+      "reserved_peak": 40997224448,
+      "finite_state_after60_steps": true
+    },
+    {
+      "job": "111068",
+      "allocated_peak": 38388584960,
+      "reserved_peak": 40997224448,
+      "finite_state_after60_steps": true
+    },
+    {
+      "job": "111069",
+      "allocated_peak": 38388584960,
+      "reserved_peak": 40997224448,
+      "finite_state_after60_steps": true
+    }
+  ],
+  "paired_screen": {
+    "screen_complete": true,
+    "full_grid_target_met": false,
+    "sota_qualified": false,
+    "event_median_ms": {
+      "geomean": 0.9956244487334586,
+      "regressions": []
+    },
+    "wall_median_ms": {
+      "geomean": 0.9957528955500382,
+      "regressions": []
+    }
+  },
+  "FP64_AdamW_state_gate": "HOLD at C256/M6/full/E37; all four FP32 entrants fail",
+  "full240_training_target_met": false,
+  "sota_qualified": false
+}
