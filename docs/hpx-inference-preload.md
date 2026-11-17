@@ -33,3 +33,12 @@ Study provenance: `runs/o2-hpx-opt-20261117-r1` in the parent benchmark workspac
 Frozen source: `frozen/preload-safe-v1`. Numerical/generated-code job:110488.
 Timing array:110481_0..9 (even baseline, odd candidate, five paired processes).
 Summary:110495. The original source checkout is preserved independently.
+
+Full-grid confirmation (2026-11-17): A100 qualification110489 covers all240
+preregistered points. Five same-GPU paired allocations110562, summarized by
+CPU110719, give geometric mean1.5333315373x CUDA-event and1.5122553635x
+synchronized-wall relative to frozen native baseline. No >3% regression.
+The independent process remains the statistical unit; all full-size compiled
+outputs and generated code are checked. See hpx-preload-full-20261117.json.
+This confirms the increment at full-grid scope but does not satisfy the2x
+objective or qualify a new-SOTA claim against the fastest external contender.
