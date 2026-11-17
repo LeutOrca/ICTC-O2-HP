@@ -1,0 +1,386 @@
+{
+  "reports": {
+    "NVIDIA A100-SXM4-40GB/2.7.1+cu128": {
+      "cases": [
+        {
+          "case": [
+            32,
+            1,
+            "canonical",
+            8192
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 2.2799359560012817,
+          "candidate_wall_ms": 2.304527908563614,
+          "candidate_peaks": [
+            44116992,
+            44116992,
+            44116992,
+            44116992,
+            44116992
+          ],
+          "comparators": {
+            "baseline": {
+              "pairs": 5,
+              "baseline_event_ms": 5.033472061157227,
+              "event_speedups": [
+                2.22571878750322,
+                2.1510404518362805,
+                2.217381631392536,
+                2.22099578612708,
+                2.167896241130717
+              ],
+              "wall_speedups": [
+                2.2153117802993343,
+                2.140756116843855,
+                2.2022972210592338,
+                2.211267845977014,
+                2.1569645386011693
+              ]
+            },
+            "baseline_sched": {
+              "pairs": 5,
+              "baseline_event_ms": 5.0283520221710205,
+              "event_speedups": [
+                2.2234547902413127,
+                2.146117717067684,
+                2.2167078708418906,
+                2.2191935646215737,
+                2.1672255972746166
+              ],
+              "wall_speedups": [
+                2.212486971134198,
+                2.136272025460567,
+                2.2016417266256827,
+                2.2093509486366587,
+                2.1564409580275
+              ]
+            }
+          },
+          "best_comparator": "baseline_sched",
+          "event_speedup": 2.2167078708418906,
+          "wall_speedup": 2.2016417266256827
+        },
+        {
+          "case": [
+            32,
+            1,
+            "full",
+            131072
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 10.79040002822876,
+          "candidate_wall_ms": 10.811542626470327,
+          "candidate_peaks": [
+            1410361856,
+            1410361856,
+            1410361856,
+            1410361856,
+            1410361856
+          ],
+          "comparators": {
+            "baseline": {
+              "pairs": 5,
+              "baseline_event_ms": 63.40096092224121,
+              "event_speedups": [
+                5.8799431665525335,
+                5.87753251796171,
+                5.864273713927128,
+                5.874555437842248,
+                5.874851744637547
+              ],
+              "wall_speedups": [
+                5.871481155305956,
+                5.868729474363232,
+                5.855492246116116,
+                5.865253607593269,
+                5.8654333995891985
+              ]
+            },
+            "baseline_sched": {
+              "pairs": 5,
+              "baseline_event_ms": 63.38815879821777,
+              "event_speedups": [
+                5.879231002091176,
+                5.8699407033657405,
+                5.866262499596439,
+                5.8666794277789975,
+                5.875610911099645
+              ],
+              "wall_speedups": [
+                5.869902155529022,
+                5.8610450489501265,
+                5.857341234812194,
+                5.85711909428357,
+                5.865927540325752
+              ]
+            }
+          },
+          "best_comparator": "baseline_sched",
+          "event_speedup": 5.8699407033657405,
+          "wall_speedup": 5.8610450489501265
+        },
+        {
+          "case": [
+            32,
+            3,
+            "canonical",
+            8192
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 2.861056089401245,
+          "candidate_wall_ms": 2.8808685019612312,
+          "candidate_peaks": [
+            102870016,
+            102870016,
+            102870016,
+            102870016,
+            102870016
+          ],
+          "comparators": {
+            "baseline": {
+              "pairs": 5,
+              "baseline_event_ms": 20.133888244628906,
+              "event_speedups": [
+                7.106175523781708,
+                6.784226592095091,
+                7.049127929457536,
+                7.102041176754796,
+                6.889405864382071
+              ],
+              "wall_speedups": [
+                7.060733543966133,
+                6.7317309204844955,
+                7.007962003104347,
+                7.058810644501577,
+                6.848778767332976
+              ]
+            },
+            "baseline_sched": {
+              "pairs": 5,
+              "baseline_event_ms": 20.110848426818848,
+              "event_speedups": [
+                7.104370056264042,
+                6.762684638080988,
+                7.027234057296564,
+                7.093914096043717,
+                6.854509601930444
+              ],
+              "wall_speedups": [
+                7.057936245190793,
+                6.710014478377138,
+                6.987759310548187,
+                7.051056864370663,
+                6.814362225047676
+              ]
+            }
+          },
+          "best_comparator": "baseline_sched",
+          "event_speedup": 7.027234057296564,
+          "wall_speedup": 6.987759310548187
+        },
+        {
+          "case": [
+            128,
+            3,
+            "full",
+            8192
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 8.11622428894043,
+          "candidate_wall_ms": 8.138963021337986,
+          "candidate_peaks": [
+            822384128,
+            822384128,
+            822384128,
+            822384128,
+            822384128
+          ],
+          "comparators": {
+            "baseline": {
+              "pairs": 5,
+              "baseline_event_ms": 73.33631896972656,
+              "event_speedups": [
+                9.064938358105689,
+                9.056186271090862,
+                8.988139780201799,
+                9.027693156600604,
+                9.0450405928365
+              ],
+              "wall_speedups": [
+                9.044682027873915,
+                9.03570977684836,
+                8.966153511333243,
+                9.00647408871234,
+                9.024654560003933
+              ]
+            },
+            "baseline_sched": {
+              "pairs": 5,
+              "baseline_event_ms": 73.22521591186523,
+              "event_speedups": [
+                9.050395239401723,
+                9.006936233005185,
+                9.004141510067997,
+                9.022078900856098,
+                9.025205011562402
+              ],
+              "wall_speedups": [
+                9.030721267340034,
+                8.986490579632754,
+                8.981956916897452,
+                9.001016117709456,
+                9.004925364812177
+              ]
+            }
+          },
+          "best_comparator": "baseline_sched",
+          "event_speedup": 9.022078900856098,
+          "wall_speedup": 9.001016117709456
+        },
+        {
+          "case": [
+            128,
+            6,
+            "canonical",
+            131072
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 165.0918426513672,
+          "candidate_wall_ms": 165.13086203485727,
+          "candidate_peaks": [
+            12215166464,
+            12215166464,
+            12215166464,
+            12215166464,
+            12215166464
+          ],
+          "comparators": {}
+        },
+        {
+          "case": [
+            128,
+            6,
+            "full",
+            131072
+          ],
+          "candidate_processes": 5,
+          "source_sha256": {
+            "ictc_o2_hp/__init__.py": "4ca10a8df3a7d5f725acd3c5b0d999cf85eae58b83fb968b33af777de011d698",
+            "ictc_o2_hp/api.py": "d87ae0f2c5bda30286277ec1beb139ff834fa8eb7e7f8592b44582d3837da002",
+            "ictc_o2_hp/fast_o2.py": "978c334379575fdd64a318c4b037dbf977b78678c667ab28d4f000cbf3f8ab31",
+            "ictc_o2_hp/native_o2.py": "127b963665494e8ef575abe0d628efc33796c29e327f6b2ab36db28f4b93535c",
+            "ictc_o2_hp/o2_math.py": "8245c7ec426280d3ddf7039014f85b2d9a686147294677b0b6174737b5431dd2",
+            "ictc_o2_hp/radial_streamed.py": "d1e98d9fb653fd35effa9241d3698b7ef62aaa0955204e915405845fab197778",
+            "ictc_o2_hp/radial_uvu.py": "fc399b66c1c2823790b502d7f4ae17ab88d7c92362d1e0d3e73b60560d23b77b",
+            "ictc_o2_hp/reference.py": "48adf9e974036fd7c0fcf19f5658bae0bfc40f55a97ad51ab267e5e6f9db99f7",
+            "ictc_o2_hp/runtime_weight.py": "b752bd2272ca4fe9a662687e6238984805d3b669ecf7c44d568fde7c7c59f5df",
+            "ictc_o2_hp/triton_o2.py": "9ec173cfcf352bb2d876319b04831aa757cc047397d7a014bc5430b6596ffb44",
+            "ictc_o2_hp/uvu_fused.py": "124d1bf5b2aa31d41e3a5cd02e4e7e2317980424fefd7419ab2513b270f16cb8",
+            "ictc_o2_hp/uvu_o2.py": "ae7d36d64a0a5c3d750889e09e9e07be7f9d78002a905c373bccf9387517a9be",
+            "ictc_o2_hp/uvu_single.py": "fb4ba729ff7dd4a67e50d4e7f482ab59b45841773ed538108da1a55ba9091165",
+            "ictc_o2_hp/uvu_triton.py": "17d35ecf415c32dfe0b031fef323771636aec22e3b95efbe200226950b2704d9"
+          },
+          "candidate_event_ms": 305.53599548339844,
+          "candidate_wall_ms": 305.578984785825,
+          "candidate_peaks": [
+            24429361664,
+            24429361664,
+            24429361664,
+            24429361664,
+            24429361664
+          ],
+          "comparators": {}
+        }
+      ],
+      "candidate_complete_six_point": true,
+      "speedup_coverage": 4,
+      "full_grid_target_met": false,
+      "sota_qualified": false,
+      "finite_point_geomean": 5.359302910685749,
+      "finite_point_wall_geomean": 5.33749886880553,
+      "regressions_over_3pct": []
+    }
+  },
+  "failures": []
+}

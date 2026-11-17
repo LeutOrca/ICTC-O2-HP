@@ -20,7 +20,8 @@ from . import __version__
 # each release its own internal namespace so upgraded bodies cannot reuse an
 # older release's lowering. Public Python API and checkpoint keys stay stable.
 _HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_r1" if _HPX_PRELOAD else "")
+_HPX_ADJOINT = os.environ.get("O2_HPX_ADJOINT", "0") == "replay"
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_r1" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -1103,13 +1104,38 @@ def _torch_forward_flat(left, right, weight, metadata_id):
 
 
 def _o2_backward_setup_context(ctx, inputs, output):
-    left, right, weight, grad_output, _path_info, _path_coefficients, metadata_id = inputs
-    ctx.save_for_backward(left, right, weight, grad_output)
+    left, right, weight, grad_output, path_info, path_coefficients, metadata_id = inputs
+    ctx.save_for_backward(left, right, weight, grad_output, path_info, path_coefficients)
     ctx.metadata_id = metadata_id
+    if _HPX_ADJOINT:
+        ctx.set_materialize_grads(False)
 
 
 def _o2_double_backward(ctx, dd_left, dd_right, dd_weight):
-    left, right, weight, grad_output = ctx.saved_tensors
+    left, right, weight, grad_output, path_info, path_coefficients = ctx.saved_tensors
+    if _HPX_ADJOINT:
+        # F is trilinear. Each directional first-adjoint term is another
+        # first adjoint with exactly one argument replaced by its cotangent.
+        # Its derivative in that same argument is zero. d/d(grad_output) is F.
+        second = [None, None, None, None]
+        for index, cotangent in enumerate((dd_left, dd_right, dd_weight)):
+            if cotangent is None:
+                continue
+            values = [left, right, weight]
+            values[index] = cotangent.contiguous()
+            contributions = _o2_backward_op(
+                *values, grad_output, path_info, path_coefficients, ctx.metadata_id,
+            )
+            for target, value in enumerate(contributions):
+                if target != index and ctx.needs_input_grad[target]:
+                    second[target] = value if second[target] is None else second[target] + value
+            del contributions
+            if ctx.needs_input_grad[3]:
+                value = _o2_forward_op(
+                    *values, path_info, path_coefficients, ctx.metadata_id,
+                )
+                second[3] = value if second[3] is None else second[3] + value
+        return *second, None, None, None
     selected = tuple(
         (index, cotangent) for index, cotangent in enumerate(
             (dd_left, dd_right, dd_weight)
