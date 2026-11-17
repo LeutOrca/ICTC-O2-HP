@@ -30,3 +30,11 @@ Source core SHA256:
 [Paired measurements](hpx-training-accurate-tiles-paired-20261117.json) and
 [promotion audit](hpx-training-accurate-tiles-audit-20261117.json) retain the data.
 Full240 training and current external-contender comparisons remain open.
+
+Expanded representation-wide qualification110963 subsequently passes59 of60
+small-E families. At C256/M6/full/E37, one of39424 weights after AdamW step0
+exceeds the unchanged FP64-reference threshold (max absolute weight difference
+0.0001045438068). First and mixed derivative selections at this point finish
+before that optimizer-state failure. The screened timing increment remains
+bound to its qualified cases. Full training acceptance is HOLD pending the
+diagnosis, as recorded in [the full60 receipt](hpx-training-full60-boundary-20261117.json).

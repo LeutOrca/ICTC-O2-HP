@@ -1,0 +1,94 @@
+{
+  "status": "pass",
+  "job": "110998",
+  "current_commit": "cdc597f7bf191457bf9d1eaadc5917f0d6e5a401",
+  "scope": "evidence/provenance audit, not full numerical or SOTA acceptance",
+  "migration_status": "A100 qualification in progress",
+  "candidate_source_sha256": "f534db9597d5d1899e0ccf573a1822905a41dad2ac014a8a8bfdd47a141919c4",
+  "prior_A100_evidence_retained": true,
+  "unchanged_forward_functions": [
+    "_forward_path",
+    "_forward_key",
+    "_forward_all",
+    "_forward_path_pair",
+    "_forward_key_pair",
+    "_forward_all_pair",
+    "_forward_all_fused",
+    "_forward_all_fused_pair",
+    "_forward_frequencies_deferred",
+    "_forward_preloaded",
+    "_o2_forward_op"
+  ],
+  "preload_full240": {
+    "event_median_ms": {
+      "geomean_speedup": 1.533331537332481,
+      "regressions_over_3pct": []
+    },
+    "wall_median_ms": {
+      "geomean_speedup": 1.5122553635484606,
+      "regressions_over_3pct": []
+    }
+  },
+  "aot_screen24": {
+    "event_median_ms": {
+      "geomean_vs_fastest_prior": 1.264490070783949,
+      "regressions_over_3pct": [],
+      "geomean_vs_baseline": 1.79971278315259,
+      "geomean_vs_preload": 1.264490070783949
+    },
+    "wall_median_ms": {
+      "geomean_vs_fastest_prior": 1.2107779417582705,
+      "regressions_over_3pct": [],
+      "geomean_vs_baseline": 1.6963219585933633,
+      "geomean_vs_preload": 1.210994451366324
+    }
+  },
+  "accurate_training_screen6": {
+    "event_median_ms": {
+      "process_geomeans": [
+        1.1133722114259743,
+        1.1100451326761995,
+        1.1070980942873927,
+        1.1047293961008349,
+        1.1068170813658549
+      ],
+      "geometric_mean": 1.1084083178431003,
+      "paired_t95": [
+        1.1042496453035728,
+        1.1125826522009172
+      ]
+    },
+    "wall_median_ms": {
+      "process_geomeans": [
+        1.1132147888312478,
+        1.1099422593414165,
+        1.1067991069173362,
+        1.1044120568587084,
+        1.1068286026503285
+      ],
+      "geometric_mean": 1.1082351825974235,
+      "paired_t95": [
+        1.1040184649603089,
+        1.1124680056786003
+      ]
+    }
+  },
+  "training_full60_passes": 59,
+  "training_full60_failed_cases": [
+    [
+      256,
+      6,
+      "full",
+      37
+    ]
+  ],
+  "gates": {
+    "largest_training_capacity": false,
+    "latest_CUE_A100": false,
+    "full240_paired_latest_comparison": false,
+    "full_training_numerical": false
+  },
+  "H100_pending_held": true,
+  "cross_architecture_results_pooled": false,
+  "sota_qualified": false
+}

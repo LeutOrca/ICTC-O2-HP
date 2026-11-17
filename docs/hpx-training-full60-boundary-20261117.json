@@ -1,0 +1,823 @@
+{
+  "status": "HOLD",
+  "job": "110963",
+  "source_sha256": "f534db9597d5d1899e0ccf573a1822905a41dad2ac014a8a8bfdd47a141919c4",
+  "scope": "all60 representation families; small E; derivative selections and20 AdamW states",
+  "threshold": "1e-5+1e-4*abs(FP64 reference)",
+  "passed": 59,
+  "total": 60,
+  "failed": [
+    {
+      "case": [
+        256,
+        6,
+        "full",
+        37
+      ],
+      "status": "error",
+      "checks": 82,
+      "failures": [
+        {
+          "label": "20261003/step0/weight",
+          "failed": 1,
+          "elements": 39424,
+          "max_abs": 0.00010454380678154383
+        }
+      ],
+      "receipt": "receipts/train-full-110963-256-6-full-37-validate.json",
+      "sha256": "83615ad0c9c71d9a5523489202677dc18b2deb007d865586f8999701f3fc064e"
+    }
+  ],
+  "points": [
+    {
+      "case": [
+        32,
+        1,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-1-canonical-37-validate.json",
+      "sha256": "2c58cb50519cd2eb2bbb68577829e85367cd320488cf1c3246c004edd227954f"
+    },
+    {
+      "case": [
+        32,
+        1,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-1-full-37-validate.json",
+      "sha256": "ae33456d850d92adbfac0327b6ef5fd4f4f1a5f5be5df5fdebd4fc99a19e3e26"
+    },
+    {
+      "case": [
+        32,
+        2,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-2-canonical-37-validate.json",
+      "sha256": "0bc5e834aee89940ecaa25f426bce797858c2c10bd5d0932b62a0479fb2b06c5"
+    },
+    {
+      "case": [
+        32,
+        2,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-2-full-37-validate.json",
+      "sha256": "b38c347ea91252977e2c4d78262a1d53632dac40cdc1976d2663fa5c93443eb3"
+    },
+    {
+      "case": [
+        32,
+        3,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-3-canonical-37-validate.json",
+      "sha256": "538af82d85eb51ef0a2fa31511b4f684a3b2f62ffea1ca3a37d64c487965706c"
+    },
+    {
+      "case": [
+        32,
+        3,
+        "full",
+        257
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-3-full-257-validate.json",
+      "sha256": "55a2b00f63d098f8c4818032fa698e906bd34a3b00d40f1b478e3ae1b9a98c8b"
+    },
+    {
+      "case": [
+        32,
+        4,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-4-canonical-37-validate.json",
+      "sha256": "f48e071b866519303d69991c6a0f781ad63e92da2b76c3de2395266b3a837dc0"
+    },
+    {
+      "case": [
+        32,
+        4,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-4-full-37-validate.json",
+      "sha256": "2b6ce0f189fd3afdcb230c4d2b63b7433f28994c014c06d9661d9d5126f93825"
+    },
+    {
+      "case": [
+        32,
+        5,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-5-canonical-37-validate.json",
+      "sha256": "f8b287a08c953b560e43a8f6f64da99f7a3f4d3fecb1c82daac57047a8925188"
+    },
+    {
+      "case": [
+        32,
+        5,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-5-full-37-validate.json",
+      "sha256": "01d631fc1efc998c07df2c59b74c2761377dbfd75a46c0b5f23f104f70c3a59e"
+    },
+    {
+      "case": [
+        32,
+        6,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-6-canonical-37-validate.json",
+      "sha256": "1f5ec44b831a706d55e5bbf78573b1fef02045adc60a8bf8138c2bb3d99fa60a"
+    },
+    {
+      "case": [
+        32,
+        6,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-32-6-full-37-validate.json",
+      "sha256": "3efbb497c20b857e40eacdb3bc54e3041052564f4347e816ce266fe456680aec"
+    },
+    {
+      "case": [
+        64,
+        1,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-1-canonical-37-validate.json",
+      "sha256": "6b6d9b2ce706776283b83b760c6bb69adeb430399acdb750993c13883e8fda9a"
+    },
+    {
+      "case": [
+        64,
+        1,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-1-full-37-validate.json",
+      "sha256": "b035ba96a66e3677772af5aa265c408f2d2f74179c473dec22bdc3d40069031a"
+    },
+    {
+      "case": [
+        64,
+        2,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-2-canonical-37-validate.json",
+      "sha256": "e83238d064909ac592814e861504d907abf5cccff8209bef363cc54cd1d4f107"
+    },
+    {
+      "case": [
+        64,
+        2,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-2-full-37-validate.json",
+      "sha256": "2e28862368afc1f1cbd6a99434f4c157716a746690cfd8d9517a50708478e388"
+    },
+    {
+      "case": [
+        64,
+        3,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-3-canonical-37-validate.json",
+      "sha256": "5e6eef795de0427518ca63b52d62374d663a1af9f01099d54f8c4fe95b12898f"
+    },
+    {
+      "case": [
+        64,
+        3,
+        "full",
+        257
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-3-full-257-validate.json",
+      "sha256": "74ebf2b7832609878a106ee554f1a30918668f9b1959cf41887852753b2a31a3"
+    },
+    {
+      "case": [
+        64,
+        4,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-4-canonical-37-validate.json",
+      "sha256": "8d206812594ad1fb7501e81dae596a775a34932b0fd155e216ce9755db56f6c4"
+    },
+    {
+      "case": [
+        64,
+        4,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-4-full-37-validate.json",
+      "sha256": "47618c511fc91e26e8ee11deeca9a0c1c2d15698d363840fb079973ebaf3f632"
+    },
+    {
+      "case": [
+        64,
+        5,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-5-canonical-37-validate.json",
+      "sha256": "32183ff29f1b6764560ac8c82bf41f2369a8fc5fa1a4dc0f11945d1a4c948c42"
+    },
+    {
+      "case": [
+        64,
+        5,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-5-full-37-validate.json",
+      "sha256": "ced0eb7e01b2e64d516bd032d65c7ee7913f2bb2f571090d95638087ae4340f5"
+    },
+    {
+      "case": [
+        64,
+        6,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-6-canonical-37-validate.json",
+      "sha256": "8cd26b84681ecdcceacae608de88305b72f5a220d10ed9bb035a2d48aa092abe"
+    },
+    {
+      "case": [
+        64,
+        6,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-64-6-full-37-validate.json",
+      "sha256": "3085fb6fc924cf77a855cea695b6f0b31672bcceec82aa22fc9bc51ba5c1d9d6"
+    },
+    {
+      "case": [
+        96,
+        1,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-1-canonical-37-validate.json",
+      "sha256": "670bca3e528ea7a6f3928a59471b0ba9c9bf5d04fa0a8b99f9c7722ee2341286"
+    },
+    {
+      "case": [
+        96,
+        1,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-1-full-37-validate.json",
+      "sha256": "21cf857ea55f242867302852a71da535594afcdb8486e6882e9153fc7dcc63bc"
+    },
+    {
+      "case": [
+        96,
+        2,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-2-canonical-37-validate.json",
+      "sha256": "5c28c807ec81910d579a5cb4ec0aaf040c511b9ef8bb8ef75b48d3658330a4b0"
+    },
+    {
+      "case": [
+        96,
+        2,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-2-full-37-validate.json",
+      "sha256": "1f608bf032ce154f967f4981538e3c2b5c188cc62e7e762ab99746f410db26a7"
+    },
+    {
+      "case": [
+        96,
+        3,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-3-canonical-37-validate.json",
+      "sha256": "f47fb5cc4c00f33cb7baa7d471cf88bdcd5fb8793d3288ddf6a6364f9d8dfa3b"
+    },
+    {
+      "case": [
+        96,
+        3,
+        "full",
+        257
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-3-full-257-validate.json",
+      "sha256": "0a84ded5ee29da945f9fa6d1304a122bd14be57a69b4c6fadc5510283314e3be"
+    },
+    {
+      "case": [
+        96,
+        4,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-4-canonical-37-validate.json",
+      "sha256": "37bba5e4a80833f1cd41d058f110cefe80e485475e768bd2127d64fa1fa56a2f"
+    },
+    {
+      "case": [
+        96,
+        4,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-4-full-37-validate.json",
+      "sha256": "bd11edebb581c0e63cf4e4795613785562adafced610275f418f2a3cc5094264"
+    },
+    {
+      "case": [
+        96,
+        5,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-5-canonical-37-validate.json",
+      "sha256": "02ce95a63ca6b99eb8bffacbcaeeb609036accf081ff6bff039eb470bec440a8"
+    },
+    {
+      "case": [
+        96,
+        5,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-5-full-37-validate.json",
+      "sha256": "ca005a40060e8bcf9f981948435578b038982e9fc4f0f15cf1d3009efaead338"
+    },
+    {
+      "case": [
+        96,
+        6,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-6-canonical-37-validate.json",
+      "sha256": "944260e4ea3da4ecbfadd3693a8278154fcc40b089104a9ba7a7c8f570fe81b2"
+    },
+    {
+      "case": [
+        96,
+        6,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-96-6-full-37-validate.json",
+      "sha256": "8eaf4466cd92c1ef1cc5ee6795236867fca82b1e2b3a4f678b3fa95d9bacebf7"
+    },
+    {
+      "case": [
+        128,
+        1,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-1-canonical-37-validate.json",
+      "sha256": "6392979727870edb5d457f95b7b55647afc2a4dbd49aaa387e8823cbd15bb13f"
+    },
+    {
+      "case": [
+        128,
+        1,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-1-full-37-validate.json",
+      "sha256": "80152da93daf48db38e97cb9794a2c0cb01f80a50eda73ac4cc73d1f53bf8241"
+    },
+    {
+      "case": [
+        128,
+        2,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-2-canonical-37-validate.json",
+      "sha256": "f312fc1af852e27b6a5040f8b1f50d2b7276c2aae7ad73ac91f954a6e2ec240d"
+    },
+    {
+      "case": [
+        128,
+        2,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-2-full-37-validate.json",
+      "sha256": "5566da71804d7d056eb83559cf4090ad017606fb9e447874aab740933a740499"
+    },
+    {
+      "case": [
+        128,
+        3,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-3-canonical-37-validate.json",
+      "sha256": "093572366ddcb30adfa24db39b486ff2cad3fa6530a3d51171df09d41033f860"
+    },
+    {
+      "case": [
+        128,
+        3,
+        "full",
+        257
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-3-full-257-validate.json",
+      "sha256": "287e5e3752eda7781a0af050e263faa119fe2c78747310ef412500bc15f14003"
+    },
+    {
+      "case": [
+        128,
+        4,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-4-canonical-37-validate.json",
+      "sha256": "f36de7910c80b9a036c07a89a8ef674bfa6d940a04f14b636c5352c9b7efb1ea"
+    },
+    {
+      "case": [
+        128,
+        4,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-4-full-37-validate.json",
+      "sha256": "08cfdd4bd75a281eb8a6170b6d7478a0aad08e94924dda20f319656c17eda201"
+    },
+    {
+      "case": [
+        128,
+        5,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-5-canonical-37-validate.json",
+      "sha256": "18f24816e19545f112f8ea5ba14a56d4cb406342e6465a980ca86194828e879b"
+    },
+    {
+      "case": [
+        128,
+        5,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-5-full-37-validate.json",
+      "sha256": "76382a8d13c3c4f88138fdfd79322223750507586214ea3edcdf5d1d5aba5af9"
+    },
+    {
+      "case": [
+        128,
+        6,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-6-canonical-37-validate.json",
+      "sha256": "bc04085afbe2737b181fc5808de0882bb97fc5947f90788366395cc4f9be2a2e"
+    },
+    {
+      "case": [
+        128,
+        6,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-128-6-full-37-validate.json",
+      "sha256": "fe84c5a704c5f6ede3e2b159f470e6bf849f6b5d98c2e211e069fa4e919a13de"
+    },
+    {
+      "case": [
+        256,
+        1,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-1-canonical-37-validate.json",
+      "sha256": "81173e6c527d16974d4bf357160b226f6b362c2d90ed582fd0b3242b31361e9d"
+    },
+    {
+      "case": [
+        256,
+        1,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-1-full-37-validate.json",
+      "sha256": "63d7ac0c2ca7f1dee956335853957639413bc8f420457f808e3b35a27086cf1f"
+    },
+    {
+      "case": [
+        256,
+        2,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-2-canonical-37-validate.json",
+      "sha256": "9a242afcc1b529f346844a4d3f6c0752a33ef08d23355e99c7a9da5a69d10924"
+    },
+    {
+      "case": [
+        256,
+        2,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-2-full-37-validate.json",
+      "sha256": "5e1321bcc9ae1b8be5ed650f666ffb39e1414efa697389eb5f7df800a006ab16"
+    },
+    {
+      "case": [
+        256,
+        3,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-3-canonical-37-validate.json",
+      "sha256": "640e7e456819313345f46c1c8d57a6295284cf5af017ff5489b6cdade22c9a1b"
+    },
+    {
+      "case": [
+        256,
+        3,
+        "full",
+        257
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-3-full-257-validate.json",
+      "sha256": "cee6abaad5462dc8b533cbd6ce1131b43f7a2516a3c51b60bdecb2849f05b9a4"
+    },
+    {
+      "case": [
+        256,
+        4,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-4-canonical-37-validate.json",
+      "sha256": "0e9bb5649c2ba93969f67ee07e472de62f215de9107cf66625c9a5b575a5ef2a"
+    },
+    {
+      "case": [
+        256,
+        4,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-4-full-37-validate.json",
+      "sha256": "abbc0e90ffb72ea12298c56cb2e8b3b1cc4054efb29365d0ff99d2fd8bf01575"
+    },
+    {
+      "case": [
+        256,
+        5,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-5-canonical-37-validate.json",
+      "sha256": "47b475715648897ff8c07a5be5bf0d9c4ef91a6c32f3c4fad892039be0bae47c"
+    },
+    {
+      "case": [
+        256,
+        5,
+        "full",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-5-full-37-validate.json",
+      "sha256": "241d677a8b180859ae53eb004e171480555407988afa34c01a30e34177b92960"
+    },
+    {
+      "case": [
+        256,
+        6,
+        "canonical",
+        37
+      ],
+      "status": "pass",
+      "checks": 240,
+      "failures": [],
+      "receipt": "receipts/train-full-110963-256-6-canonical-37-validate.json",
+      "sha256": "2314e792a368469f6538bdb4b993f2a2cea2a7f9f9c561607b0c9e1ba2732edf"
+    },
+    {
+      "case": [
+        256,
+        6,
+        "full",
+        37
+      ],
+      "status": "error",
+      "checks": 82,
+      "failures": [
+        {
+          "label": "20261003/step0/weight",
+          "failed": 1,
+          "elements": 39424,
+          "max_abs": 0.00010454380678154383
+        }
+      ],
+      "receipt": "receipts/train-full-110963-256-6-full-37-validate.json",
+      "sha256": "83615ad0c9c71d9a5523489202677dc18b2deb007d865586f8999701f3fc064e"
+    }
+  ],
+  "numerical_tolerance_changed": false,
+  "full240_training_accepted": false,
+  "original_driver_sha256": "b80b65bb2f1ac5f33c615049e84d48252afd5b2f588036696159162c5fa5c1ce"
+}
