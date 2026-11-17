@@ -16,12 +16,13 @@ Selective replay completes five same-GPU six-case paired allocations. It gives
 1.025679x event/1.025652x wall geometric mean versus the committed core, without
 a >3% regression. It remains unpromoted because the expanded numerical gate fails.
 
-Accuracy candidate `hpx-accurate-weight-v2`, core SHA256
+Accuracy fix `hpx-accurate-weight-v2`, core SHA256
 `ea0e39518ef076a6d967364ab7a392f6c5665c59f37a192eba3d4a829fda3ba7`,
 retains FP64 grouped weight products/partials and mixed-weight direction sums,
 then returns FP32 gradients. Input/output/parameter storage remains FP32. This
 is an explicitly different accumulation-precision experiment, not a strict-FP32
-kernel result. Its patch is retained in `experiments/training-accuracy-v2.patch`.
+kernel result. Its source is now applied, and its original patch is retained in
+`experiments/training-accuracy-v2.patch` as a checkpoint of the correction.
 
 It passes the same full-E first and mixed second derivative checks for both
 seeds20261003/20261004 and scales0.1/1 (110942/110943/110946/110947). Four small-E
@@ -30,7 +31,7 @@ CPU110948 audits these receipts and unchanged tolerances. The prior FP64
 candidatev1 fails two mixed-weight entries at the second seed (110938); onlyv2
 retains wide values until all directional contributions have been added.
 
-The correction has performance costs in some cases and remains unpromoted.
-Neither the full240 training goal nor a current-SOTA claim is accepted. The
-default library core has not been silently replaced with this experiment.
+The correction has performance costs in some cases. It is a numerical fix,
+not a performance promotion. No source/intermediate precision change is hidden.
+Neither the full240 training goal nor a current-SOTA claim is accepted.
 The compact receipt is [hpx-training-numerical-boundary-20261117.json](hpx-training-numerical-boundary-20261117.json).

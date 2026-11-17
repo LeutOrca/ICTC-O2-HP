@@ -21,7 +21,7 @@ from . import __version__
 # older release's lowering. Public Python API and checkpoint keys stay stable.
 _HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
 _HPX_ADJOINT = os.environ.get("O2_HPX_ADJOINT", "0") == "replay"
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_accurate_r2_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -30,7 +30,7 @@ if _BLOCK not in (64, 128, 256, 512):
 _WEIGHT_TILE_SETTING = os.environ.get("O2_WEIGHT_TILE", "auto")
 if _WEIGHT_TILE_SETTING not in ("auto", "0", "32", "64", "128", "256"):
     raise ValueError("O2_WEIGHT_TILE must be auto, 0, 32, 64, 128, or 256")
-_WEIGHT_CHANNEL_TILE = int(os.environ.get("O2_WEIGHT_CHANNEL_TILE", "64"))
+_WEIGHT_CHANNEL_TILE = int(os.environ.get("O2_WEIGHT_CHANNEL_TILE", "32"))
 if _WEIGHT_CHANNEL_TILE not in (0, 16, 32, 64, 128, 256):
     raise ValueError("O2_WEIGHT_CHANNEL_TILE must be 0, 16, 32, 64, 128, or 256")
 _WEIGHT_SCHEDULE = os.environ.get("O2_WEIGHT_SCHEDULE", "grouped")
@@ -521,6 +521,7 @@ def _backward_input_path(
     WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, PATHS: tl.constexpr,
     IN_KEY: tl.constexpr, P: tl.constexpr, FULL: tl.constexpr,
+    NEED_LEFT: tl.constexpr = True, NEED_RIGHT: tl.constexpr = True,
 ):
     key1: tl.constexpr = PATHS.value[IN_KEY][P][0]
     key2: tl.constexpr = PATHS.value[IN_KEY][P][1]
@@ -556,11 +557,11 @@ def _backward_input_path(
             coefficient = PATHS.value[IN_KEY][P][4][t][3]
             g = tl.where(k == 0, g0, g1)
             common = coefficient * w * g
-            if key1 == IN_KEY:
+            if NEED_LEFT and key1 == IN_KEY:
                 bj = tl.where(j == 0, b0, b1)
                 dl0 = dl0 + tl.where(i == 0, common * bj, 0.0)
                 dl1 = dl1 + tl.where(i == 1, common * bj, 0.0)
-            if key2 == IN_KEY:
+            if NEED_RIGHT and key2 == IN_KEY:
                 ai = tl.where(i == 0, a0, a1)
                 dr0 = dr0 + tl.where(j == 0, common * ai, 0.0)
                 dr1 = dr1 + tl.where(j == 1, common * ai, 0.0)
@@ -573,6 +574,7 @@ def _backward_input_key(
     E: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, PATHS: tl.constexpr,
     IN_KEY: tl.constexpr, FULL: tl.constexpr, BLOCK: tl.constexpr,
+    NEED_LEFT: tl.constexpr = True, NEED_RIGHT: tl.constexpr = True,
 ):
     offsets = tl.program_id(0) * BLOCK + tl.arange(0, BLOCK)
     input_mul: tl.constexpr = KEYS.value[IN_KEY][1]
@@ -586,20 +588,22 @@ def _backward_input_key(
     for p in tl.static_range(len(PATHS.value[IN_KEY])):
         path_dl0, path_dl1, path_dr0, path_dr1 = _backward_input_path(
             left, right, weight, grad_output, edge, channel, mask,
-            WIDTH, C, KEYS, PATHS, IN_KEY, p, FULL,
+            WIDTH, C, KEYS, PATHS, IN_KEY, p, FULL, NEED_LEFT, NEED_RIGHT,
         )
         dl0 = dl0 + path_dl0
         dl1 = dl1 + path_dl1
         dr0 = dr0 + path_dr0
         dr1 = dr1 + path_dr1
-    _write_raw(
-        grad_left, edge, channel, dl0, dl1, mask,
-        IN_KEY, WIDTH, C, KEYS, FULL,
-    )
-    _write_raw(
-        grad_right, edge, channel, dr0, dr1, mask,
-        IN_KEY, WIDTH, C, KEYS, FULL,
-    )
+    if NEED_LEFT:
+        _write_raw(
+            grad_left, edge, channel, dl0, dl1, mask,
+            IN_KEY, WIDTH, C, KEYS, FULL,
+        )
+    if NEED_RIGHT:
+        _write_raw(
+            grad_right, edge, channel, dr0, dr1, mask,
+            IN_KEY, WIDTH, C, KEYS, FULL,
+        )
 
 
 @triton.jit
@@ -608,13 +612,14 @@ def _backward_input_all(
     E: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, PATHS: tl.constexpr,
     FULL: tl.constexpr, BLOCK: tl.constexpr,
+    NEED_LEFT: tl.constexpr = True, NEED_RIGHT: tl.constexpr = True,
 ):
     input_key = tl.program_id(1)
     for key in tl.static_range(len(KEYS.value)):
         if input_key == key:
             _backward_input_key(
                 left, right, weight, grad_output, grad_left, grad_right,
-                E, WIDTH, C, KEYS, PATHS, key, FULL, BLOCK,
+                E, WIDTH, C, KEYS, PATHS, key, FULL, BLOCK, NEED_LEFT, NEED_RIGHT,
             )
 
 
@@ -624,13 +629,14 @@ def _backward_input_all_fused(
     E: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, PATHS: tl.constexpr,
     FULL: tl.constexpr, BLOCK: tl.constexpr,
+    NEED_LEFT: tl.constexpr = True, NEED_RIGHT: tl.constexpr = True,
 ):
     # Use the identical per-key adjoint, allowing shared loads to be reused.
     # Each key retains its own multiplicity/mask, including scalar blocks.
     for key in tl.static_range(len(KEYS.value)):
         _backward_input_key(
             left, right, weight, grad_output, grad_left, grad_right,
-            E, WIDTH, C, KEYS, PATHS, key, FULL, BLOCK,
+            E, WIDTH, C, KEYS, PATHS, key, FULL, BLOCK, NEED_LEFT, NEED_RIGHT,
         )
 
 
@@ -770,7 +776,7 @@ def _backward_weight_group_path(
     g0, g1 = _read_canonical(
         grad_output, edge[:, None], channel[None, :], active,
         key3, WIDTH, C, KEYS, FULL)
-    product = tl.full((BLOCK_E, BLOCK_C), 0.0, tl.float32)
+    product = tl.full((BLOCK_E, BLOCK_C), 0.0, tl.float64)
     for t in tl.static_range(len(PATHS.value[FIRST_KEY][P][4])):
         i = PATHS.value[FIRST_KEY][P][4][t][0]
         j = PATHS.value[FIRST_KEY][P][4][t][1]
@@ -779,7 +785,7 @@ def _backward_weight_group_path(
         ai = tl.where(i == 0, a0, a1)
         bj = tl.where(j == 0, b0, b1)
         g = tl.where(k == 0, g0, g1)
-        product = product + coefficient * ai * bj * g
+        product = product + tl.full((), coefficient, tl.float64) * ai.to(tl.float64) * bj.to(tl.float64) * g.to(tl.float64)
     contribution = tl.sum(product, axis=0)
     tl.store(partial + tl.program_id(0) * WEIGHT_COUNT + weight_start + channel,
              contribution, mask=channel < output_mul)
@@ -815,7 +821,7 @@ def _finish_backward_weight(
 ):
     lane = tl.arange(0, BLOCK_T)
     weight_index = tl.program_id(0) * BLOCK_W + tl.arange(0, BLOCK_W)
-    values = tl.full((BLOCK_T, BLOCK_W), 0.0, tl.float32)
+    values = tl.full((BLOCK_T, BLOCK_W), 0.0, partial.dtype.element_ty)
     for start in range(0, TILES, BLOCK_T):
         tile = start + lane
         values += tl.load(
@@ -955,14 +961,15 @@ def _o2_backward_op(
     path_info: torch.Tensor,
     path_coefficients: torch.Tensor,
     metadata_id: int,
+    output_mask: int = 7,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     keys, paths, channels, full = _METADATA[metadata_id]
     edge_count, width = left.shape
     if edge_count == 0:
         return torch.empty_like(left), torch.empty_like(right), torch.zeros_like(weight)
     grad_output = grad_output.contiguous()
-    grad_left = torch.empty_like(left)
-    grad_right = torch.empty_like(right)
+    grad_left = torch.empty_like(left) if output_mask & 1 else torch.empty(0, device=left.device, dtype=left.dtype)
+    grad_right = torch.empty_like(right) if output_mask & 2 else torch.empty(0, device=right.device, dtype=right.dtype)
     paths_by_input = tuple(
         tuple(
             path for path in paths if path[0] == input_key or path[1] == input_key
@@ -974,13 +981,19 @@ def _o2_backward_op(
         torch.library.wrap_triton(_backward_input_all_fused)[
             (triton.cdiv(edge_count * max_multiplicity, _BLOCK),)
         ](left, right, weight, grad_output, grad_left, grad_right,
-          edge_count, width, channels, keys, paths_by_input, full, _BLOCK)
+          edge_count, width, channels, keys, paths_by_input, full, _BLOCK,
+          bool(output_mask & 1), bool(output_mask & 2))
     else:
         torch.library.wrap_triton(_backward_input_all)[
             (triton.cdiv(edge_count * max_multiplicity, _BLOCK), len(keys))
         ](left, right, weight, grad_output, grad_left, grad_right,
-          edge_count, width, channels, keys, paths_by_input, full, _BLOCK)
-    grad_weight = torch.empty_like(weight)
+          edge_count, width, channels, keys, paths_by_input, full, _BLOCK,
+          bool(output_mask & 1), bool(output_mask & 2))
+    if not output_mask & 4:
+        return grad_left, grad_right, torch.empty(0, device=weight.device, dtype=weight.dtype)
+    # Bit3 retains wide weight contributions inside mixed-derivative replay.
+    # Cast only after summing directions, avoiding cancellation after two FP32 casts.
+    grad_weight = torch.empty_like(weight, dtype=torch.float64 if output_mask & 8 else weight.dtype)
     weight_tile = (_RUNTIME_EDGE_TILE if _WEIGHT_SCHEDULE in ("runtime", "grouped")
                    else _weight_tile_for(keys, full))
     if weight_tile:
@@ -988,7 +1001,8 @@ def _o2_backward_op(
         channel_tile = (_WEIGHT_CHANNEL_TILE or 32) if _WEIGHT_SCHEDULE in ("runtime", "grouped") else (
             _WEIGHT_CHANNEL_TILE or triton.next_power_of_2(max_multiplicity))
         partial = torch.empty(
-            (edge_tiles, weight.numel()), device=weight.device, dtype=weight.dtype,
+            (edge_tiles, weight.numel()), device=weight.device,
+            dtype=torch.float64 if _WEIGHT_SCHEDULE == "grouped" else weight.dtype,
         )
         if _WEIGHT_SCHEDULE == "grouped":
             paths_by_first = tuple(tuple(path for path in paths if path[0] == key)
@@ -1016,11 +1030,11 @@ def _o2_backward_op(
                 edge_count, width, channels, weight.numel(), keys, paths,
                 full, weight_tile, channel_tile,
             )
-        # Use the same two-stage FP32 reduction for every positive N. Bounded
-        # 1024-row chunks avoid spills at high N without an N-based dispatch.
+        # Keep a fixed two-stage reduction for every positive N. The grouped
+        # accuracy experiment retains FP64 products/partials until the FP32 output.
         chunks = triton.cdiv(edge_tiles, 1024)
         reduced = torch.empty((chunks, weight.numel()),
-                              device=weight.device, dtype=weight.dtype)
+                              device=weight.device, dtype=partial.dtype)
         torch.library.wrap_triton(_finish_backward_weight_chunk)[
             (triton.cdiv(weight.numel(), 32), chunks)
         ](partial, reduced, weight.numel(), edge_tiles, 1024, 32)
@@ -1104,9 +1118,10 @@ def _torch_forward_flat(left, right, weight, metadata_id):
 
 
 def _o2_backward_setup_context(ctx, inputs, output):
-    left, right, weight, grad_output, path_info, path_coefficients, metadata_id = inputs
+    left, right, weight, grad_output, path_info, path_coefficients, metadata_id, output_mask = inputs
     ctx.save_for_backward(left, right, weight, grad_output, path_info, path_coefficients)
     ctx.metadata_id = metadata_id
+    ctx.output_mask = output_mask
     if _HPX_ADJOINT:
         ctx.set_materialize_grads(False)
 
@@ -1119,12 +1134,15 @@ def _o2_double_backward(ctx, dd_left, dd_right, dd_weight):
         # Its derivative in that same argument is zero. d/d(grad_output) is F.
         second = [None, None, None, None]
         for index, cotangent in enumerate((dd_left, dd_right, dd_weight)):
-            if cotangent is None:
+            if cotangent is None or not ctx.output_mask & (1 << index):
                 continue
             values = [left, right, weight]
             values[index] = cotangent.contiguous()
+            output_mask = sum(1 << target for target in range(3)
+                              if target != index and ctx.needs_input_grad[target])
+            output_mask |= 8
             contributions = _o2_backward_op(
-                *values, grad_output, path_info, path_coefficients, ctx.metadata_id,
+                *values, grad_output, path_info, path_coefficients, ctx.metadata_id, output_mask,
             )
             for target, value in enumerate(contributions):
                 if target != index and ctx.needs_input_grad[target]:
@@ -1135,14 +1153,16 @@ def _o2_double_backward(ctx, dd_left, dd_right, dd_weight):
                     *values, path_info, path_coefficients, ctx.metadata_id,
                 )
                 second[3] = value if second[3] is None else second[3] + value
-        return *second, None, None, None
+        if second[2] is not None:
+            second[2] = second[2].to(weight.dtype)
+        return *second, None, None, None, None
     selected = tuple(
         (index, cotangent) for index, cotangent in enumerate(
             (dd_left, dd_right, dd_weight)
         ) if cotangent is not None
     )
     if not selected:
-        return None, None, None, None, None, None, None
+        return None, None, None, None, None, None, None, None
     with torch.enable_grad():
         inputs = tuple(
             value.detach().requires_grad_(True)
@@ -1157,7 +1177,7 @@ def _o2_double_backward(ctx, dd_left, dd_right, dd_weight):
             grad_outputs=tuple(cotangent for _, cotangent in selected),
             allow_unused=True,
         )
-    return *second_grads, None, None, None
+    return *second_grads, None, None, None, None
 
 
 _o2_backward_op.register_autograd(

@@ -1,16 +1,17 @@
 # Trilinear mixed second derivatives, 2026-11-17
 
-Expanded full-E qualification is HOLD: independent FP64 validation at
-C128/M6/full/E131072 finds22 shared-weight gradients beyond the fixed tolerance
-in the committed core. The measurements below remain scoped six-point timing
-and small-E numerical evidence. See [the numerical boundary](hpx-training-numerical-boundary.md)
-for the reproduced failure and a separately identified, unpromoted correction.
+The original committed core fails expanded FP64 validation at
+C128/M6/full/E131072 in22 shared-weight gradients. The current numerical fix
+uses explicit FP64 weight products/reduction and passes the added stress gate.
+The historical timings below remain bound to the earlier FP32 core. Full240
+training/SOTA qualification is still HOLD. See [the numerical boundary](hpx-training-numerical-boundary.md).
 
 Enable `O2_HPX_FORWARD=preload O2_HPX_ADJOINT=replay` before import for the
 qualified experimental path. This replaces the generic Torch reconstruction
 inside double backward with exact forward/first-adjoint identities. Canonical
-trainable weights remain live. The ordinary first adjoint, coefficient source,
-normalization, state keys and public tensor layouts are unchanged.
+trainable weights remain live. The first-adjoint equations, coefficient source,
+normalization, state keys and public layouts are unchanged. Current grouped
+weight accumulation uses the precision correction described above.
 
 For the trilinear product F(x,y,w), output cotangent q, and cotangents A/B/C
 of its three first gradients, contract each selected cotangent by replacing
