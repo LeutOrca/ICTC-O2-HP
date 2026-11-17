@@ -1,0 +1,1872 @@
+{
+  "reports": {
+    "NVIDIA A100-SXM4-40GB/2.7.1+cu128": {
+      "rows": [
+        {
+          "case": [
+            32,
+            1,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.018432000651955605,
+              "best_prior": "baseline",
+              "speedup": 2.833333181750888,
+              "ratios": {
+                "baseline": [
+                  2.833333181750888,
+                  2.833333181750888,
+                  2.777777609352839,
+                  2.833333181750888,
+                  2.833333181750888
+                ],
+                "preload": [
+                  2.833333181750888,
+                  2.833333181750888,
+                  2.944444326546987,
+                  2.777777609352839,
+                  2.861110967949913
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.0322805717587471,
+              "best_prior": "baseline",
+              "speedup": 2.070033834155293,
+              "ratios": {
+                "baseline": [
+                  2.0563024725195467,
+                  2.070033834155293,
+                  2.013135497049478,
+                  2.092493723124874,
+                  2.129433818575906
+                ],
+                "preload": [
+                  2.0789359799197946,
+                  2.074048055969721,
+                  2.099509192010894,
+                  2.0359874173905514,
+                  2.1387334875955597
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m1canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c32m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-1-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m1canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c32m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-1-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m1canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c32m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-1-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m1canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c32m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-1-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m1canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c32m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-1-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            1,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.12390399724245071,
+              "best_prior": "preload",
+              "speedup": 1.1900827132082625,
+              "ratios": {
+                "baseline": [
+                  1.214876050451371,
+                  1.214876050451371,
+                  1.2016461629877417,
+                  1.214876050451371,
+                  1.219008313413144
+                ],
+                "preload": [
+                  1.1900827132082625,
+                  1.1900827132082625,
+                  1.193415647471163,
+                  1.1818181872847167,
+                  1.1818181872847167
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.13822410255670547,
+              "best_prior": "preload",
+              "speedup": 1.1752186002881169,
+              "ratios": {
+                "baseline": [
+                  1.1999932377603462,
+                  1.1993247687113606,
+                  1.1834198800629836,
+                  1.198738191587495,
+                  1.2036896042906136
+                ],
+                "preload": [
+                  1.180217067892886,
+                  1.179425345120088,
+                  1.1752186002881169,
+                  1.1647757495774895,
+                  1.1695661548205394
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m1canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c32m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-1-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m1canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c32m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-1-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m1canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c32m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-1-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m1canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c32m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-1-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m1canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c32m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-1-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            1,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.02252800017595291,
+              "best_prior": "preload",
+              "speedup": 2.3409090382936952,
+              "ratios": {
+                "baseline": [
+                  2.3181817580499375,
+                  2.3636363185374534,
+                  2.3181817580499375,
+                  2.3636363185374534,
+                  2.3636363185374534
+                ],
+                "preload": [
+                  2.3409090382936952,
+                  2.3636363185374534,
+                  2.3181817580499375,
+                  2.3181817580499375,
+                  2.3636363185374534
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.03590201959013939,
+              "best_prior": "preload",
+              "speedup": 1.8733266681382033,
+              "ratios": {
+                "baseline": [
+                  1.861113633121052,
+                  1.885129890291865,
+                  1.8394703591965138,
+                  1.9005149357303137,
+                  1.8921277120635704
+                ],
+                "preload": [
+                  1.8822941931801969,
+                  1.9121946801904368,
+                  1.853343131946056,
+                  1.869956029417487,
+                  1.8733266681382033
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m1fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c32m1fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-1-full-time.json",
+            "receipts/single-110863-0-baseline-c32m1fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c32m1fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-1-full-time.json",
+            "receipts/single-110864-1-baseline-c32m1fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c32m1fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-1-full-time.json",
+            "receipts/single-110866-2-baseline-c32m1fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c32m1fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-1-full-time.json",
+            "receipts/single-110867-3-baseline-c32m1fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c32m1fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-1-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            1,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.2314240038394928,
+              "best_prior": "preload",
+              "speedup": 1.101769912074239,
+              "ratios": {
+                "baseline": [
+                  1.5055187897509417,
+                  1.5088495603711949,
+                  1.506637154181145,
+                  1.5176990563533854,
+                  1.5110619665612448
+                ],
+                "preload": [
+                  1.0949227211387578,
+                  1.101769912074239,
+                  1.1061947244543386,
+                  1.0973450996941394,
+                  1.101769912074239
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.24590454995632172,
+              "best_prior": "preload",
+              "speedup": 1.0996265238264142,
+              "ratios": {
+                "baseline": [
+                  1.480792537437793,
+                  1.483126749830822,
+                  1.4758798403261488,
+                  1.4893840174323616,
+                  1.4865793262254627
+                ],
+                "preload": [
+                  1.096167975821662,
+                  1.1018726151594822,
+                  1.0999812970761096,
+                  1.0943085459842905,
+                  1.0996265238264142
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m1fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c32m1fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-1-full-time.json",
+            "receipts/single-110863-0-baseline-c32m1fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c32m1fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-1-full-time.json",
+            "receipts/single-110864-1-baseline-c32m1fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c32m1fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-1-full-time.json",
+            "receipts/single-110866-2-baseline-c32m1fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c32m1fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-1-full-time.json",
+            "receipts/single-110867-3-baseline-c32m1fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c32m1fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-1-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            3,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.02457600086927414,
+              "best_prior": "preload",
+              "speedup": 2.1666665656117035,
+              "ratios": {
+                "baseline": [
+                  2.5416665277160924,
+                  2.499999848417555,
+                  2.499999848417555,
+                  2.5208331880668235,
+                  2.6086955283863573
+                ],
+                "preload": [
+                  2.1666665656117035,
+                  2.1666665656117035,
+                  2.2083332449102406,
+                  2.1249998863131663,
+                  2.2608694895694406
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.03785034641623497,
+              "best_prior": "preload",
+              "speedup": 1.7936539026540006,
+              "ratios": {
+                "baseline": [
+                  2.021104691019489,
+                  2.0066926393180347,
+                  2.0121654200407986,
+                  2.031814770616242,
+                  2.0291438075615025
+                ],
+                "preload": [
+                  1.7936539026540006,
+                  1.7883758136808294,
+                  1.840365951659764,
+                  1.7498000811977905,
+                  1.8023483851748876
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m3canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c32m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-3-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m3canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c32m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-3-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m3canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c32m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-3-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m3canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c32m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-3-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m3canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c32m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-3-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            3,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.2682879865169525,
+              "best_prior": "preload",
+              "speedup": 1.0858779098694316,
+              "ratios": {
+                "baseline": [
+                  1.4236641480003167,
+                  1.4236641480003167,
+                  1.4236641480003167,
+                  1.4255725595742665,
+                  1.4198474359357454
+                ],
+                "preload": [
+                  1.0877862659017172,
+                  1.0858779098694316,
+                  1.0877862659017172,
+                  1.0839695538371459,
+                  1.0858779098694316
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.28251809999346733,
+              "best_prior": "preload",
+              "speedup": 1.0861479074217655,
+              "ratios": {
+                "baseline": [
+                  1.401351762972232,
+                  1.4065411079236618,
+                  1.4034708910290536,
+                  1.4071814267311957,
+                  1.4065705471881753
+                ],
+                "preload": [
+                  1.084932206040948,
+                  1.087808088789618,
+                  1.0877628757398596,
+                  1.0814079523478501,
+                  1.0861479074217655
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m3canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c32m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-3-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m3canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c32m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-3-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m3canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c32m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-3-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m3canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c32m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-3-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m3canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c32m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-3-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            3,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.04966400004923344,
+              "best_prior": "preload",
+              "speedup": 1.4845361335118719,
+              "ratios": {
+                "baseline": [
+                  1.9175258203670331,
+                  1.8979592942825745,
+                  1.8969072567063232,
+                  1.8775511234413023,
+                  1.9166666414029259
+                ],
+                "preload": [
+                  1.4845361335118719,
+                  1.4693878551047934,
+                  1.5051546971725815,
+                  1.4693878551047934,
+                  1.5
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.0637248158454895,
+              "best_prior": "preload",
+              "speedup": 1.3889312249952372,
+              "ratios": {
+                "baseline": [
+                  1.7330289260129226,
+                  1.716492287936494,
+                  1.7135288787559921,
+                  1.714226510298897,
+                  1.7256547034599996
+                ],
+                "preload": [
+                  1.3950343555858011,
+                  1.3886019057625238,
+                  1.399055886823337,
+                  1.3717345625604374,
+                  1.3889312249952372
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m3fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c32m3fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-3-full-time.json",
+            "receipts/single-110863-0-baseline-c32m3fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c32m3fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-3-full-time.json",
+            "receipts/single-110864-1-baseline-c32m3fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c32m3fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-3-full-time.json",
+            "receipts/single-110866-2-baseline-c32m3fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c32m3fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-3-full-time.json",
+            "receipts/single-110867-3-baseline-c32m3fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c32m3fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-3-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            3,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.5222399830818176,
+              "best_prior": "preload",
+              "speedup": 1.0450980416773714,
+              "ratios": {
+                "baseline": [
+                  1.8431373108493492,
+                  1.8382353125802853,
+                  1.8254902312133912,
+                  1.8312071446793454,
+                  1.8310413351031207
+                ],
+                "preload": [
+                  1.0490196402926224,
+                  1.0431372423697458,
+                  1.0450980416773714,
+                  1.0421983280748413,
+                  1.0471512952120023
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.5361041985452175,
+              "best_prior": "preload",
+              "speedup": 1.0462263094720452,
+              "ratios": {
+                "baseline": [
+                  1.8234461792360643,
+                  1.8186709209793837,
+                  1.8040220412931425,
+                  1.8116229557893713,
+                  1.8099960626259763
+                ],
+                "preload": [
+                  1.0515793359536167,
+                  1.0452860240790163,
+                  1.0462263094720452,
+                  1.0428833630549348,
+                  1.046753057114522
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m3fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c32m3fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-3-full-time.json",
+            "receipts/single-110863-0-baseline-c32m3fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c32m3fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-3-full-time.json",
+            "receipts/single-110864-1-baseline-c32m3fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c32m3fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-3-full-time.json",
+            "receipts/single-110866-2-baseline-c32m3fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c32m3fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-3-full-time.json",
+            "receipts/single-110867-3-baseline-c32m3fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c32m3fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-3-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            6,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.050175998359918594,
+              "best_prior": "preload",
+              "speedup": 1.4897960259460656,
+              "ratios": {
+                "baseline": [
+                  2.1616162210056755,
+                  2.193877622992086,
+                  2.1632653667301778,
+                  2.1600000582076624,
+                  2.18367353757145
+                ],
+                "preload": [
+                  1.4545455480839389,
+                  1.4897960259460656,
+                  1.5102041967873379,
+                  1.4600000945874514,
+                  1.4897960259460656
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.06469897925853729,
+              "best_prior": "preload",
+              "speedup": 1.3833093421620843,
+              "ratios": {
+                "baseline": [
+                  1.9002989675274173,
+                  1.9303719410606486,
+                  1.9203229406734212,
+                  1.9376853317978984,
+                  1.936792893875643
+                ],
+                "preload": [
+                  1.3607089597499804,
+                  1.3918183063951937,
+                  1.4103071415112116,
+                  1.3833093421620843,
+                  1.3828604308267702
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m6canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c32m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-6-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m6canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c32m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-6-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m6canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c32m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-6-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m6canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c32m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-6-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m6canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c32m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-6-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            6,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.48844799399375916,
+              "best_prior": "preload",
+              "speedup": 1.0482180920272892,
+              "ratios": {
+                "baseline": [
+                  5.064989586380872,
+                  5.062761557736854,
+                  5.1132074953652,
+                  5.1004182610096045,
+                  5.088050558906428
+                ],
+                "preload": [
+                  1.0482180920272892,
+                  1.048117094816687,
+                  1.0524108740942042,
+                  1.047071122637635,
+                  1.0524108740942042
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.5031670443713665,
+              "best_prior": "preload",
+              "speedup": 1.0504033620133582,
+              "ratios": {
+                "baseline": [
+                  4.951591885952117,
+                  4.95950091759421,
+                  4.993223297125523,
+                  4.9927701790474925,
+                  4.972968092180204
+                ],
+                "preload": [
+                  1.048497022941273,
+                  1.0504033620133582,
+                  1.0519241838436297,
+                  1.0483166352507673,
+                  1.0539387922555885
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m6canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c32m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-6-canonical-time.json",
+            "receipts/single-110863-0-baseline-c32m6canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c32m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-6-canonical-time.json",
+            "receipts/single-110864-1-baseline-c32m6canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c32m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-6-canonical-time.json",
+            "receipts/single-110866-2-baseline-c32m6canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c32m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-6-canonical-time.json",
+            "receipts/single-110867-3-baseline-c32m6canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c32m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-6-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            6,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.08499199897050858,
+              "best_prior": "preload",
+              "speedup": 1.2891566402362389,
+              "ratios": {
+                "baseline": [
+                  1.7469879507510586,
+                  1.7710843447425901,
+                  1.7590362354089653,
+                  1.7710843447425901,
+                  1.8000000617353988
+                ],
+                "preload": [
+                  1.2891566402362389,
+                  1.2771084432404731,
+                  1.2891566402362389,
+                  1.2891566402362389,
+                  1.2969697135393712
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.09890925139188766,
+              "best_prior": "preload",
+              "speedup": 1.257652630591766,
+              "ratios": {
+                "baseline": [
+                  1.6474450592214187,
+                  1.6698257111381034,
+                  1.6493716590077838,
+                  1.6675743444332483,
+                  1.6930044061167266
+                ],
+                "preload": [
+                  1.2642912061735558,
+                  1.252709433820137,
+                  1.257652630591766,
+                  1.2503081573828885,
+                  1.2596027426309464
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m6fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c32m6fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-6-full-time.json",
+            "receipts/single-110863-0-baseline-c32m6fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c32m6fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-6-full-time.json",
+            "receipts/single-110864-1-baseline-c32m6fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c32m6fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-6-full-time.json",
+            "receipts/single-110866-2-baseline-c32m6fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c32m6fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-6-full-time.json",
+            "receipts/single-110867-3-baseline-c32m6fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c32m6fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-6-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            32,
+            6,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.9625599980354309,
+              "best_prior": "preload",
+              "speedup": 1.0265957614791235,
+              "ratios": {
+                "baseline": [
+                  1.787234032013099,
+                  1.7871207975323173,
+                  1.7856382751782036,
+                  1.7886048987295171,
+                  1.7861701941231687
+                ],
+                "preload": [
+                  1.0265957614791235,
+                  1.0266099157974602,
+                  1.0265957614791235,
+                  1.0271565706128671,
+                  1.0265957614791235
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.9766579605638981,
+              "best_prior": "preload",
+              "speedup": 1.0276074044134245,
+              "ratios": {
+                "baseline": [
+                  1.776543810218491,
+                  1.7781362604095037,
+                  1.774395435338488,
+                  1.7785079998435238,
+                  1.7765640279647195
+                ],
+                "preload": [
+                  1.027575241827448,
+                  1.0276074044134245,
+                  1.026208402754386,
+                  1.0277902608858267,
+                  1.0279818838662182
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c32m6fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c32m6fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-32-6-full-time.json",
+            "receipts/single-110863-0-baseline-c32m6fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c32m6fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-32-6-full-time.json",
+            "receipts/single-110864-1-baseline-c32m6fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c32m6fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-32-6-full-time.json",
+            "receipts/single-110866-2-baseline-c32m6fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c32m6fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-32-6-full-time.json",
+            "receipts/single-110867-3-baseline-c32m6fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c32m6fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-32-6-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            1,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.044544000178575516,
+              "best_prior": "preload",
+              "speedup": 1.4883720890881786,
+              "ratios": {
+                "baseline": [
+                  1.5454545604875156,
+                  1.4772727197562423,
+                  1.5348837327354639,
+                  1.5402298985154455,
+                  1.5813953763827493
+                ],
+                "preload": [
+                  1.4545454395124844,
+                  1.4772727197562423,
+                  1.5116279109118214,
+                  1.4942528716406507,
+                  1.4883720890881786
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.05855550989508629,
+              "best_prior": "preload",
+              "speedup": 1.3795875845944634,
+              "ratios": {
+                "baseline": [
+                  1.4164648719425141,
+                  1.3728540815269779,
+                  1.4003145673118722,
+                  1.4237635887933708,
+                  1.437774805583809
+                ],
+                "preload": [
+                  1.3661805188556464,
+                  1.3918616415330323,
+                  1.3962283537380555,
+                  1.3795875845944634,
+                  1.3787251423583025
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m1canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c128m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-1-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m1canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c128m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-1-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m1canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c128m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-1-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m1canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c128m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-1-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m1canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c128m1canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-1-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            1,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.4485119879245758,
+              "best_prior": "preload",
+              "speedup": 1.0536529793386056,
+              "ratios": {
+                "baseline": [
+                  1.0650685252364438,
+                  1.057077663042088,
+                  1.0547945405730996,
+                  1.057077663042088,
+                  1.0616438415329612
+                ],
+                "preload": [
+                  1.057077663042088,
+                  1.0536529793386056,
+                  1.0525114181041113,
+                  1.0525114181041113,
+                  1.0547945405730996
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.4626004956662655,
+              "best_prior": "preload",
+              "speedup": 1.0555236662376715,
+              "ratios": {
+                "baseline": [
+                  1.0634905003411577,
+                  1.056087603648675,
+                  1.0525250273395252,
+                  1.0578903658665486,
+                  1.0644355347700436
+                ],
+                "preload": [
+                  1.056357842757961,
+                  1.0555236662376715,
+                  1.0514083495763755,
+                  1.053959401849214,
+                  1.057170783560342
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m1canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c128m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-1-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m1canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c128m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-1-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m1canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c128m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-1-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m1canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c128m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-1-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m1canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c128m1canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-1-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            1,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.07065600156784058,
+              "best_prior": "preload",
+              "speedup": 1.3188405751254206,
+              "ratios": {
+                "baseline": [
+                  1.5942028756271032,
+                  1.5942028756271032,
+                  1.5797101174191905,
+                  1.5942028756271032,
+                  1.5942028756271032
+                ],
+                "preload": [
+                  1.2971014378135517,
+                  1.3188405751254206,
+                  1.3188405751254206,
+                  1.304347816917508,
+                  1.3188405751254206
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.08483929559588432,
+              "best_prior": "preload",
+              "speedup": 1.269372027214161,
+              "ratios": {
+                "baseline": [
+                  1.4997754851710694,
+                  1.504454834156669,
+                  1.4858318874213872,
+                  1.5129580914617737,
+                  1.5020335801439149
+                ],
+                "preload": [
+                  1.2564671222674904,
+                  1.285241707833451,
+                  1.269372027214161,
+                  1.2637475492484362,
+                  1.2736468870580875
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m1fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c128m1fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-1-full-time.json",
+            "receipts/single-110863-0-baseline-c128m1fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c128m1fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-1-full-time.json",
+            "receipts/single-110864-1-baseline-c128m1fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c128m1fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-1-full-time.json",
+            "receipts/single-110866-2-baseline-c128m1fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c128m1fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-1-full-time.json",
+            "receipts/single-110867-3-baseline-c128m1fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c128m1fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-1-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            1,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.8801279962062836,
+              "best_prior": "preload",
+              "speedup": 1.02790698713279,
+              "ratios": {
+                "baseline": [
+                  1.454016220082686,
+                  1.454016220082686,
+                  1.4488373256232094,
+                  1.4511627894384498,
+                  1.454333888828785
+                ],
+                "preload": [
+                  1.0267753200608125,
+                  1.0279394054877016,
+                  1.02790698713279,
+                  1.0255814556342209,
+                  1.0296684008757222
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.8946950547397137,
+              "best_prior": "preload",
+              "speedup": 1.0281719609668862,
+              "ratios": {
+                "baseline": [
+                  1.448028233210486,
+                  1.4470065990299494,
+                  1.4416650287595687,
+                  1.4444645481832026,
+                  1.4495349177418457
+                ],
+                "preload": [
+                  1.0278248186589225,
+                  1.0281719609668862,
+                  1.028835484451322,
+                  1.0253463085636207,
+                  1.0307266132630308
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m1fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c128m1fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-1-full-time.json",
+            "receipts/single-110863-0-baseline-c128m1fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c128m1fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-1-full-time.json",
+            "receipts/single-110864-1-baseline-c128m1fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c128m1fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-1-full-time.json",
+            "receipts/single-110866-2-baseline-c128m1fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c128m1fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-1-full-time.json",
+            "receipts/single-110867-3-baseline-c128m1fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c128m1fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-1-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            3,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.08089599758386612,
+              "best_prior": "preload",
+              "speedup": 1.2784810231507162,
+              "ratios": {
+                "baseline": [
+                  1.6962026039271567,
+                  1.6582278142921363,
+                  1.6962026039271567,
+                  1.717948799271061,
+                  1.707006446174248
+                ],
+                "preload": [
+                  1.2784810231507162,
+                  1.2721519068950016,
+                  1.2784810231507162,
+                  1.2948718116146303,
+                  1.292993646513113
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.09460095316171646,
+              "best_prior": "preload",
+              "speedup": 1.254256822984135,
+              "ratios": {
+                "baseline": [
+                  1.6089190107719662,
+                  1.5732434521845748,
+                  1.6029162760793707,
+                  1.6135676957749805,
+                  1.614277838487059
+                ],
+                "preload": [
+                  1.254256822984135,
+                  1.256501036522013,
+                  1.2470540311062905,
+                  1.2525662096861498,
+                  1.2558994654301663
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m3canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c128m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-3-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m3canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c128m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-3-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m3canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c128m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-3-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m3canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c128m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-3-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m3canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c128m3canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-3-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            3,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 1.026047945022583,
+              "best_prior": "preload",
+              "speedup": 1.0244633169392896,
+              "ratios": {
+                "baseline": [
+                  1.3220169271248805,
+                  1.3220169271248805,
+                  1.3193614026722547,
+                  1.3183633910274686,
+                  1.3190428779818806
+                ],
+                "preload": [
+                  1.0244633169392896,
+                  1.0244633169392896,
+                  1.0259481865814721,
+                  1.0239521632919002,
+                  1.0229312659766399
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 1.0403422638773918,
+              "best_prior": "preload",
+              "speedup": 1.0250228501806977,
+              "ratios": {
+                "baseline": [
+                  1.3176564575311966,
+                  1.3183681183149154,
+                  1.3158152142785549,
+                  1.3154358901365102,
+                  1.315122351843544
+                ],
+                "preload": [
+                  1.0249348662709832,
+                  1.0250887164816502,
+                  1.0269731990721516,
+                  1.0250228501806977,
+                  1.0237085182477708
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m3canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c128m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-3-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m3canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c128m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-3-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m3canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c128m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-3-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m3canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c128m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-3-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m3canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c128m3canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-3-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            3,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.1443839967250824,
+              "best_prior": "preload",
+              "speedup": 1.1631205746953954,
+              "ratios": {
+                "baseline": [
+                  2.0,
+                  2.0,
+                  1.9822695745453351,
+                  1.9788730792241083,
+                  1.9753520282397328
+                ],
+                "preload": [
+                  1.1631205746953954,
+                  1.1702128274413213,
+                  1.1702128274413213,
+                  1.1549295226172622,
+                  1.1619718295425596
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.15892228111624718,
+              "best_prior": "preload",
+              "speedup": 1.1579473147638188,
+              "ratios": {
+                "baseline": [
+                  1.9125316451982903,
+                  1.91124374785735,
+                  1.8929069454046896,
+                  1.9072766996831123,
+                  1.9015642179643177
+                ],
+                "preload": [
+                  1.1573620738715535,
+                  1.1587157871912752,
+                  1.1579473147638188,
+                  1.1553100636703901,
+                  1.1593801767991438
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m3fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c128m3fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-3-full-time.json",
+            "receipts/single-110863-0-baseline-c128m3fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c128m3fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-3-full-time.json",
+            "receipts/single-110864-1-baseline-c128m3fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c128m3fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-3-full-time.json",
+            "receipts/single-110866-2-baseline-c128m3fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c128m3fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-3-full-time.json",
+            "receipts/single-110867-3-baseline-c128m3fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c128m3fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-3-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            3,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 2.048512101173401,
+              "best_prior": "preload",
+              "speedup": 1.0047487323358453,
+              "ratios": {
+                "baseline": [
+                  1.8046836780375497,
+                  1.7498125163486267,
+                  1.8148148104694597,
+                  1.7596469547483506,
+                  1.7735331029947428
+                ],
+                "preload": [
+                  1.001245649796479,
+                  1.0047487323358453,
+                  1.0118417467284773,
+                  1.0138713629753466,
+                  1.003245909156866
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 2.0630983635783195,
+              "best_prior": "preload",
+              "speedup": 1.0054287694082118,
+              "ratios": {
+                "baseline": [
+                  1.7992684292037986,
+                  1.745472150810185,
+                  1.8078784356412283,
+                  1.754913614720858,
+                  1.7685803768890163
+                ],
+                "preload": [
+                  1.0017318506639885,
+                  1.0054287694082118,
+                  1.01176089803138,
+                  1.0148761930575185,
+                  1.003462665864919
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m3fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c128m3fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-3-full-time.json",
+            "receipts/single-110863-0-baseline-c128m3fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c128m3fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-3-full-time.json",
+            "receipts/single-110864-1-baseline-c128m3fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c128m3fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-3-full-time.json",
+            "receipts/single-110866-2-baseline-c128m3fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c128m3fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-3-full-time.json",
+            "receipts/single-110867-3-baseline-c128m3fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c128m3fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-3-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            6,
+            "canonical",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.1372160017490387,
+              "best_prior": "preload",
+              "speedup": 1.1791044273658535,
+              "ratios": {
+                "baseline": [
+                  1.7835820733438237,
+                  1.7985074513406767,
+                  1.776119330047207,
+                  1.7835820733438237,
+                  1.776119330047207
+                ],
+                "preload": [
+                  1.1791044273658535,
+                  1.182835799014162,
+                  1.1865671706624705,
+                  1.1716417926656175,
+                  1.1791044273658535
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.15035411342978477,
+              "best_prior": "preload",
+              "speedup": 1.173073286858085,
+              "ratios": {
+                "baseline": [
+                  1.721644467451311,
+                  1.7306819586991469,
+                  1.7139768894615077,
+                  1.7148569328957077,
+                  1.7196765415109194
+                ],
+                "preload": [
+                  1.173073286858085,
+                  1.172749474465191,
+                  1.179771000641099,
+                  1.1620408251484395,
+                  1.1762439638232323
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m6canonicale8192-time.json",
+            "receipts/single-110862-4-candidate-c128m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-6-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m6canonicale8192-time.json",
+            "receipts/single-110863-0-candidate-c128m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-6-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m6canonicale8192-time.json",
+            "receipts/single-110864-1-candidate-c128m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-6-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m6canonicale8192-time.json",
+            "receipts/single-110866-2-candidate-c128m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-6-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m6canonicale8192-time.json",
+            "receipts/single-110867-3-candidate-c128m6canonicale8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-6-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            6,
+            "canonical",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 1.8933759927749634,
+              "best_prior": "preload",
+              "speedup": 1.0132612018320968,
+              "ratios": {
+                "baseline": [
+                  1.696051870990668,
+                  1.700947214299469,
+                  1.689935095307801,
+                  1.6906241912107658,
+                  1.6976743819992823
+                ],
+                "preload": [
+                  1.0135207991493183,
+                  1.0132612018320968,
+                  1.0135281156548435,
+                  1.0132396399171246,
+                  1.0132503806478825
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 1.907805446535349,
+              "best_prior": "preload",
+              "speedup": 1.0139476163438021,
+              "ratios": {
+                "baseline": [
+                  1.6908470735040675,
+                  1.6963084014553875,
+                  1.6847031997463497,
+                  1.6864634090133712,
+                  1.6938717054996124
+                ],
+                "preload": [
+                  1.0139476163438021,
+                  1.0140049905282558,
+                  1.0136478543591,
+                  1.013824667899482,
+                  1.0143637701777237
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m6canonicale131072-time.json",
+            "receipts/single-110862-4-candidate-c128m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-6-canonical-time.json",
+            "receipts/single-110863-0-baseline-c128m6canonicale131072-time.json",
+            "receipts/single-110863-0-candidate-c128m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-6-canonical-time.json",
+            "receipts/single-110864-1-baseline-c128m6canonicale131072-time.json",
+            "receipts/single-110864-1-candidate-c128m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-6-canonical-time.json",
+            "receipts/single-110866-2-baseline-c128m6canonicale131072-time.json",
+            "receipts/single-110866-2-candidate-c128m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-6-canonical-time.json",
+            "receipts/single-110867-3-baseline-c128m6canonicale131072-time.json",
+            "receipts/single-110867-3-candidate-c128m6canonicale131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-6-canonical-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            6,
+            "full",
+            8192
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 0.27852800488471985,
+              "best_prior": "preload",
+              "speedup": 1.0863970731819015,
+              "ratios": {
+                "baseline": [
+                  1.6874999799376171,
+                  1.692307602101403,
+                  1.6856617306785076,
+                  1.6911764784558363,
+                  1.6974170296501452
+                ],
+                "preload": [
+                  1.1176469895886398,
+                  1.080586050907821,
+                  1.084558823922792,
+                  1.0863970731819015,
+                  1.086715884000937
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 0.29193470254540443,
+              "best_prior": "preload",
+              "speedup": 1.084177533197751,
+              "ratios": {
+                "baseline": [
+                  1.6623321611253197,
+                  1.6667441090728552,
+                  1.6566702556127129,
+                  1.6612947616767344,
+                  1.6685484581321417
+                ],
+                "preload": [
+                  1.1218606138107416,
+                  1.08321770015149,
+                  1.084177533197751,
+                  1.083249679037957,
+                  1.0877811676716234
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m6fulle8192-time.json",
+            "receipts/single-110862-4-candidate-c128m6fulle8192-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-6-full-time.json",
+            "receipts/single-110863-0-baseline-c128m6fulle8192-time.json",
+            "receipts/single-110863-0-candidate-c128m6fulle8192-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-6-full-time.json",
+            "receipts/single-110864-1-baseline-c128m6fulle8192-time.json",
+            "receipts/single-110864-1-candidate-c128m6fulle8192-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-6-full-time.json",
+            "receipts/single-110866-2-baseline-c128m6fulle8192-time.json",
+            "receipts/single-110866-2-candidate-c128m6fulle8192-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-6-full-time.json",
+            "receipts/single-110867-3-baseline-c128m6fulle8192-time.json",
+            "receipts/single-110867-3-candidate-c128m6fulle8192-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-6-full-time.json"
+          ]
+        },
+        {
+          "case": [
+            128,
+            6,
+            "full",
+            131072
+          ],
+          "pairs": 5,
+          "jobs": [
+            "110862",
+            "110863",
+            "110864",
+            "110866",
+            "110867"
+          ],
+          "metrics": {
+            "event_median_ms": {
+              "candidate_ms": 4.063744068145752,
+              "best_prior": "preload",
+              "speedup": 1.0076854938855042,
+              "ratios": {
+                "baseline": [
+                  1.6332708025076632,
+                  1.6301386824584587,
+                  1.652658277689754,
+                  1.6452059417370146,
+                  1.6497852594623688
+                ],
+                "preload": [
+                  1.0056284732390666,
+                  0.9937522954313875,
+                  1.0159493714161763,
+                  1.0076854938855042,
+                  1.0083354426687343
+                ]
+              }
+            },
+            "wall_median_ms": {
+              "candidate_ms": 4.079221282154322,
+              "best_prior": "preload",
+              "speedup": 1.0081443496797569,
+              "ratios": {
+                "baseline": [
+                  1.6312828807274031,
+                  1.6282370941717725,
+                  1.6502782333518111,
+                  1.6426999766325827,
+                  1.647616891353761
+                ],
+                "preload": [
+                  1.0060641858544337,
+                  0.9940025638914805,
+                  1.0161160445109145,
+                  1.0081443496797569,
+                  1.00875378843983
+                ]
+              }
+            }
+          },
+          "files": [
+            "receipts/single-110862-4-baseline-c128m6fulle131072-time.json",
+            "receipts/single-110862-4-candidate-c128m6fulle131072-time.json",
+            "receipts/aot-library-v2-110862-rep4-128-6-full-time.json",
+            "receipts/single-110863-0-baseline-c128m6fulle131072-time.json",
+            "receipts/single-110863-0-candidate-c128m6fulle131072-time.json",
+            "receipts/aot-library-v2-110863-rep0-128-6-full-time.json",
+            "receipts/single-110864-1-baseline-c128m6fulle131072-time.json",
+            "receipts/single-110864-1-candidate-c128m6fulle131072-time.json",
+            "receipts/aot-library-v2-110864-rep1-128-6-full-time.json",
+            "receipts/single-110866-2-baseline-c128m6fulle131072-time.json",
+            "receipts/single-110866-2-candidate-c128m6fulle131072-time.json",
+            "receipts/aot-library-v2-110866-rep2-128-6-full-time.json",
+            "receipts/single-110867-3-baseline-c128m6fulle131072-time.json",
+            "receipts/single-110867-3-candidate-c128m6fulle131072-time.json",
+            "receipts/aot-library-v2-110867-rep3-128-6-full-time.json"
+          ]
+        }
+      ],
+      "complete": true,
+      "sota_qualified": false,
+      "scope": "24-point native-comparator screen",
+      "event_median_ms": {
+        "geomean_vs_fastest_prior": 1.264490070783949,
+        "regressions_over_3pct": [],
+        "geomean_vs_baseline": 1.79971278315259,
+        "geomean_vs_preload": 1.264490070783949
+      },
+      "wall_median_ms": {
+        "geomean_vs_fastest_prior": 1.2107779417582705,
+        "regressions_over_3pct": [],
+        "geomean_vs_baseline": 1.6963219585933633,
+        "geomean_vs_preload": 1.210994451366324
+      }
+    }
+  },
+  "errors": []
+}

@@ -21,7 +21,7 @@ from . import __version__
 # older release's lowering. Public Python API and checkpoint keys stay stable.
 _HPX_PRELOAD = os.environ.get("O2_HPX_FORWARD", "0") == "preload"
 _HPX_ADJOINT = os.environ.get("O2_HPX_ADJOINT", "0") == "replay"
-_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_r1" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
+_OP_NAMESPACE = "ictc_o2_hp_v" + __version__.replace(".", "_") + "_address64_r1_bwdopt_" + os.environ.get("O2_OPT_VARIANT", "baseline") + ("_preload_dynamic_r2" if _HPX_PRELOAD else "") + ("_adjoint_r1" if _HPX_ADJOINT else "")
 
 
 _BLOCK = int(os.environ.get("O2_TRITON_BLOCK", "128"))
@@ -477,10 +477,10 @@ def _preloaded_path(first0, first1, second0, second1, weight, channel, mask,
     return w * path0, w * path1
 
 
-@triton.jit
+@triton.jit(do_not_specialize=["E"])
 def _forward_preloaded(
     left, right, weight, output,
-    E: tl.constexpr, WIDTH: tl.constexpr, C: tl.constexpr,
+    E, WIDTH: tl.constexpr, C: tl.constexpr,
     KEYS: tl.constexpr, PATHS: tl.constexpr, FULL: tl.constexpr,
     MULTIPLICITY: tl.constexpr, BLOCK: tl.constexpr,
 ):

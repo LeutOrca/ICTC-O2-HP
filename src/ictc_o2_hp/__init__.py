@@ -5,6 +5,7 @@ __all__ = [
     "TensorProduct", "TupleTensorProduct", "ComponentMajorTensorProduct",
     "ReferenceTensorProduct", "UvuTensorProduct", "ReferenceUvuTensorProduct", "__version__",
     "RadialUvuTensorProduct",
+    "FlatInference", "compile_inference",
 ]
 
 
@@ -22,4 +23,7 @@ def __getattr__(name):
     if name in {"TensorProduct", "TupleTensorProduct", "ComponentMajorTensorProduct"}:
         from . import api
         return getattr(api, name)
+    if name in {"FlatInference", "compile_inference"}:
+        from . import aoti
+        return getattr(aoti, name)
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

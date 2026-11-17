@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "job": "110875",
+  "files": [
+    {
+      "file": "triton_o2.py",
+      "tested_sha256": "1795af42a6ab329986efa767fe859f6aa75c6b3ba71e72ce74e969839e0c9da4",
+      "library_sha256": "1795af42a6ab329986efa767fe859f6aa75c6b3ba71e72ce74e969839e0c9da4",
+      "ast_equal": true
+    },
+    {
+      "file": "__init__.py",
+      "tested_sha256": "3f524d7e5dc0d75ff4d392c2cc0f32b849ac05e87bb8d6d7a59d2018d2f7b8f0",
+      "library_sha256": "4c6e55a7a4ac23f300e07b9274da8a5d4c2248f5f8155f744408669087b695b5",
+      "ast_equal": true
+    },
+    {
+      "file": "aoti.py",
+      "tested_sha256": "ec38fd66a4a517f8fde5444d97dd271aab2fc51a96fb31ea7dbb9cd9b4c2877b",
+      "library_sha256": "ec38fd66a4a517f8fde5444d97dd271aab2fc51a96fb31ea7dbb9cd9b4c2877b",
+      "ast_equal": true
+    }
+  ],
+  "qualified_families": 12,
+  "paired_points": 24,
+  "shape_weight_checks": 96,
+  "mixed_adamw_families": 4,
+  "full_grid_target_met": false,
+  "sota_qualified": false
+}
