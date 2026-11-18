@@ -39,9 +39,15 @@ def prepare_donated_inference(model, directory, launcher):
         kernel = fn.last_kernel
         ptx = kernel.asm["ptx"]
         signature = re.search(r"\.entry\s+(\w+)\s*\((.*?)\)", ptx, re.S)
-        if (not signature or len(re.findall(r"\.param\s", signature[2])) != 5
+        params = re.findall(r"\.param\s+\.(u32|u64)\b[^,]*?\s+(\w+)\s*(?:,|$)",
+                            signature[2]) if signature else []
+        types = [kind for kind, name in params]
+        if (types not in (["u64", "u64", "u64", "u32", "u64"],
+                          ["u64", "u64", "u64", "u32", "u64", "u64"])
                 or getattr(kernel.metadata, "global_scratch_size", 0)
-                or ptx.count(signature[1] + "_param_4") != 1):
+                or getattr(kernel.metadata, "profile_scratch_size", 0)
+                or any(re.search(r"\b" + re.escape(name) + r"\b", ptx[signature.end():])
+                       for _, name in params[4:])):
             raise ValueError("Unsupported CUDA launch ABI or scratch use")
         if re.search(r"(?:mma|wgmma|tcgen|cvt)[^;\n]*tf32", ptx, re.I):
             raise ValueError("TF32 is disabled for this kernel")

@@ -68,7 +68,9 @@ struct DonatedKernel {
                   reinterpret_cast<uintptr_t>(w)%16), "Prepared launch requires 16-byte alignment");
     int32_t edges=static_cast<int32_t>(left.size(0));
     void* scratch=nullptr;
-    void* args[]={&a,&b,&w,&edges,&scratch};
+    // The CUDA driver reads the parameters declared by the loaded cubin.
+    // Triton emits one or two trailing unused pointers, validated at pack time.
+    void* args[]={&a,&b,&w,&edges,&scratch,&scratch};
     auto stream=reinterpret_cast<CUstream>(c10::cuda::getCurrentCUDAStream(device).stream());
     unsigned grid=(int64_t(edges)*channels+block-1)/block;
     driver().check(driver().launch(function,grid,1,1,warps*32,1,1,shared,stream,args,nullptr));
