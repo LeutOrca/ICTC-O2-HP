@@ -10,7 +10,6 @@ class PreparedGraph:
     nodes:int
     edges:int
     sources:torch.Tensor
-    edge_ids:torch.Tensor
     destinations:torch.Tensor
     max_degree:int
 
@@ -26,10 +25,9 @@ def prepare_graph(sources,destinations,nodes):
     if sources.numel() and (min(int(sources.min()),int(destinations.min()))<0 or
                             max(int(sources.max()),int(destinations.max()))>=nodes):
         raise ValueError('graph index outside node range')
-    order=torch.argsort(destinations,stable=True)
     degree=torch.bincount(destinations,minlength=nodes)
-    return PreparedGraph(int(nodes),sources.numel(),sources[order].contiguous(),
-                         order.contiguous(),destinations[order].contiguous(),int(degree.max()))
+    return PreparedGraph(int(nodes),sources.numel(),sources.clone(memory_format=torch.contiguous_format),
+                         destinations.clone(memory_format=torch.contiguous_format),int(degree.max()))
 
 @triton.jit
 def _add_raw(output,node,channel,a,b,mask,KEY:tl.constexpr,WIDTH:tl.constexpr,
@@ -48,14 +46,14 @@ def _add_raw(output,node,channel,a,b,mask,KEY:tl.constexpr,WIDTH:tl.constexpr,
         tl.atomic_add(output+offset+1,b,mask,sem='relaxed')
 
 @triton.jit(do_not_specialize=['E'])
-def _edge_product(left,right,weight,sources,edge_ids,destinations,output,E,
+def _edge_product(left,right,weight,sources,destinations,output,E,
                   WIDTH:tl.constexpr,C:tl.constexpr,KEYS:tl.constexpr,PATHS:tl.constexpr,
                   FULL:tl.constexpr,MULTIPLICITY:tl.constexpr,BLOCK:tl.constexpr):
     offsets=tl.program_id(0)*BLOCK+tl.arange(0,BLOCK)
     position,channel=offsets//MULTIPLICITY,offsets%MULTIPLICITY
     mask=position<E
     source=tl.load(sources+position,mask,0)
-    edge=tl.load(edge_ids+position,mask,0)
+    edge=position
     node=tl.load(destinations+position,mask,0)
     first0,first1,second0,second1=(),(),(),()
     for key in tl.static_range(len(KEYS.value)):
@@ -94,7 +92,7 @@ class GraphInference:
         output=left.new_zeros((self.graph.nodes,self.width))
         multiplicity=max(key[1] for key in self.keys)
         self.last_kernel=_edge_product[(triton.cdiv(self.graph.edges*multiplicity,self.block),)](
-            left,right,weight,self.graph.sources,self.graph.edge_ids,self.graph.destinations,output,
+            left,right,weight,self.graph.sources,self.graph.destinations,output,
             self.graph.edges,self.width,self.channels,self.keys,self.paths,self.full,multiplicity,
             self.block,num_warps=4)
         return output
