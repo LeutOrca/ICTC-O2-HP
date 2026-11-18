@@ -7,12 +7,16 @@ __all__ = [
     "RadialUvuTensorProduct",
     "FlatInference", "compile_inference",
     "DonatedLeftInference",
+    "PreparedDonatedLeftInference", "prepare_donated_inference", "build_donated_launcher",
     "GraphInference", "prepare_graph",
 ]
 
 
 def __getattr__(name):
     # Importing the package/reference does not require the optional GPU runtime.
+    if name in {"PreparedDonatedLeftInference", "prepare_donated_inference", "build_donated_launcher"}:
+        from . import donated_deploy
+        return getattr(donated_deploy, name)
     if name == "DonatedLeftInference":
         from .donated import DonatedLeftInference
         return DonatedLeftInference
