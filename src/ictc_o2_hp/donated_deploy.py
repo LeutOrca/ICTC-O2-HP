@@ -5,6 +5,8 @@ import json
 from pathlib import Path
 import re
 import shutil
+import sys
+from threading import Lock
 
 import torch
 
@@ -16,6 +18,24 @@ def _sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
+_host_modules = {}
+_host_lock = Lock()
+
+
+def _load_host(path, digest):
+    # Every family carries a copy of the same extension. Loading a new copy
+    # under each bundle path would register its pybind type more than once.
+    with _host_lock:
+        if digest not in _host_modules:
+            module = sys.modules.get(path.stem)
+            if module is None or _sha(Path(module.__file__).read_bytes()) != digest:
+                spec = importlib.util.spec_from_file_location(path.stem, path)
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+            _host_modules[digest] = module
+        return _host_modules[digest]
+
+
 def build_donated_launcher(build_directory):
     """Build the optional host extension with the target PyTorch/CUDA toolchain."""
     from torch.utils.cpp_extension import load
@@ -25,7 +45,10 @@ def build_donated_launcher(build_directory):
     path.mkdir(parents=True, exist_ok=True)
     ext = load(name="o2_native_" + key, sources=[str(src)], build_directory=str(path),
                extra_cflags=["-O3", "-std=c++17"], extra_ldflags=["-ldl"], with_cuda=True)
-    return Path(ext.__file__)
+    binary = Path(ext.__file__)
+    with _host_lock:
+        _host_modules[_sha(binary.read_bytes())] = ext
+    return binary
 
 
 def prepare_donated_inference(model, directory, launcher):
@@ -80,9 +103,7 @@ class PreparedDonatedLeftInference:
         host = directory / meta["host_name"]
         if _sha(cubin) != meta["cubin_sha"] or _sha(host.read_bytes()) != meta["host_sha"]:
             raise ValueError("CUDA or host binary hash differs")
-        spec = importlib.util.spec_from_file_location(host.stem, host)
-        ext = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(ext)
+        ext = _load_host(host, meta["host_sha"])
         self.model = model
         self.ptx_sha = meta["ptx_sha"]
         self.impl = ext.DonatedKernel(cubin, meta["name"], model.representation_dimension, model.channels,
