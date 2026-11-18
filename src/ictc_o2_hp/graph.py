@@ -81,6 +81,10 @@ class GraphInference:
         self.paths=tuple(tuple(p for p in module._triton_paths if p[2]==key) for key in range(len(self.keys)))
         self.full=module.parity=='full'
         self.block=channel_tile*16
+        self.multiplicity = max(k[1] for k in self.keys)
+        self.grid = (triton.cdiv(graph.edges * self.multiplicity, self.block), 1, 1)
+        self.constants = (self.width, self.channels, self.keys, self.paths, self.full, self.multiplicity, self.block)
+        self.runners = {}
     def __call__(self,left,right):
         if torch.is_grad_enabled():raise RuntimeError('Use torch.no_grad')
         if left.shape!=(self.graph.nodes,self.width) or right.shape!=(self.graph.edges,self.width):
@@ -90,9 +94,18 @@ class GraphInference:
             if value.device!=self.graph.sources.device or value.dtype!=torch.float32 or not value.is_contiguous():
                 raise ValueError('contiguous CUDA FP32 tensors required')
         output=left.new_zeros((self.graph.nodes,self.width))
-        multiplicity=max(key[1] for key in self.keys)
-        self.last_kernel=_edge_product[(triton.cdiv(self.graph.edges*multiplicity,self.block),)](
-            left,right,weight,self.graph.sources,self.graph.destinations,output,
-            self.graph.edges,self.width,self.channels,self.keys,self.paths,self.full,multiplicity,
-            self.block,num_warps=4)
+        if self.graph.edges == 0:
+            return output
+        # A prepared graph fixes sizes/strides. The Triton pointer specialization
+        # additionally depends on alignment, including live replacement weights.
+        aligned = tuple(t.data_ptr() % 16 == 0 for t in (left, right, weight))
+        args = (left, right, weight, self.graph.sources, self.graph.destinations,
+                output, self.graph.edges, *self.constants)
+        with torch.cuda.device(left.device):
+            runner = self.runners.get(aligned)
+            if runner is None:
+                self.last_kernel = _edge_product[self.grid](*args, num_warps=4)
+                self.runners[aligned] = self.last_kernel[self.grid]
+            else:
+                runner(*args)
         return output
