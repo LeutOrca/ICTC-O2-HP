@@ -4,6 +4,7 @@ import triton
 import triton.language as tl
 
 from .triton_o2 import _preloaded_path, _read_canonical, _write_raw
+from .packed_large import cooperative
 
 
 @triton.jit
@@ -62,6 +63,7 @@ class DonatedLeftInference:
         self.paths = tuple(tuple(p for p in module._triton_paths if p[2] == k)
                            for k in range(len(self.keys)))
         self.full = module.parity == 'full'
+        self.packed_family = self.full and module.channels == 256 and module.max_frequency == 6
 
     def __call__(self, left, right):
         weight = self.module.weight
@@ -77,9 +79,13 @@ class DonatedLeftInference:
         storage = left.untyped_storage().data_ptr()
         if storage in (right.untyped_storage().data_ptr(), weight.untyped_storage().data_ptr()):
             raise ValueError('Donated storage must be distinct from right and weight')
+        kernel = _consume_left
+        if (self.packed_family and left.data_ptr() % 8 == 0 and right.data_ptr() % 8 == 0
+                and torch.cuda.get_device_capability(left.device) == (8, 0)):
+            kernel = cooperative
         # The module holds its parameters live; honour the caller's stream.
         with torch.cuda.device(left.device):
-            self.last_kernel = _consume_left[(triton.cdiv(left.shape[0] * self.module.channels, 128),)](
+            self.last_kernel = kernel[(triton.cdiv(left.shape[0] * self.module.channels, 128),)](
                 left, right, weight, left.shape[0], left.shape[1], self.module.channels,
                 self.keys, self.paths, self.full, 128, num_warps=4)
         torch.autograd.graph.increment_version(left)
