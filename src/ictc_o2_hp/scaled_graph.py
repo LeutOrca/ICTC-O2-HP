@@ -4,7 +4,8 @@ import torch
 import triton
 import triton.language as tl
 
-from .graph import GraphInference, _edge_product
+from .graph import GraphInference, _add_raw, _edge_product
+from .triton_o2 import _preloaded_path, _read_canonical
 
 
 @triton.jit(do_not_specialize=["E"])
@@ -67,4 +68,55 @@ class ChunkedScaledReceiverGraphInference(_ScaledReceiverGraphInference):
                     left, values, weight, sources, targets, output, stop - start, *self.constants, num_warps=4
                 )
                 del values
+        return output
+
+
+@triton.jit(do_not_specialize=["E"])
+def _scaled_edge_product(left, receiver, scale, weight, sources, targets, output, E,
+                         WIDTH: tl.constexpr, C: tl.constexpr, KEYS: tl.constexpr, PATHS: tl.constexpr,
+                         FULL: tl.constexpr, MULTIPLICITY: tl.constexpr, BLOCK: tl.constexpr):
+    offset = tl.program_id(0).to(tl.int64) * BLOCK + tl.arange(0, BLOCK)
+    edge, channel = offset // MULTIPLICITY, offset % MULTIPLICITY
+    active = edge < E
+    source = tl.load(sources + edge, active, 0)
+    target = tl.load(targets + edge, active, 0)
+    factor = tl.load(scale + edge, active, 0)
+    first0, first1, second0, second1 = (), (), (), ()
+    for key in tl.static_range(len(KEYS.value)):
+        key_channel = channel % KEYS.value[key][1]
+        a0, a1 = _read_canonical(left, source, key_channel, active, key, WIDTH, C, KEYS, FULL)
+        b0, b1 = _read_canonical(receiver, target, key_channel, active, key, WIDTH, C, KEYS, FULL)
+        first0 += (a0,)
+        first1 += (a1,)
+        second0 += (b0 * factor,)
+        second1 += (b1 * factor,)
+    for key in tl.static_range(len(KEYS.value)):
+        mask = active & (channel < KEYS.value[key][1])
+        value0 = tl.full((BLOCK,), 0., tl.float32)
+        value1 = tl.full((BLOCK,), 0., tl.float32)
+        for p in tl.static_range(len(PATHS.value[key])):
+            a, b = _preloaded_path(first0, first1, second0, second1, weight, channel, mask, PATHS, key, p)
+            value0 += a
+            value1 += b
+        _add_raw(output, target, channel, value0, value1, mask, key, WIDTH, C, KEYS, FULL)
+
+
+class FusedScaledReceiverGraphInference(_ScaledReceiverGraphInference):
+    """Generate the right operand in registers and accumulate each edge into its receiver."""
+
+    def __call__(self, left, receiver, scale):
+        weight = self._check_inputs(left, receiver, scale)
+        output = left.new_zeros((self.graph.nodes, self.width))
+        if not self.graph.edges:
+            return output
+        aligned = tuple(tensor.data_ptr() % 16 == 0 for tensor in (left, receiver, scale, weight))
+        args = (left, receiver, scale, weight, self.graph.sources, self.graph.destinations,
+                output, self.graph.edges, *self.constants)
+        with torch.cuda.device(left.device):
+            runner = self.runners.get(aligned)
+            if runner is None:
+                self.last_kernel = _scaled_edge_product[self.grid](*args, num_warps=4)
+                self.runners[aligned] = self.last_kernel[self.grid]
+            else:
+                runner(*args)
         return output
