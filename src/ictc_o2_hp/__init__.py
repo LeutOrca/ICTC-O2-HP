@@ -10,6 +10,7 @@ __all__ = [
     "PreparedDonatedLeftInference", "prepare_donated_inference", "build_donated_launcher",
     "GraphInference", "prepare_graph",
     "ChunkedScaledReceiverGraphInference", "FusedScaledReceiverGraphInference",
+    "ReceiverCSRGraphInference", "prepare_receiver_csr",
 ]
 
 
@@ -27,6 +28,9 @@ def __getattr__(name):
     if name in {"ChunkedScaledReceiverGraphInference", "FusedScaledReceiverGraphInference"}:
         from . import scaled_graph
         return getattr(scaled_graph, name)
+    if name in {"ReceiverCSRGraphInference", "prepare_receiver_csr"}:
+        from . import receiver_csr
+        return getattr(receiver_csr, name)
     if name == "ReferenceTensorProduct":
         from .reference import ReferenceTensorProduct
         return ReferenceTensorProduct
