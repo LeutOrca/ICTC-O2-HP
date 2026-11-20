@@ -11,7 +11,7 @@ def group_regions(events):
         name = event.get("name", "")
         if event.get("ph") == "X" and (
             name.startswith("MACE::") or name.startswith("autograd::engine")
-            or name == "mace_native_neighbors_and_input_transfer"
+            or name in ("mace_native_neighbors_and_input_transfer", "mace_pinned_graph_input_transfer")
         ):
             result[event.get("tid")].append(
                 (event["ts"], event["ts"] + event["dur"], name)
@@ -47,6 +47,7 @@ def collect(path):
     phases = Counter()
     operators = Counter()
     neighbor_us = 0.0
+    pinned_us = 0.0
     memory = Counter()
     peak = 0
     for event in events:
@@ -54,6 +55,8 @@ def collect(path):
         args = event.get("args", {})
         if name == "mace_native_neighbors_and_input_transfer":
             neighbor_us += event.get("dur", 0)
+        if name == "mace_pinned_graph_input_transfer":
+            pinned_us += event.get("dur", 0)
         if event.get("cat") == "kernel":
             time = event["dur"]
             kernels[name] += time
@@ -77,6 +80,7 @@ def collect(path):
         "top_host_attributed_cuda_operators_us": operators.most_common(25),
         "top_launch_regions_us": phases.most_common(30),
         "native_neighbors_and_transfer_host_us": neighbor_us,
+        "pinned_input_transfer_host_us": pinned_us,
         "allocation_bytes_by_region": memory.most_common(20),
         "trace_peak_allocated": peak,
     }
