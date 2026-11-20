@@ -1,9 +1,6 @@
-#include <torch/extension.h>
-#include <c10/cuda/CUDAGuard.h>
-#include <c10/cuda/CUDAStream.h>
-#include <c10/cuda/CUDAException.h>
+using int64_t = long long;
 
-__global__ void ieee_matrix(
+extern "C" __global__ void ieee_matrix(
     const float* left, const float* right, const float* bias, float* output,
     int64_t rows, int64_t columns, int64_t inner,
     int64_t as0, int64_t as1, int64_t as2,
@@ -61,32 +58,3 @@ __global__ void ieee_matrix(
     }
 }
 
-torch::Tensor matrix(torch::Tensor a, torch::Tensor b,
-                     c10::optional<torch::Tensor> bias, double alpha, double beta) {
-    c10::cuda::CUDAGuard guard(a.device());
-    const int64_t rows = a.size(-2);
-    const int64_t inner = a.size(-1);
-    const int64_t columns = b.size(-1);
-    const int64_t batches = a.dim() == 3 ? a.size(0) : 1;
-    auto sizes = a.sizes().vec();
-    sizes.back() = columns;
-    auto output = torch::empty(sizes, a.options());
-    if (output.numel() == 0) return output;
-    const float* d = bias.has_value() ? bias->data_ptr<float>() : nullptr;
-    const int64_t ds0 = bias.has_value() && a.dim() == 3 ? bias->stride(0) : 0;
-    const int64_t ds1 = bias.has_value() ? bias->stride(-2) : 0;
-    const int64_t ds2 = bias.has_value() ? bias->stride(-1) : 0;
-    ieee_matrix<<<dim3(((rows + 63) / 64) * batches, (columns + 63) / 64), dim3(16, 16),
-                  0, c10::cuda::getCurrentCUDAStream()>>>(
-        a.data_ptr<float>(), b.data_ptr<float>(), d, output.data_ptr<float>(),
-        rows, columns, inner,
-        a.dim() == 3 ? a.stride(0) : 0, a.stride(-2), a.stride(-1),
-        b.dim() == 3 ? b.stride(0) : 0, b.stride(-2), b.stride(-1),
-        ds0, ds1, ds2, alpha, beta);
-    C10_CUDA_KERNEL_LAUNCH_CHECK();
-    return output;
-}
-
-PYBIND11_MODULE(TORCH_EXTENSION_NAME, module) {
-    module.def("matrix", &matrix);
-}

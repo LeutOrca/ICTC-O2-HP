@@ -64,7 +64,8 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
     d_strides = (0, 0, 0) if bias is None else _matrix_strides(bias)
     if backend == "cuda":
         from cuda_matrix import compiled_matrix
-        return compiled_matrix(left, right, bias, alpha, beta)
+        with torch.cuda.device(left.device):
+            return compiled_matrix(left, right, bias, alpha, beta)
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
     with torch.cuda.device(left.device):
