@@ -36,6 +36,10 @@ def main(argv=None):
     apply(model, args.role)
     geometry = prior.bench.load_geometry(prior.bench.CASES[args.case])
     fixed = prior.inputs_for(geometry, model)
+    input_builder = None
+    if args.role == "final-input":
+        from mace_static_inputs import CompositionInputs
+        input_builder = CompositionInputs(geometry, model, fixed, prior.bench.get_neighborhood)
     digest = hashlib.sha256()
     for name, value in sorted(fixed.items()):
         digest.update(name.encode())
@@ -61,7 +65,8 @@ def main(argv=None):
     record["capture_prepare_wall_ms"] = (perf_counter() - tick) * 1000
 
     def call():
-        data = fixed if args.boundary == "fixed" else prior.inputs_for(geometry, model)
+        data = fixed if args.boundary == "fixed" else (
+            input_builder(geometry) if input_builder is not None else prior.inputs_for(geometry, model))
         return runner.call(data)
 
     if args.stage == "time":
@@ -94,8 +99,10 @@ def main(argv=None):
         record["cuda_kernels"] = sorted({event.name for event in trace.events()
                                           if event.device_type == torch.autograd.DeviceType.CUDA})
         del output
-    if args.role == "prefix":
+    if args.role in ("prefix", "final", "final-input"):
         record["prefix_cache"] = receipt(model)
+    if input_builder is not None:
+        record["input_cache"] = input_builder.receipt()
     args.output.write_text(json.dumps(record, indent=2))
     print(json.dumps(record), flush=True)
 

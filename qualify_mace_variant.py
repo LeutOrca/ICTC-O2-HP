@@ -32,6 +32,24 @@ def main():
     positions[0, 0] += .005
     frames = {"fixed": fixed, "e2e": prior.inputs_for(geometry, native),
               "perturbed": dict(fixed, positions=positions)}
+    input_bitwise = None
+    if args.variant == "final-input":
+        from mace_static_inputs import CompositionInputs
+        input_builder = CompositionInputs(geometry, native, fixed, prior.bench.get_neighborhood)
+        changed = [(position.copy(), atoms.copy(), cell.copy()) for position, atoms, cell in geometry]
+        changed[0][0][0, 0] += .005
+        native_rebuilt = prior.inputs_for(changed, native)
+        own_rebuilt = input_builder(changed)
+        own_original = input_builder(geometry)
+        input_bitwise = {label: {name: bool(torch.equal(actual[name], expected[name]))
+                                 for name in expected}
+                         for label, actual, expected in (("original", own_original, fixed),
+                                                        ("moved_rebuilt", own_rebuilt, native_rebuilt))}
+        if not all(value for row in input_bitwise.values() for value in row.values()):
+            raise RuntimeError(dict(input_bitwise=input_bitwise))
+        frames["rebuilt_perturbed"] = native_rebuilt
+        frames["cached_original"] = own_original
+        frames["cached_perturbed"] = own_rebuilt
     for _ in range(3):
         prior.graph_evaluate(native, fixed)
     reference = {name: cpu(prior.graph_evaluate(native, data)) for name, data in frames.items()}
@@ -54,6 +72,7 @@ def main():
                   base="78231f3482fc9999857cc29e1cf5c220e73aa435",
                   checkpoint_sha256="d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
                   gpu=torch.cuda.get_device_name(), torch=torch.__version__,
+                  input_bitwise=input_bitwise,
                   passed=all(value["passed"] for row in errors.values() for value in row.values()))
     args.output.write_text(json.dumps(report, indent=2))
     print(json.dumps(report), flush=True)
