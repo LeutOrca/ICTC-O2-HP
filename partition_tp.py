@@ -46,7 +46,7 @@ def partition_slices(graph):
     return count
 
 
-def partition_edge_products(model):
+def partition_edge_products(model, compile_with_inductor=False):
     for block in model.interactions:
         product = block.conv_tp
         original = product._compiled_main_left_right
@@ -63,6 +63,14 @@ def partition_edge_products(model):
             raise RuntimeError("Regenerated e3nn tensor product has a different coefficient layout")
         for name, new in compiled.named_buffers():
             new.copy_(old_buffers[name])
-        # The original checkpoint runs the generated e3nn operations as TorchScript.
-        block.conv_tp._compiled_main_left_right = jit.compile(compiled, recurse=False).cuda()
+        if compile_with_inductor:
+            accelerated = torch.compile(
+                compiled.cuda(), fullgraph=True, dynamic=False,
+                options={"triton.cudagraphs": False, "shape_padding": False,
+                         "use_mixed_mm": False, "max_autotune": False},
+            )
+        else:
+            # The original checkpoint runs the generated e3nn operations as TorchScript.
+            accelerated = jit.compile(compiled, recurse=False).cuda()
+        block.conv_tp._compiled_main_left_right = accelerated
         print(f"Partitioned {groups} differentiable slice inputs", flush=True)

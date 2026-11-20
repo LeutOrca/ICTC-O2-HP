@@ -52,7 +52,7 @@ def main():
     parser.add_argument("--variant", choices=tuple(MODES)[1:], default="receiver-csr-graph")
     parser.add_argument("--case", choices=tuple(bench.CASES), action="append")
     parser.add_argument("--baseline", choices=(BASE, "native-graph-tiled"), default=BASE)
-    parser.add_argument("--compare-prior", choices=("receiver-csr-graph",))
+    parser.add_argument("--compare-prior", choices=("receiver-csr-graph", "receiver-csr-partition-graph"))
     parser.add_argument("--qualification", type=Path, default=bench.ROOT)
     parser.add_argument("--wait-for", type=Path)
     parser.add_argument("--rounds", type=int, default=5)

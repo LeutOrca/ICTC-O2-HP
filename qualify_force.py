@@ -29,6 +29,7 @@ MODES = {
     "receiver-csr-parallel-graph": (False, False, ()),
     "receiver-csr-partition-graph": (False, False, ()),
     "receiver-csr-pinned-graph": (False, False, ()),
+    "receiver-csr-inductor-graph": (False, False, ()),
 }
 
 
@@ -50,9 +51,9 @@ def setup(mode):
     for layer in pack:
         block = model.interactions[layer]
         block.skip_tp = PackedSpeciesProjection(block.skip_tp)
-    if mode == "receiver-csr-partition-graph":
+    if mode in ("receiver-csr-partition-graph", "receiver-csr-inductor-graph"):
         from partition_tp import partition_edge_products
-        partition_edge_products(model)
+        partition_edge_products(model, compile_with_inductor=mode == "receiver-csr-inductor-graph")
     return model
 
 
