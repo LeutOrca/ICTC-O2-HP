@@ -29,4 +29,9 @@ sha256sum --quiet -c provenance/input.sha256
 printf 'd4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a  %s\n' \
     "$MACE_SOURCE/models/pretrained/native.model" | sha256sum --quiet -c -
 nvidia-smi --query-gpu=uuid,name,memory.total,driver_version --format=csv,noheader > "results/gpu-${SLURM_JOB_ID}.txt"
-"$py" -u "$@"
+if test "$1" = paired-prefix; then
+    export HPX_PYTHON="$py"
+    bash pair_mace_prefix.sh "$2"
+else
+    "$py" -u "$@"
+fi
