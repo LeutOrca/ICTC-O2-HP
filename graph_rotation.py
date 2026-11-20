@@ -6,6 +6,7 @@ import torch
     the unit vector of relative position is very close to `_ROTATION_MASK_THRESHOLD`.
 """
 _ROTATION_MASK_THRESHOLD = 0.999999
+_CONSTANTS = {}
 
 
 def init_edge_rot_mat(edge_distance_vec, use_rotation_mask=False):
@@ -23,9 +24,14 @@ def init_edge_rot_mat(edge_distance_vec, use_rotation_mask=False):
             For gradient methods, we do not backpropogate rotation if y component of 
             the unit vector of relative position is very close to `_ROTATION_MASK_THRESHOLD`.
         """
-        yprod = norm_x @ norm_x.new_tensor([0.0, 1.0, 0.0])
-        norm_x = torch.where((yprod > _ROTATION_MASK_THRESHOLD)[:, None], norm_x.new_tensor([0.0,  1.0, 0.0]), norm_x)
-        norm_x = torch.where((yprod < -_ROTATION_MASK_THRESHOLD)[:, None], norm_x.new_tensor([0.0, -1.0, 0.0]), norm_x)
+        key = (norm_x.device, norm_x.dtype)
+        if key not in _CONSTANTS:
+            _CONSTANTS[key] = (norm_x.new_tensor([0.0, 1.0, 0.0]),
+                               norm_x.new_tensor([0.0, -1.0, 0.0]))
+        positive, negative = _CONSTANTS[key]
+        yprod = norm_x @ positive
+        norm_x = torch.where((yprod > _ROTATION_MASK_THRESHOLD)[:, None], positive, norm_x)
+        norm_x = torch.where((yprod < -_ROTATION_MASK_THRESHOLD)[:, None], negative, norm_x)
 
     edge_vec_2 = torch.rand_like(edge_vec_0) - 0.5
     edge_vec_2 = edge_vec_2 / (

@@ -87,13 +87,15 @@ class _DirectLayer(torch.autograd.Function):
         matrix(scalar, zero_forward[:, head:], bias=None if bias is None else bias[head:],
                backend=backend, output=result[:, :output_widths[0]])
         output_start = output_widths[0]
+        inner_parts = 2 if getattr(module, "_own_split_complex", False) else 1
         input_widths = [input_start]
         for order, (cache, width) in enumerate(zip(caches, output_widths[1:]), 1):
             component_count = 2 * (module.lmax + 1 - order)
             input_width = component_count * channels
             source = inputs.narrow(1, input_start // channels, component_count)
             matrix(source.reshape(edges, input_width), cache.forward_weight,
-                   backend=backend, output=result[:, output_start:output_start + width])
+                   backend=backend, output=result[:, output_start:output_start + width],
+                   inner_parts=inner_parts)
             input_widths.append(input_width)
             input_start += input_width
             output_start += width
@@ -103,6 +105,7 @@ class _DirectLayer(torch.autograd.Function):
         ctx.input_shape = inputs.shape
         ctx.input_widths, ctx.output_widths = tuple(input_widths), output_widths
         ctx.head, ctx.backend = head, backend
+        ctx.inner_parts = inner_parts
         return result.reshape(edges, output_width // module.num_out_channels,
                               module.num_out_channels), extra
 
@@ -122,7 +125,8 @@ class _DirectLayer(torch.autograd.Function):
         for input_width, output_width, weight in zip(
                 ctx.input_widths[1:], ctx.output_widths[1:], backward_weights):
             matrix(derivative[:, output_start:output_start + output_width], weight,
-                   backend=ctx.backend, output=result[:, input_start:input_start + input_width])
+                   backend=ctx.backend, output=result[:, input_start:input_start + input_width],
+                   inner_parts=ctx.inner_parts)
             input_start += input_width
             output_start += output_width
         return result.reshape(ctx.input_shape), None, None, None

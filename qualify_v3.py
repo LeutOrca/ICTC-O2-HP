@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--kernel", choices=("triton", "cuda", "warp4"), default="triton")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--without-norm", action="store_true")
+    parser.add_argument("--split-complex", action="store_true")
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -38,7 +39,8 @@ def main():
             references[(seed, boundary)] = model.forward(data, boundary == "fixed")
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
-    installed = install(model.model, args.kernel, use_norm=not args.without_norm)
+    installed = install(model.model, args.kernel, use_norm=not args.without_norm,
+                        split_complex=args.split_complex)
     records = []
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):
@@ -52,7 +54,8 @@ def main():
             passed = all(item["passed"] for item in errors.values())
             report = dict(suite=args.suite, base="9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
                           checkpoint_sha256=native.CHECKPOINT_SHA, installed=installed,
-                          records=records, passed=passed, tf32=False, amp=False, cuda_graph=False)
+                          records=records, passed=passed, split_complex=args.split_complex,
+                          tf32=False, amp=False, cuda_graph=False)
             args.output.write_text(json.dumps(report, indent=2))
             print(json.dumps(record), flush=True)
             if not passed:

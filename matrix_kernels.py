@@ -14,20 +14,31 @@ def _matrix(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
             DS0: tl.constexpr, DS1: tl.constexpr, DS2: tl.constexpr,
             CS0: tl.constexpr, CS1: tl.constexpr, CS2: tl.constexpr,
             HAS_BIAS: tl.constexpr, ALPHA: tl.constexpr, BETA: tl.constexpr,
-            BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+            BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr,
+            PARTS: tl.constexpr = 1):
     row_tiles = tl.cdiv(M, BM)
     batch = tl.program_id(0).to(tl.int64) // row_tiles
     row = (tl.program_id(0) % row_tiles) * BM + tl.arange(0, BM)
     col = tl.program_id(1) * BN + tl.arange(0, BN)
     inner = tl.arange(0, BK)
     total = tl.full((BM, BN), 0, tl.float32)
-    for block in range(tl.cdiv(K, BK)):
+    extra = tl.full((BM, BN), 0, tl.float32)
+    limit: tl.constexpr = K // PARTS
+    for block in range(tl.cdiv(limit, BK)):
         k = block * BK + inner
         left = tl.load(A + batch * AS0 + row[:, None] * AS1 + k[None, :] * AS2,
-                       (row[:, None] < M) & (k[None, :] < K), other=0.)
+                       (row[:, None] < M) & (k[None, :] < limit), other=0.)
         right = tl.load(B + batch * BS0 + k[:, None] * BS1 + col[None, :] * BS2,
-                        (k[:, None] < K) & (col[None, :] < N), other=0.)
+                        (k[:, None] < limit) & (col[None, :] < N), other=0.)
         total = tl.dot(left, right, total, input_precision="ieee")
+        if PARTS == 2:
+            left_extra = tl.load(A + batch * AS0 + row[:, None] * AS1 + (limit + k[None, :]) * AS2,
+                                (row[:, None] < M) & (k[None, :] < limit), other=0.)
+            right_extra = tl.load(B + batch * BS0 + (limit + k[:, None]) * BS1 + col[None, :] * BS2,
+                                 (k[:, None] < limit) & (col[None, :] < N), other=0.)
+            extra = tl.dot(left_extra, right_extra, extra, input_precision="ieee")
+    if PARTS == 2:
+        total = total + extra
     result = total * ALPHA
     if HAS_BIAS and BETA != 0:
         bias = tl.load(Bias + batch * DS0 + row[:, None] * DS1 + col[None, :] * DS2,
@@ -43,7 +54,8 @@ def _matrix_strides(value):
     return value.stride()
 
 
-def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=None):
+def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=None,
+           inner_parts=1):
     if (left.ndim not in (2, 3) or right.ndim != left.ndim
             or left.dtype != torch.float32 or right.dtype != torch.float32
             or not left.is_cuda or left.device != right.device
@@ -54,6 +66,10 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
     shape = (*left.shape[:-1], right.shape[-1])
     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
     batches = left.shape[0] if left.ndim == 3 else 1
+    if inner_parts not in (1, 2) or inner % inner_parts:
+        raise ValueError("Complex accumulation requires two equal inner partitions")
+    if inner_parts != 1 and backend != "triton":
+        raise ValueError("Explicit complex partitions currently require the own Triton kernel")
     if output is None:
         output = left.new_empty(shape)
     if output.shape != shape or output.dtype != left.dtype or output.device != left.device:
@@ -66,7 +82,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
         bias = bias.expand(shape)
     a_strides, b_strides = _matrix_strides(left), _matrix_strides(right)
     d_strides = (0, 0, 0) if bias is None else _matrix_strides(bias)
-    if backend == "warp4":
+    if backend in ("warp4", "warp4tree"):
         # Wide channel projections keep the contiguous SIMD path. Small vector
         # products use dual accumulators, other products use four 8-wide K stripes.
         if columns >= 512:
@@ -78,7 +94,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
             stripe = 1 if vector or groups == 1 else 8
             with torch.cuda.device(left.device):
                 return compiled_matrix(left, right, bias, alpha, beta, groups=groups,
-                                       stripe=stripe, linear_join=groups == 4, output=output)
+                                       stripe=stripe, linear_join=groups == 4 and backend == "warp4", output=output)
     if backend in ("cuda", "cuda2", "cuda4", "cuda8", "split2", "split4", "split8"):
         from cuda_matrix import compiled_matrix
         with torch.cuda.device(left.device):
@@ -94,6 +110,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
             rows, columns, inner, *a_strides, *b_strides, *d_strides,
             *_matrix_strides(output),
             bias is not None, alpha, beta, block_rows, block_columns, 32, num_warps=4,
+            PARTS=inner_parts,
         )
     return output
 
