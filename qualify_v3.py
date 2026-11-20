@@ -25,7 +25,7 @@ def main():
     model = native.Network("native", "cuda")
     model.freeze_ema()
     model.model.requires_grad_(False)
-    raw = model.batch([args.suite])
+    raw = model.batch(model.manifest["suites"][args.suite])
     fixed, topology = model.topology(raw)
     references = {}
     for seed in native.SEEDS:

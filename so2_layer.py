@@ -7,8 +7,8 @@ from frozen_so2 import FrozenWeightCache, frozen_so2
 
 
 @triton.jit
-def _assemble(Parts, Merged, Extra, E, WIDTHS: tl.constexpr, TOTAL: tl.constexpr, HEAD: tl.constexpr,
-              PS0: tl.constexpr, PS1: tl.constexpr, TILE: tl.constexpr):
+def _assemble(Parts, Merged, Extra, E, WIDTHS, TOTAL: tl.constexpr, HEAD: tl.constexpr,
+              PS0, PS1, TILE: tl.constexpr):
     index = tl.program_id(0).to(tl.int64) * TILE + tl.arange(0, TILE)
     total: tl.constexpr = TOTAL - HEAD
     edge = index // (total + HEAD)
@@ -30,7 +30,7 @@ def _assemble(Parts, Merged, Extra, E, WIDTHS: tl.constexpr, TOTAL: tl.constexpr
 
 
 @triton.jit
-def _disassemble(Merged, Extra, Parts, E, WIDTHS: tl.constexpr, TOTAL: tl.constexpr, HEAD: tl.constexpr,
+def _disassemble(Merged, Extra, Parts, E, WIDTHS, TOTAL: tl.constexpr, HEAD: tl.constexpr,
                  GS0: tl.constexpr, GS1: tl.constexpr, ES0: tl.constexpr, ES1: tl.constexpr,
                  TILE: tl.constexpr):
     index = tl.program_id(0).to(tl.int64) * TILE + tl.arange(0, TILE)
