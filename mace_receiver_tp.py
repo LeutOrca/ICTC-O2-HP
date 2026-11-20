@@ -7,7 +7,7 @@ import triton
 import triton.language as tl
 
 from mace_scalar_tp import ScalarTP
-from merge_norm import _warp_sum_ascending
+from native_reduce import sum32_ascending as _warp_sum_ascending
 from native_graph_scatter import native_capture_compat
 from receiver_csr import _fold, _ReceiverSum, schedule
 

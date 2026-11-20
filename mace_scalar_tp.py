@@ -4,7 +4,7 @@ import triton
 import triton.language as tl
 
 from matrix_kernels import matrix
-from merge_norm import _warp_sum_ascending
+from native_reduce import sum32_ascending as _warp_sum_ascending
 
 
 @triton.jit
