@@ -8,6 +8,31 @@ from torch.utils._python_dispatch import TorchDispatchMode
 
 
 @triton.jit
+def _small_batched(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
+                   BATCHES: tl.constexpr,
+                   AS0: tl.constexpr, AS1: tl.constexpr, AS2: tl.constexpr,
+                   BS0: tl.constexpr, BS1: tl.constexpr, BS2: tl.constexpr,
+                   DS0: tl.constexpr, DS1: tl.constexpr, DS2: tl.constexpr,
+                   CS0: tl.constexpr, CS1: tl.constexpr, CS2: tl.constexpr,
+                   HAS_BIAS: tl.constexpr, ALPHA: tl.constexpr, BETA: tl.constexpr,
+                   TILE: tl.constexpr):
+    item = tl.program_id(0).to(tl.int64) * TILE + tl.arange(0, TILE)
+    batch = item // (M * N)
+    row, col = item // N % M, item % N
+    valid = batch < BATCHES
+    total = tl.full((TILE,), 0., tl.float32)
+    for k in tl.static_range(K):
+        left = tl.load(A + batch * AS0 + row * AS1 + k * AS2, valid, other=0.)
+        right = tl.load(B + batch * BS0 + k * BS1 + col * BS2, valid, other=0.)
+        total = tl.fma(left, right, total)
+    result = total * ALPHA
+    if HAS_BIAS and BETA != 0:
+        bias = tl.load(Bias + batch * DS0 + row * DS1 + col * DS2, valid, other=0.)
+        result = result + bias * BETA
+    tl.store(C + batch * CS0 + row * CS1 + col * CS2, result, valid)
+
+
+@triton.jit
 def _matrix(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
             AS0: tl.constexpr, AS1: tl.constexpr, AS2: tl.constexpr,
             BS0: tl.constexpr, BS1: tl.constexpr, BS2: tl.constexpr,
@@ -103,6 +128,15 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
                                            else int(backend[4:] or 1)), output=output)
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
+    if left.ndim == 3 and rows * columns <= 256 and inner <= 32 and inner_parts == 1:
+        with torch.cuda.device(left.device):
+            _small_batched[(triton.cdiv(batches * rows * columns, 256),)](
+                left, right, bias if bias is not None else output, output,
+                rows, columns, inner, batches, *a_strides, *b_strides, *d_strides,
+                *_matrix_strides(output), bias is not None, alpha, beta, 256,
+                num_warps=4, enable_fp_fusion=False,
+            )
+        return output
     block_rows, block_columns = (64, 128) if rows >= 512 and columns >= 128 else (32, 64)
     with torch.cuda.device(left.device):
         _matrix[(triton.cdiv(rows, block_rows) * batches, triton.cdiv(columns, block_columns))](
