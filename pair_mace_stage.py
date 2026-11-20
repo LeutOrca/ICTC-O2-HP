@@ -19,6 +19,8 @@ def main():
     args = parser.parse_args()
     for repeat in range(5 if args.stage != "trace" else 1):
         roles = ("native", "base", args.variant)
+        if args.variant == "final-input":
+            roles = ("native", "base", "final", args.variant)
         if repeat % 2:
             roles = roles[::-1]
         for boundary in ("fixed", "e2e"):

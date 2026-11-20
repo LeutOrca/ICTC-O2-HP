@@ -14,6 +14,9 @@ def main():
     args = parser.parse_args()
     directory = args.root / "results"
     roles = ("native", "base", args.candidate)
+    if args.model == "mace" and args.candidate == "final-input" and any(
+            directory.glob(f"mace-time-{args.case}-*-final-*.json")):
+        roles = ("native", "base", "final", args.candidate)
     paths = {(stage, boundary, role, repeat): directory / f"{args.model}-{stage}-{args.case}-{boundary}-{role}-{repeat}.json"
              for stage in ("time", "memory") for boundary in ("fixed", "e2e")
              for role in roles for repeat in range(5)}
@@ -43,7 +46,7 @@ def main():
                          for key in ("wall_ms", "atoms_s", "structures_s")}
             row[role].update({key: median(value[key] for value in memory)
                               for key in ("peak_allocated", "peak_reserved")})
-        for reference in ("native", "base"):
+        for reference in roles[:-1]:
             speed, allocated, reserved = [], [], []
             for repeat in range(5):
                 speed.append(receipts[("time", boundary, reference, repeat)]["wall_ms"] /
@@ -72,6 +75,12 @@ def main():
         lines.append(f"| {boundary} | {row['native']['wall_ms']:.4f}→{row['base']['wall_ms']:.4f}→{candidate['wall_ms']:.4f} | "
                      f"{row['vs_native']['speedup']:.4f}× / {row['vs_base']['speedup']:.4f}× | "
                      f"{candidate['peak_allocated']/2**20:.2f} / {candidate['peak_reserved']/2**20:.2f} |")
+    if "final" in roles[:-1]:
+        lines += ["", "输入优化也直接与联合版本 final 逐轮配对："]
+        for boundary, row in rows.items():
+            lines.append(f"- {boundary}: {row['vs_final']['speedup']:.5f}×，"
+                         f"allocated 下降 {row['vs_final']['allocated_reduction']*100:.4f}%，"
+                         f"reserved 下降 {row['vs_final']['reserved_reduction']*100:.4f}%。")
     (directory / f"REPORT.{args.model}-{args.case}-{args.candidate}.zh-CN.md").write_text("\n".join(lines) + "\n")
     print(json.dumps(report), flush=True)
 
