@@ -31,6 +31,11 @@ qualification_paths += [str(path.relative_to(ROOT)) for pattern in (
     "h100-results/*/measurements/*/results/qualification.json",
 ) for path in ROOT.glob(pattern)]
 qualifications = {path: read(path) for path in qualification_paths if (ROOT / path).exists()}
+for path in ROOT.glob("cohorts/64dbeb1/results/mace-input-600.json"):
+    qualifications[str(path.relative_to(ROOT))] = json.loads(path.read_text())
+v3_local_audits = {str(path.relative_to(ROOT)): json.loads(path.read_text())
+                   for path in ROOT.glob("cohorts/*/measurements/*/results/V3_LOCAL_PAIR_AUDIT-*.json")}
+v3_local_gate = read("cohorts/9333e8f/results/v3-local-last2-b1.json")
 audit_paths = [
     "cohorts/d3ddb6f/results/MACE_PAIR_AUDIT-b8-scalar.json",
     "cohorts/152c619/measurements/114664-projection-b8/results/MACE_PAIR_AUDIT-b8-projection.json",
@@ -42,9 +47,22 @@ audit_paths += [str(path.relative_to(ROOT)) for pattern in (
     "h100-results/*/measurements/*/results/MACE_PAIR_AUDIT-*.json",
 ) for path in ROOT.glob(pattern)]
 audits = {path: read(path) for path in dict.fromkeys(audit_paths) if (ROOT / path).exists()}
+best_h100 = {}
+for path, audit in audits.items():
+    if path.startswith("h100-results/") and audit.get("status") == "complete":
+        if audit["candidate"] in ("final", "final-input"):
+            current = best_h100.get(audit["case"])
+            if current is None or audit["candidate"] == "final-input":
+                best_h100[audit["case"]] = dict(path=path, audit=audit)
+mace_target = (set(best_h100) == {"b8", "n512", "n4096"} and all(
+    item["audit"]["boundaries"]["e2e"]["vs_native"]["speed_2x"] and
+    item["audit"]["boundaries"]["e2e"]["vs_native"]["allocated_10pct"]
+    for item in best_h100.values()))
 summary = dict(operator=operator, exact_shape_validation=large, mace_prefix_b8=prefix,
                v3_first_all_matrix_pairs=v3, mace_scalar=scalar,
-               mace_qualifications=qualifications, mace_pairs=audits)
+               mace_qualifications=qualifications, mace_pairs=audits,
+               v3_local_pairs=v3_local_audits, v3_local_b1_gate=v3_local_gate,
+               mace_h100_best_cases=best_h100, mace_h100_three_case_target=mace_target)
 (ROOT / "SUMMARY.json").write_text(json.dumps(summary, indent=2))
 lines = ["# O3-HPX 路径的自写算子续轮", "",
          "当前已有一项独立算子达到 5× 下限，整网目标仍在验收。MACE 优先，V3 并行推进。",
@@ -131,7 +149,24 @@ for name, row in v3["boundaries"].items():
                  f"{a['peak_reserved']/2**20:.1f}→{b['peak_reserved']/2**20:.1f} |")
 lines += ["", "allocated 下降约 6.9%，速度与整网 10% 显存门均未达到。后续直接注册核的单对筛选改善了分派成本，",
           "仍需各输入点资格与完整五配对后才能替换正式结果。局部 SO2/norm 的 B8 仍存在相对 L2 超限。",
-          "[正式整网五配对](cohorts/2089373/results/V3_PAIR_AUDIT-mptrj-b1.json)", "",
+          "[全矩阵分支五配对](cohorts/2089373/results/V3_PAIR_AUDIT-mptrj-b1.json)", "",
+          "### V3 后两层局部替换", "",
+          "保留原生 norm 及前五层 SO2Linear，只替换 blocks.5/6 的四个 SO2Linear，并沿用已验收 gather/radial。",
+          "B1 和 B8 均按两种子、两图边界通过原 E/F 门。B8 最大力相对 L2 约 9.36e-6，能量逐位一致。",
+          "这四个 SO2Linear 内全部使用自写 Triton，未改层保留原生 cuBLAS。正式比较原生、9787a3a、局部候选三臂。", "",
+          "| 点 | 边界 | 原生→9787a3a→局部候选 ms | 对原生 / 对9787a3a | allocated / reserved MiB |",
+          "|---|---|---|---|---|"]
+for path, audit in v3_local_audits.items():
+    if audit.get("status") != "complete":
+        continue
+    for boundary, row in audit["boundaries"].items():
+        candidate = row["own"]
+        lines.append(f"| {audit['case']} | {boundary} | {row['native']['wall_ms']:.3f}→"
+                     f"{row['base']['wall_ms']:.3f}→{candidate['wall_ms']:.3f} | "
+                     f"{row['vs_native']['speedup']:.3f}× / {row['vs_base']['speedup']:.3f}× | "
+                     f"{candidate['peak_allocated']/2**20:.1f} / {candidate['peak_reserved']/2**20:.1f} |")
+lines += ["", "本表只在三臂五配对收齐并审计通过后列数值。B8 数值过门不代表整个 V3 达到 5×，",
+          "SO2Linear 大形状的 5× 收益仍单列在算子表。", "",
           "## 固定的科学范围", "",
           "MACE checkpoint SHA256 `d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a`，",
           "V3 checkpoint SHA256 `429ccded98163122e7ba588d78e2441653f37f3e091e106c432807fe373c8f98`。",

@@ -27,9 +27,10 @@ def main():
     receipts = {key: json.loads(path.read_text()) for key, path in paths.items()}
     input_keys = ("input_sha256",) if args.model == "mace" else (
         "input_positions_sha256", "topology_sha256", "input_manifest_sha256")
-    signatures = {tuple(value[key] for key in (
-        "source", "checkpoint_sha256", *input_keys, "gpu_uuid", "torch",
-        "qualification_sha256", "cuda_graph", "tf32", "amp")) for value in receipts.values()}
+    signature_keys = ("source", "checkpoint_sha256", *input_keys, "gpu_uuid", "torch",
+                      "qualification_sha256", "cuda_graph", "tf32", "amp")
+    signatures = {json.dumps({key: value[key] for key in signature_keys}, sort_keys=True)
+                  for value in receipts.values()}
     if len(signatures) != 1:
         raise RuntimeError("The native and candidate cohorts differ in inputs, source or GPU")
     rows = {}
