@@ -16,7 +16,7 @@ from matrix_kernels import OwnMatrixKernels
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("case", choices=tuple(prior.bench.CASES))
-    parser.add_argument("--kernel", choices=("triton", "cuda", "cuda2", "cuda4", "cuda8", "split2", "split4", "split8", "warp4", "warp4tree"), default="triton")
+    parser.add_argument("--kernel", choices=("triton", "cuda", "cuda2", "cuda4", "cuda8", "split2", "split4", "split8", "warp4", "warp4tree", "warp4adjacent"), default="triton")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     prior.bench.configure()

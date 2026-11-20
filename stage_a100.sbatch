@@ -28,7 +28,18 @@ py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 mkdir -p logs results "$MACE_RESULT_ROOT/receipts"
 sha256sum --quiet -c provenance/input.sha256
 printf 'job=%s node=%s stage=%s\n' "$SLURM_JOB_ID" "$SLURMD_NODENAME" "$*"
-if test "$1" = paired-v3; then
+if test "$1" = screen-v3; then
+    suite=$2
+    qualification=$3
+    for stage in time memory trace; do
+        for boundary in fixed e2e; do
+            for role in native own; do
+                srun "$py" -u measure_v3.py "$stage" "$role" "$suite" "$boundary" \
+                    "results/v3-screen-$stage-$suite-$boundary-$role.json" --qualification "$qualification"
+            done
+        done
+    done
+elif test "$1" = paired-v3; then
     bash pair_v3.sh "$2" "$3"
 elif test "$1" = paired-layer; then
     srun "$py" -u qualify_layer.py results/so2-layer.json

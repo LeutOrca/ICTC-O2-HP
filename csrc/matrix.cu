@@ -11,6 +11,9 @@ using int64_t = long long;
 #ifndef K_LINEAR_JOIN
 #define K_LINEAR_JOIN 0
 #endif
+#ifndef K_ADJACENT_JOIN
+#define K_ADJACENT_JOIN 0
+#endif
 
 extern "C" __global__ void ieee_matrix(
     const float* left, const float* right, const float* bias, float* output,
@@ -65,7 +68,15 @@ extern "C" __global__ void ieee_matrix(
         for (int j = 0; j < 4; ++j) {
             const int64_t column = column_base + threadIdx.x + 16 * j;
             if (row < rows && column < columns) {
-                #if K_CONTIGUOUS || K_LINEAR_JOIN
+                #if K_ADJACENT_JOIN
+                #pragma unroll
+                for (int stride = 1; stride < K_GROUPS; stride *= 2) {
+                    #pragma unroll
+                    for (int group = 0; group < K_GROUPS; group += stride * 2) {
+                        sums[i][j][group] = __fadd_rn(sums[i][j][group], sums[i][j][group + stride]);
+                    }
+                }
+                #elif K_CONTIGUOUS || K_LINEAR_JOIN
                 #pragma unroll
                 for (int group = 1; group < K_GROUPS; ++group) {
                     sums[i][j][0] = __fadd_rn(sums[i][j][0], sums[i][j][group]);

@@ -107,7 +107,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
         bias = bias.expand(shape)
     a_strides, b_strides = _matrix_strides(left), _matrix_strides(right)
     d_strides = (0, 0, 0) if bias is None else _matrix_strides(bias)
-    if backend in ("warp4", "warp4tree"):
+    if backend in ("warp4", "warp4tree", "warp4adjacent"):
         # Wide channel projections keep the contiguous SIMD path. Small vector
         # products use dual accumulators, other products use four 8-wide K stripes.
         if columns >= 512:
@@ -119,7 +119,8 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
             stripe = 1 if vector or groups == 1 else 8
             with torch.cuda.device(left.device):
                 return compiled_matrix(left, right, bias, alpha, beta, groups=groups,
-                                       stripe=stripe, linear_join=groups == 4 and backend == "warp4", output=output)
+                                       stripe=stripe, linear_join=groups == 4 and backend == "warp4",
+                                       adjacent_join=backend == "warp4adjacent", output=output)
     if backend in ("cuda", "cuda2", "cuda4", "cuda8", "split2", "split4", "split8"):
         from cuda_matrix import compiled_matrix
         with torch.cuda.device(left.device):
