@@ -1,0 +1,116 @@
+{
+  "job": "113493",
+  "cases": {
+    "b1": {
+      "atoms": 6,
+      "edges": 272,
+      "structures": 1,
+      "cutoff": 6.0,
+      "pbc": [
+        true,
+        true,
+        true
+      ],
+      "input_sha256": {
+        "validation-013": "d78d57f97518602bc8ac7e62c792c80af004963c3bef0ab4351e455269eb13ff"
+      },
+      "graph_sha256": {
+        "positions": "74aa3ee547eb8ef8e01cee144c3d8987b110e2c2a58fdbbaaad03c460f24ab93",
+        "edge_index": "919990e13ac012c69a4935d549ace014437f5edd06bd516e926fa5e4853860b5",
+        "unit_shifts": "6ff2b2fa2ee5ddff05d4dbddf37fe8924f09c1536f3fbe8fc682f00c7cf869d6",
+        "cell": "793172ae17dd77d6fafa49586e8e2cd065624ac37dd394daa8e871dd53d2f629",
+        "ptr": "931c13477d08fd5ad0741bd095218457ea8aaf60f175328f6532bcb49c1a49cd"
+      },
+      "dtype_edge": "torch.int64",
+      "per_edge_message_mib": {
+        "layer_1": 2.125,
+        "layer_2": 5.3125
+      }
+    },
+    "b8": {
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "cutoff": 6.0,
+      "pbc": [
+        true,
+        true,
+        true
+      ],
+      "input_sha256": {
+        "validation-000": "efb542854db41698f993d806cf1a241bc9dff749d7adca8c81dad6a539ef2403",
+        "validation-001": "d70e50a8a9e5564bf38e3ea3aa422591516b1572e646bd70082685c0678b3fa4",
+        "validation-002": "923f5868ee99eb9a4344cad495a87cba74552cc56e47abcbefbb0a33af20e0b3",
+        "validation-003": "b47cfcc327bdbd739410077f4f841837a1a4c45bae796d570b893985e6b337c9",
+        "validation-004": "3f8d9e60b61f902d32f0c03170b41f10eeff7c4c6b9ae7489e40852e40f98a6f",
+        "validation-005": "fe88975a2d1dce75063237dcdee69ecf31e1c2dcb83894a6c0cb0ab21d8b8740",
+        "validation-006": "153b877e86029a435456a87078d3bd255211746a4993638dbac5a59dac54afc9",
+        "validation-007": "69ccb23f0a9dd8aedc2d5d9b66d97765e5d0f93c372c72e3026d8c9ff9a29ea8"
+      },
+      "graph_sha256": {
+        "positions": "3a6715637889aed726faefd91706d5a39d5c10db828c3e5bcaf86cba04a2393e",
+        "edge_index": "bb4d724b2ca8c7b2513322d962f530eed20d2d96c2aff8fbe6ae17ff373a0004",
+        "unit_shifts": "875c5eba28f0f0c7572cba8cf9d70ceeefb932d02d56fe8a9fb2a584b9bb28fc",
+        "cell": "b5714ab01fdc520927950aef8c5d122304be2cc1ca88d54d7612816a24d3fb74",
+        "ptr": "c01f32abb146572a7a3748c88d048b0ef6cf73be17308d719559f2b032df3a1f"
+      },
+      "dtype_edge": "torch.int64",
+      "per_edge_message_mib": {
+        "layer_1": 27.125,
+        "layer_2": 67.8125
+      }
+    },
+    "n512": {
+      "atoms": 600,
+      "edges": 31512,
+      "structures": 1,
+      "cutoff": 6.0,
+      "pbc": [
+        true,
+        true,
+        true
+      ],
+      "input_sha256": {
+        "scan-N512": "f5e6dc72d306eb91ccd2613af07ae2352644a506b29b03f9a603afd540b72e8a"
+      },
+      "graph_sha256": {
+        "positions": "2f7a0b3be54c6de87e19c6fe83314e4e6c8665664f1d8401d47fecb770b39603",
+        "edge_index": "88f8abc3687ee7d5c8b80663f175960b91b8d54d608bcc03c1af878a8952068e",
+        "unit_shifts": "0155c1226b6024c44ddd2ed375240891435376797ebf6e14626fb71cd7c981f9",
+        "cell": "cfc3af0053ebf2af2d784ff3a376aa466b133291a2b80e888838e22e1878a713",
+        "ptr": "230ac89f832080f20fea073463280caf4a50d3329bbf2e3cb3a1f6da893e203c"
+      },
+      "dtype_edge": "torch.int64",
+      "per_edge_message_mib": {
+        "layer_1": 246.1875,
+        "layer_2": 615.46875
+      }
+    },
+    "n4096": {
+      "atoms": 4100,
+      "edges": 215332,
+      "structures": 1,
+      "cutoff": 6.0,
+      "pbc": [
+        true,
+        true,
+        true
+      ],
+      "input_sha256": {
+        "scan-N4096": "643feccf26c49f23032755ea5cf9a16301c3d77bbc70816e9457a1d3ddb42e84"
+      },
+      "graph_sha256": {
+        "positions": "c0fc7d6415e94309817de6ad752bffab7aa73f8b5b9e7f08aa5e974ef4c8d5d6",
+        "edge_index": "e13b6106f2c18887d9d93d81450ba6a814b15ffd92e4923f943df9dd5b260e08",
+        "unit_shifts": "22d3120cd5fd07dae025059c691516d163f41af453ba6156e4e114b6cf087844",
+        "cell": "7bc2ac8a8fb47e62597d50eb775ffde1689b2f177c9537df69e910cdf54ab4f3",
+        "ptr": "a03acd4fc9282d99052b1157f33f15c8d868225e356e51fefd4a39cb88019ac3"
+      },
+      "dtype_edge": "torch.int64",
+      "per_edge_message_mib": {
+        "layer_1": 1682.28125,
+        "layer_2": 4205.703125
+      }
+    }
+  }
+}
