@@ -14,10 +14,10 @@ def _assemble(Parts, Merged, Extra, E, WIDTHS: tl.constexpr, TOTAL: tl.constexpr
     edge = index // (total + HEAD)
     col = index % (total + HEAD)
     valid = edge < E
-    offset: tl.constexpr = 0
-    for part in tl.static_range(len(WIDTHS.value)):
-        skip: tl.constexpr = HEAD if part == 0 else 0
-        width: tl.constexpr = WIDTHS.value[part] - skip
+    offset = 0
+    for part in tl.static_range(len(WIDTHS)):
+        skip = HEAD if part == 0 else 0
+        width = WIDTHS[part] - skip
         selected = valid & (col >= offset) & (col < offset + width)
         value = tl.load(Parts[part] + edge * PS0[part] + (col - offset + skip) * PS1[part],
                         selected, other=0.)
@@ -36,11 +36,11 @@ def _disassemble(Merged, Extra, Parts, E, WIDTHS: tl.constexpr, TOTAL: tl.conste
     index = tl.program_id(0).to(tl.int64) * TILE + tl.arange(0, TILE)
     total: tl.constexpr = TOTAL
     edge, col = index // total, index % total
-    offset: tl.constexpr = 0
-    merged_offset: tl.constexpr = 0
-    for part in tl.static_range(len(WIDTHS.value)):
-        width: tl.constexpr = WIDTHS.value[part]
-        skip: tl.constexpr = HEAD if part == 0 else 0
+    offset = 0
+    merged_offset = 0
+    for part in tl.static_range(len(WIDTHS)):
+        width = WIDTHS[part]
+        skip = HEAD if part == 0 else 0
         selected = (edge < E) & (col >= offset) & (col < offset + width)
         local = col - offset
         value = tl.load(Merged + edge * GS0 + (merged_offset + local - skip) * GS1,
