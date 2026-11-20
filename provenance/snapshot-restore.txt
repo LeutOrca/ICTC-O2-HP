@@ -1,0 +1,26 @@
+snapshots/capacity-4100-frozen-import.bundle: 成功
+6e9330be76c4f50fd34f43b4d04c1eaf97919df1 Load frozen MACE modules before probing 4100 atoms
+snapshots/capacity-4100.bundle: 成功
+f0f2c84a01df5d0a147a86d698f1ed0c17f5722d Qualify 4100 atoms against width-tiled native scatter when needed
+snapshots/capacity-allocator.bundle: 成功
+7789e200c5df1a0bc816cf2ec6f95931dc201141 Probe the 4100-atom native baseline with expandable allocator segments
+snapshots/capacity-native-paired.bundle: 成功
+1bab6df1ea7a9e47135557b5603b4f50691edc80 Pair native and optimized 4100-atom CUDA Graph runs with the same allocator
+snapshots/capacity-native-recovery.bundle: 成功
+78231f3482fc9999857cc29e1cf5c220e73aa435 Keep a guarded two-arm retry for the native 4100-atom gate
+snapshots/capacity-partition.bundle: 成功
+fe24b6a60eac08e2d0e7898a2ca21bffa7c0a593 Measure the partitioned TP at the 4100-atom capacity point
+snapshots/force-ablation.bundle: 成功
+a2d7eaa220a85342bf404c853921f7513f5e6dde Diagnose FP32 force drift under native CUDA Graph
+snapshots/inductor-b8.bundle: 成功
+977f60774d75e4030985c232ec08eb5c2dfab16f Probe B8 edge product fusion through strict FP32 Inductor
+snapshots/native-capture-compat.bundle: 成功
+642df81a35e11445108b86067722fa906a2379b6 Construct native deterministic scatter coordinates on GPU
+snapshots/parallel-graphs.bundle: 成功
+41469b12ce05e840e3ead46e440a7107789bdc7e Parallelize B8 native periodic neighbor construction
+snapshots/pinned-inputs.bundle: 成功
+630f4c2d417e8638927f11a850a8850490dc44fe Batch rebuilt graph inputs into two pinned CUDA transfers
+snapshots/receiver-csr.bundle: 成功
+b1b77ddb7d1f895a38ffd5b8fedebb83f18a7f5d Match native FP32 receiver sums using stable CSR rows
+snapshots/tp-partitions.bundle: 成功
+8d6818c862efb3afe0b524bb4e4023b1aaec6088 Share native e3nn slice adjoints across disjoint input partitions

@@ -1,0 +1,18 @@
+JobID|JobName|State|ElapsedRaw|NodeList|ExitCode|AllocTRES
+315573|mace-force-ablation|FAILED|6|gpuh12|1:0|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1
+315575|mace-force-ablation|FAILED|92|gpuh12|1:0|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1
+315581|mace-force-ablation|COMPLETED|111|gpuh10|0:0|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1
+315582|mace-receiver-csr|COMPLETED|264|gpuh12|0:0|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1
+315589|mace-capacity-4100|FAILED|167|gpuh10|1:0|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1
+315602|mace-parallel-graphs|COMPLETED|238|gpuh10|0:0|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1
+315605|mace-capacity-4100|CANCELLED by 22720|653|gpuh12|0:0|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1
+315608|mace-tp-partitions|CANCELLED by 22720|533|gpuh12|0:0|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1
+315622|mace-pinned-inputs|COMPLETED|192|gpuh10|0:0|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1
+315635|mace-capacity-4100|COMPLETED|700|gpuh10|0:0|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1
+315636|mace-tp-partitions|COMPLETED|432|gpuh10|0:0|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1
+315691|mace-partition-4100|COMPLETED|1021|gpuh09|0:0|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1
+315701|mace-native-allocator|COMPLETED|91|gpuh08|0:0|billing=4,cpu=4,gres/gpu=1,mem=8G,node=1
+315724|mace-native-4100-pair|TIMEOUT|1219|gpuh01|0:0|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1
+315725|mace-b8-inductor|FAILED|154|gpuh08|1:0|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1
+315729|mace-4100-pair-retry|COMPLETED|718|gpuh08|0:0|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1
+             JOBID     STATE                       NAME          NODELIST(REASON)
