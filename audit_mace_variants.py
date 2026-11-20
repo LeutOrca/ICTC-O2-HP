@@ -31,7 +31,8 @@ def main():
     input_keys = ("input_sha256",) if args.model == "mace" else (
         "input_positions_sha256", "topology_sha256", "input_manifest_sha256")
     signature_keys = ("source", "checkpoint_sha256", *input_keys, "gpu_uuid", "torch",
-                      "qualification_sha256", "cuda_graph", "tf32", "amp")
+                      "qualification_sha256", "cuda_graph", "tf32", "amp", "dtype",
+                      "atoms", "edges", "structures")
     signatures = {json.dumps({key: value[key] for key in signature_keys}, sort_keys=True)
                   for value in receipts.values()}
     if len(signatures) != 1:
@@ -61,6 +62,8 @@ def main():
         rows[boundary] = row
     report = dict(status="complete", model=args.model, candidate=args.candidate, case=args.case, boundaries=rows,
                   source=next(iter(receipts.values()))["source"], gpu_uuid=next(iter(receipts.values()))["gpu_uuid"],
+                  atoms=next(iter(receipts.values()))["atoms"], edges=next(iter(receipts.values()))["edges"],
+                  structures=next(iter(receipts.values()))["structures"], torch=next(iter(receipts.values()))["torch"],
                   tf32=False, amp=False, cuda_graph=next(iter(receipts.values()))["cuda_graph"])
     output.write_text(json.dumps(report, indent=2))
     base = "78231f3" if args.model == "mace" else "9787a3a"

@@ -8,6 +8,6 @@
 
 实施顺序按执行数据流推进。先建立自写 IEEE FP32 矩阵核及输入伴随，接冻结权重打包与失效，再融合 gather、输出组装和 norm。随后按模型的真实生产者与消费者处理分页、接收端归约、冻结投影和力伴随。每项保留独立源码快照与逐项数值和性能回执。
 
-Triton 明确 input_precision="ieee"，CUDA 使用共享内存分块和 FP32 fmaf。候选矩阵执行通过 TorchDispatchMode 覆盖 ATen mm/bmm/addmm/baddbmm，超出覆盖的矩阵入口必须明确报错。验证包括空输入、尾部、非连续矩阵、广播 bias、beta=0 的 NaN bias、批量输入伴随、更新输入的 CUDA Graph 和候选 profiler kernel 列表。
+Triton 明确 input_precision="ieee"，CUDA 使用共享内存分块和 FP32 fmaf。历史全矩阵实验通过 TorchDispatchMode 覆盖 ATen mm/bmm/addmm/baddbmm，超出覆盖的入口报错。当前局部替换只在已改算子内部调用自写核，未改层的 cuBLAS 可出现在整网 trace 中。验证包括空输入、尾部、非连续矩阵、广播 bias、beta=0 的 NaN bias、批量输入伴随、更新输入的 CUDA Graph 和候选 profiler kernel 列表。
 
 整网继承既定能量和力数值容差，冻结 checkpoint 和原始图规则。固定拓扑与含构图边界各自计量延迟、吞吐、allocated/reserved，并以同卡、同 Graph、相同软件和输入配对。5×、6×、allocated 比 0.9、0.8 四项分别给出状态。不同整网或不同算子的原生绝对成本须先确认比较合约。

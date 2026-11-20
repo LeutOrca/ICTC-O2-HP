@@ -117,6 +117,8 @@ lines += ["", "两种范围均超过 5×，尚未达到 6×。allocated 均超�
           f"`{scalar['numerics']['fixed']['forces']['relative_l2']:.6g}`，600 也通过，原容差未放宽。",
           "单独版本使用的通用 CUDA 小 GEMV 分块浪费较大，整网明显退化，保留回执，不晋级。融合版改用专用 Triton 伴随。", "",
           "### 各快照正式五轮配对", "",
+          "b8 为 8 个结构、68 原子、3472 有向边。历史标签 n512 实际为 600 原子、31512 边；n4096 实际为 4100 原子。",
+          "A100 使用 Torch 2.7.1+cu128，H100 使用 Torch 2.6.0+cu124，分别成组，不合并延迟或显存。",
           "各行仅来自完整的同 GPU UUID、同输入/权重/源码/资格哈希配对。速度是五个配对比值的中位数，",
           "延迟及显存列是各臂中位数，因此四舍五入后的延迟之比可能与速度略有不同。全部臂同用 CUDA Graph。", "",
           "| 卡 / 快照 / 点 / 候选 | 边界 | 原生→78231f3→候选 ms | 对原生 / 对78231f3 | allocated / reserved MiB | allocated / reserved 相对原生下降 | 候选 原子/s |",
@@ -137,9 +139,14 @@ for path, audit in audits.items():
 lines += ["", "原始路径、逐轮比值、structures/s、原子/s、三臂 allocated/reserved 全值在 [SUMMARY.json](SUMMARY.json) 的 mace_pairs。",
           "A100 投影与融合两作业曾共用原生臂文件名，原目录部分覆盖。已从不可变 Slurm stdout 的原始 JSON 行",
           "分别恢复每项 66 份回执，CPU 114671 核对 UUID/输入/源码/资格哈希后审计通过。表中只使用按作业恢复的路径，",
-          "旧平铺目录保留作故障证据。`c429843` 起所有新结果位于 measurements/<job>-<variant>-<case>/。", "",
+          "旧平铺目录保留作故障证据；被覆盖的旧原生 raw trace 未恢复，恢复的是逐轮数值和 trace 元数据。",
+          "当前联合与输入候选的新作业保留完整原生/候选 raw trace。`c429843` 起结果位于 measurements/<job>-<variant>-<case>/。", "",
           "联合候选为前缀、物种投影和 TP/CSR 融合三项；final-input 额外复用常量组分字段。",
           "H100 B8/600 必须先通过原阈值，再计时和测显存。4100 点也重新对原生 Graph 验证，失败/OOM 单列。", "",
+          "相对 78231f3 的新增端到端收益约 3.0–5.5%，allocated 再下降约 0.54–0.62%。",
+          "相对原生 Graph 的约 75% 显存下降包含前一轮 CSR/伴随切片收益，不能全部归因于本轮新核。",
+          "第一层标量 TP、接收归约及三个常量物种投影使用自写核，第二层 TP 和其余原生层保留。",
+          "通用 ICTC Cartesian/Fischer TP 与 UVU 核心算法没有重写。", "",
           "此前全矩阵替换实验中，A100 最佳 B8 力相对 L2 约 `2.94e-5`，H100 初版为 `4.42e-5`。",
           "原生 FP32 相对独立 FP64 的诊断差约 `6.57e-5`，仅用于解释舍入敏感性，原验收阈值未放宽。", "",
           "V3 初次全矩阵候选 `2089373`，B1 的两种子、固定/端到端 E/F 通过，但五配对整网未达标：", "",
@@ -184,4 +191,6 @@ lines += ["", "本表只在三臂五配对收齐并审计通过后列数值。B8
           "完整提交清单和作业账本位于 `provenance/`。全部 Python、编译、聚合和测量均由 Slurm 计算节点执行。"]
 (ROOT / "REPORT.zh-CN.md").write_text("\n".join(lines) + "\n")
 print(json.dumps(dict(report=str(ROOT / "REPORT.zh-CN.md"), large_gate=True,
-                       operator_5x=True, whole_goal_complete=False)), flush=True)
+                       operator_5x=True, operator_6x=False,
+                       mace_h100_three_case_target=mace_target,
+                       all_o3_hpx_items_complete=False)), flush=True)
