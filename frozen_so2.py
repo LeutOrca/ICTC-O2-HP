@@ -62,12 +62,15 @@ class _FrozenSO2(torch.autograd.Function):
     @staticmethod
     def forward(ctx, inputs, weight, backend):
         edges, _, width = inputs.shape
-        packed_input = inputs.new_empty((edges, 2 * width))
-        with torch.cuda.device(inputs.device):
-            if edges:
-                _pack_input[(triton.cdiv(packed_input.numel(), 256),)](
-                    inputs, packed_input, edges, width, *inputs.stride(), 256,
-                )
+        if inputs.stride(1) == width * inputs.stride(2):
+            packed_input = inputs.reshape(edges, 2 * width)
+        else:
+            packed_input = inputs.new_empty((edges, 2 * width))
+            with torch.cuda.device(inputs.device):
+                if edges:
+                    _pack_input[(triton.cdiv(packed_input.numel(), 256),)](
+                        inputs, packed_input, edges, width, *inputs.stride(), 256,
+                    )
         output = matrix(packed_input, weight.T, backend=backend)
         ctx.save_for_backward(weight)
         ctx.input_shape = inputs.shape

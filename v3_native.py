@@ -1,20 +1,20 @@
 """Install own frozen SO(2) mixing and merge norm into official V3 modules."""
 from types import MethodType
 
-from frozen_so2 import FrozenWeightCache, frozen_so2
+from frozen_so2 import FrozenWeightCache
 from merge_norm import merge_norm
+from so2_layer import frozen_layer
 
 
 def install(model, backend="triton", use_norm=True):
     model.requires_grad_(False)
     installed = dict(so2=[], norm=[])
     for name, module in model.named_modules():
-        if module.__class__.__name__ == "SO2MLinear":
-            cache = FrozenWeightCache()
+        if module.__class__.__name__ == "SO2Linear":
+            caches = tuple(FrozenWeightCache() for _ in module.so2_m_linear)
 
-            def forward(layer, inputs, concat_outputs=True, _cache=cache):
-                value = frozen_so2(inputs, layer.fc.weight, _cache, backend)
-                return value if concat_outputs else (value[:, :1], value[:, 1:])
+            def forward(layer, inputs, _caches=caches):
+                return frozen_layer(inputs, layer, _caches, backend)
 
             module.forward = MethodType(forward, module)
             installed["so2"].append(name)

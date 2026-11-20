@@ -68,11 +68,12 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
             return compiled_matrix(left, right, bias, alpha, beta)
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
+    block_rows, block_columns = (64, 128) if rows >= 512 and columns >= 128 else (32, 64)
     with torch.cuda.device(left.device):
-        _matrix[(triton.cdiv(rows, 32) * batches, triton.cdiv(columns, 64))](
+        _matrix[(triton.cdiv(rows, block_rows) * batches, triton.cdiv(columns, block_columns))](
             left, right, bias if bias is not None else output, output,
             rows, columns, inner, *a_strides, *b_strides, *d_strides,
-            bias is not None, alpha, beta, 32, 64, 32, num_warps=4,
+            bias is not None, alpha, beta, block_rows, block_columns, 32, num_warps=4,
         )
     return output
 
