@@ -48,10 +48,24 @@ def _finish_weights(X, H, DY, DW, E: tl.constexpr, C: tl.constexpr,
     edge, column = item // (4 * C), item % (4 * C)
     valid = edge < E
     source = tl.load(X + edge * XS + column % C, valid, other=0.)
-    value = tl.load(DW + item, valid & (column >= C), other=0.)
-    incoming = tl.load(DY + edge * DS + column, valid & (column < C), other=0.)
-    harmonic = tl.load(H + edge * HS, valid & (column < C), other=0.)
-    value = tl.where(column < C, incoming * harmonic, value)
+    degree = column // C
+    width = degree * 2 + 1
+    first = degree * degree
+    channel = column % C
+    p0 = tl.load(DY + edge * DS + first * C + channel * width, valid, other=0.) * tl.load(H + edge * HS + first, valid, other=0.)
+    p1 = tl.load(DY + edge * DS + first * C + channel * width + 1, valid & (width > 1), other=0.) * tl.load(H + edge * HS + first + 1, valid & (width > 1), other=0.)
+    p2 = tl.load(DY + edge * DS + first * C + channel * width + 2, valid & (width > 2), other=0.) * tl.load(H + edge * HS + first + 2, valid & (width > 2), other=0.)
+    p3 = tl.load(DY + edge * DS + first * C + channel * width + 3, valid & (width > 3), other=0.) * tl.load(H + edge * HS + first + 3, valid & (width > 3), other=0.)
+    p4 = tl.load(DY + edge * DS + first * C + channel * width + 4, valid & (width > 4), other=0.) * tl.load(H + edge * HS + first + 4, valid & (width > 4), other=0.)
+    p5 = tl.load(DY + edge * DS + first * C + channel * width + 5, valid & (width > 5), other=0.) * tl.load(H + edge * HS + first + 5, valid & (width > 5), other=0.)
+    p6 = tl.load(DY + edge * DS + first * C + channel * width + 6, valid & (width > 6), other=0.) * tl.load(H + edge * HS + first + 6, valid & (width > 6), other=0.)
+    # The native einsum is an outer product. Its radial adjoint is a rounded
+    # elementwise multiply followed by Reduce.cuh, rather than an FMA dot.
+    # Last dimensions 3/5/7 use 2/4/4 lanes and ascending shuffle offsets.
+    sum3 = (p0 + p2) + p1
+    sum5 = ((p0 + p4) + p1) + (p2 + p3)
+    sum7 = ((p0 + p4) + (p1 + p5)) + ((p2 + p6) + p3)
+    value = tl.where(degree == 0, p0, tl.where(degree == 1, sum3, tl.where(degree == 2, sum5, sum7)))
     tl.store(DW + item, value * source, valid)
 
 
@@ -92,10 +106,7 @@ class _ScalarTP(torch.autograd.Function):
                 first = degree * degree
                 derivative = incoming[:, first * channels:(first + width) * channels].reshape(
                     edges, channels, width)
-                angular = h[:, first:first + width].unsqueeze(-1)
                 weighted = product[:, degree * channels:(degree + 1) * channels].unsqueeze(1)
-                matrix(derivative, angular, backend="cuda2",
-                       output=dw[:, degree * channels:(degree + 1) * channels].unsqueeze(-1))
                 matrix(weighted, derivative, backend="cuda2",
                        output=dh[:, first:first + width].unsqueeze(1))
             _finish_weights[(triton.cdiv(dw.numel(), 256),)](
