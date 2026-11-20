@@ -14,26 +14,26 @@ import torch
 sys.path.insert(0, os.environ["HPX_MACE_ENTRY"])
 import qualify_force as prior
 from mace_frozen_prefix import install, receipt
+from mace_variants import VARIANTS, apply, evaluator
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("stage", choices=("time", "memory", "trace"))
-    parser.add_argument("role", choices=("native", "base", "prefix"))
+    parser.add_argument("role", choices=VARIANTS)
     parser.add_argument("case", choices=tuple(prior.bench.CASES))
     parser.add_argument("boundary", choices=("fixed", "e2e"))
     parser.add_argument("output", type=Path)
     parser.add_argument("--qualification", type=Path, required=True)
     parser.add_argument("--repeat", type=int, default=0)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     qualification = json.loads(args.qualification.read_text())
     if not qualification["passed"] or not qualification.get("cuda_graph") or qualification["case"] != args.case:
         raise RuntimeError("The matching candidate whole-network E/F and Graph qualification is missing")
     prior.bench.configure()
     torch.use_deterministic_algorithms(True)
     model = prior.setup("native-graph" if args.role == "native" else "receiver-csr-partition-graph")
-    if args.role == "prefix":
-        install(model)
+    apply(model, args.role)
     geometry = prior.bench.load_geometry(prior.bench.CASES[args.case])
     fixed = prior.inputs_for(geometry, model)
     digest = hashlib.sha256()
@@ -56,7 +56,7 @@ def main():
         torch.cuda.reset_peak_memory_stats()
         record["resident_allocated"] = torch.cuda.memory_allocated()
     tick = perf_counter()
-    runner = prior.replay_for(model, fixed)
+    runner = prior.Replay(evaluator(args.role, prior), model, fixed)
     torch.cuda.synchronize()
     record["capture_prepare_wall_ms"] = (perf_counter() - tick) * 1000
 
