@@ -4,8 +4,8 @@ import traceback
 
 import torch
 
-from native_graph_scatter import native_capture_compat
 from qualify_force import bench, collect, cpu, evaluate, exact, inputs_for, setup
+from native_graph_scatter import native_capture_compat
 
 CASE = "n4096"
 REFERENCE = bench.ROOT / "receipts" / "n4096-tiled-eager.pt"
