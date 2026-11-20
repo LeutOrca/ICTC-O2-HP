@@ -11,6 +11,7 @@ import torch
 sys.path.insert(0, os.environ["HPX_V3_ENTRY"])
 import whole_network as native
 from graph_rotation import init_edge_rot_mat
+from graph_topology import install as install_topology
 from matrix_kernels import OwnMatrixKernels
 from v3_native import install
 
@@ -32,6 +33,7 @@ def main():
         torch.manual_seed(seed)
         reference[seed] = net.forward(fixed, True)
     net.model._init_edge_rot_mat = lambda edge: init_edge_rot_mat(edge, use_rotation_mask=True)
+    install_topology(net, fixed)
     if args.role == "own":
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)

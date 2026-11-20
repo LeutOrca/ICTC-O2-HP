@@ -8,6 +8,9 @@ using int64_t = long long;
 #ifndef K_STRIPE
 #define K_STRIPE 1
 #endif
+#ifndef K_LINEAR_JOIN
+#define K_LINEAR_JOIN 0
+#endif
 
 extern "C" __global__ void ieee_matrix(
     const float* left, const float* right, const float* bias, float* output,
@@ -62,7 +65,7 @@ extern "C" __global__ void ieee_matrix(
         for (int j = 0; j < 4; ++j) {
             const int64_t column = column_base + threadIdx.x + 16 * j;
             if (row < rows && column < columns) {
-                #if K_CONTIGUOUS
+                #if K_CONTIGUOUS || K_LINEAR_JOIN
                 #pragma unroll
                 for (int group = 1; group < K_GROUPS; ++group) {
                     sums[i][j][0] = __fadd_rn(sums[i][j][0], sums[i][j][group]);

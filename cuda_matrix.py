@@ -12,9 +12,9 @@ def _checked(status, action):
         raise RuntimeError(f"{action} returned CUDA status {status}")
 
 
-def prepare(groups=1, stripe=1):
+def prepare(groups=1, stripe=1, linear_join=False):
     device = torch.cuda.current_device()
-    key = (device, groups, stripe)
+    key = (device, groups, stripe, linear_join)
     if key in _MODULES:
         return _MODULES[key]
     torch.cuda.init()
@@ -38,7 +38,7 @@ def prepare(groups=1, stripe=1):
     options = [f"--gpu-architecture=sm_{major}{minor}".encode(),
                b"--std=c++17", b"--ftz=false", b"--prec-div=true", b"--prec-sqrt=true",
                f"-DK_GROUPS={abs(groups)}".encode(), f"-DK_CONTIGUOUS={int(groups < 0)}".encode(),
-               f"-DK_STRIPE={stripe}".encode()]
+               f"-DK_STRIPE={stripe}".encode(), f"-DK_LINEAR_JOIN={int(linear_join)}".encode()]
     option_array = (ctypes.c_char_p * len(options))(*options)
     compiler.nvrtcCompileProgram.argtypes = [
         ctypes.c_void_p, ctypes.c_int, ctypes.POINTER(ctypes.c_char_p),
@@ -85,8 +85,9 @@ def prepare(groups=1, stripe=1):
     return _MODULES[key]
 
 
-def compiled_matrix(left, right, bias, alpha, beta, groups=1, output=None, stripe=1):
-    driver, _, kernel, _ = prepare(groups, stripe)
+def compiled_matrix(left, right, bias, alpha, beta, groups=1, output=None, stripe=1,
+                    linear_join=False):
+    driver, _, kernel, _ = prepare(groups, stripe, linear_join)
     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
     batches = left.shape[0] if left.ndim == 3 else 1
     if output is None:

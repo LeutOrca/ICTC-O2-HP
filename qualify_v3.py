@@ -17,7 +17,7 @@ from v3_native import install
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--suite", default="mptrj-b1")
-    parser.add_argument("--kernel", choices=("triton", "cuda"), default="triton")
+    parser.add_argument("--kernel", choices=("triton", "cuda", "warp4"), default="triton")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--without-norm", action="store_true")
     args = parser.parse_args()
