@@ -10,6 +10,7 @@ from candidate import configure_candidate
 from capture_both_variants import Replay
 from compact_species import PackedSpeciesProjection
 from direct_uvu import DirectMessage
+from native_graph_scatter import native_capture_compat
 
 
 CASES = ("b8", "n512")
@@ -23,12 +24,14 @@ MODES = {
     "packed-second-graph": (False, False, (1,)),
     "packed-both-graph": (False, False, (0, 1)),
     "frozen-1b65a8c-graph": (True, True, (0, 1)),
+    "receiver-csr-graph": (False, False, ()),
 }
 
 
 def setup(mode):
     scalar, uvu, pack = MODES[mode]
     model = bench.model_for("native", "cuda")
+    model._receiver_csr = mode == "receiver-csr-graph"
     model._benchmark_elements = model.atomic_numbers.cpu().numpy()
     model.r_max_cpu = float(model.r_max)
     if scalar:
@@ -43,14 +46,14 @@ def setup(mode):
     return model
 
 
-def inputs_for(geometry, model):
-    inputs = bench.native_graph(geometry, model, "cuda")
+def inputs_for(geometry, model, device="cuda"):
+    inputs = bench.native_graph(geometry, model, device)
     if any(isinstance(layer.skip_tp, PackedSpeciesProjection) for layer in model.interactions):
         species = np.searchsorted(model._benchmark_elements, np.concatenate([row[1] for row in geometry]))
         elements = np.unique(species)
         inputs["_selector_groups"] = tuple(
             (int(z), None if len(elements) == 1 else
-             torch.from_numpy(np.flatnonzero(species == z)).cuda())
+             torch.from_numpy(np.flatnonzero(species == z)).to(device))
             for z in elements
         )
     return inputs
@@ -68,6 +71,15 @@ def evaluate(model, inputs):
     finally:
         for selector in selectors:
             selector.groups = None
+
+
+def graph_evaluate(model, inputs):
+    with native_capture_compat():
+        if model._receiver_csr:
+            from receiver_csr import use_receiver_csr
+            with use_receiver_csr(inputs):
+                return evaluate(model, inputs)
+        return evaluate(model, inputs)
 
 
 def exact(actual, reference):
@@ -89,7 +101,7 @@ def collect(point, mode, reference):
     if reference is None:
         reference = {label: cpu(evaluate(model, data)) for label, data in
                      (("fixed", fixed), ("e2e", inputs_for(geometry, model)), ("perturbed", changed))}
-    runner = Replay(evaluate, model, fixed)
+    runner = Replay(graph_evaluate, model, fixed)
     calls = {
         "fixed": lambda: runner.call(fixed),
         "e2e": lambda: runner.call(inputs_for(geometry, model)),
@@ -112,6 +124,8 @@ def collect(point, mode, reference):
         ]
     passed = all(item["passed"] for group in numerics.values()
                  for key in ("reference", "repeat") for item in group[key].values())
+    if mode == "native-graph":
+        passed &= all(all(group["reference_exact"].values()) for group in numerics.values())
     receipt = dict(case=point, backend=mode, atoms=fixed["positions"].shape[0],
                    edges=fixed["edge_index"].shape[1], numerics=numerics,
                    per_structure_force=case_errors, passed=passed,
@@ -120,18 +134,21 @@ def collect(point, mode, reference):
     print(point, mode, passed, {name: (data["reference"]["forces"]["relative_l2"],
                                      data["repeat"]["forces"]["relative_l2"])
                                for name, data in numerics.items()}, flush=True)
+    if mode == "native-graph" and not passed:
+        raise RuntimeError("Capture-compatible native graph differs from original native eager")
     return reference
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--case", choices=CASES, action="append")
+    parser.add_argument("--mode", choices=tuple(MODES)[1:], action="append")
     args = parser.parse_args()
     bench.configure()
     torch.use_deterministic_algorithms(True)
     for case in args.case or CASES:
         reference = None
-        for mode in MODES:
+        for mode in ("native-graph", *(args.mode or tuple(MODES)[1:])):
             reference = collect(case, mode, reference)
             gc.collect()
             torch.cuda.synchronize()
