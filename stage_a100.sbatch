@@ -28,7 +28,9 @@ py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 mkdir -p logs results "$MACE_RESULT_ROOT/receipts"
 sha256sum --quiet -c provenance/input.sha256
 printf 'job=%s node=%s stage=%s\n' "$SLURM_JOB_ID" "$SLURMD_NODENAME" "$*"
-if test "$1" = paired-layer; then
+if test "$1" = paired-v3; then
+    bash pair_v3.sh "$2" "$3"
+elif test "$1" = paired-layer; then
     srun "$py" -u qualify_layer.py results/so2-layer.json
     for stage in time memory; do
         for repeat in 0 1 2 3 4; do
