@@ -12,6 +12,7 @@ def _matrix(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
             AS0: tl.constexpr, AS1: tl.constexpr, AS2: tl.constexpr,
             BS0: tl.constexpr, BS1: tl.constexpr, BS2: tl.constexpr,
             DS0: tl.constexpr, DS1: tl.constexpr, DS2: tl.constexpr,
+            CS0: tl.constexpr, CS1: tl.constexpr, CS2: tl.constexpr,
             HAS_BIAS: tl.constexpr, ALPHA: tl.constexpr, BETA: tl.constexpr,
             BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
     row_tiles = tl.cdiv(M, BM)
@@ -32,7 +33,7 @@ def _matrix(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
         bias = tl.load(Bias + batch * DS0 + row[:, None] * DS1 + col[None, :] * DS2,
                        (row[:, None] < M) & (col[None, :] < N), other=0.)
         result = result + BETA * bias
-    tl.store(C + (batch * M + row[:, None]) * N + col[None, :], result,
+    tl.store(C + batch * CS0 + row[:, None] * CS1 + col[None, :] * CS2, result,
              (row[:, None] < M) & (col[None, :] < N))
 
 
@@ -42,7 +43,7 @@ def _matrix_strides(value):
     return value.stride()
 
 
-def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
+def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=None):
     if (left.ndim not in (2, 3) or right.ndim != left.ndim
             or left.dtype != torch.float32 or right.dtype != torch.float32
             or not left.is_cuda or left.device != right.device
@@ -53,7 +54,10 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
     shape = (*left.shape[:-1], right.shape[-1])
     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
     batches = left.shape[0] if left.ndim == 3 else 1
-    output = left.new_empty(shape)
+    if output is None:
+        output = left.new_empty(shape)
+    if output.shape != shape or output.dtype != left.dtype or output.device != left.device:
+        raise ValueError("Output must match the result shape, dtype and device")
     if output.numel() == 0:
         return output
     if bias is not None:
@@ -65,7 +69,8 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
     if backend in ("cuda", "cuda2", "cuda4", "cuda8"):
         from cuda_matrix import compiled_matrix
         with torch.cuda.device(left.device):
-            return compiled_matrix(left, right, bias, alpha, beta, groups=int(backend[4:] or 1))
+            return compiled_matrix(left, right, bias, alpha, beta,
+                                   groups=int(backend[4:] or 1), output=output)
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
     block_rows, block_columns = (64, 128) if rows >= 512 and columns >= 128 else (32, 64)
@@ -73,6 +78,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
         _matrix[(triton.cdiv(rows, block_rows) * batches, triton.cdiv(columns, block_columns))](
             left, right, bias if bias is not None else output, output,
             rows, columns, inner, *a_strides, *b_strides, *d_strides,
+            *_matrix_strides(output),
             bias is not None, alpha, beta, block_rows, block_columns, 32, num_warps=4,
         )
     return output

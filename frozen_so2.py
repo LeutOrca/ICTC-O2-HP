@@ -21,7 +21,7 @@ def _pack_input(X, Packed, E, K: tl.constexpr, S0: tl.constexpr,
 
 
 @triton.jit
-def _pack_weight(W, Packed, K: tl.constexpr, O: tl.constexpr,
+def _pack_weight(W, Packed, Transposed, K: tl.constexpr, O: tl.constexpr,
                  S0: tl.constexpr, S1: tl.constexpr, TILE: tl.constexpr):
     index = tl.program_id(0).to(tl.int64) * TILE + tl.arange(0, TILE)
     row = index // (2 * K)
@@ -30,7 +30,9 @@ def _pack_weight(W, Packed, K: tl.constexpr, O: tl.constexpr,
     source_row = row % O + imaginary_block.to(tl.int64) * O
     value = tl.load(W + source_row * S0 + (col % K) * S1, row < 2 * O, other=0.)
     negate = (row < O) & (col >= K)
-    tl.store(Packed + index, tl.where(negate, -value, value), row < 2 * O)
+    result = tl.where(negate, -value, value)
+    tl.store(Packed + index, result, row < 2 * O)
+    tl.store(Transposed + col * (2 * O) + row, result, row < 2 * O)
 
 
 class FrozenWeightCache:
@@ -38,6 +40,7 @@ class FrozenWeightCache:
     def __init__(self):
         self.key = None
         self.packed = None
+        self.forward_weight = None
         self.reference = None
 
     def prepare(self, weight):
@@ -49,18 +52,20 @@ class FrozenWeightCache:
             width = weight.shape[1]
             outputs = weight.shape[0] // 2
             packed = weight.new_empty((2 * outputs, 2 * width))
+            transposed = weight.new_empty((2 * width, 2 * outputs))
             with torch.cuda.device(weight.device):
                 _pack_weight[(triton.cdiv(packed.numel(), 256),)](
-                    weight, packed, width, outputs, *weight.stride(), 256,
+                    weight, packed, transposed, width, outputs, *weight.stride(), 256,
                 )
             self.key, self.packed = key, packed
+            self.forward_weight = transposed
             self.reference = weakref.ref(weight)
         return self.packed
 
 
 class _FrozenSO2(torch.autograd.Function):
     @staticmethod
-    def forward(ctx, inputs, weight, backend):
+    def forward(ctx, inputs, forward_weight, weight, backend):
         edges, _, width = inputs.shape
         if inputs.stride(1) == width * inputs.stride(2):
             packed_input = inputs.reshape(edges, 2 * width)
@@ -71,7 +76,7 @@ class _FrozenSO2(torch.autograd.Function):
                     _pack_input[(triton.cdiv(packed_input.numel(), 256),)](
                         inputs, packed_input, edges, width, *inputs.stride(), 256,
                     )
-        output = matrix(packed_input, weight.T, backend=backend)
+        output = matrix(packed_input, forward_weight, backend=backend)
         ctx.save_for_backward(weight)
         ctx.input_shape = inputs.shape
         ctx.backend = backend
@@ -83,7 +88,7 @@ class _FrozenSO2(torch.autograd.Function):
         weight, = ctx.saved_tensors
         packed = derivative.reshape(derivative.shape[0], weight.shape[0])
         gradient = matrix(packed, weight, backend=ctx.backend)
-        return gradient.reshape(ctx.input_shape), None, None
+        return gradient.reshape(ctx.input_shape), None, None, None
 
 
 def frozen_so2(inputs, weight, cache, backend="triton"):
@@ -92,4 +97,5 @@ def frozen_so2(inputs, weight, cache, backend="triton"):
             or not inputs.is_cuda or inputs.dtype != torch.float32
             or weight.dtype != torch.float32 or inputs.device != weight.device):
         raise ValueError("Expected CUDA FP32 SO(2) inputs [E,2,K] and weights [2O,K]")
-    return _FrozenSO2.apply(inputs, cache.prepare(weight), backend)
+    backward_weight = cache.prepare(weight)
+    return _FrozenSO2.apply(inputs, cache.forward_weight, backward_weight, backend)

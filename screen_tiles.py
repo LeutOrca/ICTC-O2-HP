@@ -43,7 +43,7 @@ def main():
             )
             compiled = _matrix[(triton.cdiv(edges, bm), triton.cdiv(2 * outputs, bn))](
                 packed, weight, output, output, edges, 2 * outputs, 2 * width,
-                0, *packed.stride(), 0, *weight.stride(), 0, 0, 0,
+                0, *packed.stride(), 0, *weight.stride(), 0, 0, 0, 0, *output.stride(),
                 False, 1., 1., bm, bn, bk, num_warps=warps,
             )
             if ".tf32" in compiled.asm["ptx"]:

@@ -9,6 +9,7 @@ extern "C" __global__ void ieee_matrix(
     int64_t as0, int64_t as1, int64_t as2,
     int64_t bs0, int64_t bs1, int64_t bs2,
     int64_t ds0, int64_t ds1, int64_t ds2,
+    int64_t cs0, int64_t cs1, int64_t cs2,
     float alpha, float beta) {
     __shared__ float left_tile[64][16];
     __shared__ float right_tile[16][64];
@@ -64,7 +65,7 @@ extern "C" __global__ void ieee_matrix(
                 if (bias != nullptr && beta != 0.f) {
                     value = __fadd_rn(value, __fmul_rn(beta, bias[batch * ds0 + row * ds1 + column * ds2]));
                 }
-                output[(batch * rows + row) * columns + column] = value;
+                output[batch * cs0 + row * cs1 + column * cs2] = value;
             }
         }
     }

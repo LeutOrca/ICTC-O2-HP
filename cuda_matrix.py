@@ -84,11 +84,12 @@ def prepare(groups=1):
     return _MODULES[key]
 
 
-def compiled_matrix(left, right, bias, alpha, beta, groups=1):
+def compiled_matrix(left, right, bias, alpha, beta, groups=1, output=None):
     driver, _, kernel, _ = prepare(groups)
     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
     batches = left.shape[0] if left.ndim == 3 else 1
-    output = left.new_empty((*left.shape[:-1], columns))
+    if output is None:
+        output = left.new_empty((*left.shape[:-1], columns))
     if not output.numel():
         return output
     pointers = [ctypes.c_void_p(value.data_ptr()) if value is not None else ctypes.c_void_p()
@@ -99,6 +100,9 @@ def compiled_matrix(left, right, bias, alpha, beta, groups=1):
                bias.stride(-2) if bias is not None else 0,
                bias.stride(-1) if bias is not None else 0]
     arguments = pointers + [ctypes.c_int64(value) for value in (rows, columns, inner, *strides)]
+    arguments += [ctypes.c_int64(value) for value in (
+        output.stride(0) if output.ndim == 3 else 0, output.stride(-2), output.stride(-1)
+    )]
     arguments += [ctypes.c_float(alpha), ctypes.c_float(beta)]
     addresses = (ctypes.c_void_p * len(arguments))(
         *[ctypes.cast(ctypes.byref(value), ctypes.c_void_p).value for value in arguments]
