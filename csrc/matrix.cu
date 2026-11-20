@@ -13,9 +13,10 @@ __global__ void ieee_matrix(
     __shared__ float left_tile[64][16];
     __shared__ float right_tile[16][64];
     const int thread = threadIdx.y * 16 + threadIdx.x;
-    const int64_t row_base = int64_t(blockIdx.x) * 64;
+    const int64_t row_tiles = (rows + 63) / 64;
+    const int64_t row_base = (int64_t(blockIdx.x) % row_tiles) * 64;
     const int64_t column_base = int64_t(blockIdx.y) * 64;
-    const int64_t batch = blockIdx.z;
+    const int64_t batch = int64_t(blockIdx.x) / row_tiles;
     float sums[4][4] = {};
     for (int64_t start = 0; start < inner; start += 16) {
         #pragma unroll
@@ -75,7 +76,7 @@ torch::Tensor matrix(torch::Tensor a, torch::Tensor b,
     const int64_t ds0 = bias.has_value() && a.dim() == 3 ? bias->stride(0) : 0;
     const int64_t ds1 = bias.has_value() ? bias->stride(-2) : 0;
     const int64_t ds2 = bias.has_value() ? bias->stride(-1) : 0;
-    ieee_matrix<<<dim3((rows + 63) / 64, (columns + 63) / 64, batches), dim3(16, 16),
+    ieee_matrix<<<dim3(((rows + 63) / 64) * batches, (columns + 63) / 64), dim3(16, 16),
                   0, c10::cuda::getCurrentCUDAStream()>>>(
         a.data_ptr<float>(), b.data_ptr<float>(), d, output.data_ptr<float>(),
         rows, columns, inner,

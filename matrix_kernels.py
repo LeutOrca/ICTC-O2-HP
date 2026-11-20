@@ -14,8 +14,9 @@ def _matrix(A, B, Bias, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
             DS0: tl.constexpr, DS1: tl.constexpr, DS2: tl.constexpr,
             HAS_BIAS: tl.constexpr, ALPHA: tl.constexpr, BETA: tl.constexpr,
             BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
-    batch = tl.program_id(2)
-    row = tl.program_id(0) * BM + tl.arange(0, BM)
+    row_tiles = tl.cdiv(M, BM)
+    batch = tl.program_id(0).to(tl.int64) // row_tiles
+    row = (tl.program_id(0) % row_tiles) * BM + tl.arange(0, BM)
     col = tl.program_id(1) * BN + tl.arange(0, BN)
     inner = tl.arange(0, BK)
     total = tl.full((BM, BN), 0, tl.float32)
@@ -67,7 +68,7 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton"):
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
     with torch.cuda.device(left.device):
-        _matrix[(triton.cdiv(rows, 32), triton.cdiv(columns, 64), batches)](
+        _matrix[(triton.cdiv(rows, 32) * batches, triton.cdiv(columns, 64))](
             left, right, bias if bias is not None else output, output,
             rows, columns, inner, *a_strides, *b_strides, *d_strides,
             bias is not None, alpha, beta, 32, 64, 32, num_warps=4,
