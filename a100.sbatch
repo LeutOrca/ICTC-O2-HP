@@ -10,12 +10,13 @@
 #SBATCH --output=logs/%x-%j.log
 source /etc/profile
 set -euo pipefail
+study_root=${HPX_STUDY_ROOT:?Set the immutable study root}
 export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1
 export NVIDIA_TF32_OVERRIDE=0 TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=0
 export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
 export MAX_JOBS=2 TORCH_CUDA_ARCH_LIST=8.0
 export CXX=/usr/bin/g++-11 CC=/usr/bin/gcc-11
-export CUDA_HOME="$PWD/../o2-hpx-opt-20261117-r1/toolchain/cuda_host_v2"
+export CUDA_HOME="$study_root/../o2-hpx-opt-20261117-r1/toolchain/cuda_host_v2"
 export LIBRARY_PATH="$CUDA_HOME/lib64"
 export TRITON_CACHE_DIR="$PWD/cache/a100-triton"
 export TORCH_EXTENSIONS_DIR="$PWD/cache/a100-extensions"
@@ -28,5 +29,5 @@ srun "$py" -u qualify_matrix.py triton "results/triton-${SLURM_JOB_ID}.json"
 srun "$py" -u qualify_so2.py triton "results/so2-triton-${SLURM_JOB_ID}.json"
 srun "$py" -u qualify_matrix.py cuda "results/cuda-${SLURM_JOB_ID}.json"
 srun "$py" -u qualify_so2.py cuda "results/so2-cuda-${SLURM_JOB_ID}.json"
-export HPX_V3_UPSTREAM="$PWD/../o2-hpx-equiformerv3-oam-20261119-r1/upstream/equiformer_v3"
+export HPX_V3_UPSTREAM="$study_root/../o2-hpx-equiformerv3-oam-20261119-r1/upstream/equiformer_v3"
 srun "$py" -u qualify_norm.py "results/norm-${SLURM_JOB_ID}.json"
