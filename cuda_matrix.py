@@ -34,7 +34,7 @@ def prepare():
     _checked(compiler.nvrtcCreateProgram(ctypes.byref(program), source, b"matrix.cu", 0, None, None),
              "nvrtcCreateProgram")
     major, minor = torch.cuda.get_device_capability()
-    options = [f"--gpu-architecture=compute_{major}{minor}".encode(),
+    options = [f"--gpu-architecture=sm_{major}{minor}".encode(),
                b"--std=c++17", b"--ftz=false", b"--prec-div=true", b"--prec-sqrt=true"]
     option_array = (ctypes.c_char_p * len(options))(*options)
     compiler.nvrtcCompileProgram.argtypes = [
@@ -54,6 +54,11 @@ def prepare():
     _checked(compiler.nvrtcGetPTXSize(program, ctypes.byref(size)), "nvrtcGetPTXSize")
     ptx = ctypes.create_string_buffer(size.value)
     _checked(compiler.nvrtcGetPTX(program, ptx), "nvrtcGetPTX")
+    compiler.nvrtcGetCUBINSize.argtypes = [ctypes.c_void_p, ctypes.POINTER(ctypes.c_size_t)]
+    compiler.nvrtcGetCUBIN.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
+    _checked(compiler.nvrtcGetCUBINSize(program, ctypes.byref(size)), "nvrtcGetCUBINSize")
+    cubin = ctypes.create_string_buffer(size.value)
+    _checked(compiler.nvrtcGetCUBIN(program, cubin), "nvrtcGetCUBIN")
     compiler.nvrtcDestroyProgram.argtypes = [ctypes.POINTER(ctypes.c_void_p)]
     _checked(compiler.nvrtcDestroyProgram(ctypes.byref(program)), "nvrtcDestroyProgram")
     if b".tf32" in ptx.value:
@@ -65,7 +70,7 @@ def prepare():
     driver.cuModuleGetFunction.argtypes = [
         ctypes.POINTER(ctypes.c_void_p), ctypes.c_void_p, ctypes.c_char_p,
     ]
-    _checked(driver.cuModuleLoadData(ctypes.byref(module), ptx), "cuModuleLoadData")
+    _checked(driver.cuModuleLoadData(ctypes.byref(module), cubin), "cuModuleLoadData")
     _checked(driver.cuModuleGetFunction(ctypes.byref(kernel), module, b"ieee_matrix"),
              "cuModuleGetFunction")
     driver.cuLaunchKernel.argtypes = [
@@ -73,7 +78,7 @@ def prepare():
         ctypes.c_uint, ctypes.c_uint, ctypes.c_uint, ctypes.c_uint,
         ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p,
     ]
-    _MODULES[device] = (driver, module, kernel, ptx)
+    _MODULES[device] = (driver, module, kernel, cubin)
     return _MODULES[device]
 
 
