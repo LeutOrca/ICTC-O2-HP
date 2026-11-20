@@ -13,6 +13,8 @@ def main():
     parser.add_argument("root", type=Path)
     parser.add_argument("bundle", type=Path)
     parser.add_argument("--exports", type=Path)
+    parser.add_argument("--source-archive", type=Path)
+    parser.add_argument("--current-cohort", type=Path)
     args = parser.parse_args()
     rows = []
     with tempfile.TemporaryDirectory(prefix="hpx-independent-restore-") as temporary:
@@ -44,8 +46,29 @@ def main():
                     raise RuntimeError(dict(cohort=directory.name, file=name, mismatch=True))
                 files += 1
             rows.append(dict(cohort=directory.name, commit=commit, files=files, passed=True))
+        source_archive = None
+        if args.source_archive is not None:
+            if args.current_cohort is None:
+                raise ValueError("Specify the current source cohort for archive validation")
+            unpacked = root / "source-archive"
+            unpacked.mkdir()
+            with tarfile.open(args.source_archive) as contents:
+                contents.extractall(unpacked, filter="data")
+            export = unpacked / "hpx-custom-kernels"
+            expected = set()
+            for line in (args.current_cohort / "provenance/input.sha256").read_text().splitlines():
+                expected_hash, name = line.split("  ", 1)
+                expected.add(name)
+                if hashlib.sha256((export / name).read_bytes()).hexdigest() != expected_hash:
+                    raise RuntimeError(dict(archive_source_mismatch=name))
+            actual = {str(path.relative_to(export)) for path in export.rglob("*") if path.is_file()}
+            if actual != expected:
+                raise RuntimeError("Source archive member set differs from the frozen source")
+            source_archive = dict(passed=True, files=len(expected),
+                                  sha256=hashlib.sha256(args.source_archive.read_bytes()).hexdigest())
     result = dict(passed=True, independent_restores=rows,
                   exports_from_bundle_on_control_host=args.exports is not None,
+                  source_archive=source_archive,
                   bundle_sha256=hashlib.sha256(args.bundle.read_bytes()).hexdigest())
     (args.root / "provenance/SNAPSHOT_QA.json").write_text(json.dumps(result, indent=2))
     print(json.dumps(dict(passed=True, cohorts=len(rows), bundle_sha256=result["bundle_sha256"])), flush=True)
