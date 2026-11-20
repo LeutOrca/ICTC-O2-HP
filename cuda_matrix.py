@@ -17,6 +17,9 @@ def prepare():
     if device in _MODULES:
         return _MODULES[device]
     torch.cuda.init()
+    torch.cuda.set_device(device)
+    context_anchor = torch.empty(1, device=torch.device("cuda", device))
+    torch.cuda.synchronize()
     library_root = Path(torch.__file__).resolve().parent.parent / "nvidia/cuda_nvrtc/lib"
     libraries = sorted(library_root.glob("libnvrtc.so*"))
     if not libraries:
