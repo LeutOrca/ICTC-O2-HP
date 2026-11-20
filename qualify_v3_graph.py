@@ -12,6 +12,7 @@ sys.path.insert(0, os.environ["HPX_V3_ENTRY"])
 import whole_network as native
 from graph_rotation import init_edge_rot_mat
 from graph_topology import install as install_topology
+from graph_wigner import install as install_wigner
 from matrix_kernels import OwnMatrixKernels
 from v3_native import install
 
@@ -34,6 +35,7 @@ def main():
         reference[seed] = net.forward(fixed, True)
     net.model._init_edge_rot_mat = lambda edge: init_edge_rot_mat(edge, use_rotation_mask=True)
     install_topology(net, fixed)
+    install_wigner(net.model.so3_rotation, fixed.pos.device)
     if args.role == "own":
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)
