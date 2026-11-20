@@ -1,5 +1,6 @@
 """Strict E/F qualification of own kernels inside frozen official EquiformerV3."""
 import argparse
+from contextlib import nullcontext
 import json
 import os
 from pathlib import Path
@@ -21,6 +22,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--without-norm", action="store_true")
     parser.add_argument("--split-complex", action="store_true")
+    parser.add_argument("--registry", action="store_true")
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -41,20 +43,25 @@ def main():
     install_previous("gather-radial", model.model)
     installed = install(model.model, args.kernel, use_norm=not args.without_norm,
                         split_complex=args.split_complex)
+    if args.registry:
+        from kernel_registry import install as register
+        registered_calls = register(args.kernel)
     records = []
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):
             torch.manual_seed(seed)
-            mode = OwnMatrixKernels(args.kernel)
+            mode = nullcontext() if args.registry else OwnMatrixKernels(args.kernel)
             with mode:
                 actual = model.forward(data, boundary == "fixed")
             errors = native.gate(torch, actual, references[(seed, boundary)], raw.natoms)
-            record = dict(seed=seed, boundary=boundary, numerics=errors, matrix_calls=dict(mode.calls))
+            record = dict(seed=seed, boundary=boundary, numerics=errors,
+                          matrix_calls=dict(registered_calls if args.registry else mode.calls))
             records.append(record)
             passed = all(item["passed"] for item in errors.values())
             report = dict(suite=args.suite, base="9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
                           checkpoint_sha256=native.CHECKPOINT_SHA, installed=installed,
                           records=records, passed=passed, split_complex=args.split_complex,
+                          registry=args.registry,
                           tf32=False, amp=False, cuda_graph=False)
             args.output.write_text(json.dumps(report, indent=2))
             print(json.dumps(record), flush=True)

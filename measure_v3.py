@@ -26,9 +26,11 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--repeat", type=int, default=0)
     parser.add_argument("--qualification", type=Path, required=True)
+    parser.add_argument("--registry", action="store_true")
     args = parser.parse_args()
     qualification = json.loads(args.qualification.read_text())
     if (qualification["suite"] != args.suite or len(qualification["records"]) != 4
+            or bool(qualification.get("registry", False)) != args.registry
             or not qualification["passed"] or not all(
                 metric["passed"] for row in qualification["records"]
                 for metric in row["numerics"].values())):
@@ -45,12 +47,15 @@ def main():
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)
         installed = install(net.model)
+        if args.registry:
+            from kernel_registry import install as register
+            registered_calls = register()
     batch = fixed if args.boundary == "fixed" else raw
     mode = OwnMatrixKernels()
 
     def call():
         torch.manual_seed(native.SEEDS[0])
-        with mode if args.role == "own" else nullcontext():
+        with mode if args.role == "own" and not args.registry else nullcontext():
             return net.forward(batch, args.boundary == "fixed")
 
     for _ in range(5):
@@ -60,6 +65,7 @@ def main():
     record = dict(stage=args.stage, role=args.role, suite=args.suite,
                   boundary=args.boundary, repeat=args.repeat, cuda_graph=False,
                   tf32=False, amp=False, dtype="torch.float32", seed=native.SEEDS[0],
+                  registry=args.registry,
                   checkpoint_sha256=native.CHECKPOINT_SHA,
                   qualification_sha256=native.sha(args.qualification),
                   qualification_path=str(args.qualification),
@@ -114,7 +120,7 @@ def main():
         hot = sorted(trace.key_averages(), key=lambda event: event.self_device_time_total,
                      reverse=True)
         record.update(cuda_kernels=kernels, unexpected_library_matrix=forbidden,
-                      matrix_calls=dict(mode.calls),
+                      matrix_calls=dict(registered_calls if args.role == "own" and args.registry else mode.calls),
                       top_device_operators=[dict(name=event.key, us=event.self_device_time_total,
                                                  count=event.count) for event in hot[:40]])
         if args.role == "own" and forbidden:

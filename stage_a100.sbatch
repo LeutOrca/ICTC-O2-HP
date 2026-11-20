@@ -31,11 +31,13 @@ printf 'job=%s node=%s stage=%s\n' "$SLURM_JOB_ID" "$SLURMD_NODENAME" "$*"
 if test "$1" = screen-v3; then
     suite=$2
     qualification=$3
+    registry=()
+    if test "${4:-}" = registry; then registry=(--registry); fi
     for stage in time memory trace; do
         for boundary in fixed e2e; do
             for role in native own; do
                 srun "$py" -u measure_v3.py "$stage" "$role" "$suite" "$boundary" \
-                    "results/v3-screen-$stage-$suite-$boundary-$role.json" --qualification "$qualification"
+                    "results/v3-screen-$stage-$suite-$boundary-$role.json" --qualification "$qualification" "${registry[@]}"
             done
         done
     done
