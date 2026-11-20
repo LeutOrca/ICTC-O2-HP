@@ -23,6 +23,7 @@ def main():
     parser.add_argument("--without-norm", action="store_true")
     parser.add_argument("--split-complex", action="store_true")
     parser.add_argument("--registry", action="store_true")
+    parser.add_argument("--local-only", action="store_true")
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -50,18 +51,20 @@ def main():
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):
             torch.manual_seed(seed)
-            mode = nullcontext() if args.registry else OwnMatrixKernels(args.kernel)
+            mode = nullcontext() if args.registry or args.local_only else OwnMatrixKernels(args.kernel)
             with mode:
                 actual = model.forward(data, boundary == "fixed")
             errors = native.gate(torch, actual, references[(seed, boundary)], raw.natoms)
             record = dict(seed=seed, boundary=boundary, numerics=errors,
-                          matrix_calls=dict(registered_calls if args.registry else mode.calls))
+                          matrix_calls=dict(registered_calls if args.registry else
+                                            {} if args.local_only else mode.calls))
             records.append(record)
             passed = all(item["passed"] for item in errors.values())
             report = dict(suite=args.suite, base="9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
                           checkpoint_sha256=native.CHECKPOINT_SHA, installed=installed,
                           records=records, passed=passed, split_complex=args.split_complex,
                           registry=args.registry,
+                          local_only=args.local_only,
                           tf32=False, amp=False, cuda_graph=False)
             args.output.write_text(json.dumps(report, indent=2))
             print(json.dumps(record), flush=True)
