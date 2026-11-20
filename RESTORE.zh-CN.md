@@ -2,6 +2,8 @@
 
 本 run 的 `provenance/hpx-custom-kernels.bundle` 包含全部增量 Git 提交。用 `git clone <bundle> <new-directory>` 独立恢复，再按 `provenance/git-history.txt` 切换相应版本。
 
+当前源码压缩包为 `provenance/hpx-custom-kernels-source.tar.gz`。`provenance/SNAPSHOT_QA.json` 同时记录 bundle 独立恢复和源码包独立解压的逐文件 SHA256、成员集合核验。`provenance/DELIVERY_QA.json` 核对三点完整数值/显存/trace 覆盖及当前 MACE/V3 核源码与已测快照一致性。检查点及框架依赖仍按下方冻结路径提供，不包含在本源码包中。
+
 - 完整 SO2Linear 五配对通过的源码为 `d8aec37`。对应 `cohorts/d8aec37/results/PAIR_AUDIT.json` 和 `so2-large.json`，C128/L4/M2/160000 边，原生权重与输入哈希一致。
 - MACE 冻结性能基线为 `78231f3`。首层径向伴随修复为 `8c2d4d3`，TP/CSR 融合为 `3924ed2`，常量物种投影为 `b0d0c01`，三项组合的 H100 兼容版本为 `40af2f8`。`fb3dc99` 另复用常量组分字段，每次端到端调用仍重建原生邻居。
 - `64dbeb1` 修复资格脚本，使位置扰动导致邻居数变化时原生和候选对称重新捕获 Graph。稳态测量仍是已冻结几何上的原生邻居重建，不把重新捕获成本隐藏到形状变化的在线延迟中。当前回放 API 在形状变化时要求显式重新捕获。

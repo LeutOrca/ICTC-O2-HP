@@ -48,11 +48,24 @@ def main():
     for name in kernels:
         hashes = {cohort: digest(ROOT / "cohorts" / cohort / name)
                   for cohort in ("40af2f8", "fb3dc99", "64dbeb1", "20df315")}
+        hashes["current_source"] = digest(ROOT / name)
         assert len(set(hashes.values())) == 1
         source_equivalence[name] = hashes
+    for name in ("mace_static_inputs.py", "mace_variants.py"):
+        hashes = {cohort: digest(ROOT / "cohorts" / cohort / name)
+                  for cohort in ("fb3dc99", "64dbeb1", "20df315")}
+        hashes["current_source"] = digest(ROOT / name)
+        assert len(set(hashes.values())) == 1
+        source_equivalence[name] = hashes
+    v3_equivalence = {}
+    for name in ("v3_native.py", "so2_layer.py", "matrix_kernels.py", "frozen_so2.py", "merge_norm.py"):
+        actual, frozen = digest(ROOT / name), digest(ROOT / "cohorts/9333e8f" / name)
+        assert actual == frozen
+        v3_equivalence[name] = actual
     checkpoint = ROOT.parent / "mace-ictc-o2-hp-gbu2-20261119-r1/frozen/models/pretrained/native.model"
     assert digest(checkpoint) == "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a"
     result = dict(passed=True, mace_three_cases=rows, kernel_source_equivalence=source_equivalence,
+                  v3_kernel_source_equivalence=v3_equivalence,
                   checkpoint_sha256=digest(checkpoint), training_qualified=False,
                   whole_v3_5x_claim=False, operator_6x_claim=False)
     (ROOT / "provenance/DELIVERY_QA.json").write_text(json.dumps(result, indent=2))

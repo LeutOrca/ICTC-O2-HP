@@ -1341,6 +1341,4479 @@
         }
       },
       "cuda_graph": true
+    },
+    "cohorts/c429843/measurements/114687-final-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "final",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "source": "c42984374f6118ab4d325d06ea0400b586bbba77",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.7.1+cu128",
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/fb3dc99/measurements/114688-final-input-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.7.1+cu128",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/9333e8f/measurements/114696-v3-block5-mptrj-b8/results/qualification.json": {
+      "suite": "mptrj-b8",
+      "base": "9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
+      "checkpoint_sha256": "429ccded98163122e7ba588d78e2441653f37f3e091e106c432807fe373c8f98",
+      "installed": {
+        "so2": [
+          "blocks.5.ga.so2_linear_1",
+          "blocks.5.ga.so2_linear_2",
+          "blocks.6.ga.so2_linear_1",
+          "blocks.6.ga.so2_linear_2"
+        ],
+        "norm": []
+      },
+      "records": [
+        {
+          "seed": 20261003,
+          "boundary": "fixed",
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.42371851764894,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942349239421307,
+              "max_abs": 6.444752216339111e-07,
+              "relative_l2": 9.357699754785532e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true
+            }
+          },
+          "matrix_calls": {}
+        },
+        {
+          "seed": 20261003,
+          "boundary": "e2e",
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.42371851764894,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942349239421307,
+              "max_abs": 6.444752216339111e-07,
+              "relative_l2": 9.357699754785532e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true
+            }
+          },
+          "matrix_calls": {}
+        },
+        {
+          "seed": 20261004,
+          "boundary": "fixed",
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718449841474,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942291165766304,
+              "max_abs": 6.705522537231445e-07,
+              "relative_l2": 9.279854276764661e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true
+            }
+          },
+          "matrix_calls": {}
+        },
+        {
+          "seed": 20261004,
+          "boundary": "e2e",
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718449841474,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942291165766304,
+              "max_abs": 6.705522537231445e-07,
+              "relative_l2": 9.279854276764661e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true
+            }
+          },
+          "matrix_calls": {}
+        }
+      ],
+      "passed": true,
+      "split_complex": false,
+      "registry": false,
+      "local_only": true,
+      "start_block": 5,
+      "kernel": "triton",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false
+    },
+    "h100-results/40af2f8/measurements/316432-final-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "final",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "source": "40af2f88a9389f0428de8972f4bc26686de976b0",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/40af2f8/measurements/316433-final-n512/results/qualification.json": {
+      "case": "n512",
+      "variant": "final",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876973281645929
+          }
+        }
+      },
+      "source": "40af2f88a9389f0428de8972f4bc26686de976b0",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/fb3dc99/measurements/316434-final-input-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/fb3dc99/measurements/316436-final-n4096/results/qualification.json": {
+      "case": "n4096",
+      "variant": "final",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.592367880392295e-07,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.592367880392295e-07,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.599873535610102e-07,
+            "rms_reference": 0.03874535113112425
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874535113112425
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": null,
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.592367880392295e-07,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.592367880392295e-07,
+            "rms_reference": 0.03874120205478753
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14932.8330078125
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 14045.9931640625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.21540641784668e-08,
+            "relative_l2": 2.599873535610102e-07,
+            "rms_reference": 0.03874535113112425
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/64dbeb1/measurements/316440-final-input-n512/results/qualification.json": {
+      "case": "n512",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "source": "64dbeb199a24e8703bd5fcbcdd565de37ac949a0",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "qualification_graph_shapes": {
+        "fixed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "e2e": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "perturbed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "rebuilt_perturbed": {
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "cached_original": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        },
+        "cached_perturbed": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/20df315/measurements/316443-final-input-n512/results/qualification.json": {
+      "case": "n512",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "qualification_graph_shapes": {
+        "fixed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "e2e": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "perturbed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "rebuilt_perturbed": {
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "cached_original": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        },
+        "cached_perturbed": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.0978193283081055e-08,
+            "relative_l2": 2.5118791201314427e-07,
+            "rms_reference": 0.03876973281645929
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.842877388000488e-08,
+            "relative_l2": 2.5041358322909605e-07,
+            "rms_reference": 0.03874133906036206
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.29150390625
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.51025390625
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.284083843231201e-08,
+            "relative_l2": 2.5982331219032603e-07,
+            "rms_reference": 0.03876975302437908
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/20df315/measurements/316442-final-input-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "qualification_graph_shapes": {
+        "fixed": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "e2e": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "perturbed": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "rebuilt_perturbed": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "cached_original": {
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ],
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ]
+        },
+        "cached_perturbed": {
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ],
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ]
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.775410117807061e-07,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.086162567138672e-07,
+            "relative_l2": 4.756956439755801e-07,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "h100-results/20df315/measurements/316447-prefix-b8/results/qualification.json": {
+      "case": "b8",
+      "variant": "prefix",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.779580949971591e-08,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.779580949971591e-08,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.989122355068141e-08,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA H100 80GB HBM3",
+      "torch": "2.6.0+cu124",
+      "input_bitwise": null,
+      "qualification_graph_shapes": {
+        "fixed": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "e2e": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        },
+        "perturbed": {
+          "edge_index": [
+            2,
+            3472
+          ],
+          "shifts": [
+            3472,
+            3
+          ],
+          "unit_shifts": [
+            3472,
+            3
+          ],
+          "positions": [
+            68,
+            3
+          ],
+          "cell": [
+            24,
+            3
+          ],
+          "node_attrs": [
+            68,
+            89
+          ],
+          "batch": [
+            68
+          ],
+          "ptr": [
+            9
+          ],
+          "head": [
+            8
+          ]
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.779580949971591e-08,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3380021849681
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.277461378374895
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.779580949971591e-08,
+            "rms_reference": 0.05552794901158858
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33797584337364
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743332193131
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 7.989122355068141e-08,
+            "rms_reference": 0.05562612828261681
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/64dbeb1/results/mace-input-600.json": {
+      "case": "n512",
+      "variant": "final-input",
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.470348358154297e-08,
+            "relative_l2": 2.507279581158858e-07,
+            "rms_reference": 0.03876975519945794
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.470348358154297e-08,
+            "relative_l2": 2.507279581158858e-07,
+            "rms_reference": 0.03876975519945794
+          }
+        }
+      },
+      "native_capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.038769718700008005
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975519945794
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03876975519945794
+          }
+        }
+      },
+      "source": "64dbeb199a24e8703bd5fcbcdd565de37ac949a0",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "gpu": "NVIDIA A100-SXM4-40GB",
+      "torch": "2.7.1+cu128",
+      "input_bitwise": {
+        "original": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        },
+        "moved_rebuilt": {
+          "edge_index": true,
+          "shifts": true,
+          "unit_shifts": true,
+          "positions": true,
+          "cell": true,
+          "node_attrs": true,
+          "batch": true,
+          "ptr": true,
+          "head": true
+        }
+      },
+      "qualification_graph_shapes": {
+        "fixed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "e2e": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "perturbed": {
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "rebuilt_perturbed": {
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ],
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ]
+        },
+        "cached_original": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31512
+          ],
+          "shifts": [
+            31512,
+            3
+          ],
+          "unit_shifts": [
+            31512,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        },
+        "cached_perturbed": {
+          "node_attrs": [
+            600,
+            89
+          ],
+          "batch": [
+            600
+          ],
+          "ptr": [
+            2
+          ],
+          "head": [
+            1
+          ],
+          "edge_index": [
+            2,
+            31514
+          ],
+          "shifts": [
+            31514,
+            3
+          ],
+          "unit_shifts": [
+            31514,
+            3
+          ],
+          "positions": [
+            600,
+            3
+          ],
+          "cell": [
+            3,
+            3
+          ]
+        }
+      },
+      "passed": true,
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        },
+        "rebuilt_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.470348358154297e-08,
+            "relative_l2": 2.507279581158858e-07,
+            "rms_reference": 0.03876975519945794
+          }
+        },
+        "cached_original": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "cached_perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 4.470348358154297e-08,
+            "relative_l2": 2.507279581158858e-07,
+            "rms_reference": 0.03876975519945794
+          }
+        }
+      },
+      "cuda_graph": true
     }
   },
   "mace_pairs": {
@@ -1685,6 +6158,1864 @@
       "tf32": false,
       "amp": false,
       "cuda_graph": true
+    },
+    "cohorts/c429843/measurements/114687-final-b8/results/MACE_PAIR_AUDIT-b8-final.json": {
+      "status": "complete",
+      "candidate": "final",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 21.6409619897604,
+            "atoms_s": 3142.189336692831,
+            "structures_s": 369.6693337285684,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 9.28346998989582,
+            "atoms_s": 7324.847290292484,
+            "structures_s": 861.74674003441,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "final": {
+            "wall_ms": 8.854234591126442,
+            "atoms_s": 7679.941083574678,
+            "structures_s": 903.5224804205503,
+            "peak_allocated": 387635200,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.4441369569593956,
+            "paired_speedups": [
+              2.447066215512206,
+              2.443357214219519,
+              2.444360669753751,
+              2.4441369569593956,
+              2.4429058516460316
+            ],
+            "allocated_reduction": 0.7064781448147122,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0485852552625858,
+            "paired_speedups": [
+              1.048640905957449,
+              1.047513283300462,
+              1.0492763876334668,
+              1.0484779790225516,
+              1.0485852552625858
+            ],
+            "allocated_reduction": 0.006164379965239997,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 23.318984545767307,
+            "atoms_s": 2916.078951317066,
+            "structures_s": 343.0681119196548,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 10.884419083595276,
+            "atoms_s": 6247.462494575195,
+            "structures_s": 734.9955875970818,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "final": {
+            "wall_ms": 10.45944169163704,
+            "atoms_s": 6501.3030336380325,
+            "structures_s": 764.8591804280038,
+            "peak_allocated": 387635200,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.2294674260111087,
+            "paired_speedups": [
+              2.241194204668511,
+              2.2294674260111087,
+              2.2087268591765676,
+              2.2110817072923723,
+              2.234923204158156
+            ],
+            "allocated_reduction": 0.7064781448147122,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0381950788639038,
+            "paired_speedups": [
+              1.0455075825140183,
+              1.0381950788639038,
+              1.0338575901830087,
+              1.0341942830169903,
+              1.0446068055403182
+            ],
+            "allocated_reduction": 0.006164379965239997,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "c42984374f6118ab4d325d06ea0400b586bbba77",
+      "gpu_uuid": "5dce2724-2ce2-55ed-a1e1-c1783fbee235",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "cohorts/fb3dc99/measurements/114688-final-input-b8/results/MACE_PAIR_AUDIT-b8-final-input.json": {
+      "status": "complete",
+      "candidate": "final-input",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 21.678016521036625,
+            "atoms_s": 3136.818349317703,
+            "structures_s": 369.0374528609062,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 9.294693358242512,
+            "atoms_s": 7316.002516607798,
+            "structures_s": 860.7061784244468,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "final-input": {
+            "wall_ms": 8.869519457221031,
+            "atoms_s": 7666.706221004845,
+            "structures_s": 901.965437765276,
+            "peak_allocated": 387635200,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.4441027076599604,
+            "paired_speedups": [
+              2.4479532745211223,
+              2.444198508229691,
+              2.4420441314832995,
+              2.4438879947760013,
+              2.4441027076599604
+            ],
+            "allocated_reduction": 0.7064781448147122,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.047907224745668,
+            "paired_speedups": [
+              1.049329186796388,
+              1.0481715001272391,
+              1.0473506442154166,
+              1.0478401137185613,
+              1.047907224745668
+            ],
+            "allocated_reduction": 0.006164379965239997,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 23.38393684476614,
+            "atoms_s": 2907.9791162376473,
+            "structures_s": 342.1151901456056,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 10.926717892289162,
+            "atoms_s": 6223.2777189193,
+            "structures_s": 732.1503198728589,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "final-input": {
+            "wall_ms": 10.37629321217537,
+            "atoms_s": 6553.400006103329,
+            "structures_s": 770.9882360121564,
+            "peak_allocated": 387635200,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.2552215975003826,
+            "paired_speedups": [
+              2.2569744523819386,
+              2.2535925273707393,
+              2.241259849596572,
+              2.2552215975003826,
+              2.2605669905839316
+            ],
+            "allocated_reduction": 0.7064781448147122,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.051791372862995,
+            "paired_speedups": [
+              1.0554256332592613,
+              1.051644757509339,
+              1.0502721851412185,
+              1.051791372862995,
+              1.0573510877387382
+            ],
+            "allocated_reduction": 0.006164379965239997,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "gpu_uuid": "db39389c-2f7e-9989-ee13-9052259165bc",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/40af2f8/measurements/316432-final-b8/results/MACE_PAIR_AUDIT-b8-final.json": {
+      "status": "complete",
+      "candidate": "final",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 13.227995485067368,
+            "atoms_s": 5140.612580096726,
+            "structures_s": 604.7779505996148,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 6.078727543354034,
+            "atoms_s": 11186.551710866765,
+            "structures_s": 1316.0649071607959,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final": {
+            "wall_ms": 5.809478461742401,
+            "atoms_s": 11705.009399347215,
+            "structures_s": 1377.0599293349665,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.2767972452179266,
+            "paired_speedups": [
+              2.2780974112894015,
+              2.2731965362024202,
+              2.2780851515487726,
+              2.2746165800387166,
+              2.2767972452179266
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.045840128727152,
+            "paired_speedups": [
+              1.0488211491149153,
+              1.045395131019014,
+              1.045840128727152,
+              1.0452660398364724,
+              1.0460194809775116
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 14.872800558805466,
+            "atoms_s": 4572.104610099172,
+            "structures_s": 537.8946600116672,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 7.700718939304352,
+            "atoms_s": 8830.344353035538,
+            "structures_s": 1038.8640415335926,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final": {
+            "wall_ms": 7.434457540512085,
+            "atoms_s": 9146.598743681327,
+            "structures_s": 1076.0704404330972,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.0007628453680844,
+            "paired_speedups": [
+              1.9971791078897436,
+              2.005045628241881,
+              2.003435384156605,
+              1.9987648270858136,
+              2.0007628453680844
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0359812567502062,
+            "paired_speedups": [
+              1.0359812567502062,
+              1.0363722414240863,
+              1.0369171204816143,
+              1.0333882521777125,
+              1.0345035812605856
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "40af2f88a9389f0428de8972f4bc26686de976b0",
+      "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/40af2f8/measurements/316433-final-n512/results/MACE_PAIR_AUDIT-n512-final.json": {
+      "status": "complete",
+      "candidate": "final",
+      "case": "n512",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 89.13957513868809,
+            "atoms_s": 6731.017049009804,
+            "structures_s": 11.218361748349674,
+            "peak_allocated": 10987808768,
+            "peak_reserved": 11920211968
+          },
+          "base": {
+            "wall_ms": 26.839726138859987,
+            "atoms_s": 22354.922583628304,
+            "structures_s": 37.25820430604717,
+            "peak_allocated": 2549993984,
+            "peak_reserved": 2860515328
+          },
+          "final": {
+            "wall_ms": 25.45645833015442,
+            "atoms_s": 23569.6573426819,
+            "structures_s": 39.28276223780317,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "vs_native": {
+            "speedup": 3.501924458426064,
+            "paired_speedups": [
+              3.5021402393689876,
+              3.5004989642186004,
+              3.501924458426064,
+              3.502272415076743,
+              3.5009210128507595
+            ],
+            "allocated_reduction": 0.7693376092072883,
+            "reserved_reduction": 0.7616115411681914,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.054198540857828,
+            "paired_speedups": [
+              1.0544966707794177,
+              1.0540148790303439,
+              1.054633473214568,
+              1.0541669870323824,
+              1.054198540857828
+            ],
+            "allocated_reduction": 0.006086188476278398,
+            "reserved_reduction": 0.006598240469208205,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 96.01864404976368,
+            "atoms_s": 6248.786430362809,
+            "structures_s": 10.414644050604682,
+            "peak_allocated": 10987808768,
+            "peak_reserved": 11920211968
+          },
+          "base": {
+            "wall_ms": 33.754582051187754,
+            "atoms_s": 17775.364514664085,
+            "structures_s": 29.625607524440138,
+            "peak_allocated": 2549993984,
+            "peak_reserved": 2860515328
+          },
+          "final": {
+            "wall_ms": 32.32392016798258,
+            "atoms_s": 18562.1049947497,
+            "structures_s": 30.93684165791617,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "vs_native": {
+            "speedup": 2.9722012317494655,
+            "paired_speedups": [
+              2.9846741931118594,
+              2.9722012317494655,
+              2.964913722858822,
+              2.964924680432091,
+              2.9783631520233134
+            ],
+            "allocated_reduction": 0.7693376092072883,
+            "reserved_reduction": 0.7616115411681914,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0436180486649815,
+            "paired_speedups": [
+              1.0450306171410237,
+              1.0461790080514193,
+              1.043538481122448,
+              1.042295424931935,
+              1.0436180486649815
+            ],
+            "allocated_reduction": 0.006086188476278398,
+            "reserved_reduction": 0.006598240469208205,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "40af2f88a9389f0428de8972f4bc26686de976b0",
+      "gpu_uuid": "44d5e78e-977f-7342-ef74-41168506dac0",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/fb3dc99/measurements/316434-final-input-b8/results/MACE_PAIR_AUDIT-b8-final-input.json": {
+      "status": "complete",
+      "model": "mace",
+      "candidate": "final-input",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 13.194393366575241,
+            "atoms_s": 5153.704161364578,
+            "structures_s": 606.3181366311268,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 6.06512650847435,
+            "atoms_s": 11211.637532207887,
+            "structures_s": 1319.0161802597515,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final-input": {
+            "wall_ms": 5.796764045953751,
+            "atoms_s": 11730.6827500535,
+            "structures_s": 1380.080323535706,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.2768108754480996,
+            "paired_speedups": [
+              2.2768108754480996,
+              2.279160649982111,
+              2.275327960351067,
+              2.2768672439794355,
+              2.2750119462342386
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0461379009452603,
+            "paired_speedups": [
+              1.0467123498267423,
+              1.0504835226497609,
+              1.0455696674350619,
+              1.0461379009452603,
+              1.0460000667961484
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 14.8300901055336,
+            "atoms_s": 4585.272207795078,
+            "structures_s": 539.4437891523622,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 7.6661258935928345,
+            "atoms_s": 8870.19088178982,
+            "structures_s": 1043.5518684458611,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final-input": {
+            "wall_ms": 7.24661722779274,
+            "atoms_s": 9383.688673275246,
+            "structures_s": 1103.9633733264995,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.0456708400521757,
+            "paired_speedups": [
+              2.03777419771117,
+              2.04413815794547,
+              2.0456708400521757,
+              2.0472854631977704,
+              2.046893863825674
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0564172864642758,
+            "paired_speedups": [
+              1.0564172864642758,
+              1.0546411229895665,
+              1.0554147879584648,
+              1.0578902752295465,
+              1.0642349577861645
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/fb3dc99/measurements/316436-final-n4096/results/MACE_PAIR_AUDIT-n4096-final.json": {
+      "status": "complete",
+      "model": "mace",
+      "candidate": "final",
+      "case": "n4096",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 608.5111992433667,
+            "atoms_s": 6737.756026672985,
+            "structures_s": 1.6433551284568257,
+            "peak_allocated": 74661809152,
+            "peak_reserved": 80796975104
+          },
+          "base": {
+            "wall_ms": 168.73848997056484,
+            "atoms_s": 24297.95360095503,
+            "structures_s": 5.926330146574397,
+            "peak_allocated": 17188994560,
+            "peak_reserved": 18993905664
+          },
+          "final": {
+            "wall_ms": 162.29165066033602,
+            "atoms_s": 25263.160386365074,
+            "structures_s": 6.161746435698799,
+            "peak_allocated": 17082942976,
+            "peak_reserved": 18951962624
+          },
+          "vs_native": {
+            "speedup": 3.7496037557999835,
+            "paired_speedups": [
+              3.7555094590411398,
+              3.748948386646787,
+              3.7504423420614494,
+              3.7490813115722665,
+              3.7496037557999835
+            ],
+            "allocated_reduction": 0.7711957000503196,
+            "reserved_reduction": 0.7654372258416176,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0398189214869284,
+            "paired_speedups": [
+              1.0399438275942672,
+              1.0394035730801394,
+              1.0399991355048408,
+              1.0398189214869284,
+              1.0397237891413253
+            ],
+            "allocated_reduction": 0.006169737481143245,
+            "reserved_reduction": 0.002208236722976653,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 652.5979423895478,
+            "atoms_s": 6282.581868075572,
+            "structures_s": 1.532337040994042,
+            "peak_allocated": 74661809152,
+            "peak_reserved": 80817946624
+          },
+          "base": {
+            "wall_ms": 211.9024875573814,
+            "atoms_s": 19348.522272017948,
+            "structures_s": 4.719151773662914,
+            "peak_allocated": 17188994560,
+            "peak_reserved": 19014877184
+          },
+          "final": {
+            "wall_ms": 205.8391571044922,
+            "atoms_s": 19918.464774506807,
+            "structures_s": 4.8581621401236115,
+            "peak_allocated": 17082942976,
+            "peak_reserved": 18972934144
+          },
+          "vs_native": {
+            "speedup": 3.1751276442434433,
+            "paired_speedups": [
+              3.1726502071167797,
+              3.1769644132151487,
+              3.1574810763042387,
+              3.1751276442434433,
+              3.176444225606777
+            ],
+            "allocated_reduction": 0.7711957000503196,
+            "reserved_reduction": 0.7652386018631445,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0298509417403867,
+            "paired_speedups": [
+              1.0274607277106202,
+              1.041921037222506,
+              1.025253147495891,
+              1.0298509417403867,
+              1.0390213033364166
+            ],
+            "allocated_reduction": 0.006169737481143245,
+            "reserved_reduction": 0.0022058012573067387,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+      "gpu_uuid": "44d5e78e-977f-7342-ef74-41168506dac0",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/64dbeb1/measurements/316440-final-input-n512/results/MACE_PAIR_AUDIT-n512-final-input.json": {
+      "status": "incomplete",
+      "missing": [
+        "mace-time-n512-fixed-final-0.json",
+        "mace-time-n512-fixed-final-1.json",
+        "mace-time-n512-fixed-final-2.json",
+        "mace-time-n512-fixed-final-3.json",
+        "mace-time-n512-fixed-final-4.json",
+        "mace-time-n512-e2e-final-0.json",
+        "mace-time-n512-e2e-final-1.json",
+        "mace-time-n512-e2e-final-2.json",
+        "mace-time-n512-e2e-final-3.json",
+        "mace-time-n512-e2e-final-4.json",
+        "mace-memory-n512-fixed-final-0.json",
+        "mace-memory-n512-fixed-final-1.json",
+        "mace-memory-n512-fixed-final-2.json",
+        "mace-memory-n512-fixed-final-3.json",
+        "mace-memory-n512-fixed-final-4.json",
+        "mace-memory-n512-e2e-final-0.json",
+        "mace-memory-n512-e2e-final-1.json",
+        "mace-memory-n512-e2e-final-2.json",
+        "mace-memory-n512-e2e-final-3.json",
+        "mace-memory-n512-e2e-final-4.json"
+      ]
+    },
+    "h100-results/20df315/measurements/316443-final-input-n512/results/MACE_PAIR_AUDIT-n512-final-input.json": {
+      "status": "complete",
+      "model": "mace",
+      "candidate": "final-input",
+      "case": "n512",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 89.51117470860481,
+            "atoms_s": 6703.073688321524,
+            "structures_s": 11.171789480535875,
+            "peak_allocated": 10987808768,
+            "peak_reserved": 11920211968
+          },
+          "base": {
+            "wall_ms": 27.183402329683304,
+            "atoms_s": 22072.29222902762,
+            "structures_s": 36.78715371504603,
+            "peak_allocated": 2549993984,
+            "peak_reserved": 2860515328
+          },
+          "final": {
+            "wall_ms": 25.777392089366913,
+            "atoms_s": 23276.21032879808,
+            "structures_s": 38.79368388133013,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "final-input": {
+            "wall_ms": 25.800026953220367,
+            "atoms_s": 23255.78965820064,
+            "structures_s": 38.7596494303344,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "vs_native": {
+            "speedup": 3.469401212847888,
+            "paired_speedups": [
+              3.4702204890778243,
+              3.469401212847888,
+              3.4683454616914937,
+              3.4708427605812644,
+              3.46912249395119
+            ],
+            "allocated_reduction": 0.7693376092072883,
+            "reserved_reduction": 0.7616115411681914,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0537421733261816,
+            "paired_speedups": [
+              1.054144919898652,
+              1.0531355535620097,
+              1.0539682819296752,
+              1.0537421733261816,
+              1.053163855050258
+            ],
+            "allocated_reduction": 0.006086188476278398,
+            "reserved_reduction": 0.006598240469208205,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_final": {
+            "speedup": 0.9992928643731203,
+            "paired_speedups": [
+              0.9992928643731203,
+              0.9990045747112595,
+              0.9997790818526282,
+              1.000323219929065,
+              0.9986909400349506
+            ],
+            "allocated_reduction": 0.0,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 96.3951125741005,
+            "atoms_s": 6224.381962713827,
+            "structures_s": 10.37396993785638,
+            "peak_allocated": 10987808768,
+            "peak_reserved": 11920211968
+          },
+          "base": {
+            "wall_ms": 33.973827958106995,
+            "atoms_s": 17660.653392954653,
+            "structures_s": 29.43442232159109,
+            "peak_allocated": 2549993984,
+            "peak_reserved": 2860515328
+          },
+          "final": {
+            "wall_ms": 32.595016062259674,
+            "atoms_s": 18407.722176112482,
+            "structures_s": 30.679536960187473,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "final-input": {
+            "wall_ms": 32.40536153316498,
+            "atoms_s": 18515.454591856207,
+            "structures_s": 30.859090986427013,
+            "peak_allocated": 2534474240,
+            "peak_reserved": 2841640960
+          },
+          "vs_native": {
+            "speedup": 2.9754617750598094,
+            "paired_speedups": [
+              2.9789321697626154,
+              2.9754617750598094,
+              2.9743567793460612,
+              2.975735473656669,
+              2.9373627644772515
+            ],
+            "allocated_reduction": 0.7693376092072883,
+            "reserved_reduction": 0.7616115411681914,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0462750675121362,
+            "paired_speedups": [
+              1.0461598759655208,
+              1.0529727722242586,
+              1.0462750675121362,
+              1.0484014481164416,
+              1.0335478170193786
+            ],
+            "allocated_reduction": 0.006086188476278398,
+            "reserved_reduction": 0.006598240469208205,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_final": {
+            "speedup": 1.004742015618402,
+            "paired_speedups": [
+              1.0036058962029066,
+              1.0097579484814743,
+              1.004742015618402,
+              1.0045160521950975,
+              1.0109613601299638
+            ],
+            "allocated_reduction": 0.0,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+      "atoms": 600,
+      "edges": 31512,
+      "structures": 1,
+      "torch": "2.6.0+cu124",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/20df315/measurements/316442-final-input-b8/results/MACE_PAIR_AUDIT-b8-final-input.json": {
+      "status": "complete",
+      "model": "mace",
+      "candidate": "final-input",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 13.197511434555054,
+            "atoms_s": 5152.486537875281,
+            "structures_s": 606.1748868088566,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 6.06527179479599,
+            "atoms_s": 11211.368970858664,
+            "structures_s": 1318.9845848069017,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final": {
+            "wall_ms": 5.78969344496727,
+            "atoms_s": 11745.008720471973,
+            "structures_s": 1381.765731820232,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "final-input": {
+            "wall_ms": 5.7947225868701935,
+            "atoms_s": 11734.81542569024,
+            "structures_s": 1380.56652066944,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.277635172967528,
+            "paired_speedups": [
+              2.277635172967528,
+              2.275978473927184,
+              2.2754136675395293,
+              2.279239860085903,
+              2.2798929132236725
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0468824031233506,
+            "paired_speedups": [
+              1.0466404513811882,
+              1.0468824031233506,
+              1.0449072444178331,
+              1.046977958385844,
+              1.047556439364687
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_final": {
+            "speedup": 0.9997749932658699,
+            "paired_speedups": [
+              0.9990196588927224,
+              0.9997749932658699,
+              0.9984465784895449,
+              1.0004629510557856,
+              1.0001795505444435
+            ],
+            "allocated_reduction": 0.0,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 14.851637184619904,
+            "atoms_s": 4578.619794888311,
+            "structures_s": 538.6611523398013,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 7.7133625745773315,
+            "atoms_s": 8815.869776966396,
+            "structures_s": 1037.1611502313406,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "final": {
+            "wall_ms": 7.488120347261429,
+            "atoms_s": 9081.050630398737,
+            "structures_s": 1068.3588976939689,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "final-input": {
+            "wall_ms": 7.324729114770889,
+            "atoms_s": 9283.619767299337,
+            "structures_s": 1092.1905608587456,
+            "peak_allocated": 316788736,
+            "peak_reserved": 362807296
+          },
+          "vs_native": {
+            "speedup": 2.033849254854978,
+            "paired_speedups": [
+              2.033849254854978,
+              2.019260875079264,
+              2.0397785206446297,
+              2.042918283391648,
+              2.0295796445661898
+            ],
+            "allocated_reduction": 0.7462151384617404,
+            "reserved_reduction": 0.7350689127105666,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.054753427661934,
+            "paired_speedups": [
+              1.050554811265006,
+              1.0503690551680407,
+              1.0576643985931211,
+              1.054753427661934,
+              1.060122051635196
+            ],
+            "allocated_reduction": 0.005362792252887161,
+            "reserved_reduction": 0.05464480874316935,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_final": {
+            "speedup": 1.0231078258401793,
+            "paired_speedups": [
+              1.0169737033829018,
+              1.026963094483196,
+              1.0205936224977585,
+              1.0241314779172277,
+              1.0231078258401793
+            ],
+            "allocated_reduction": 0.0,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "torch": "2.6.0+cu124",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "h100-results/20df315/measurements/316447-prefix-b8/results/MACE_PAIR_AUDIT-b8-prefix.json": {
+      "status": "complete",
+      "model": "mace",
+      "candidate": "prefix",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 12.924332171678543,
+            "atoms_s": 5261.393710462683,
+            "structures_s": 618.987495348551,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 5.862832069396973,
+            "atoms_s": 11598.490148634635,
+            "structures_s": 1364.5282527805452,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "prefix": {
+            "wall_ms": 5.846694111824036,
+            "atoms_s": 11630.504127534312,
+            "structures_s": 1368.2946032393306,
+            "peak_allocated": 318566400,
+            "peak_reserved": 383778816
+          },
+          "vs_native": {
+            "speedup": 2.2102677601581497,
+            "paired_speedups": [
+              2.2102677601581497,
+              2.2091617499012397,
+              2.204250061837163,
+              2.210475620780005,
+              2.211464965717392
+            ],
+            "allocated_reduction": 0.7447910215003926,
+            "reserved_reduction": 0.7197549770290965,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.002569184186872,
+            "paired_speedups": [
+              1.0024094528019285,
+              1.004024314095294,
+              1.0048016238311501,
+              1.002569184186872,
+              0.9878852611232868
+            ],
+            "allocated_reduction": -0.00021862702229991093,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 15.021078288555145,
+            "atoms_s": 4526.971945270436,
+            "structures_s": 532.5849347376984,
+            "peak_allocated": 1248257024,
+            "peak_reserved": 1369440256
+          },
+          "base": {
+            "wall_ms": 8.781500160694122,
+            "atoms_s": 7743.551643302028,
+            "structures_s": 911.0060756825916,
+            "peak_allocated": 318496768,
+            "peak_reserved": 383778816
+          },
+          "prefix": {
+            "wall_ms": 8.759912103414536,
+            "atoms_s": 7762.634966793126,
+            "structures_s": 913.2511725638973,
+            "peak_allocated": 318566400,
+            "peak_reserved": 383778816
+          },
+          "vs_native": {
+            "speedup": 1.7147521700246355,
+            "paired_speedups": [
+              1.70226679892722,
+              1.7191094910537559,
+              1.7044690950606745,
+              1.7147521700246355,
+              2.0165483924354493
+            ],
+            "allocated_reduction": 0.7447910215003926,
+            "reserved_reduction": 0.7197549770290965,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.9999411152932903,
+            "paired_speedups": [
+              0.9954447810078575,
+              0.9988335246216623,
+              0.9999411152932903,
+              1.0042484045093476,
+              1.1725218786077891
+            ],
+            "allocated_reduction": -0.00021862702229991093,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "20df31535928289ec008255a1833e85ee52c9038",
+      "gpu_uuid": "b5d1a53c-2e2e-d018-02ad-2c6bfb44e15c",
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "torch": "2.6.0+cu124",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
     }
-  }
+  },
+  "v3_local_pairs": {
+    "cohorts/9333e8f/measurements/114696-v3-block5-mptrj-b8/results/V3_LOCAL_PAIR_AUDIT-mptrj-b8-own.json": {
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 211.5781744942069,
+            "atoms_s": 321.39420884294407,
+            "structures_s": 37.81108339328754,
+            "peak_allocated": 4797685248,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 209.25956591963768,
+            "atoms_s": 324.9552760045109,
+            "structures_s": 38.230032471118925,
+            "peak_allocated": 4183074304,
+            "peak_reserved": 4519362560
+          },
+          "own": {
+            "wall_ms": 196.7041650786996,
+            "atoms_s": 345.69679789339386,
+            "structures_s": 40.67021151686987,
+            "peak_allocated": 4215397376,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.0765941768154705,
+            "paired_speedups": [
+              1.0765941768154705,
+              1.0812935707525209,
+              1.088519064139164,
+              1.0734972962360485,
+              1.0674057783454984
+            ],
+            "allocated_reduction": 0.12136850207977623,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0643894569434513,
+            "paired_speedups": [
+              1.0667065902920114,
+              1.0643894569434513,
+              1.0689045144856844,
+              1.0593884752747877,
+              1.0638288509850047
+            ],
+            "allocated_reduction": -0.007727109214649142,
+            "reserved_reduction": 0.0009280742459396585,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 230.08924070745707,
+            "atoms_s": 295.5375044522721,
+            "structures_s": 34.76911817085554,
+            "peak_allocated": 4797783552,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 226.95616353303194,
+            "atoms_s": 299.61733112440044,
+            "structures_s": 35.24909777934123,
+            "peak_allocated": 4183172608,
+            "peak_reserved": 4519362560
+          },
+          "own": {
+            "wall_ms": 214.36169557273388,
+            "atoms_s": 317.22085337269266,
+            "structures_s": 37.320100396787375,
+            "peak_allocated": 4215495680,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.0711079990422585,
+            "paired_speedups": [
+              1.0770859007591291,
+              1.0659366565114308,
+              1.0711079990422585,
+              1.0621823481760573,
+              1.0777755467612298
+            ],
+            "allocated_reduction": 0.12136601530456037,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0546301740101276,
+            "paired_speedups": [
+              1.0585974376756433,
+              1.054163940088613,
+              1.0546301740101276,
+              1.0657522504449617,
+              1.0440694741681202
+            ],
+            "allocated_reduction": -0.0077269276286100474,
+            "reserved_reduction": 0.0009280742459396585,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "9333e8f8f3bf1aa349d21c15ce69b817e737db98",
+      "gpu_uuid": "5dce2724-2ce2-55ed-a1e1-c1783fbee235",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false
+    }
+  },
+  "v3_local_b1_gate": {
+    "suite": "mptrj-b1",
+    "base": "9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
+    "checkpoint_sha256": "429ccded98163122e7ba588d78e2441653f37f3e091e106c432807fe373c8f98",
+    "installed": {
+      "so2": [
+        "blocks.5.ga.so2_linear_1",
+        "blocks.5.ga.so2_linear_2",
+        "blocks.6.ga.so2_linear_1",
+        "blocks.6.ga.so2_linear_2"
+      ],
+      "norm": []
+    },
+    "records": [
+      {
+        "seed": 20261003,
+        "boundary": "fixed",
+        "numerics": {
+          "energy": {
+            "violations": 0,
+            "rms_ref": 6.093971797398159,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "relative_applies": true,
+            "unit": "eV/atom",
+            "passed": true
+          },
+          "forces": {
+            "violations": 0,
+            "rms_ref": 0.0262227786581983,
+            "max_abs": 5.289912223815918e-07,
+            "relative_l2": 5.853580779853988e-06,
+            "relative_applies": true,
+            "unit": "eV/angstrom",
+            "passed": true
+          }
+        },
+        "matrix_calls": {}
+      },
+      {
+        "seed": 20261003,
+        "boundary": "e2e",
+        "numerics": {
+          "energy": {
+            "violations": 0,
+            "rms_ref": 6.093971797398159,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "relative_applies": true,
+            "unit": "eV/atom",
+            "passed": true
+          },
+          "forces": {
+            "violations": 0,
+            "rms_ref": 0.0262227786581983,
+            "max_abs": 5.289912223815918e-07,
+            "relative_l2": 5.853580779853988e-06,
+            "relative_applies": true,
+            "unit": "eV/angstrom",
+            "passed": true
+          }
+        },
+        "matrix_calls": {}
+      },
+      {
+        "seed": 20261004,
+        "boundary": "fixed",
+        "numerics": {
+          "energy": {
+            "violations": 0,
+            "rms_ref": 6.093971797398159,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "relative_applies": true,
+            "unit": "eV/atom",
+            "passed": true
+          },
+          "forces": {
+            "violations": 0,
+            "rms_ref": 0.02622277822905973,
+            "max_abs": 7.068738341331482e-07,
+            "relative_l2": 7.514208585137717e-06,
+            "relative_applies": true,
+            "unit": "eV/angstrom",
+            "passed": true
+          }
+        },
+        "matrix_calls": {}
+      },
+      {
+        "seed": 20261004,
+        "boundary": "e2e",
+        "numerics": {
+          "energy": {
+            "violations": 0,
+            "rms_ref": 6.093971797398159,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "relative_applies": true,
+            "unit": "eV/atom",
+            "passed": true
+          },
+          "forces": {
+            "violations": 0,
+            "rms_ref": 0.02622277822905973,
+            "max_abs": 7.068738341331482e-07,
+            "relative_l2": 7.514208585137717e-06,
+            "relative_applies": true,
+            "unit": "eV/angstrom",
+            "passed": true
+          }
+        },
+        "matrix_calls": {}
+      }
+    ],
+    "passed": true,
+    "split_complex": false,
+    "registry": false,
+    "local_only": true,
+    "start_block": 5,
+    "kernel": "triton",
+    "tf32": false,
+    "amp": false,
+    "cuda_graph": false
+  },
+  "mace_h100_best_cases": {
+    "b8": {
+      "path": "h100-results/20df315/measurements/316442-final-input-b8/results/MACE_PAIR_AUDIT-b8-final-input.json",
+      "audit": {
+        "status": "complete",
+        "model": "mace",
+        "candidate": "final-input",
+        "case": "b8",
+        "boundaries": {
+          "fixed": {
+            "native": {
+              "wall_ms": 13.197511434555054,
+              "atoms_s": 5152.486537875281,
+              "structures_s": 606.1748868088566,
+              "peak_allocated": 1248257024,
+              "peak_reserved": 1369440256
+            },
+            "base": {
+              "wall_ms": 6.06527179479599,
+              "atoms_s": 11211.368970858664,
+              "structures_s": 1318.9845848069017,
+              "peak_allocated": 318496768,
+              "peak_reserved": 383778816
+            },
+            "final": {
+              "wall_ms": 5.78969344496727,
+              "atoms_s": 11745.008720471973,
+              "structures_s": 1381.765731820232,
+              "peak_allocated": 316788736,
+              "peak_reserved": 362807296
+            },
+            "final-input": {
+              "wall_ms": 5.7947225868701935,
+              "atoms_s": 11734.81542569024,
+              "structures_s": 1380.56652066944,
+              "peak_allocated": 316788736,
+              "peak_reserved": 362807296
+            },
+            "vs_native": {
+              "speedup": 2.277635172967528,
+              "paired_speedups": [
+                2.277635172967528,
+                2.275978473927184,
+                2.2754136675395293,
+                2.279239860085903,
+                2.2798929132236725
+              ],
+              "allocated_reduction": 0.7462151384617404,
+              "reserved_reduction": 0.7350689127105666,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.0468824031233506,
+              "paired_speedups": [
+                1.0466404513811882,
+                1.0468824031233506,
+                1.0449072444178331,
+                1.046977958385844,
+                1.047556439364687
+              ],
+              "allocated_reduction": 0.005362792252887161,
+              "reserved_reduction": 0.05464480874316935,
+              "speed_2x": false,
+              "allocated_10pct": false
+            },
+            "vs_final": {
+              "speedup": 0.9997749932658699,
+              "paired_speedups": [
+                0.9990196588927224,
+                0.9997749932658699,
+                0.9984465784895449,
+                1.0004629510557856,
+                1.0001795505444435
+              ],
+              "allocated_reduction": 0.0,
+              "reserved_reduction": 0.0,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          },
+          "e2e": {
+            "native": {
+              "wall_ms": 14.851637184619904,
+              "atoms_s": 4578.619794888311,
+              "structures_s": 538.6611523398013,
+              "peak_allocated": 1248257024,
+              "peak_reserved": 1369440256
+            },
+            "base": {
+              "wall_ms": 7.7133625745773315,
+              "atoms_s": 8815.869776966396,
+              "structures_s": 1037.1611502313406,
+              "peak_allocated": 318496768,
+              "peak_reserved": 383778816
+            },
+            "final": {
+              "wall_ms": 7.488120347261429,
+              "atoms_s": 9081.050630398737,
+              "structures_s": 1068.3588976939689,
+              "peak_allocated": 316788736,
+              "peak_reserved": 362807296
+            },
+            "final-input": {
+              "wall_ms": 7.324729114770889,
+              "atoms_s": 9283.619767299337,
+              "structures_s": 1092.1905608587456,
+              "peak_allocated": 316788736,
+              "peak_reserved": 362807296
+            },
+            "vs_native": {
+              "speedup": 2.033849254854978,
+              "paired_speedups": [
+                2.033849254854978,
+                2.019260875079264,
+                2.0397785206446297,
+                2.042918283391648,
+                2.0295796445661898
+              ],
+              "allocated_reduction": 0.7462151384617404,
+              "reserved_reduction": 0.7350689127105666,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.054753427661934,
+              "paired_speedups": [
+                1.050554811265006,
+                1.0503690551680407,
+                1.0576643985931211,
+                1.054753427661934,
+                1.060122051635196
+              ],
+              "allocated_reduction": 0.005362792252887161,
+              "reserved_reduction": 0.05464480874316935,
+              "speed_2x": false,
+              "allocated_10pct": false
+            },
+            "vs_final": {
+              "speedup": 1.0231078258401793,
+              "paired_speedups": [
+                1.0169737033829018,
+                1.026963094483196,
+                1.0205936224977585,
+                1.0241314779172277,
+                1.0231078258401793
+              ],
+              "allocated_reduction": 0.0,
+              "reserved_reduction": 0.0,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          }
+        },
+        "source": "20df31535928289ec008255a1833e85ee52c9038",
+        "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+        "atoms": 68,
+        "edges": 3472,
+        "structures": 8,
+        "torch": "2.6.0+cu124",
+        "tf32": false,
+        "amp": false,
+        "cuda_graph": true
+      },
+      "selection": [
+        true,
+        true,
+        316442
+      ]
+    },
+    "n512": {
+      "path": "h100-results/20df315/measurements/316443-final-input-n512/results/MACE_PAIR_AUDIT-n512-final-input.json",
+      "audit": {
+        "status": "complete",
+        "model": "mace",
+        "candidate": "final-input",
+        "case": "n512",
+        "boundaries": {
+          "fixed": {
+            "native": {
+              "wall_ms": 89.51117470860481,
+              "atoms_s": 6703.073688321524,
+              "structures_s": 11.171789480535875,
+              "peak_allocated": 10987808768,
+              "peak_reserved": 11920211968
+            },
+            "base": {
+              "wall_ms": 27.183402329683304,
+              "atoms_s": 22072.29222902762,
+              "structures_s": 36.78715371504603,
+              "peak_allocated": 2549993984,
+              "peak_reserved": 2860515328
+            },
+            "final": {
+              "wall_ms": 25.777392089366913,
+              "atoms_s": 23276.21032879808,
+              "structures_s": 38.79368388133013,
+              "peak_allocated": 2534474240,
+              "peak_reserved": 2841640960
+            },
+            "final-input": {
+              "wall_ms": 25.800026953220367,
+              "atoms_s": 23255.78965820064,
+              "structures_s": 38.7596494303344,
+              "peak_allocated": 2534474240,
+              "peak_reserved": 2841640960
+            },
+            "vs_native": {
+              "speedup": 3.469401212847888,
+              "paired_speedups": [
+                3.4702204890778243,
+                3.469401212847888,
+                3.4683454616914937,
+                3.4708427605812644,
+                3.46912249395119
+              ],
+              "allocated_reduction": 0.7693376092072883,
+              "reserved_reduction": 0.7616115411681914,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.0537421733261816,
+              "paired_speedups": [
+                1.054144919898652,
+                1.0531355535620097,
+                1.0539682819296752,
+                1.0537421733261816,
+                1.053163855050258
+              ],
+              "allocated_reduction": 0.006086188476278398,
+              "reserved_reduction": 0.006598240469208205,
+              "speed_2x": false,
+              "allocated_10pct": false
+            },
+            "vs_final": {
+              "speedup": 0.9992928643731203,
+              "paired_speedups": [
+                0.9992928643731203,
+                0.9990045747112595,
+                0.9997790818526282,
+                1.000323219929065,
+                0.9986909400349506
+              ],
+              "allocated_reduction": 0.0,
+              "reserved_reduction": 0.0,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          },
+          "e2e": {
+            "native": {
+              "wall_ms": 96.3951125741005,
+              "atoms_s": 6224.381962713827,
+              "structures_s": 10.37396993785638,
+              "peak_allocated": 10987808768,
+              "peak_reserved": 11920211968
+            },
+            "base": {
+              "wall_ms": 33.973827958106995,
+              "atoms_s": 17660.653392954653,
+              "structures_s": 29.43442232159109,
+              "peak_allocated": 2549993984,
+              "peak_reserved": 2860515328
+            },
+            "final": {
+              "wall_ms": 32.595016062259674,
+              "atoms_s": 18407.722176112482,
+              "structures_s": 30.679536960187473,
+              "peak_allocated": 2534474240,
+              "peak_reserved": 2841640960
+            },
+            "final-input": {
+              "wall_ms": 32.40536153316498,
+              "atoms_s": 18515.454591856207,
+              "structures_s": 30.859090986427013,
+              "peak_allocated": 2534474240,
+              "peak_reserved": 2841640960
+            },
+            "vs_native": {
+              "speedup": 2.9754617750598094,
+              "paired_speedups": [
+                2.9789321697626154,
+                2.9754617750598094,
+                2.9743567793460612,
+                2.975735473656669,
+                2.9373627644772515
+              ],
+              "allocated_reduction": 0.7693376092072883,
+              "reserved_reduction": 0.7616115411681914,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.0462750675121362,
+              "paired_speedups": [
+                1.0461598759655208,
+                1.0529727722242586,
+                1.0462750675121362,
+                1.0484014481164416,
+                1.0335478170193786
+              ],
+              "allocated_reduction": 0.006086188476278398,
+              "reserved_reduction": 0.006598240469208205,
+              "speed_2x": false,
+              "allocated_10pct": false
+            },
+            "vs_final": {
+              "speedup": 1.004742015618402,
+              "paired_speedups": [
+                1.0036058962029066,
+                1.0097579484814743,
+                1.004742015618402,
+                1.0045160521950975,
+                1.0109613601299638
+              ],
+              "allocated_reduction": 0.0,
+              "reserved_reduction": 0.0,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          }
+        },
+        "source": "20df31535928289ec008255a1833e85ee52c9038",
+        "gpu_uuid": "b9214ccd-51e6-fe0f-3efd-af14d5737a9a",
+        "atoms": 600,
+        "edges": 31512,
+        "structures": 1,
+        "torch": "2.6.0+cu124",
+        "tf32": false,
+        "amp": false,
+        "cuda_graph": true
+      },
+      "selection": [
+        true,
+        true,
+        316443
+      ]
+    },
+    "n4096": {
+      "path": "h100-results/fb3dc99/measurements/316436-final-n4096/results/MACE_PAIR_AUDIT-n4096-final.json",
+      "audit": {
+        "status": "complete",
+        "model": "mace",
+        "candidate": "final",
+        "case": "n4096",
+        "boundaries": {
+          "fixed": {
+            "native": {
+              "wall_ms": 608.5111992433667,
+              "atoms_s": 6737.756026672985,
+              "structures_s": 1.6433551284568257,
+              "peak_allocated": 74661809152,
+              "peak_reserved": 80796975104
+            },
+            "base": {
+              "wall_ms": 168.73848997056484,
+              "atoms_s": 24297.95360095503,
+              "structures_s": 5.926330146574397,
+              "peak_allocated": 17188994560,
+              "peak_reserved": 18993905664
+            },
+            "final": {
+              "wall_ms": 162.29165066033602,
+              "atoms_s": 25263.160386365074,
+              "structures_s": 6.161746435698799,
+              "peak_allocated": 17082942976,
+              "peak_reserved": 18951962624
+            },
+            "vs_native": {
+              "speedup": 3.7496037557999835,
+              "paired_speedups": [
+                3.7555094590411398,
+                3.748948386646787,
+                3.7504423420614494,
+                3.7490813115722665,
+                3.7496037557999835
+              ],
+              "allocated_reduction": 0.7711957000503196,
+              "reserved_reduction": 0.7654372258416176,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.0398189214869284,
+              "paired_speedups": [
+                1.0399438275942672,
+                1.0394035730801394,
+                1.0399991355048408,
+                1.0398189214869284,
+                1.0397237891413253
+              ],
+              "allocated_reduction": 0.006169737481143245,
+              "reserved_reduction": 0.002208236722976653,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          },
+          "e2e": {
+            "native": {
+              "wall_ms": 652.5979423895478,
+              "atoms_s": 6282.581868075572,
+              "structures_s": 1.532337040994042,
+              "peak_allocated": 74661809152,
+              "peak_reserved": 80817946624
+            },
+            "base": {
+              "wall_ms": 211.9024875573814,
+              "atoms_s": 19348.522272017948,
+              "structures_s": 4.719151773662914,
+              "peak_allocated": 17188994560,
+              "peak_reserved": 19014877184
+            },
+            "final": {
+              "wall_ms": 205.8391571044922,
+              "atoms_s": 19918.464774506807,
+              "structures_s": 4.8581621401236115,
+              "peak_allocated": 17082942976,
+              "peak_reserved": 18972934144
+            },
+            "vs_native": {
+              "speedup": 3.1751276442434433,
+              "paired_speedups": [
+                3.1726502071167797,
+                3.1769644132151487,
+                3.1574810763042387,
+                3.1751276442434433,
+                3.176444225606777
+              ],
+              "allocated_reduction": 0.7711957000503196,
+              "reserved_reduction": 0.7652386018631445,
+              "speed_2x": true,
+              "allocated_10pct": true
+            },
+            "vs_base": {
+              "speedup": 1.0298509417403867,
+              "paired_speedups": [
+                1.0274607277106202,
+                1.041921037222506,
+                1.025253147495891,
+                1.0298509417403867,
+                1.0390213033364166
+              ],
+              "allocated_reduction": 0.006169737481143245,
+              "reserved_reduction": 0.0022058012573067387,
+              "speed_2x": false,
+              "allocated_10pct": false
+            }
+          }
+        },
+        "source": "fb3dc99b31ac8ab998a71f5338028da9e5a3cf3a",
+        "gpu_uuid": "44d5e78e-977f-7342-ef74-41168506dac0",
+        "tf32": false,
+        "amp": false,
+        "cuda_graph": true
+      },
+      "selection": [
+        false,
+        false,
+        316436
+      ]
+    }
+  },
+  "mace_h100_three_case_target": true
 }
