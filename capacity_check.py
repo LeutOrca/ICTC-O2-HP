@@ -35,7 +35,8 @@ def reference():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("reference", "native-graph", "native-graph-tiled", "receiver-csr-graph"))
+    parser.add_argument("mode", choices=("reference", "native-graph", "native-graph-tiled",
+                                         "receiver-csr-graph", "receiver-csr-partition-graph"))
     args = parser.parse_args()
     bench.configure()
     torch.use_deterministic_algorithms(True)
