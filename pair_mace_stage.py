@@ -15,6 +15,7 @@ def main():
     parser.add_argument("variant", choices=VARIANTS[2:])
     parser.add_argument("case")
     parser.add_argument("qualification", type=Path)
+    parser.add_argument("--result-root", type=Path, required=True)
     args = parser.parse_args()
     for repeat in range(5 if args.stage != "trace" else 1):
         roles = ("native", "base", args.variant)
@@ -26,7 +27,7 @@ def main():
                     raise RuntimeError("GPU tensors carried over from the preceding memory arm")
                 measure_mace_local.main([
                     args.stage, role, args.case, boundary,
-                    f"results/mace-{args.stage}-{args.case}-{boundary}-{role}-{repeat}.json",
+                    str(args.result_root / "results" / f"mace-{args.stage}-{args.case}-{boundary}-{role}-{repeat}.json"),
                     "--qualification", str(args.qualification), "--repeat", str(repeat),
                 ])
                 gc.collect()
