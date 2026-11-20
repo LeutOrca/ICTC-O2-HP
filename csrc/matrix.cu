@@ -2,6 +2,9 @@ using int64_t = long long;
 #ifndef K_GROUPS
 #define K_GROUPS 1
 #endif
+#ifndef K_CONTIGUOUS
+#define K_CONTIGUOUS 0
+#endif
 
 extern "C" __global__ void ieee_matrix(
     const float* left, const float* right, const float* bias, float* output,
@@ -39,7 +42,9 @@ extern "C" __global__ void ieee_matrix(
                 const float a = left_tile[threadIdx.y + 16 * i][k];
                 #pragma unroll
                 for (int j = 0; j < 4; ++j) {
-                    const int group = k % K_GROUPS;
+                    const int64_t span = (inner + K_GROUPS - 1) / K_GROUPS;
+                    const int group = K_CONTIGUOUS ? int((start + k) / (span ? span : 1)) % K_GROUPS
+                                                   : k % K_GROUPS;
                     sums[i][j][group] = __fmaf_rn(
                         a, right_tile[k][threadIdx.x + 16 * j], sums[i][j][group]);
                 }
@@ -54,6 +59,12 @@ extern "C" __global__ void ieee_matrix(
         for (int j = 0; j < 4; ++j) {
             const int64_t column = column_base + threadIdx.x + 16 * j;
             if (row < rows && column < columns) {
+                #if K_CONTIGUOUS
+                #pragma unroll
+                for (int group = 1; group < K_GROUPS; ++group) {
+                    sums[i][j][0] = __fadd_rn(sums[i][j][0], sums[i][j][group]);
+                }
+                #else
                 #pragma unroll
                 for (int stride = K_GROUPS / 2; stride > 0; stride /= 2) {
                     #pragma unroll
@@ -61,6 +72,7 @@ extern "C" __global__ void ieee_matrix(
                         sums[i][j][group] = __fadd_rn(sums[i][j][group], sums[i][j][group + stride]);
                     }
                 }
+                #endif
                 float value = __fmul_rn(alpha, sums[i][j][0]);
                 if (bias != nullptr && beta != 0.f) {
                     value = __fadd_rn(value, __fmul_rn(beta, bias[batch * ds0 + row * ds1 + column * ds2]));

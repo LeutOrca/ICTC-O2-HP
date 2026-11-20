@@ -66,11 +66,12 @@ def matrix(left, right, bias=None, alpha=1., beta=1., backend="triton", output=N
         bias = bias.expand(shape)
     a_strides, b_strides = _matrix_strides(left), _matrix_strides(right)
     d_strides = (0, 0, 0) if bias is None else _matrix_strides(bias)
-    if backend in ("cuda", "cuda2", "cuda4", "cuda8"):
+    if backend in ("cuda", "cuda2", "cuda4", "cuda8", "split2", "split4", "split8"):
         from cuda_matrix import compiled_matrix
         with torch.cuda.device(left.device):
             return compiled_matrix(left, right, bias, alpha, beta,
-                                   groups=int(backend[4:] or 1), output=output)
+                                   groups=(-int(backend[5:]) if backend.startswith("split")
+                                           else int(backend[4:] or 1)), output=output)
     if backend != "triton":
         raise ValueError("Unknown matrix kernel")
     block_rows, block_columns = (64, 128) if rows >= 512 and columns >= 128 else (32, 64)

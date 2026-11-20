@@ -37,7 +37,7 @@ def prepare(groups=1):
     major, minor = torch.cuda.get_device_capability()
     options = [f"--gpu-architecture=sm_{major}{minor}".encode(),
                b"--std=c++17", b"--ftz=false", b"--prec-div=true", b"--prec-sqrt=true",
-               f"-DK_GROUPS={groups}".encode()]
+               f"-DK_GROUPS={abs(groups)}".encode(), f"-DK_CONTIGUOUS={int(groups < 0)}".encode()]
     option_array = (ctypes.c_char_p * len(options))(*options)
     compiler.nvrtcCompileProgram.argtypes = [
         ctypes.c_void_p, ctypes.c_int, ctypes.POINTER(ctypes.c_char_p),
