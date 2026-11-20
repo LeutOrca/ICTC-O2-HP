@@ -11,6 +11,15 @@ def main():
     parser.add_argument("case")
     args = parser.parse_args()
     results = args.root / "results"
+    expected = [results / f"mace-{stage}-{args.case}-{boundary}-{role}-{repeat}.json"
+                for stage in ("time", "memory") for boundary in ("fixed", "e2e")
+                for role in ("native", "base", "prefix") for repeat in range(5)]
+    missing = [path.name for path in expected if not path.exists()]
+    if missing:
+        report = dict(case=args.case, status="incomplete", missing=missing)
+        (results / f"MACE_PREFIX_PAIR_AUDIT-{args.case}.json").write_text(json.dumps(report, indent=2))
+        print(json.dumps(report), flush=True)
+        return
     modes = {}
     for boundary in ("fixed", "e2e"):
         rows = {}
