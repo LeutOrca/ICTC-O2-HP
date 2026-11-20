@@ -8,8 +8,7 @@ import time
 import torch
 
 import conservative_runner as bench
-from capture_both_variants import Replay
-from qualify_force import CASES, MODES, graph_evaluate, inputs_for, setup
+from qualify_force import CASES, MODES, inputs_for, replay_for, setup
 
 BASE = "native-graph"
 configure_fp32 = bench.configure
@@ -28,7 +27,7 @@ def model_for(backend, device):
 
 def evaluate(model, data):
     if not hasattr(model, "_graph_execution"):
-        model._graph_execution = Replay(graph_evaluate, model, data)
+        model._graph_execution = replay_for(model, data)
     return model._graph_execution.call(data)
 
 

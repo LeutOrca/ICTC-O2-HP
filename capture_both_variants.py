@@ -12,6 +12,9 @@ class Replay:
                 (z, indices.clone() if indices is not None else None)
                 for z, indices in example["_selector_groups"]
             )
+        self.capture(evaluate, model)
+
+    def capture(self, evaluate, model):
         self.graph = torch.cuda.CUDAGraph()
         worker = torch.cuda.Stream()
         current = torch.cuda.current_stream()

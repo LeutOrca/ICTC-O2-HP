@@ -168,7 +168,8 @@ def run(args):
 
     def e2e_call():
         with torch.profiler.record_function("mace_native_neighbors_and_input_transfer"):
-            data = native_graph(geometry, model, device)
+            input_device = "cpu" if getattr(model, "_pinned_graph_inputs", False) else device
+            data = native_graph(geometry, model, input_device)
         return evaluate(model, data)
 
     call = fixed_call if args.boundary == "fixed" else e2e_call

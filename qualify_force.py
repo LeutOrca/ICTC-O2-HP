@@ -28,6 +28,7 @@ MODES = {
     "native-graph-tiled": (False, False, ()),
     "receiver-csr-parallel-graph": (False, False, ()),
     "receiver-csr-partition-graph": (False, False, ()),
+    "receiver-csr-pinned-graph": (False, False, ()),
 }
 
 
@@ -36,6 +37,7 @@ def setup(mode):
     model = bench.model_for("native", "cuda")
     model._receiver_csr = mode.startswith("receiver-csr-")
     model._parallel_neighbors = mode == "receiver-csr-parallel-graph"
+    model._pinned_graph_inputs = mode == "receiver-csr-pinned-graph"
     model._scatter_tile_width = 128 if mode == "native-graph-tiled" else None
     model._benchmark_elements = model.atomic_numbers.cpu().numpy()
     model.r_max_cpu = float(model.r_max)
@@ -95,6 +97,13 @@ def graph_evaluate(model, inputs):
         return evaluate(model, inputs)
 
 
+def replay_for(model, example):
+    if model._pinned_graph_inputs:
+        from pinned_graph_inputs import PinnedInputReplay
+        return PinnedInputReplay(graph_evaluate, model, example)
+    return Replay(graph_evaluate, model, example)
+
+
 def exact(actual, reference):
     return {key: torch.equal(actual[key], reference[key]) for key in METRICS}
 
@@ -127,10 +136,11 @@ def collect(point, mode, reference):
     if reference is None:
         reference = {label: cpu(evaluate(model, data)) for label, data in
                      (("fixed", fixed), ("e2e", inputs_for(geometry, model)), ("perturbed", changed))}
-    runner = Replay(graph_evaluate, model, fixed)
+    runner = replay_for(model, fixed)
     calls = {
         "fixed": lambda: runner.call(fixed),
-        "e2e": lambda: runner.call(inputs_for(geometry, model)),
+        "e2e": lambda: runner.call(inputs_for(
+            geometry, model, "cpu" if model._pinned_graph_inputs else "cuda")),
         "perturbed": lambda: runner.call(changed),
     }
     numerics = {}
