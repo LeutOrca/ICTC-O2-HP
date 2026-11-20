@@ -27,13 +27,14 @@ MODES = {
     "receiver-csr-graph": (False, False, ()),
     "native-graph-tiled": (False, False, ()),
     "receiver-csr-parallel-graph": (False, False, ()),
+    "receiver-csr-partition-graph": (False, False, ()),
 }
 
 
 def setup(mode):
     scalar, uvu, pack = MODES[mode]
     model = bench.model_for("native", "cuda")
-    model._receiver_csr = mode in ("receiver-csr-graph", "receiver-csr-parallel-graph")
+    model._receiver_csr = mode.startswith("receiver-csr-")
     model._parallel_neighbors = mode == "receiver-csr-parallel-graph"
     model._scatter_tile_width = 128 if mode == "native-graph-tiled" else None
     model._benchmark_elements = model.atomic_numbers.cpu().numpy()
@@ -47,6 +48,9 @@ def setup(mode):
     for layer in pack:
         block = model.interactions[layer]
         block.skip_tp = PackedSpeciesProjection(block.skip_tp)
+    if mode == "receiver-csr-partition-graph":
+        from partition_tp import partition_edge_products
+        partition_edge_products(model)
     return model
 
 
