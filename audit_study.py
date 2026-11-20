@@ -52,8 +52,10 @@ for path, audit in audits.items():
     if path.startswith("h100-results/") and audit.get("status") == "complete":
         if audit["candidate"] in ("final", "final-input"):
             current = best_h100.get(audit["case"])
-            if current is None or audit["candidate"] == "final-input":
-                best_h100[audit["case"]] = dict(path=path, audit=audit)
+            job = int(Path(path).parts[3].split("-")[0])
+            selection = (audit["candidate"] == "final-input", "vs_final" in audit["boundaries"]["e2e"], job)
+            if current is None or selection > tuple(current["selection"]):
+                best_h100[audit["case"]] = dict(path=path, audit=audit, selection=selection)
 mace_target = (set(best_h100) == {"b8", "n512", "n4096"} and all(
     item["audit"]["boundaries"]["e2e"]["vs_native"]["speed_2x"] and
     item["audit"]["boundaries"]["e2e"]["vs_native"]["allocated_10pct"]
@@ -65,7 +67,8 @@ summary = dict(operator=operator, exact_shape_validation=large, mace_prefix_b8=p
                mace_h100_best_cases=best_h100, mace_h100_three_case_target=mace_target)
 (ROOT / "SUMMARY.json").write_text(json.dumps(summary, indent=2))
 lines = ["# O3-HPX 路径的自写算子续轮", "",
-         "当前已有一项独立算子达到 5× 下限，整网目标仍在验收。MACE 优先，V3 并行推进。",
+         ("完整 SO2Linear 已达 5× 下限，MACE H100 三点均通过端到端 2× 和 allocated 下降 10% 门；V3 新局部候选单列。"
+          if mace_target else "当前已有一项独立算子达到 5× 下限，整网目标仍在验收。MACE 优先，V3 并行推进。"),
          "用户已明确：本轮替换算子必须全自写，未改原生层可保留 cuBLAS。", "",
          "## 已完成的 SO2Linear 五轮同卡配对", "",
          "快照 `d8aec37`，官方 V3 SO2Linear，160000 边、C128、L4、M2，冻结相同输入和权重。",
@@ -148,7 +151,7 @@ for name, row in v3["boundaries"].items():
                  f"{a['peak_allocated']/2**20:.1f}→{b['peak_allocated']/2**20:.1f} | "
                  f"{a['peak_reserved']/2**20:.1f}→{b['peak_reserved']/2**20:.1f} |")
 lines += ["", "allocated 下降约 6.9%，速度与整网 10% 显存门均未达到。后续直接注册核的单对筛选改善了分派成本，",
-          "仍需各输入点资格与完整五配对后才能替换正式结果。局部 SO2/norm 的 B8 仍存在相对 L2 超限。",
+          "仍需各输入点资格与完整五配对后才能替换正式结果。全 14 个 SO2 或联合 norm 的 B8 仍存在相对 L2 超限。",
           "[全矩阵分支五配对](cohorts/2089373/results/V3_PAIR_AUDIT-mptrj-b1.json)", "",
           "### V3 后两层局部替换", "",
           "保留原生 norm 及前五层 SO2Linear，只替换 blocks.5/6 的四个 SO2Linear，并沿用已验收 gather/radial。",
