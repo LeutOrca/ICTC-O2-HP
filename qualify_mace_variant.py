@@ -17,6 +17,22 @@ def cpu(values):
     return {name: value.detach().cpu() for name, value in values.items()}
 
 
+def capture_frames(evaluate, model, frames, reference):
+    results, shapes = {}, {}
+    replay, signature = None, None
+    for name, data in frames.items():
+        current = tuple((key, tuple(value.shape), value.dtype) for key, value in sorted(data.items()))
+        if current != signature:
+            del replay
+            gc.collect()
+            torch.cuda.empty_cache()
+            replay = prior.Replay(evaluate, model, data)
+            signature = current
+        results[name] = prior.bench.errors(cpu(replay.call(data)), reference[name])
+        shapes[name] = {key: list(value.shape) for key, value in data.items()}
+    return results, shapes
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("variant", choices=VARIANTS[2:])
@@ -53,12 +69,10 @@ def main():
     for _ in range(3):
         prior.graph_evaluate(native, fixed)
     reference = {name: cpu(prior.graph_evaluate(native, data)) for name, data in frames.items()}
-    native_replay = prior.replay_for(native, fixed)
-    native_capture = {name: prior.bench.errors(cpu(native_replay.call(data)), reference[name])
-                      for name, data in frames.items()}
+    native_capture, graph_shapes = capture_frames(prior.graph_evaluate, native, frames, reference)
     if not all(value["passed"] for row in native_capture.values() for value in row.values()):
         raise RuntimeError(dict(native_capture=native_capture))
-    del native_replay, native
+    del native
     gc.collect()
     torch.cuda.empty_cache()
     model = prior.setup("receiver-csr-partition-graph")
@@ -73,14 +87,13 @@ def main():
                   checkpoint_sha256="d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
                   gpu=torch.cuda.get_device_name(), torch=torch.__version__,
                   input_bitwise=input_bitwise,
+                  qualification_graph_shapes=graph_shapes,
                   passed=all(value["passed"] for row in errors.values() for value in row.values()))
     args.output.write_text(json.dumps(report, indent=2))
     print(json.dumps(report), flush=True)
     if not report["passed"]:
         raise RuntimeError("Local candidate failed the unchanged native E/F gate")
-    replay = prior.Replay(evaluate, model, fixed)
-    capture = {name: prior.bench.errors(cpu(replay.call(data)), reference[name])
-               for name, data in frames.items()}
+    capture, _ = capture_frames(evaluate, model, frames, reference)
     report.update(capture=capture, cuda_graph=True,
                   passed=all(value["passed"] for row in capture.values() for value in row.values()))
     args.output.write_text(json.dumps(report, indent=2))

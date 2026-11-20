@@ -25,6 +25,9 @@ def main():
     suite = "mptrj-b8"
     raw = network.batch(network.manifest["suites"][suite])
     fixed, topology = network.topology(raw)
+    for _ in range(3):
+        torch.manual_seed(native.SEEDS[0])
+        network.forward(fixed, True)
     references = {}
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):
