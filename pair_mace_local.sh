@@ -8,3 +8,4 @@ qualification="results/mace-$variant-$case-qualification.json"
 for stage in time memory trace; do
     "$py" -u pair_mace_stage.py "$stage" "$variant" "$case" "$qualification"
 done
+"$py" -u audit_mace_variants.py "$PWD" "$case" "$variant"

@@ -22,10 +22,12 @@ def main():
     prior.bench.configure()
     torch.use_deterministic_algorithms(True)
     model = prior.setup("receiver-csr-partition-graph")
-    fixed = prior.inputs_for(prior.bench.load_geometry(prior.bench.CASES[args.case]), model)
+    geometry = prior.bench.load_geometry(prior.bench.CASES[args.case])
+    fixed = prior.inputs_for(geometry, model)
     positions = fixed["positions"].clone()
     positions[0, 0] += .005
-    frames = {"fixed": fixed, "perturbed": dict(fixed, positions=positions)}
+    frames = {"fixed": fixed, "e2e": prior.inputs_for(geometry, model),
+              "perturbed": dict(fixed, positions=positions)}
     operands, senders = [], []
     block = model.interactions[0]
     handles = [block.conv_tp.register_forward_pre_hook(lambda module, values: operands.append(values)),
