@@ -8,8 +8,8 @@
 #SBATCH --time=00:10:00
 #SBATCH --job-name=hpx-own-kernel-a100
 #SBATCH --output=logs/%x-%j.log
-set -euo pipefail
 source /etc/profile
+set -euo pipefail
 export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1
 export NVIDIA_TF32_OVERRIDE=0 TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=0
 export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
