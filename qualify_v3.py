@@ -27,6 +27,9 @@ def main():
     model.model.requires_grad_(False)
     raw = model.batch(model.manifest["suites"][args.suite])
     fixed, topology = model.topology(raw)
+    for _ in range(3):
+        torch.manual_seed(native.SEEDS[0])
+        model.forward(fixed, True)
     references = {}
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):

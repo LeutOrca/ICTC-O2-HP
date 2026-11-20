@@ -2,6 +2,7 @@
 import argparse
 from contextlib import nullcontext
 import gc
+import hashlib
 import json
 from pathlib import Path
 from statistics import median
@@ -49,7 +50,13 @@ def main():
     torch.cuda.synchronize()
     record = dict(role=args.role, mode=args.mode, repeat=args.repeat, edges=args.edges,
                   channels=128, lmax=4, mmax=2, cuda_graph=False, tf32=False, amp=False,
-                  torch=torch.__version__, gpu=torch.cuda.get_device_name())
+                  torch=torch.__version__, gpu=torch.cuda.get_device_name(),
+                  gpu_uuid=str(torch.cuda.get_device_properties(0).uuid),
+                  source=Path("provenance/commit.txt").read_text().strip(),
+                  input_sha256=hashlib.sha256(inputs.detach().cpu().numpy().tobytes()).hexdigest(),
+                  weights_sha256=hashlib.sha256(b"".join(
+                      value.detach().cpu().numpy().tobytes() for value in module.parameters()
+                  )).hexdigest())
     if args.stage == "time":
         events, walls = [], []
         from time import perf_counter

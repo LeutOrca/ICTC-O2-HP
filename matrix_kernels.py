@@ -88,6 +88,19 @@ class OwnMatrixKernels(TorchDispatchMode):
     def __torch_dispatch__(self, operation, types, args=(), kwargs=None):
         kwargs = kwargs or {}
         name = operation._schema.name
+        if name in ("aten::mv", "aten::addmv", "aten::dot", "aten::vdot"):
+            self.calls[name] += 1
+            if name == "aten::mv":
+                left, vector = args
+                return matrix(left, vector.unsqueeze(-1), backend=self.backend).squeeze(-1)
+            if name == "aten::addmv":
+                bias, left, vector = args
+                return matrix(left, vector.unsqueeze(-1), bias.reshape(-1, 1),
+                              alpha=kwargs.get("alpha", 1), beta=kwargs.get("beta", 1),
+                              backend=self.backend).squeeze(-1)
+            left, right = args
+            return matrix(left.reshape(1, -1), right.reshape(-1, 1),
+                          backend=self.backend).reshape(())
         if name in ("aten::mm", "aten::bmm", "aten::addmm", "aten::baddbmm"):
             if operation._schema.overload_name not in ("", "default"):
                 raise RuntimeError(f"Unsupported matrix overload {operation}")
@@ -97,6 +110,6 @@ class OwnMatrixKernels(TorchDispatchMode):
             bias, left, right = args
             return matrix(left, right, bias=bias, alpha=kwargs.get("alpha", 1),
                           beta=kwargs.get("beta", 1), backend=self.backend)
-        if name in ("aten::mv", "aten::addmv", "aten::_scaled_mm"):
+        if name in ("aten::_scaled_mm", "aten::addbmm"):
             raise RuntimeError(f"Matrix operation requires an explicit own kernel: {name}")
         return operation(*args, **kwargs)
