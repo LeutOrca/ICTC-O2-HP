@@ -5,6 +5,9 @@ using int64_t = long long;
 #ifndef K_CONTIGUOUS
 #define K_CONTIGUOUS 0
 #endif
+#ifndef K_STRIPE
+#define K_STRIPE 1
+#endif
 
 extern "C" __global__ void ieee_matrix(
     const float* left, const float* right, const float* bias, float* output,
@@ -44,7 +47,7 @@ extern "C" __global__ void ieee_matrix(
                 for (int j = 0; j < 4; ++j) {
                     const int64_t span = (inner + K_GROUPS - 1) / K_GROUPS;
                     const int group = K_CONTIGUOUS ? int((start + k) / (span ? span : 1)) % K_GROUPS
-                                                   : k % K_GROUPS;
+                                                   : int((start + k) / K_STRIPE) % K_GROUPS;
                     sums[i][j][group] = __fmaf_rn(
                         a, right_tile[k][threadIdx.x + 16 * j], sums[i][j][group]);
                 }
