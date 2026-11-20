@@ -41,9 +41,14 @@ def main():
     model = prior.setup("receiver-csr-partition-graph")
     geometry = prior.bench.load_geometry(prior.bench.CASES["b8"])
     data = prior.inputs_for(geometry, model)
+    cold = prior.graph_evaluate(model, data)
+    for _ in range(3):
+        prior.graph_evaluate(model, data)
     expected = prior.graph_evaluate(model, data)
     records = []
-    for family in ("mm", "bmm", "all"):
+    cold_difference = prior.bench.errors(cold, expected)
+    print(json.dumps(dict(cold_to_warm=cold_difference)), flush=True)
+    for family in ("none", "mm", "bmm", "all"):
         mode = FamilyMode(family)
         with mode:
             actual = prior.graph_evaluate(model, data)

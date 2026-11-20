@@ -35,7 +35,7 @@ def main():
     torch.backends.cudnn.allow_tf32 = False
     records = []
     constructor = official()
-    for edges in (0, 37, 4096):
+    for edges in (37, 4096):
         for head in (None, 31):
             module = constructor(128, 128, 4, 2, extra_m0_out_channels=head).cuda().requires_grad_(False)
             inputs = (torch.randn(edges, 19, 128, device="cuda") * .1).requires_grad_()

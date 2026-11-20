@@ -27,7 +27,13 @@ def main():
     model = prior.setup("receiver-csr-partition-graph")
     geometry = prior.bench.load_geometry(prior.bench.CASES[args.case])
     fixed = prior.inputs_for(geometry, model)
+    for _ in range(3):
+        prior.graph_evaluate(model, fixed)
     reference = prior.graph_evaluate(model, fixed)
+    reference_repeat = prior.graph_evaluate(model, fixed)
+    reference_stability = prior.bench.errors(reference_repeat, reference)
+    if not all(item["passed"] for item in reference_stability.values()):
+        raise RuntimeError(dict(native_repeat_failed=reference_stability))
     mode = OwnMatrixKernels(args.kernel)
     with mode:
         candidate = prior.graph_evaluate(model, fixed)
@@ -39,6 +45,7 @@ def main():
                    gpu=torch.cuda.get_device_name(), torch=torch.__version__,
                    atoms=len(fixed["positions"]), edges=fixed["edge_index"].size(1),
                    matrix_calls=dict(mode.calls), numerics=numeric,
+                   native_self_repeat=reference_stability,
                    passed=all(item["passed"] for item in numeric.values()))
     args.output.write_text(json.dumps(receipt, indent=2))
     print(json.dumps(receipt), flush=True)
