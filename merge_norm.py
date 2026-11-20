@@ -6,6 +6,28 @@ from triton.language.extra.cuda import libdevice
 
 
 @triton.jit
+def _warp_sum_ascending(values):
+    rows: tl.constexpr = values.shape[0]
+    lane = tl.arange(0, 32)
+    for offset in tl.static_range(5):
+        other = tl.broadcast_to(((lane + (1 << offset)) % 32)[None, :], (rows, 32))
+        values = values + tl.gather(values, other, axis=1)
+    return tl.sum(tl.where(lane[None, :] == 0, values, 0.), 1)
+
+
+@triton.jit
+def _mean128(values):
+    # ATen Reduce.cuh: four 32-strided accumulators, then ascending warp shuffles.
+    rows: tl.constexpr = values.shape[0]
+    lane = tl.arange(0, 32)
+    total = tl.gather(values, tl.broadcast_to(lane[None, :], (rows, 32)), axis=1)
+    for part in tl.static_range(1, 4):
+        indices = tl.broadcast_to((lane + part * 32)[None, :], (rows, 32))
+        total = total + tl.gather(values, indices, axis=1)
+    return _warp_sum_ascending(total) / 128.
+
+
+@triton.jit
 def _merge_forward(X, Weight, Bias, Degree, Balance, Y, Stats,
                    R: tl.constexpr, C: tl.constexpr,
                    S0: tl.constexpr, S1: tl.constexpr, S2: tl.constexpr,
@@ -16,14 +38,21 @@ def _merge_forward(X, Weight, Bias, Degree, Balance, Y, Stats,
     col = tl.arange(0, BC)
     x = tl.load(X + node * S0 + row[:, None] * S1 + col[None, :] * S2,
                 (row[:, None] < R) & (col[None, :] < C), other=0.)
-    mean = tl.sum(tl.where(row[:, None] == 0, x, 0.), 0)
-    mean = tl.sum(mean, 0) / C
+    if C == 128:
+        means = _mean128(x)
+        mean = tl.sum(tl.where(row == 0, means, 0.), 0)
+    else:
+        mean = tl.sum(tl.where(row[:, None] == 0, x, 0.), 0)
+        mean = tl.sum(mean, 0) / C
     if CENTER:
         z = x - tl.where((row[:, None] == 0) & (col[None, :] < C), mean, 0.)
     else:
         z = x
     balance = tl.load(Balance + row, row < R, other=0.)
-    variance = tl.sum(tl.sum(z * z, 1) / C * balance, 0)
+    if C == 128:
+        variance = tl.sum(_mean128(z * z) * balance, 0)
+    else:
+        variance = tl.sum(tl.sum(z * z, 1) / C * balance, 0)
     inverse = tl.rsqrt(variance + EPS)
     coefficient = tl.full((BR, BC), 1., tl.float32)
     if AFFINE:
@@ -65,13 +94,36 @@ def _merge_backward(X, DY, Weight, Degree, Balance, Stats, DX,
     if AFFINE:
         degree = tl.load(Degree + row, row < R, other=0)
         coefficient = tl.load(Weight + degree[:, None] * C + col[None, :], mask, other=0.)
-    projection = tl.sum(tl.sum((incoming * z) * coefficient, 1), 0)
+    if C == 128:
+        # Native sum_to_size reduces flattened [R,128] with vector loads.
+        columns = tl.arange(0, 128)
+        partial = tl.full((128,), 0., tl.float32)
+        for component in range(R):
+            raw = tl.load(X + node * S0 + component * S1 + columns * S2)
+            if CENTER:
+                raw = raw - tl.where(component == 0, mean, 0.)
+            grad = tl.load(DY + node * D0 + component * D1 + columns * D2)
+            affine = tl.full((128,), 1., tl.float32)
+            if AFFINE:
+                level = tl.load(Degree + component)
+                affine = tl.load(Weight + level * C + columns)
+            partial = partial + (grad * raw) * affine
+        lane = tl.arange(0, 32)
+        packed = tl.gather(partial, lane * 4, axis=0)
+        for part in tl.static_range(1, 4):
+            packed = packed + tl.gather(partial, lane * 4 + part, axis=0)
+        projection = tl.sum(_warp_sum_ascending(packed[None, :]), 0)
+    else:
+        projection = tl.sum(tl.sum((incoming * z) * coefficient, 1), 0)
     balance = tl.load(Balance + row, row < R, other=0.)
     variance_gradient = projection * (-0.5 * libdevice.pow(variance_with_epsilon, -1.5))
     square_gradient = (variance_gradient * balance[:, None]) / C
     gradient = incoming * (inverse * coefficient) + square_gradient * (2. * z)
     if CENTER:
-        scalar_sum = tl.sum(tl.sum(tl.where(row[:, None] == 0, gradient, 0.), 0), 0) / C
+        if C == 128:
+            scalar_sum = tl.sum(tl.where(row == 0, _mean128(gradient), 0.), 0)
+        else:
+            scalar_sum = tl.sum(tl.sum(tl.where(row[:, None] == 0, gradient, 0.), 0), 0) / C
         gradient -= tl.where((row[:, None] == 0) & (col[None, :] < C), scalar_sum, 0.)
     tl.store(DX + (node * R + row[:, None]) * C + col[None, :], gradient, mask)
 

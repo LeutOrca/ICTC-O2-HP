@@ -1,0 +1,35 @@
+{
+  "case": "b8",
+  "kernel": "triton",
+  "checkpoint_sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+  "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "torch": "2.6.0+cu124",
+  "atoms": 68,
+  "edges": 3472,
+  "matrix_calls": {
+    "aten::mm": 91,
+    "aten::bmm": 33
+  },
+  "numerics": {
+    "energy": {
+      "passed": true,
+      "max_abs": 1.9073486328125e-06,
+      "relative_l2": 1.5926364138616224e-08,
+      "rms_reference": 73.3380021849681
+    },
+    "interaction_energy": {
+      "passed": true,
+      "max_abs": 7.62939453125e-06,
+      "relative_l2": 5.1189634032608564e-08,
+      "rms_reference": 56.277461378374895
+    },
+    "forces": {
+      "passed": false,
+      "max_abs": 1.1771917343139648e-05,
+      "relative_l2": 4.416673776923968e-05,
+      "rms_reference": 0.05552794923739973
+    }
+  },
+  "passed": false
+}
