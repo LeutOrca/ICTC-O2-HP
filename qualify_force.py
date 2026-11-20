@@ -26,13 +26,15 @@ MODES = {
     "frozen-1b65a8c-graph": (True, True, (0, 1)),
     "receiver-csr-graph": (False, False, ()),
     "native-graph-tiled": (False, False, ()),
+    "receiver-csr-parallel-graph": (False, False, ()),
 }
 
 
 def setup(mode):
     scalar, uvu, pack = MODES[mode]
     model = bench.model_for("native", "cuda")
-    model._receiver_csr = mode == "receiver-csr-graph"
+    model._receiver_csr = mode in ("receiver-csr-graph", "receiver-csr-parallel-graph")
+    model._parallel_neighbors = mode == "receiver-csr-parallel-graph"
     model._scatter_tile_width = 128 if mode == "native-graph-tiled" else None
     model._benchmark_elements = model.atomic_numbers.cpu().numpy()
     model.r_max_cpu = float(model.r_max)
@@ -49,7 +51,12 @@ def setup(mode):
 
 
 def inputs_for(geometry, model, device="cuda"):
-    inputs = bench.native_graph(geometry, model, device)
+    if model._parallel_neighbors and len(geometry) > 1:
+        from parallel_neighbors import neighborhoods
+        inputs = bench.native_graph(geometry, model, device,
+                                    neighbor_batches=neighborhoods(geometry, model.r_max_cpu))
+    else:
+        inputs = bench.native_graph(geometry, model, device)
     if any(isinstance(layer.skip_tp, PackedSpeciesProjection) for layer in model.interactions):
         species = np.searchsorted(model._benchmark_elements, np.concatenate([row[1] for row in geometry]))
         elements = np.unique(species)
@@ -98,6 +105,18 @@ def collect(point, mode, reference):
     model = setup(mode)
     geometry = bench.load_geometry(bench.CASES[point])
     fixed = inputs_for(geometry, model)
+    if model._parallel_neighbors:
+        changed = list(geometry)
+        position, atoms, cell = changed[0]
+        position = position.copy()
+        position[0, 0] += 0.005
+        changed[0] = (position, atoms, cell)
+        for frame in (geometry, changed):
+            expected = bench.native_graph(frame, model, "cpu")
+            actual = inputs_for(frame, model, "cpu")
+            if actual.keys() != expected.keys() or not all(
+                    torch.equal(tensor, expected[key]) for key, tensor in actual.items()):
+                raise RuntimeError("Parallel native neighbor assembly changed an input tensor")
     perturbed = fixed["positions"].clone()
     perturbed[0, 0] += 0.005
     changed = dict(fixed, positions=perturbed)

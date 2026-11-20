@@ -81,15 +81,18 @@ def load_geometry(names):
     return geometry
 
 
-def native_graph(geometry, model, device):
+def native_graph(geometry, model, device, neighbor_batches=None):
     edge_indexes, unit_shifts, shifts, cells, positions, species, batches = (
         [] for _ in range(7)
     )
     pointers = [0]
     for batch, (position, atoms, cell) in enumerate(geometry):
-        edge, shift, unit, cell = get_neighborhood(
-            position, cutoff=model.r_max_cpu, pbc=(True, True, True), cell=cell.copy(),
-        )
+        if neighbor_batches is None:
+            edge, shift, unit, cell = get_neighborhood(
+                position, cutoff=model.r_max_cpu, pbc=(True, True, True), cell=cell.copy(),
+            )
+        else:
+            edge, shift, unit, cell = neighbor_batches[batch]
         edge_indexes.append(edge + pointers[-1])
         unit_shifts.append(unit)
         shifts.append(shift)

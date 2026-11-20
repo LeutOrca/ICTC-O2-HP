@@ -53,6 +53,7 @@ def main():
     parser.add_argument("--variant", choices=tuple(MODES)[1:], default="receiver-csr-graph")
     parser.add_argument("--case", choices=tuple(bench.CASES), action="append")
     parser.add_argument("--baseline", choices=(BASE, "native-graph-tiled"), default=BASE)
+    parser.add_argument("--compare-prior", choices=("receiver-csr-graph",))
     parser.add_argument("--qualification", type=Path, default=bench.ROOT)
     parser.add_argument("--wait-for", type=Path)
     parser.add_argument("--rounds", type=int, default=5)
@@ -63,8 +64,9 @@ def main():
                 raise SystemExit("A preceding CUDA stage failed")
             time.sleep(0.5)
     cases = args.case or CASES
-    if not all(passed(args.qualification, case, backend) for case in cases
-               for backend in (args.baseline, args.variant)):
+    backends = (args.baseline, args.variant) if args.compare_prior is None else (
+        args.baseline, args.compare_prior, args.variant)
+    if not all(passed(args.qualification, case, backend) for case in cases for backend in backends):
         raise SystemExit("The requested paired cases did not pass strict FP32")
     bench.configure = configure
     bench.model_for = model_for
@@ -72,7 +74,7 @@ def main():
     bench.evaluate = evaluate
     cleanup()
     for repeat in range(1, (1 if args.stage == "trace" else args.rounds) + 1):
-        order = (args.baseline, args.variant) if repeat % 2 else (args.variant, args.baseline)
+        order = backends if repeat % 2 else backends[::-1]
         for case in cases:
             for boundary in ("fixed", "e2e"):
                 for backend in order:
