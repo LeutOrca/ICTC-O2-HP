@@ -34,8 +34,11 @@ def install(model):
     model.node_embedding = FrozenPrefix(model.node_embedding)
     first = model.interactions[0]
     first.linear_up = FrozenPrefix(first.linear_up)
-    first.skip_tp = FrozenPrefix(first.skip_tp)
-    return ("node_embedding", "interactions.0.linear_up", "interactions.0.skip_tp")
+    names = ["node_embedding", "interactions.0.linear_up"]
+    if first.__class__.__name__ == "RealAgnosticResidualInteractionBlock":
+        first.skip_tp = FrozenPrefix(first.skip_tp)
+        names.append("interactions.0.skip_tp")
+    return tuple(names)
 
 
 def receipt(model):
