@@ -20,7 +20,7 @@ from v3_native import install
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("stage", choices=("time", "memory", "trace"))
-    parser.add_argument("role", choices=("native", "own"))
+    parser.add_argument("role", choices=("native", "base", "own"))
     parser.add_argument("suite", choices=("mptrj-b1", "mptrj-b8"))
     parser.add_argument("boundary", choices=("fixed", "e2e"))
     parser.add_argument("output", type=Path)
@@ -43,9 +43,10 @@ def main():
     raw = net.batch(net.manifest["suites"][args.suite])
     fixed, topology = net.topology(raw)
     installed = {}
-    if args.role == "own":
+    if args.role in ("base", "own"):
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)
+    if args.role == "own":
         installed = install(net.model, qualification.get("kernel", "triton"),
                             use_norm=bool(qualification["installed"]["norm"]),
                             split_complex=qualification.get("split_complex", False),

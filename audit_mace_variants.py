@@ -10,21 +10,25 @@ def main():
     parser.add_argument("root", type=Path)
     parser.add_argument("case")
     parser.add_argument("candidate")
+    parser.add_argument("--model", choices=("mace", "v3"), default="mace")
     args = parser.parse_args()
     directory = args.root / "results"
     roles = ("native", "base", args.candidate)
-    paths = {(stage, boundary, role, repeat): directory / f"mace-{stage}-{args.case}-{boundary}-{role}-{repeat}.json"
+    paths = {(stage, boundary, role, repeat): directory / f"{args.model}-{stage}-{args.case}-{boundary}-{role}-{repeat}.json"
              for stage in ("time", "memory") for boundary in ("fixed", "e2e")
              for role in roles for repeat in range(5)}
     missing = [path.name for path in paths.values() if not path.exists()]
-    output = directory / f"MACE_PAIR_AUDIT-{args.case}-{args.candidate}.json"
+    title = "MACE" if args.model == "mace" else "V3_LOCAL"
+    output = directory / f"{title}_PAIR_AUDIT-{args.case}-{args.candidate}.json"
     if missing:
         output.write_text(json.dumps(dict(status="incomplete", missing=missing), indent=2))
         print(json.dumps(dict(status="incomplete", missing=len(missing))), flush=True)
         return
     receipts = {key: json.loads(path.read_text()) for key, path in paths.items()}
+    input_keys = ("input_sha256",) if args.model == "mace" else (
+        "input_positions_sha256", "topology_sha256", "input_manifest_sha256")
     signatures = {tuple(value[key] for key in (
-        "source", "checkpoint_sha256", "input_sha256", "gpu_uuid", "torch",
+        "source", "checkpoint_sha256", *input_keys, "gpu_uuid", "torch",
         "qualification_sha256", "cuda_graph", "tf32", "amp")) for value in receipts.values()}
     if len(signatures) != 1:
         raise RuntimeError("The native and candidate cohorts differ in inputs, source or GPU")
@@ -51,21 +55,23 @@ def main():
                                           allocated_reduction=median(allocated), reserved_reduction=median(reserved),
                                           speed_2x=median(speed) >= 2, allocated_10pct=median(allocated) >= .1)
         rows[boundary] = row
-    report = dict(status="complete", candidate=args.candidate, case=args.case, boundaries=rows,
+    report = dict(status="complete", model=args.model, candidate=args.candidate, case=args.case, boundaries=rows,
                   source=next(iter(receipts.values()))["source"], gpu_uuid=next(iter(receipts.values()))["gpu_uuid"],
-                  tf32=False, amp=False, cuda_graph=True)
+                  tf32=False, amp=False, cuda_graph=next(iter(receipts.values()))["cuda_graph"])
     output.write_text(json.dumps(report, indent=2))
-    lines = [f"# MACE {args.case} / {args.candidate} 五轮同卡整网配对", "",
-             "严格 FP32、同 Graph、同冻结 checkpoint 和输入，峰值显存包括 Graph 捕获与回放。",
+    base = "78231f3" if args.model == "mace" else "9787a3a"
+    graph_boundary = "包括 Graph 捕获与回放" if report["cuda_graph"] else "为预热后单次完整 E/F"
+    lines = [f"# {title} {args.case} / {args.candidate} 五轮同卡整网配对", "",
+             f"严格 FP32、同 Graph 设置、同冻结 checkpoint 和输入，峰值显存{graph_boundary}。",
              "每个阶段独立进程，每臂重新加载模型并清理前一臂分配，五轮交替。", "",
-             "| 边界 | 原生→78231f3→候选 ms | 候选对原生 / 对78231f3 | 候选 allocated / reserved MiB |",
+             f"| 边界 | 原生→{base}→候选 ms | 候选对原生 / 对{base} | 候选 allocated / reserved MiB |",
              "|---|---|---|---|"]
     for boundary, row in rows.items():
         candidate = row[args.candidate]
         lines.append(f"| {boundary} | {row['native']['wall_ms']:.4f}→{row['base']['wall_ms']:.4f}→{candidate['wall_ms']:.4f} | "
                      f"{row['vs_native']['speedup']:.4f}× / {row['vs_base']['speedup']:.4f}× | "
                      f"{candidate['peak_allocated']/2**20:.2f} / {candidate['peak_reserved']/2**20:.2f} |")
-    (directory / f"REPORT.mace-{args.case}-{args.candidate}.zh-CN.md").write_text("\n".join(lines) + "\n")
+    (directory / f"REPORT.{args.model}-{args.case}-{args.candidate}.zh-CN.md").write_text("\n".join(lines) + "\n")
     print(json.dumps(report), flush=True)
 
 
