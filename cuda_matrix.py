@@ -12,10 +12,11 @@ def _checked(status, action):
         raise RuntimeError(f"{action} returned CUDA status {status}")
 
 
-def prepare():
+def prepare(groups=1):
     device = torch.cuda.current_device()
-    if device in _MODULES:
-        return _MODULES[device]
+    key = (device, groups)
+    if key in _MODULES:
+        return _MODULES[key]
     torch.cuda.init()
     torch.cuda.set_device(device)
     context_anchor = torch.empty(1, device=torch.device("cuda", device))
@@ -35,7 +36,8 @@ def prepare():
              "nvrtcCreateProgram")
     major, minor = torch.cuda.get_device_capability()
     options = [f"--gpu-architecture=sm_{major}{minor}".encode(),
-               b"--std=c++17", b"--ftz=false", b"--prec-div=true", b"--prec-sqrt=true"]
+               b"--std=c++17", b"--ftz=false", b"--prec-div=true", b"--prec-sqrt=true",
+               f"-DK_GROUPS={groups}".encode()]
     option_array = (ctypes.c_char_p * len(options))(*options)
     compiler.nvrtcCompileProgram.argtypes = [
         ctypes.c_void_p, ctypes.c_int, ctypes.POINTER(ctypes.c_char_p),
@@ -78,12 +80,12 @@ def prepare():
         ctypes.c_uint, ctypes.c_uint, ctypes.c_uint, ctypes.c_uint,
         ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p,
     ]
-    _MODULES[device] = (driver, module, kernel, cubin)
-    return _MODULES[device]
+    _MODULES[key] = (driver, module, kernel, cubin)
+    return _MODULES[key]
 
 
-def compiled_matrix(left, right, bias, alpha, beta):
-    driver, _, kernel, _ = prepare()
+def compiled_matrix(left, right, bias, alpha, beta, groups=1):
+    driver, _, kernel, _ = prepare(groups)
     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
     batches = left.shape[0] if left.ndim == 3 else 1
     output = left.new_empty((*left.shape[:-1], columns))
