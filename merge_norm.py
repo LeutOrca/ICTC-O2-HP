@@ -2,6 +2,7 @@
 import torch
 import triton
 import triton.language as tl
+from triton.language.extra.cuda import libdevice
 
 
 @triton.jit
@@ -35,8 +36,9 @@ def _merge_forward(X, Weight, Bias, Degree, Balance, Y, Stats,
         result += tl.where(row[:, None] == 0, bias[None, :], 0.)
     tl.store(Y + (node * R + row[:, None]) * C + col[None, :], result,
              (row[:, None] < R) & (col[None, :] < C))
-    tl.store(Stats + node * 2, mean)
-    tl.store(Stats + node * 2 + 1, inverse)
+    tl.store(Stats + node * 3, mean)
+    tl.store(Stats + node * 3 + 1, inverse)
+    tl.store(Stats + node * 3 + 2, variance + EPS)
 
 
 @triton.jit
@@ -51,8 +53,9 @@ def _merge_backward(X, DY, Weight, Degree, Balance, Stats, DX,
     col = tl.arange(0, BC)
     mask = (row[:, None] < R) & (col[None, :] < C)
     x = tl.load(X + node * S0 + row[:, None] * S1 + col[None, :] * S2, mask, other=0.)
-    mean = tl.load(Stats + node * 2)
-    inverse = tl.load(Stats + node * 2 + 1)
+    mean = tl.load(Stats + node * 3)
+    inverse = tl.load(Stats + node * 3 + 1)
+    variance_with_epsilon = tl.load(Stats + node * 3 + 2)
     if CENTER:
         z = x - tl.where((row[:, None] == 0) & (col[None, :] < C), mean, 0.)
     else:
@@ -62,10 +65,11 @@ def _merge_backward(X, DY, Weight, Degree, Balance, Stats, DX,
     if AFFINE:
         degree = tl.load(Degree + row, row < R, other=0)
         coefficient = tl.load(Weight + degree[:, None] * C + col[None, :], mask, other=0.)
-    scaled = incoming * coefficient
-    projection = tl.sum(tl.sum(scaled * z, 1), 0)
+    projection = tl.sum(tl.sum((incoming * z) * coefficient, 1), 0)
     balance = tl.load(Balance + row, row < R, other=0.)
-    gradient = scaled * inverse - z * (balance[:, None] / C) * (inverse * inverse * inverse * projection)
+    variance_gradient = projection * (-0.5 * libdevice.pow(variance_with_epsilon, -1.5))
+    square_gradient = (variance_gradient * balance[:, None]) / C
+    gradient = incoming * (inverse * coefficient) + square_gradient * (2. * z)
     if CENTER:
         scalar_sum = tl.sum(tl.sum(tl.where(row[:, None] == 0, gradient, 0.), 0), 0) / C
         gradient -= tl.where((row[:, None] == 0) & (col[None, :] < C), scalar_sum, 0.)
@@ -77,7 +81,7 @@ class _MergeNorm(torch.autograd.Function):
     def forward(ctx, inputs, weight, bias, degree, balance, epsilon, centering, affine):
         nodes, rows, channels = inputs.shape
         result = torch.empty_like(inputs, memory_format=torch.contiguous_format)
-        stats = inputs.new_empty((nodes, 2))
+        stats = inputs.new_empty((nodes, 3))
         br, bc = triton.next_power_of_2(rows), triton.next_power_of_2(channels)
         if nodes:
             _merge_forward[(nodes,)](

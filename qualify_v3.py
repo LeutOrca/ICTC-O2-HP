@@ -19,6 +19,7 @@ def main():
     parser.add_argument("--suite", default="mptrj-b1")
     parser.add_argument("--kernel", choices=("triton", "cuda"), default="triton")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--without-norm", action="store_true")
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -37,7 +38,7 @@ def main():
             references[(seed, boundary)] = model.forward(data, boundary == "fixed")
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
-    installed = install(model.model, args.kernel)
+    installed = install(model.model, args.kernel, use_norm=not args.without_norm)
     records = []
     for seed in native.SEEDS:
         for boundary, data in (("fixed", fixed), ("e2e", raw)):
