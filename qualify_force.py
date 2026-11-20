@@ -25,6 +25,7 @@ MODES = {
     "packed-both-graph": (False, False, (0, 1)),
     "frozen-1b65a8c-graph": (True, True, (0, 1)),
     "receiver-csr-graph": (False, False, ()),
+    "native-graph-tiled": (False, False, ()),
 }
 
 
@@ -32,6 +33,7 @@ def setup(mode):
     scalar, uvu, pack = MODES[mode]
     model = bench.model_for("native", "cuda")
     model._receiver_csr = mode == "receiver-csr-graph"
+    model._scatter_tile_width = 128 if mode == "native-graph-tiled" else None
     model._benchmark_elements = model.atomic_numbers.cpu().numpy()
     model.r_max_cpu = float(model.r_max)
     if scalar:
@@ -74,7 +76,7 @@ def evaluate(model, inputs):
 
 
 def graph_evaluate(model, inputs):
-    with native_capture_compat():
+    with native_capture_compat(model._scatter_tile_width):
         if model._receiver_csr:
             from receiver_csr import use_receiver_csr
             with use_receiver_csr(inputs):
@@ -92,6 +94,7 @@ def cpu(result):
 
 def collect(point, mode, reference):
     print(f"start {point} {mode}", flush=True)
+    torch.cuda.reset_peak_memory_stats()
     model = setup(mode)
     geometry = bench.load_geometry(bench.CASES[point])
     fixed = inputs_for(geometry, model)
@@ -124,17 +127,19 @@ def collect(point, mode, reference):
         ]
     passed = all(item["passed"] for group in numerics.values()
                  for key in ("reference", "repeat") for item in group[key].values())
-    if mode == "native-graph":
+    if mode in ("native-graph", "native-graph-tiled"):
         passed &= all(all(group["reference_exact"].values()) for group in numerics.values())
     receipt = dict(case=point, backend=mode, atoms=fixed["positions"].shape[0],
                    edges=fixed["edge_index"].shape[1], numerics=numerics,
                    per_structure_force=case_errors, passed=passed,
+                   qualification_peak_allocated=torch.cuda.max_memory_allocated(),
+                   qualification_peak_reserved=torch.cuda.max_memory_reserved(),
                    deterministic=torch.are_deterministic_algorithms_enabled())
     bench.write(bench.ROOT / "receipts" / f"{point}-{mode}.json", receipt)
     print(point, mode, passed, {name: (data["reference"]["forces"]["relative_l2"],
                                      data["repeat"]["forces"]["relative_l2"])
                                for name, data in numerics.items()}, flush=True)
-    if mode == "native-graph" and not passed:
+    if mode in ("native-graph", "native-graph-tiled") and not passed:
         raise RuntimeError("Capture-compatible native graph differs from original native eager")
     return reference
 

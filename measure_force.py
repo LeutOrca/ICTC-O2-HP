@@ -51,7 +51,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=("trace", "time", "memory"))
     parser.add_argument("--variant", choices=tuple(MODES)[1:], default="receiver-csr-graph")
-    parser.add_argument("--case", choices=CASES, action="append")
+    parser.add_argument("--case", choices=tuple(bench.CASES), action="append")
+    parser.add_argument("--baseline", choices=(BASE, "native-graph-tiled"), default=BASE)
     parser.add_argument("--qualification", type=Path, default=bench.ROOT)
     parser.add_argument("--wait-for", type=Path)
     parser.add_argument("--rounds", type=int, default=5)
@@ -63,7 +64,7 @@ def main():
             time.sleep(0.5)
     cases = args.case or CASES
     if not all(passed(args.qualification, case, backend) for case in cases
-               for backend in (BASE, args.variant)):
+               for backend in (args.baseline, args.variant)):
         raise SystemExit("The requested paired cases did not pass strict FP32")
     bench.configure = configure
     bench.model_for = model_for
@@ -71,7 +72,7 @@ def main():
     bench.evaluate = evaluate
     cleanup()
     for repeat in range(1, (1 if args.stage == "trace" else args.rounds) + 1):
-        order = (BASE, args.variant) if repeat % 2 else (args.variant, BASE)
+        order = (args.baseline, args.variant) if repeat % 2 else (args.variant, args.baseline)
         for case in cases:
             for boundary in ("fixed", "e2e"):
                 for backend in order:
