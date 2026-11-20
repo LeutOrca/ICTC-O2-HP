@@ -398,15 +398,15 @@
         "passed": true
       },
       "radial_vjp": {
-        "max_abs": 1.9073486328125e-06,
-        "relative_l2": 5.5402902790079324e-08,
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
         "violations": 0,
         "passed": true
       }
     },
-    "source": "ccb09db14e7ffb8acc41ba36ad26554b1bcfe31d",
+    "source": "8c2d4d355a33552b5e7b272630e5fe884f4838d7",
     "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
-    "passed": false,
+    "passed": true,
     "numerics": {
       "fixed": {
         "energy": {
@@ -422,9 +422,9 @@
           "rms_reference": 56.27746282662224
         },
         "forces": {
-          "passed": false,
-          "max_abs": 1.2785196304321289e-05,
-          "relative_l2": 4.0413640379231746e-05,
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.807074813885336e-07,
           "rms_reference": 0.055527876396390806
         }
       },
@@ -442,9 +442,9 @@
           "rms_reference": 56.27746282662224
         },
         "forces": {
-          "passed": false,
-          "max_abs": 1.2785196304321289e-05,
-          "relative_l2": 4.0413640379231746e-05,
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.807074813885336e-07,
           "rms_reference": 0.055527876396390806
         }
       },
@@ -462,12 +462,1229 @@
           "rms_reference": 56.27743477017938
         },
         "forces": {
-          "passed": false,
-          "max_abs": 1.2785196304321289e-05,
-          "relative_l2": 4.046622233132504e-05,
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.748709963591926e-07,
           "rms_reference": 0.055626183729480284
         }
       }
+    },
+    "capture": {
+      "fixed": {
+        "energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 73.33800228932893
+        },
+        "interaction_energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 56.27746282662224
+        },
+        "forces": {
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.807074813885336e-07,
+          "rms_reference": 0.055527876396390806
+        }
+      },
+      "e2e": {
+        "energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 73.33800228932893
+        },
+        "interaction_energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 56.27746282662224
+        },
+        "forces": {
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.807074813885336e-07,
+          "rms_reference": 0.055527876396390806
+        }
+      },
+      "perturbed": {
+        "energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 73.3379759477345
+        },
+        "interaction_energy": {
+          "passed": true,
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "rms_reference": 56.27743477017938
+        },
+        "forces": {
+          "passed": true,
+          "max_abs": 2.682209014892578e-07,
+          "relative_l2": 5.748709963591926e-07,
+          "rms_reference": 0.055626183729480284
+        }
+      }
+    },
+    "cuda_graph": true
+  },
+  "mace_qualifications": {
+    "cohorts/8c2d4d3/results/mace-scalar-b8.json": {
+      "case": "b8",
+      "primitive": {
+        "forward": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        },
+        "harmonics_vjp": {
+          "max_abs": 1.52587890625e-05,
+          "relative_l2": 1.6581163526627802e-07,
+          "violations": 0,
+          "passed": true
+        },
+        "radial_vjp": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        }
+      },
+      "source": "8c2d4d355a33552b5e7b272630e5fe884f4838d7",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/8c2d4d3/results/mace-scalar-600.json": {
+      "case": "n512",
+      "primitive": {
+        "forward": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        },
+        "harmonics_vjp": {
+          "max_abs": 1.1444091796875e-05,
+          "relative_l2": 1.7118094702092637e-07,
+          "violations": 0,
+          "passed": true
+        },
+        "radial_vjp": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        }
+      },
+      "source": "8c2d4d355a33552b5e7b272630e5fe884f4838d7",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/3924ed2/results/mace-receiver-b8.json": {
+      "case": "b8",
+      "source": "3924ed232c3ec46e274c82bb11ed9d0851404a3f",
+      "primitive": {
+        "forward": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        },
+        "harmonics_vjp": {
+          "max_abs": 1.52587890625e-05,
+          "relative_l2": 1.6825785106113094e-07,
+          "violations": 0,
+          "passed": true
+        },
+        "radial_vjp": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        }
+      },
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.807074813885336e-07,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 2.682209014892578e-07,
+            "relative_l2": 5.748709963591926e-07,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/3924ed2/results/mace-receiver-600.json": {
+      "case": "n512",
+      "source": "3924ed232c3ec46e274c82bb11ed9d0851404a3f",
+      "primitive": {
+        "forward": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        },
+        "harmonics_vjp": {
+          "max_abs": 1.1444091796875e-05,
+          "relative_l2": 1.717319815048848e-07,
+          "violations": 0,
+          "passed": true
+        },
+        "radial_vjp": {
+          "max_abs": 0.0,
+          "relative_l2": 0.0,
+          "violations": 0,
+          "passed": true
+        }
+      },
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.8673322200775146e-08,
+            "relative_l2": 2.560170883134609e-07,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 5.960464477539063e-08,
+            "relative_l2": 2.715910502908683e-07,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/b0d0c01/results/mace-projection-b8.json": {
+      "case": "b8",
+      "primitive": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
+        "violations": 0,
+        "passed": true
+      },
+      "changed": [
+        {
+          "interaction": 0,
+          "projections": 3
+        }
+      ],
+      "source": "b0d0c0151453da954856ae2e896e3e3f3106a1be",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.33800228932893
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27746282662224
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055527876396390806
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 73.3379759477345
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 56.27743477017938
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.055626183729480284
+          }
+        }
+      },
+      "cuda_graph": true
+    },
+    "cohorts/b0d0c01/results/mace-projection-600.json": {
+      "case": "n512",
+      "primitive": {
+        "max_abs": 0.0,
+        "relative_l2": 0.0,
+        "violations": 0,
+        "passed": true
+      },
+      "changed": [
+        {
+          "interaction": 0,
+          "projections": 3
+        }
+      ],
+      "source": "b0d0c0151453da954856ae2e896e3e3f3106a1be",
+      "base": "78231f3482fc9999857cc29e1cf5c220e73aa435",
+      "passed": true,
+      "numerics": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "capture": {
+        "fixed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "e2e": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.2919921875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.5107421875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.03874137230839787
+          }
+        },
+        "perturbed": {
+          "energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2185.291748046875
+          },
+          "interaction_energy": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 2055.510498046875
+          },
+          "forces": {
+            "passed": true,
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "rms_reference": 0.038769718700008005
+          }
+        }
+      },
+      "cuda_graph": true
+    }
+  },
+  "mace_pairs": {
+    "cohorts/d3ddb6f/results/MACE_PAIR_AUDIT-b8-scalar.json": {
+      "status": "complete",
+      "candidate": "scalar",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 21.59559540450573,
+            "atoms_s": 3148.7902383007417,
+            "structures_s": 370.44591038832255,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 9.266018867492676,
+            "atoms_s": 7338.642514376874,
+            "structures_s": 863.3697075737498,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "scalar": {
+            "wall_ms": 19.603299908339977,
+            "atoms_s": 3468.8037380415863,
+            "structures_s": 408.0945574166572,
+            "peak_allocated": 389679104,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 1.1015719096320478,
+            "paired_speedups": [
+              1.10113021921641,
+              1.1014640043786186,
+              1.1016306185938702,
+              1.1015719096320478,
+              1.102131679808515
+            ],
+            "allocated_reduction": 0.704930477074784,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.47267133699678515,
+            "paired_speedups": [
+              0.4725565922963282,
+              0.47267133699678515,
+              0.4726941567398137,
+              0.47261994581738287,
+              0.472789924869189
+            ],
+            "allocated_reduction": 0.000924131919831539,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 23.347453214228153,
+            "atoms_s": 2912.523236519869,
+            "structures_s": 342.6497925317493,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 10.928631760179996,
+            "atoms_s": 6222.187872389254,
+            "structures_s": 732.0221026340299,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "scalar": {
+            "wall_ms": 21.34752832353115,
+            "atoms_s": 3185.380479155722,
+            "structures_s": 374.7506446065555,
+            "peak_allocated": 389679104,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 1.0938891491319431,
+            "paired_speedups": [
+              1.0924418499739927,
+              1.0938891491319431,
+              1.094328203965721,
+              1.0940961150020947,
+              1.0936332344376238
+            ],
+            "allocated_reduction": 0.704930477074784,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.5120090690487606,
+            "paired_speedups": [
+              0.5122473803165607,
+              0.511624478806604,
+              0.5150194570794687,
+              0.5115219523306055,
+              0.5120090690487606
+            ],
+            "allocated_reduction": 0.000924131919831539,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "d3ddb6fdf221109a7a44d1f4215b5dfb5cb687a1",
+      "gpu_uuid": "2111e3ca-aefb-2b81-0b3b-95cc162136d8",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "cohorts/152c619/measurements/114664-projection-b8/results/MACE_PAIR_AUDIT-b8-projection.json": {
+      "status": "complete",
+      "candidate": "projection",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 21.634431555867195,
+            "atoms_s": 3143.137818269073,
+            "structures_s": 369.7809197963615,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 9.272751398384571,
+            "atoms_s": 7333.314253614784,
+            "structures_s": 862.7428533664453,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "projection": {
+            "wall_ms": 9.199992753565311,
+            "atoms_s": 7391.310169635479,
+            "structures_s": 869.5659023100563,
+            "peak_allocated": 390350848,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.3510231447002083,
+            "paired_speedups": [
+              2.3534987709569832,
+              2.3506568470713267,
+              2.350968145971419,
+              2.3510231447002083,
+              2.3530184168542023
+            ],
+            "allocated_reduction": 0.7044218247514408,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0079715023295335,
+            "paired_speedups": [
+              1.0081999984408532,
+              1.0067756341046288,
+              1.0079715023295335,
+              1.0079085545791395,
+              1.0085692119616325
+            ],
+            "allocated_reduction": -0.0007981139307635665,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 23.35738856345415,
+            "atoms_s": 2911.284359348089,
+            "structures_s": 342.50404227624574,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 10.913369245827198,
+            "atoms_s": 6230.889697606472,
+            "structures_s": 733.045846777232,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "projection": {
+            "wall_ms": 10.82532200962305,
+            "atoms_s": 6281.568339450055,
+            "structures_s": 739.0080399353006,
+            "peak_allocated": 390350848,
+            "peak_reserved": 547356672
+          },
+          "vs_native": {
+            "speedup": 2.1512613862089727,
+            "paired_speedups": [
+              2.1580246486535604,
+              2.145651619900985,
+              2.164209627956365,
+              2.1396042361267735,
+              2.1512613862089727
+            ],
+            "allocated_reduction": 0.7044218247514408,
+            "reserved_reduction": 0.6704545454545454,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0058204399114268,
+            "paired_speedups": [
+              1.0152980872163666,
+              1.0058204399114268,
+              1.0060122409856862,
+              1.0007243592661408,
+              1.0052495779922246
+            ],
+            "allocated_reduction": -0.0007981139307635665,
+            "reserved_reduction": -0.05241935483870974,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "152c6196f1d58e4faf6a724f3485b46ef3286347",
+      "gpu_uuid": "5dce2724-2ce2-55ed-a1e1-c1783fbee235",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
+    },
+    "cohorts/152c619/measurements/114665-receiver-b8/results/MACE_PAIR_AUDIT-b8-receiver.json": {
+      "status": "complete",
+      "candidate": "receiver",
+      "case": "b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 21.61198388785124,
+            "atoms_s": 3146.402493767585,
+            "structures_s": 370.1649992667747,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 9.275885298848152,
+            "atoms_s": 7330.836659703415,
+            "structures_s": 862.4513717298136,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "receiver": {
+            "wall_ms": 8.941922336816788,
+            "atoms_s": 7604.628785470659,
+            "structures_s": 894.6622100553716,
+            "peak_allocated": 388549632,
+            "peak_reserved": 520093696
+          },
+          "vs_native": {
+            "speedup": 2.416907517009502,
+            "paired_speedups": [
+              2.4171471566600333,
+              2.4153480959135782,
+              2.4169847133455455,
+              2.416907517009502,
+              2.416421964052294
+            ],
+            "allocated_reduction": 0.7057857263318685,
+            "reserved_reduction": 0.6868686868686869,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.036971606229107,
+            "paired_speedups": [
+              1.037718798689424,
+              1.0366327187063284,
+              1.0380905075929174,
+              1.0365744655101268,
+              1.036971606229107
+            ],
+            "allocated_reduction": 0.0038199202936218812,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 23.303261026740074,
+            "atoms_s": 2918.046530997152,
+            "structures_s": 343.29959188201786,
+            "peak_allocated": 1320634880,
+            "peak_reserved": 1660944384
+          },
+          "base": {
+            "wall_ms": 10.900883004069328,
+            "atoms_s": 6238.02677036488,
+            "structures_s": 733.8855023958682,
+            "peak_allocated": 390039552,
+            "peak_reserved": 520093696
+          },
+          "receiver": {
+            "wall_ms": 10.582121089100838,
+            "atoms_s": 6425.93289449667,
+            "structures_s": 755.9921052349024,
+            "peak_allocated": 388549632,
+            "peak_reserved": 520093696
+          },
+          "vs_native": {
+            "speedup": 2.2040727778635376,
+            "paired_speedups": [
+              2.1972982955488476,
+              2.2080784272652423,
+              2.2040727778635376,
+              2.193703325905248,
+              2.206266946277951
+            ],
+            "allocated_reduction": 0.7057857263318685,
+            "reserved_reduction": 0.6868686868686869,
+            "speed_2x": true,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.029374781013705,
+            "paired_speedups": [
+              1.0256499288077658,
+              1.0384034663323318,
+              1.028940108599665,
+              1.029374781013705,
+              1.0345971674993868
+            ],
+            "allocated_reduction": 0.0038199202936218812,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "152c6196f1d58e4faf6a724f3485b46ef3286347",
+      "gpu_uuid": "2111e3ca-aefb-2b81-0b3b-95cc162136d8",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": true
     }
   }
 }

@@ -24,6 +24,7 @@ def main():
     parser.add_argument("--split-complex", action="store_true")
     parser.add_argument("--registry", action="store_true")
     parser.add_argument("--local-only", action="store_true")
+    parser.add_argument("--start-block", type=int, choices=range(7), default=0)
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -43,7 +44,7 @@ def main():
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
     installed = install(model.model, args.kernel, use_norm=not args.without_norm,
-                        split_complex=args.split_complex)
+                        split_complex=args.split_complex, start_block=args.start_block)
     if args.registry:
         from kernel_registry import install as register
         registered_calls = register(args.kernel)
@@ -65,6 +66,7 @@ def main():
                           records=records, passed=passed, split_complex=args.split_complex,
                           registry=args.registry,
                           local_only=args.local_only,
+                          start_block=args.start_block, kernel=args.kernel,
                           tf32=False, amp=False, cuda_graph=False)
             args.output.write_text(json.dumps(report, indent=2))
             print(json.dumps(record), flush=True)

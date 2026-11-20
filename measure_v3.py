@@ -46,7 +46,10 @@ def main():
     if args.role == "own":
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)
-        installed = install(net.model)
+        installed = install(net.model, qualification.get("kernel", "triton"),
+                            use_norm=bool(qualification["installed"]["norm"]),
+                            split_complex=qualification.get("split_complex", False),
+                            start_block=qualification.get("start_block", 0))
         if args.registry:
             from kernel_registry import install as register
             registered_calls = register()
@@ -55,7 +58,8 @@ def main():
 
     def call():
         torch.manual_seed(native.SEEDS[0])
-        with mode if args.role == "own" and not args.registry else nullcontext():
+        with mode if (args.role == "own" and not args.registry
+                      and not qualification.get("local_only", False)) else nullcontext():
             return net.forward(batch, args.boundary == "fixed")
 
     for _ in range(5):
@@ -66,6 +70,7 @@ def main():
                   boundary=args.boundary, repeat=args.repeat, cuda_graph=False,
                   tf32=False, amp=False, dtype="torch.float32", seed=native.SEEDS[0],
                   registry=args.registry,
+                  local_only=qualification.get("local_only", False),
                   checkpoint_sha256=native.CHECKPOINT_SHA,
                   qualification_sha256=native.sha(args.qualification),
                   qualification_path=str(args.qualification),
@@ -123,7 +128,7 @@ def main():
                       matrix_calls=dict(registered_calls if args.role == "own" and args.registry else mode.calls),
                       top_device_operators=[dict(name=event.key, us=event.self_device_time_total,
                                                  count=event.count) for event in hot[:40]])
-        if args.role == "own" and forbidden:
+        if args.role == "own" and forbidden and not qualification.get("local_only", False):
             raise RuntimeError(dict(unexpected_library_matrix=forbidden))
         del value
     native.strict(torch)

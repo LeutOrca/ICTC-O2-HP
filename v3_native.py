@@ -6,11 +6,13 @@ from merge_norm import merge_norm
 from so2_layer import frozen_layer
 
 
-def install(model, backend="triton", use_norm=True, split_complex=False):
+def install(model, backend="triton", use_norm=True, split_complex=False, start_block=0):
     model.requires_grad_(False)
     installed = dict(so2=[], norm=[])
     for name, module in model.named_modules():
         if module.__class__.__name__ == "SO2Linear":
+            if start_block and (not name.startswith("blocks.") or int(name.split(".")[1]) < start_block):
+                continue
             module._own_split_complex = split_complex
             caches = tuple(FrozenWeightCache() for _ in module.so2_m_linear)
 
