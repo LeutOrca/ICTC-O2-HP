@@ -72,6 +72,11 @@ def main():
         try:
             q = qualified[record["qualification_sha256"]]
             assert q.get("passed"), "qualification failed"
+            if "component_qualifications" in q:
+                components = [qualified[sha] for sha in q["component_qualifications"]]
+                assert all(all(c.get(k)==q.get(k) for k in IDENTITY) for c in components), "merged gate identities differ"
+                for metric,roles in q["accepted_by_metric"].items():
+                    assert set(roles)=={role for c in components for role in c["accepted_by_metric"][metric]}, "merged acceptance changed"
             assert all(q.get(k) == record.get(k) for k in IDENTITY), "qualification identity mismatch"
             assert record["dtype"] == "float32" and not any(record[k] for k in ("cuda_graph", "tf32", "amp"))
             assert "H100" in record["gpu"]
