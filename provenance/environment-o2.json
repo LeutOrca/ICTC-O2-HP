@@ -1,0 +1,47 @@
+{
+  "python": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python",
+  "job": "115277",
+  "packages": {
+    "torch": {
+      "version": "2.7.1+cu128",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "triton": {
+      "version": "3.3.1",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "e3nn": {
+      "version": "0.5.6",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "mace-torch": {
+      "version": "0.3.16",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "cuequivariance": {
+      "version": "0.10.0",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "cuequivariance-torch": {
+      "version": "0.8.1",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "cuequivariance-ops-torch-cu12": {
+      "version": "0.8.1",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "openequivariance": null,
+    "matplotlib": {
+      "version": "3.10.9",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "numpy": {
+      "version": "2.4.4",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    },
+    "matscipy": {
+      "version": "1.2.0",
+      "path": "/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages"
+    }
+  }
+}

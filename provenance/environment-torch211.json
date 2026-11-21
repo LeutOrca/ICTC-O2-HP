@@ -1,0 +1,38 @@
+{
+  "python": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1/../o2-hpx-opt-20261117-r1/environments/torch211-cu128/bin/python",
+  "job": "115277",
+  "packages": {
+    "torch": {
+      "version": "2.11.0+cu128",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "triton": {
+      "version": "3.6.0",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "e3nn": {
+      "version": "0.5.6",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "mace-torch": null,
+    "cuequivariance": {
+      "version": "0.13.0",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "cuequivariance-torch": {
+      "version": "0.13.0",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "cuequivariance-ops-torch-cu12": {
+      "version": "0.13.0",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "openequivariance": null,
+    "matplotlib": null,
+    "numpy": {
+      "version": "2.4.4",
+      "path": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/environments/torch211-cu128/lib/python3.11/site-packages"
+    },
+    "matscipy": null
+  }
+}

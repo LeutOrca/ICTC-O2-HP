@@ -1,0 +1,23 @@
+{
+  "python": "/public/home/sps-xia/bjxiao/.local/share/uv/tools/tavotto/bin/python3",
+  "job": "115277",
+  "packages": {
+    "torch": null,
+    "triton": null,
+    "e3nn": null,
+    "mace-torch": null,
+    "cuequivariance": null,
+    "cuequivariance-torch": null,
+    "cuequivariance-ops-torch-cu12": null,
+    "openequivariance": null,
+    "matplotlib": {
+      "version": "3.11.2",
+      "path": "/public/home/sps-xia/bjxiao/.local/share/uv/tools/tavotto/lib/python3.11/site-packages"
+    },
+    "numpy": {
+      "version": "2.4.6",
+      "path": "/public/home/sps-xia/bjxiao/.local/share/uv/tools/tavotto/lib/python3.11/site-packages"
+    },
+    "matscipy": null
+  }
+}
