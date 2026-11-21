@@ -2,6 +2,7 @@
 import argparse
 import gc
 import hashlib
+import importlib.metadata
 import json
 import os
 from pathlib import Path
@@ -65,6 +66,10 @@ def setup(role):
                                     backend="cuda", stream_radial=True)
         coverage = "current EquivariantX O2 MACE converter, streamed radial"
     elif role == "cue-current":
+        versions = {name: importlib.metadata.version(name) for name in
+                    ("cuequivariance", "cuequivariance-torch", "cuequivariance-ops-torch-cu12")}
+        if any(version != "0.13.0" for version in versions.values()):
+            raise RuntimeError(f"Current cuEquivariance 0.13.0 unavailable: {versions}")
         from mace.cli.convert_e3nn_cueq import run
         elements, cutoff = model._benchmark_elements, model.r_max_cpu
         model = run(model, device="cuda", return_model=True)
@@ -116,6 +121,8 @@ def main():
             digest.update(name.encode())
             digest.update(value.detach().contiguous().cpu().numpy().tobytes())
         record["input_sha256"] = digest.hexdigest()
+        if a.stage in ("time", "memory", "trace") and record["input_sha256"] != qualification["input_sha256"]:
+            raise RuntimeError("Measurement inputs differ from qualified inputs")
         changed = dict(fixed, positions=fixed["positions"].detach().clone())
         changed["positions"][0, 0] += 0.005
         if a.stage == "build":
