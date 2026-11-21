@@ -60,6 +60,19 @@ def main():
         orders = ",".join(str(n) for n in sorted(int(r["order"]) for r in values))
         vals = [float(r["speedup"]) for r in values]
         text.append(f"| {family}/{rows}/{parity}/{metric} | {candidate}/{baseline} | {orders} | {min(vals):.3f}–{max(vals):.3f}× |")
+    text.extend(["", "## 同卡峰值显存配对", "",
+        "下表只使用显存阶段双方 GPU UUID/cohort 相同的记录，数值为候选/基线比，小于1表示降低。缺失或不同卡记录不相除。",
+        "", "| 算子 / 行数 / 宇称 / 边界 | 候选 / 基线 | 已配对角阶 | allocated 比范围 | reserved 比范围 |",
+        "|---|---|---|---:|---:|"])
+    for key, values in sorted(groups.items()):
+        paired=[r for r in values if r.get("memory_status")=="paired"]
+        if not paired:
+            continue
+        family,rows,parity,metric,candidate,baseline=key
+        orders=",".join(str(n) for n in sorted(int(r["order"]) for r in paired))
+        allocated=[float(r["allocated_ratio"]) for r in paired]
+        reserved=[float(r["reserved_ratio"]) for r in paired]
+        text.append(f"| {family}/{rows}/{parity}/{metric} | {candidate}/{baseline} | {orders} | {min(allocated):.3f}–{max(allocated):.3f} | {min(reserved):.3f}–{max(reserved):.3f} |")
     text.extend(["", "![同方程 TP 对照](../../figures/o2-hp-angular-operators-20261121-r1/O2_TP_same_equation_speedup.png)",
         "", "![同方程 SO2 与 Radial 对照](../../figures/o2-hp-angular-operators-20261121-r1/SO2_Radial_same_equation_speedup.png)",
         "", "## 测量和失败记录", "",
