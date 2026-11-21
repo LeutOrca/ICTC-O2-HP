@@ -22,7 +22,8 @@ def main():
         "", "## 读取图表", "",
         "横轴为角向截断 1–8，固定 C64。节点 TP 固定 N4096，边 TP、UVU/RadialUVU、SO2Linear 固定 E16384。"
         "原子/s 是逐节点特征算子的行吞吐，不含邻居构建或整网 E/F；边/s 是逐边算子的行吞吐。"
-        "O2 的角阶是 Mmax，SO2Linear 是 Lmax=Mmax，ICTP 是 Lmax。不同方程和存储宽度只列绝对值，不计算跨方程加速。",
+        "O2 的角阶是 Mmax，SO2Linear 是 Lmax=Mmax，ICTP 是 Lmax。每个角阶使用可复现的随机特征和固定随机权重，各实现共享同一逻辑输入/权重；不同角阶权重形状不同。"
+        "这些是独立算子图，不是官方 checkpoint 整网 E/F 的速度图。不同方程和存储宽度只列绝对值，不计算跨方程加速。",
         "", "![节点 TP 吞吐](../../figures/o2-hp-angular-operators-20261121-r1/O2_TP_atoms.png)",
         "", "![边 TP 吞吐](../../figures/o2-hp-angular-operators-20261121-r1/O2_TP_edges.png)",
         "", "![UVU 与径向融合 canonical](../../figures/o2-hp-angular-operators-20261121-r1/O2_UVU_Radial_canonical.png)",
@@ -44,7 +45,7 @@ def main():
         "", "O2 同时测试 canonical 和 full parity，整数角阶，无半整数编译。"
         "所有推理、输入反向、数值参考和误差统计均 FP32，TF32/AMP/CUDA Graph 关闭。上游离线 CG 系数构造保留在计时外。"
         "逐分量同时满足 `1e-5+1e-4|ref|` 与 `2e-5+2e-5|ref|`，relative L2≤1e-5，门槛未放宽。"
-        "全负载、两种子×两尺度验证，独立行参考按 512 行流式计算，高阶补测可用 4096 行减少重复启动；逐行方程及误差门槛保持，实际分块写入资格收据。冻结所有共享参数，forward+VJP 包含所有位置相关输入，"
+        "全负载、两种子×两尺度验证，独立行参考按 512 行流式计算，补测可用 4096 行减少重复启动，但误差仍按原 512 行窗口逐窗统计；改变统计窗口的5992a12试测已被替代并排除。实际分块和检查窗口写入资格收据。冻结所有共享参数，forward+VJP 包含所有位置相关输入，"
         "UVU 包含外部逐边权重，RadialUVU 包含径向隐藏输入；不包含参数梯度或二阶训练。",
         "", "## 同方程配对加速", "",
         "以下范围仅描述已完成的角阶点，不是对未测阶数的预测，也不是整网加速。加速=同卡基线 wall ms / 候选 wall ms。",
@@ -65,6 +66,8 @@ def main():
         "GBU2 NV_H100 / NVIDIA H100 80GB，PyTorch2.11.0+cu128、Triton3.6.0。各配置的对照臂按顺序轮换/反转，"
         "每边界预热30次、同步墙钟测30次，CUDA event 作为辅助列。构建、数值资格、计时和峰值显存使用分离进程。"
         "没有把编译、源封印或独立参考验证时间计入稳态吞吐。每个比值核对 GPU UUID、输入/权重/资格 SHA、运行时和边界一致。",
+        "后续部分测量通过只预载 CPU 代码的 forkserver 减少重复导入。四阶段短测确认不同 PID、相同 GPU 和四臂 FP32 均通过；"
+        "每个计时/显存子进程仍从未初始化 CUDA 的状态开始，CUDA 上下文和分配器独立。CSV 明列 process_mode，不能将准备开销减少冒充算子加速。",
         "", "allocated/reserved 峰值均来自新进程；独立显存批次在自己的同卡 GPU 上重新过 FP32 门，CSV 分别记录计时卡和显存卡 UUID。"
         "早期 TP/UVU/Radial 显存准备误留一份未用的原布局 cotangent，旧显存记录已被修正批次替代；这些计时不受影响。"
         f"当前 {summary['memory_missing_points']} 个合格计时点尚无匹配的修正显存。",
