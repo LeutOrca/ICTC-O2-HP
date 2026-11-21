@@ -30,8 +30,8 @@ mkdir -p build-tools
 ninja_wheels=(build-wheels/ninja-1.13.0-*.whl)
 test "${#ninja_wheels[@]}" = 1
 "$py" -S -m zipfile -e "${ninja_wheels[0]}" build-tools
-export PATH="$PWD/build-tools/ninja/data/bin:$PATH"
-chmod u+x build-tools/ninja/data/bin/ninja
+export PATH="$PWD/build-tools/ninja-1.13.0.data/scripts:$PATH"
+chmod u+x build-tools/ninja-1.13.0.data/scripts/ninja
 export PATH="$runtime_root/ninja/data/bin:$PATH"
 export LD_LIBRARY_PATH="$runtime_root/nvidia/cuda_cupti/lib:$LD_LIBRARY_PATH"
 export TORCH_EXTENSIONS_DIR="$PWD/cache/extensions-211" TRITON_CACHE_DIR="$PWD/cache/triton-211"

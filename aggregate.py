@@ -28,6 +28,8 @@ def main():
                              ("stage", "role", "case", "status", "passed", "torch", "error", "receipt")})
         receipts.append(row)
     timings = [r for r in receipts if r.get("stage") == "time" and r.get("passed")]
+    qualifications = {hashlib.sha256((ROOT / row["receipt"]).read_bytes()).hexdigest(): row
+                      for row in receipts if row.get("stage") == "qualify" and row.get("passed")}
     groups = {}
     for row in timings:
         key = row["torch"], row["case"], row["role"], row["boundary"]
@@ -50,6 +52,11 @@ def main():
         ratios = [reference[r["repeat"]]["wall_ms"] / r["wall_ms"] for r in rows]
         atom_rates = [r["atoms_s"] for r in rows]
         one = rows[0]
+        for row in rows:
+            q = qualifications.get(row["qualification_sha256"])
+            if q is None or (q["role"], q["case"], q["torch"], q["input_sha256"]) != (
+                    role, case, runtime, row["input_sha256"]):
+                raise RuntimeError("A timing lacks its exact accepted qualification receipt")
         memory = [r for r in receipts if r.get("stage") == "memory" and r.get("passed")
                   and (r.get("torch"), r.get("case"), r.get("role"), r.get("boundary"))
                   == (runtime, case, role, boundary)]
