@@ -13,6 +13,7 @@ from so2_layer import assemble, zero_order_weight
 # Shape-only schedules, frozen independently of the input values or seed.
 # Tuple entries are m0/m1/m2 input adjoints for the second SO2 family.
 PROFILES = {
+    "fused-block": ("t:-4x1b", "t:-8x1b", "t:-4x1b"),
     "native-block": ("t:-4x1a", "t:-8x1a", "t:-4x1a"),
     "native-block-chain": ("triton", "triton", "triton"),
     "native-block-tree": ("t:-4x1b", "t:-8x1b", "t:-4x1b"),
@@ -28,6 +29,8 @@ def schedule(configuration, first, order, adjoint):
         return configuration
     if adjoint:
         return "t:-2x1l" if first else PROFILES[configuration][order]
+    if configuration == "fused-block":
+        return "fused-block" if first else "triton"
     if configuration.startswith("native-block"):
         return "t:16x1l@256" if first else "triton"
     return ("t:32x1a" if order == 1 else "t:32x1b") if first else "triton"
@@ -120,7 +123,11 @@ class _Ordered(torch.autograd.Function):
                     value, packed, edges, width, *value.stride(), 256)
             current_forward = ("8x1b" if first_mixer else "triton") if forward_config == "calibrated" else forward_config
             current_forward = schedule(current_forward, first_mixer, layer.m, False)
-            products = product(packed, layer.fc.weight.t(), current_forward)
+            if current_forward == "fused-block":
+                from fused_block import fused
+                products = fused(packed, layer.fc)
+            else:
+                products = product(packed, layer.fc.weight.t(), current_forward)
             if edges:
                 _complex_output[(triton.cdiv(edges * 2 * outputs, 256),)](
                     products, result, edges, outputs, result.stride(0), offset * out_channels,
