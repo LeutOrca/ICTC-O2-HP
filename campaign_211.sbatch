@@ -16,6 +16,7 @@ runtime_root=/public_hw/home/phy_bjxiao/o2-benchmark/environments/torch211-ac7e6
 test -f "$runtime_root/READY"
 export O2_RUNTIME=211 O2_ROLES=native,eqx-current,cue-current O2_RESULT_SUFFIX=-211
 export O2_CROSS_REFERENCE_ROOT="$remote_runs/o2-hp-github-whole-20261121-r1-9753ed3/results/campaign"
+export O2_CROSS_LARGE_REFERENCE="$remote_runs/o2-hp-github-whole-20261121-r1-4bed911/results/campaign-large/ref-native-n4096-fixed-r0.pt"
 export PYTHONPATH="$runtime_root:$PWD/deps-211:$HPX_MACE_ENTRY/compatibility"
 export O2_CLEAN_RUNTIME=1
 export O2_NATIVE_GRAPH=original

@@ -11,6 +11,7 @@ set -euo pipefail
 export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 MPLBACKEND=Agg
 py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 "$py" aggregate.py
+"$py" write_report.py
 "$py" ../../figures/o2-hp-github-whole-20261121-r1/whole_network.py
 "$py" ../../figures/o2-hp-github-whole-20261121-r1/whole_memory.py
 pdffonts ../../figures/o2-hp-github-whole-20261121-r1/Whole_MACE_speed_throughput.pdf

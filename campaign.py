@@ -52,6 +52,8 @@ def main():
         cross = {}
         if os.getenv("O2_CROSS_REFERENCE_ROOT"):
             cross["cross-reference"] = Path(os.environ["O2_CROSS_REFERENCE_ROOT"]) / f"ref-native-{case}-fixed-r0.pt"
+            if case == "n4096" and os.getenv("O2_CROSS_LARGE_REFERENCE"):
+                cross["cross-reference"] = Path(os.environ["O2_CROSS_LARGE_REFERENCE"])
         ref, result = run("ref", "native", case, **cross)
         if not result.get("passed"):
             continue
