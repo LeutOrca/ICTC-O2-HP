@@ -114,8 +114,10 @@ def main():
             incomplete.append(dict(case=list(key), repeats=sorted(repeats)))
             continue
         assert len({tuple(v.get(k) for k in IDENTITY) for v in values}) == 1
+        assert len({v["qualification_sha256"] for v in values}) == 1
         candidates.setdefault(key[:6], []).append((key, [repeats[n] for n in range(5)]))
     summary, picked = [], {}
+    numerics=[]
     for case, options in sorted(candidates.items()):
         # Complete CUDA payload supersedes the earlier incomplete SO2 package.
         key, values = max(options, key=lambda option: (
@@ -146,6 +148,13 @@ def main():
             row.update(peak_allocated="", peak_reserved="", memory_gpu_uuid="", memory_cohort="")
         summary.append(row)
         picked[case] = values
+        q=qualified[values[0]["qualification_sha256"]]
+        checks=[check for name,item in q["numerics"].items() if name.startswith(role+"/")
+                for chunk in item.get("chunks",[]) for check in (chunk["checks"] if metric=="forward_vjp" else chunk["checks"][:1])]
+        assert checks and all(c["passed"] and c["arithmetic"]=="float32" for c in checks)
+        numerics.append(dict(zip(("family","rows","order","parity","role","metric"),case),
+            max_abs=max(c["max_abs"] for c in checks),max_relative_l2=max(c["relative_l2"] for c in checks),
+            arithmetic="float32",qualification_sha256=values[0]["qualification_sha256"],qualification=q["receipt"]))
     ratios = []
     summary_by_case={tuple(r[k] for k in ("family","rows","order","parity","role","metric")):r for r in summary}
     pairs = {"tp": (("public", "eqx-o2"), ("public", "cue-o2"), ("local-hpx","public"),
@@ -186,6 +195,8 @@ def main():
     for target in (ROOT, FIGURES / "data"):
         write_csv(target / "summary.csv", summary, summary_fields)
         write_csv(target / "speedups.csv", ratios, ratio_fields)
+        write_csv(target/"numerics.csv",numerics,["family","rows","order","parity","role","metric",
+            "max_abs","max_relative_l2","arithmetic","qualification_sha256","qualification"])
         write_csv(target / "status.csv", statuses, ["cohort", "family", "rows", "order", "parity", "stage", "role", "metric", "status", "job", "receipt", "error"])
     coverage = []
     for family, rows in (("tp",4096),("tp",16384),("uvu",16384),("radial",16384),("so2",16384),("ictp",4096),("ictp",16384)):
@@ -219,6 +230,7 @@ def main():
         memory_missing_points=sum(r["peak_allocated"]=="" for r in summary), incomplete_repeat_groups=incomplete,
         audit_errors=errors, receipts=audit, strict_fp32=True, cuda_graph=False,
         official_and_fork_same_executables=True, no_cross_equation_speedups=True,
+        max_accepted_relative_l2=max((r["max_relative_l2"] for r in numerics),default=None),
         expected_role_metrics=len(role_coverage),pending_role_metrics=sum(r["status"]=="pending" for r in role_coverage))
     (ROOT / "SUMMARY.json").write_text(json.dumps(result, indent=2))
     print(json.dumps({k:v for k,v in result.items() if k not in ("receipts","incomplete_repeat_groups","pending_configurations")}), flush=True)
