@@ -2,7 +2,6 @@
 import hashlib
 import json
 from pathlib import Path
-import subprocess
 import tarfile
 
 ROOT=Path(__file__).resolve().parent
@@ -26,12 +25,16 @@ def main():
             actual=tar.extractfile(member).read()
             actual_sha=hashlib.sha256(actual).hexdigest()
             assert expected[key]==actual_sha,key
-            result=subprocess.run(["git","-C",str(ROOT),"show",f"{commit}:{name}"],capture_output=True,check=False)
-            same=result.returncode==0 and result.stdout==actual
+            with tarfile.open(ROOT/f"provenance/git-harness/{commit}.tar.gz") as git_tar:
+                try:
+                    original=git_tar.extractfile(name).read()
+                except KeyError:
+                    original=None
+            same=original==actual
             checked.append(dict(cohort=commit,file=name,sha256=actual_sha,git_exact=same))
             if not same:
                 mismatches.append(dict(cohort=commit,file=name,sha256=actual_sha,
-                    reason="not-in-git-tree" if result.returncode else "different-from-git-tree"))
+                    reason="not-in-git-tree" if original is None else "different-from-git-tree"))
     assert {r["cohort"]+"/"+r["file"] for r in checked}==set(expected)
     formal=[r for r in mismatches if r["cohort"]!="a674d1c"]
     output=dict(passed=not formal,archive_and_independent_hashes_match=True,checked_files=len(checked),

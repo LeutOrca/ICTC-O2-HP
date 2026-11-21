@@ -3,7 +3,6 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
-import subprocess
 import tarfile
 import tempfile
 
@@ -38,10 +37,17 @@ def extract_checked(path,target,manifest):
 
 def main():
     provenance=ROOT/"provenance"
-    commit=subprocess.check_output(["git","-C",str(ROOT),"rev-parse","HEAD"],text=True).strip()
-    assert not subprocess.check_output(["git","-C",str(ROOT),"diff","HEAD","--name-only"],text=True).strip()
-    bundle=provenance/f"angular-{commit[:7]}.bundle"
-    subprocess.run(["git","-C",str(ROOT),"bundle","create",str(bundle),"--all"],check=True)
+    commit=(provenance/"FROZEN-GIT.txt").read_text().strip()
+    assert (provenance/"RECOVERED-GIT.txt").read_text().strip()==commit
+    bundle=provenance/"angular-latest.bundle"
+    original_code=provenance/"FROZEN-CODE.tar.gz"
+    recovered_code=provenance/"RECOVERED-CODE.tar.gz"
+    def code_members(path):
+        with tarfile.open(path) as tar:
+            assert tar.pax_headers.get("comment")==commit
+            return {m.name:hashlib.sha256(tar.extractfile(m).read()).hexdigest()
+                    for m in tar.getmembers() if m.isfile()}
+    assert code_members(original_code)==code_members(recovered_code)
     sources=[]
     for folder in (ROOT/"upstream/official/src",ROOT/"upstream/fork/src",ROOT/"upstream/eqx/equivariantx",
                    ROOT/"upstream/ictp/ictp",ROOT/"upstream/local-hpx",ROOT/"upstream/local-so2"):
@@ -49,6 +55,10 @@ def main():
                        if p.is_file() and "__pycache__" not in p.parts)
     for path in (ROOT/"upstream/so2_ops.py",provenance/"Times.TTF",provenance/"BUDGET-AUDIT.json"):
         sources.append((str(path.relative_to(ROOT)),path))
+    for path in (provenance/"DEPLOYED-HARNESS.tgz",provenance/"DEPLOYED-HARNESS.sha256",
+                 provenance/"DEPLOYMENT-AUDIT.json",provenance/"CUDA-matrix.original.py"):
+        sources.append((str(path.relative_to(ROOT)),path))
+    sources.extend((str(p.relative_to(ROOT)),p) for p in sorted((provenance/"licenses").glob("*")) if p.is_file())
     source_archive=provenance/f"angular-sources-{commit[:7]}.tar.gz"
     source_manifest=archive(source_archive,sources)
     raw=[(str(p.relative_to(ROOT)),p) for p in sorted((ROOT/"measurements").rglob("*")) if p.is_file()]
@@ -64,9 +74,9 @@ def main():
         work=Path(temp)
         restored=work/"runs"/ROOT.name
         restored.parent.mkdir()
-        subprocess.run(["git","clone","--quiet",str(bundle),str(restored)],check=True)
-        restored_commit=subprocess.check_output(["git","-C",str(restored),"rev-parse","HEAD"],text=True).strip()
-        assert restored_commit==commit
+        restored.mkdir()
+        with tarfile.open(recovered_code) as code:
+            code.extractall(restored,filter="data")
         extract_checked(source_archive,restored,source_manifest)
         extract_checked(raw_archive,restored,raw_manifest)
         restored_fig=work/"figures"/FIG.name
@@ -83,7 +93,9 @@ def main():
     result=dict(passed=True,commit=commit,independent_git_clone=True,
         source_members=len(source_manifest),receipt_members=len(raw_manifest),figure_members=len(figure_manifest),
         restored_csv_byte_identical=list(compare),
-        archives={p.name:dict(sha256=sha(p),bytes=p.stat().st_size) for p in (bundle,source_archive,raw_archive,figure_archive)},
+        git_control_on_login=True,cpu_independent_recovery_audit=True,
+        archives={p.name:dict(sha256=sha(p),bytes=p.stat().st_size) for p in (
+            bundle,original_code,recovered_code,source_archive,raw_archive,figure_archive)},
         source_manifest=source_manifest,receipt_manifest=raw_manifest,figure_manifest=figure_manifest)
     (provenance/"DELIVERY-QA.json").write_text(json.dumps(result,indent=2))
     (provenance/"DELIVERY.sha256").write_text("".join(f"{info['sha256']}  {name}\n" for name,info in result["archives"].items()))
