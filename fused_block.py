@@ -45,7 +45,7 @@ def _fused(A, B, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
              (row[:, None] < M) & (col[None, :] < N))
 
 
-def fused(left, linear, compact=False):
+def fused(left, linear, compact=False, workspace=None):
     weight = linear.weight
     assert not weight.requires_grad and left.dtype == weight.dtype == torch.float32
     assert left.is_cuda and weight.device == left.device and left.shape[1] == weight.shape[1]
@@ -56,7 +56,8 @@ def fused(left, linear, compact=False):
         delattr(linear, "_hpx_fused_block_weight")
     cache = getattr(linear, "_hpx_fused_block_weight", None) if retain else None
     if cache is None or cache[0] != signature:
-        packed = weight.new_empty((k, n))
+        packed = (weight.new_empty((k, n)) if workspace is None
+                  else workspace[:k * n].view(k, n))
         _pack_weight[(triton.cdiv(k, 32), triton.cdiv(n, 32))](
             weight, packed, k, n, *weight.stride(), 32)
         if retain:

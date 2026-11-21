@@ -114,6 +114,12 @@ class _Ordered(torch.autograd.Function):
         if zero_backward_config == "calibrated":
             zero_backward_config = "-2x1l" if first_mixer else "-4x1a"
         zero_backward_config = schedule(zero_backward_config, first_mixer, 0, True)
+        workspace = None
+        if forward_config == "fused-compact" and first_mixer and edges * 2 < 4096:
+            # Private to this autograd forward and its current CUDA stream.
+            # Both positive orders reuse one packing buffer, with no alias to
+            # saved weights or the input adjoint.
+            workspace = inputs.new_empty(max(layer.fc.weight.numel() for layer in module.so2_m_linear))
         offset = module.lmax + 1
         for layer in module.so2_m_linear:
             width, outputs = layer.in_features, layer.out_features
@@ -126,7 +132,7 @@ class _Ordered(torch.autograd.Function):
             current_forward = schedule(current_forward, first_mixer, layer.m, False)
             if current_forward in ("fused-block", "fused-compact"):
                 from fused_block import fused
-                products = fused(packed, layer.fc, compact=current_forward == "fused-compact")
+                products = fused(packed, layer.fc, compact=current_forward == "fused-compact", workspace=workspace)
             else:
                 products = product(packed, layer.fc.weight.t(), current_forward)
             if edges:
