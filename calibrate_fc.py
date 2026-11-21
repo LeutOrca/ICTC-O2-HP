@@ -39,6 +39,7 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--seed-index", type=int, default=0)
     parser.add_argument("--extended", action="store_true")
+    parser.add_argument("--schedules", choices=("cuda", "triton"), default="cuda")
     args = parser.parse_args()
     native.strict(torch)
     native.checked_checkpoint()
@@ -81,6 +82,10 @@ def main():
         configs += [f"{groups}x{stripe}{join}" for groups in (8, 16, 32)
                     for stripe in (1, 2, 4) for join in "ab"]
         configs = list(dict.fromkeys(configs))
+    if args.schedules == "triton":
+        configs = ["triton"] + [f"t:{sign * groups}x{stripe}{join}"
+                     for sign in (1, -1) for groups in (2, 4, 8, 16, 32)
+                     for stripe in ((1, 2) if sign == 1 else (1,)) for join in "ab"]
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
                   checkpoint_sha256=native.CHECKPOINT_SHA, topology=topology,
                   seed=native.SEEDS[args.seed_index], gpu_uuid=str(torch.cuda.get_device_properties(0).uuid),
@@ -90,6 +95,10 @@ def main():
         left, derivative = flatten(row["input"]), flatten(row["cotangent"])
         results = {}
         for config in configs:
+            if config.startswith("t:"):
+                parts, stripe = map(int, config[2:-1].split("x"))
+                if module.weight.shape[0] % (abs(parts) * stripe) or module.weight.shape[1] % (abs(parts) * stripe):
+                    continue
             actual = product(left, module.weight.t(), config, bias=module.bias)
             gradient = product(derivative, module.weight, config)
             results[config] = dict(forward=error(actual, row["output"].reshape_as(actual)),

@@ -49,6 +49,9 @@ def _copy_matrix(Source, Target, ROWS: tl.constexpr, COLS: tl.constexpr,
 
 
 def product(left, right, configuration, output=None, bias=None):
+    if configuration.startswith("t:"):
+        from scheduled_matrix import scheduled
+        return scheduled(left, right, configuration[2:], output=output, bias=bias)
     if configuration == "triton":
         return matrix(left, right, bias=bias, backend="triton", output=output)
     join = configuration[-1] if configuration[-1] in "lab" else "l"
