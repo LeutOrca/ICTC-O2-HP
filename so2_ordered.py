@@ -51,11 +51,13 @@ def _copy_matrix(Source, Target, ROWS: tl.constexpr, COLS: tl.constexpr,
 def product(left, right, configuration, output=None, bias=None):
     if configuration == "triton":
         return matrix(left, right, bias=bias, backend="triton", output=output)
-    groups, stripe = map(int, configuration.split("x"))
+    join = configuration[-1] if configuration[-1] in "lab" else "l"
+    bare = configuration[:-1] if configuration[-1] in "lab" else configuration
+    groups, stripe = map(int, bare.split("x"))
     if bias is not None:
         bias = bias.expand((*left.shape[:-1], right.shape[-1]))
     return compiled_matrix(left, right, bias, 1., 1., groups=groups, stripe=stripe,
-                           linear_join=groups == 4, output=output)
+                           linear_join=join == "l", adjacent_join=join == "a", output=output)
 
 
 class _Ordered(torch.autograd.Function):
