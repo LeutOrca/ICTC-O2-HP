@@ -16,6 +16,7 @@ from optimizations import install as install_previous
 from frozen_so2 import FrozenWeightCache
 from so2_layer import frozen_layer
 from fp32_gate import gate
+from so2_ordered import ordered_layer, PROFILES
 
 
 def tensors(value):
@@ -59,8 +60,11 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--suite", default="mptrj-b8")
     parser.add_argument("--individual", action="store_true")
+    parser.add_argument("--implementation", choices=("packed", "ordered", "calibrated", *PROFILES), default="packed")
+    parser.add_argument("--seed-index", type=int, choices=(0, 1), default=0)
     args = parser.parse_args()
     native.strict(torch)
+    native.checked_checkpoint()
     torch.set_num_threads(4)
     network = native.Network("native", "cuda")
     network.freeze_ema()
@@ -75,6 +79,12 @@ def main():
               for name, module in layers.items()}
     captures, handles = {}, []
 
+    def own_layer(inputs, module, cache):
+        if args.implementation == "packed":
+            return frozen_layer(inputs, module, cache, "triton")
+        configuration = "triton" if args.implementation == "ordered" else args.implementation
+        return ordered_layer(inputs, module, configuration, configuration, configuration)
+
     def hook(name):
         def forward(module, inputs, outputs):
             row = dict(input=inputs[0].detach().clone(),
@@ -88,7 +98,7 @@ def main():
         return forward
 
     def run():
-        torch.manual_seed(native.SEEDS[0])
+        torch.manual_seed(native.SEEDS[args.seed_index])
         return network.forward(fixed, True)
 
     for _ in range(3):
@@ -102,7 +112,8 @@ def main():
     assert all(row["passed"] and row["max_abs"] == 0 for row in repeat.values())
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
                   baseline="c591b16", checkpoint_sha256=native.CHECKPOINT_SHA,
-                  suite=args.suite, seed=native.SEEDS[0], topology=topology,
+                  suite=args.suite, seed=native.SEEDS[args.seed_index], topology=topology,
+                  implementation=args.implementation,
                   input_positions_sha256=fingerprint(raw.pos), gpu=torch.cuda.get_device_name(),
                   gpu_uuid=str(torch.cuda.get_device_properties(0).uuid), torch=torch.__version__,
                   tf32=False, amp=False, cuda_graph=False, native_repeat=repeat, metrics_dtype="torch.float32",
@@ -116,7 +127,7 @@ def main():
         inputs = row["input"].requires_grad_()
         cotangents = tuple(value if value is not None else torch.zeros_like(output)
                            for value, output in zip(row["cotangents"], row["outputs"]))
-        actual = tensors(frozen_layer(inputs, module, caches[name], "triton"))
+        actual = tensors(own_layer(inputs, module, caches[name]))
         gradient, = torch.autograd.grad(actual, inputs, cotangents)
         native_outputs = tensors(original[name](inputs))
         native_gradient, = torch.autograd.grad(native_outputs, inputs, cotangents)
@@ -150,7 +161,7 @@ def main():
             if name not in names:
                 continue
             def own(value, module=module, cache=caches[name]):
-                return frozen_layer(value, module, cache, "triton")
+                return own_layer(value, module, cache)
             def forward(layer, value, native_forward=original[name], own_forward=own):
                 return Hybrid.apply(value, native_forward, own_forward, own_primal, own_adjoint)
             module.forward = MethodType(forward, module)
