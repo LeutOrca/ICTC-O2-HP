@@ -69,7 +69,7 @@ def main():
                  and p.suffix in (".py",".csv",".pdf",".png",".json",".md")]
     figure_archive=provenance/f"angular-figures-{commit[:7]}.tar.gz"
     figure_manifest=archive(figure_archive,fig_members)
-    compare=("summary.csv","speedups.csv","coverage.csv","role-coverage.csv","status.csv")
+    compare=("summary.csv","speedups.csv","coverage.csv","role-coverage.csv","status.csv","numerics.csv")
     with tempfile.TemporaryDirectory(prefix="angular-restore-") as temp:
         work=Path(temp)
         restored=work/"runs"/ROOT.name
@@ -88,7 +88,7 @@ def main():
         module.main()
         for name in compare:
             assert sha(ROOT/name)==sha(restored/name),name
-        for name in ("summary.csv","speedups.csv","status.csv"):
+        for name in ("summary.csv","speedups.csv","status.csv","numerics.csv"):
             assert sha(ROOT/name)==sha(FIG/"data"/name),name
     result=dict(passed=True,commit=commit,independent_git_clone=True,
         source_members=len(source_manifest),receipt_members=len(raw_manifest),figure_members=len(figure_manifest),
