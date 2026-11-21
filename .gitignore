@@ -3,4 +3,7 @@ upstream/
 logs/
 results/
 *.tar.gz
+*.tgz
+measurements/
+deps-211/
 __pycache__/

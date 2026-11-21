@@ -18,6 +18,9 @@ export O2_RUNTIME=211 O2_ROLES=native,eqx-current,cue-current O2_RESULT_SUFFIX=-
 export O2_CROSS_REFERENCE_ROOT="$remote_runs/o2-hp-github-whole-20261121-r1-9753ed3/results/campaign"
 export PYTHONPATH="$runtime_root:$PWD/deps-211:$HPX_MACE_ENTRY/compatibility"
 export O2_CLEAN_RUNTIME=1
+export O2_NATIVE_GRAPH=original
+export PATH="$PWD/build-tools/ninja/data/bin:$PATH"
+export PATH="$runtime_root/ninja/data/bin:$PATH"
 export LD_LIBRARY_PATH="$runtime_root/nvidia/cuda_cupti/lib:$LD_LIBRARY_PATH"
 export TORCH_EXTENSIONS_DIR="$PWD/cache/extensions-211" TRITON_CACHE_DIR="$PWD/cache/triton-211"
 cases=(b1 b8 n512 n4096)

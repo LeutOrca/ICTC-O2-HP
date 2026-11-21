@@ -46,7 +46,7 @@ def errors(actual, expected):
 def setup(role):
     model = prior.setup("receiver-csr-partition-graph" if role == "local-hpx"
                         else "native-graph")
-    evaluator = prior.graph_evaluate
+    evaluator = prior.evaluate if os.getenv("O2_NATIVE_GRAPH") == "original" else prior.graph_evaluate
     coverage = "native MACE"
     if role in ("official", "fork"):
         sys.path.insert(0, str(HERE / "upstream" / role / "src"))
@@ -76,6 +76,7 @@ def setup(role):
         model = model.float().requires_grad_(False).eval()
         model._benchmark_elements, model.r_max_cpu = elements, cutoff
         model._scatter_tile_width, model._receiver_csr = None, False
+        model._parallel_neighbors, model._pinned_graph_inputs = False, False
         coverage = "official MACE cuEquivariance converter optimize_all"
     return model, evaluator, coverage
 
@@ -136,6 +137,8 @@ def main():
                 # only for the eager numerical reference. Timing and Graph
                 # below keep the complete unpartitioned native scatter.
                 model._scatter_tile_width = 128
+                for _ in range(3):
+                    prior.graph_evaluate(model, fixed)
                 expected = {label: cpu(prior.graph_evaluate(model, data))
                             for label, data in (("fixed", fixed), ("perturbed", changed))}
                 model._scatter_tile_width = None
@@ -151,17 +154,20 @@ def main():
                     if not all(v for group in record["legacy_reference_exact"].values() for v in group.values()):
                         raise RuntimeError("New large-system reference differs from frozen FP32 native reference")
             else:
+                for _ in range(3):
+                    prior.evaluate(model, fixed)
                 expected = {label: cpu(prior.evaluate(model, data))
                             for label, data in (("fixed", fixed), ("perturbed", changed))}
                 record["reference_kind"] = "unmodified native eager, FP32"
-                model._scatter_tile_width = 128
-                tiled = {label: cpu(prior.graph_evaluate(model, data))
-                         for label, data in (("fixed", fixed), ("perturbed", changed))}
-                model._scatter_tile_width = None
-                record["tiled_control_exact"] = {label: {key: torch.equal(value[key], expected[label][key])
-                    for key in value} for label, value in tiled.items()}
-                if not all(v for group in record["tiled_control_exact"].values() for v in group.values()):
-                    raise RuntimeError("Tiled reference control differs from original native eager")
+                if os.getenv("O2_NATIVE_GRAPH") != "original":
+                    model._scatter_tile_width = 128
+                    tiled = {label: cpu(prior.graph_evaluate(model, data))
+                             for label, data in (("fixed", fixed), ("perturbed", changed))}
+                    model._scatter_tile_width = None
+                    record["tiled_control_exact"] = {label: {key: torch.equal(value[key], expected[label][key])
+                        for key in value} for label, value in tiled.items()}
+                    if not all(v for group in record["tiled_control_exact"].values() for v in group.values()):
+                        raise RuntimeError("Tiled reference control differs from original native eager")
             gc.collect()
             torch.cuda.empty_cache()
             runner = prior.Replay(evaluate, model, fixed)
