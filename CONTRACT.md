@@ -71,6 +71,12 @@ stock API's unused FP64 parameter-gradient computation. Thus this is explicitly
 the input-only inference adapter, not a stock HPX training benchmark. All new
 arms are requalified in FP32 and paired on their own common GPU allocation.
 
+High-order supplemental gates may stream the same row-independent FP32
+reference in4096-row chunks rather than512, to reduce repeated reference
+launches. Every row and every input adjoint is still checked at the original
+tolerances; no shared parameter gradients are claimed. The actual chunk size
+is preserved in each seed/scale qualification receipt.
+
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,
 edit, preflight, export vector PDF and PNG. The user explicitly authorized a
