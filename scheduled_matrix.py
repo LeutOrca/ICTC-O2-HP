@@ -12,24 +12,36 @@ import triton.language as tl
 def _partials(A, B, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
               A0: tl.constexpr, A1: tl.constexpr, B0: tl.constexpr, B1: tl.constexpr,
               GROUPS: tl.constexpr, STRIPE: tl.constexpr, CONTIGUOUS: tl.constexpr,
-              BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr):
+              BM: tl.constexpr, BN: tl.constexpr, BK: tl.constexpr,
+              CHUNK: tl.constexpr):
     row = tl.program_id(0) * BM + tl.arange(0, BM)
     col = tl.program_id(1) * BN + tl.arange(0, BN)
     group = tl.program_id(2)
     inner = tl.arange(0, BK)
     total = tl.full((BM, BN), 0., tl.float32)
     span: tl.constexpr = K // GROUPS
-    for block in range(tl.cdiv(span, BK)):
-        item = block * BK + inner
-        if CONTIGUOUS:
-            k = group * span + item
-        else:
-            k = (item // STRIPE) * GROUPS * STRIPE + group * STRIPE + item % STRIPE
-        left = tl.load(A + row[:, None] * A0 + k[None, :] * A1,
-                       (row[:, None] < M) & (item[None, :] < span), other=0.)
-        right = tl.load(B + k[:, None] * B0 + col[None, :] * B1,
-                        (item[:, None] < span) & (col[None, :] < N), other=0.)
-        total = tl.dot(left, right, total, input_precision="ieee")
+    if CHUNK:
+        for block in range(tl.cdiv(K, CHUNK)):
+            item = inner
+            k = block * CHUNK + (item // STRIPE) * GROUPS * STRIPE + group * STRIPE + item % STRIPE
+            left = tl.load(A + row[:, None] * A0 + k[None, :] * A1,
+                           (row[:, None] < M) & (item[None, :] < CHUNK // GROUPS) & (k[None, :] < K), other=0.)
+            right = tl.load(B + k[:, None] * B0 + col[None, :] * B1,
+                            (item[:, None] < CHUNK // GROUPS) & (k[:, None] < K) & (col[None, :] < N), other=0.)
+            subtotal = tl.dot(left, right, input_precision="ieee")
+            total = total + subtotal
+    else:
+        for block in range(tl.cdiv(span, BK)):
+            item = block * BK + inner
+            if CONTIGUOUS:
+                k = group * span + item
+            else:
+                k = (item // STRIPE) * GROUPS * STRIPE + group * STRIPE + item % STRIPE
+            left = tl.load(A + row[:, None] * A0 + k[None, :] * A1,
+                           (row[:, None] < M) & (item[None, :] < span), other=0.)
+            right = tl.load(B + k[:, None] * B0 + col[None, :] * B1,
+                            (item[:, None] < span) & (col[None, :] < N), other=0.)
+            total = tl.dot(left, right, total, input_precision="ieee")
     tl.store(C + group * M * N + row[:, None] * N + col[None, :], total,
              (row[:, None] < M) & (col[None, :] < N))
 
@@ -64,6 +76,8 @@ def _join(Parts, Bias, C, M: tl.constexpr, N: tl.constexpr,
 
 
 def scheduled(left, right, configuration, output=None, bias=None):
+    configuration, _, chunk = configuration.partition("@")
+    chunk = int(chunk or 0)
     join = configuration[-1]
     groups, stripe = map(int, configuration[:-1].split("x"))
     count = abs(groups)
@@ -71,6 +85,7 @@ def scheduled(left, right, configuration, output=None, bias=None):
     assert left.ndim == right.ndim == 2 and left.dtype == right.dtype == torch.float32
     m, k, n = left.shape[0], left.shape[1], right.shape[1]
     assert right.shape[0] == k and k % (count * stripe) == 0
+    assert not chunk or (groups > 0 and chunk % count == 0 and chunk // count <= 32)
     if output is None:
         output = left.new_empty((m, n))
     if not output.numel():
@@ -78,7 +93,7 @@ def scheduled(left, right, configuration, output=None, bias=None):
     partials = left.new_empty((count, m, n))
     _partials[(triton.cdiv(m, 32), triton.cdiv(n, 64), count)](
         left, right, partials, m, n, k, *left.stride(), *right.stride(),
-        count, stripe, groups < 0, 32, 64, 32, num_warps=4)
+        count, stripe, groups < 0, 32, 64, 32, chunk, num_warps=4, enable_fp_fusion=False)
     if bias is not None:
         bias = bias.expand(m, n)
     _join[(triton.cdiv(m * n, 256),)](
