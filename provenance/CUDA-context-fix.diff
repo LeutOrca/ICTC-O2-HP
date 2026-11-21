@@ -1,0 +1,48 @@
+--- /tmp/angular-origin-cuda.py	2026-11-21 22:57:12.523298562 +0800
++++ upstream/local-so2/cuda_matrix.py	2026-11-21 22:46:50.111692588 +0800
+@@ -82,13 +82,20 @@
+         ctypes.c_uint, ctypes.c_uint, ctypes.c_uint, ctypes.c_uint,
+         ctypes.c_void_p, ctypes.c_void_p, ctypes.c_void_p,
+     ]
+-    _MODULES[key] = (driver, module, kernel, cubin)
++    context = ctypes.c_void_p()
++    driver.cuCtxGetCurrent.argtypes = [ctypes.POINTER(ctypes.c_void_p)]
++    driver.cuCtxPushCurrent_v2.argtypes = [ctypes.c_void_p]
++    driver.cuCtxPopCurrent_v2.argtypes = [ctypes.POINTER(ctypes.c_void_p)]
++    _checked(driver.cuCtxGetCurrent(ctypes.byref(context)), "cuCtxGetCurrent")
++    if not context.value:
++        raise RuntimeError("Own CUDA module has no owning context")
++    _MODULES[key] = (driver, module, kernel, cubin, context)
+     return _MODULES[key]
+ 
+ 
+ def compiled_matrix(left, right, bias, alpha, beta, groups=1, output=None, stripe=1,
+                     linear_join=False, adjacent_join=False):
+-    driver, _, kernel, _ = prepare(groups, stripe, linear_join, adjacent_join)
++    driver, _, kernel, _, owning_context = prepare(groups, stripe, linear_join, adjacent_join)
+     rows, inner, columns = left.shape[-2], left.shape[-1], right.shape[-1]
+     batches = left.shape[0] if left.ndim == 3 else 1
+     if output is None:
+@@ -111,7 +118,19 @@
+         *[ctypes.cast(ctypes.byref(value), ctypes.c_void_p).value for value in arguments]
+     )
+     stream = ctypes.c_void_p(torch.cuda.current_stream().cuda_stream)
+-    _checked(driver.cuLaunchKernel(kernel, ((rows + 63) // 64) * batches,
+-                                  (columns + 63) // 64, 1, 16, 16, 1, 0,
+-                                  stream, addresses, None), "cuLaunchKernel")
++    # Autograd may execute on a worker whose driver context is not current.
++    # Restore that thread's previous context after launching into Torch's stream.
++    current = ctypes.c_void_p()
++    _checked(driver.cuCtxGetCurrent(ctypes.byref(current)), "cuCtxGetCurrent")
++    pushed = current.value != owning_context.value
++    if pushed:
++        _checked(driver.cuCtxPushCurrent_v2(owning_context), "cuCtxPushCurrent")
++    try:
++        _checked(driver.cuLaunchKernel(kernel, ((rows + 63) // 64) * batches,
++                                      (columns + 63) // 64, 1, 16, 16, 1, 0,
++                                      stream, addresses, None), "cuLaunchKernel")
++    finally:
++        if pushed:
++            previous = ctypes.c_void_p()
++            _checked(driver.cuCtxPopCurrent_v2(ctypes.byref(previous)), "cuCtxPopCurrent")
+     return output
