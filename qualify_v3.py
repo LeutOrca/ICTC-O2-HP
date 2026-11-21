@@ -25,7 +25,7 @@ def main():
     parser.add_argument("--registry", action="store_true")
     parser.add_argument("--local-only", action="store_true")
     parser.add_argument("--start-block", type=int, choices=range(7), default=0)
-    parser.add_argument("--implementation", choices=("packed", "ordered"), default="packed")
+    parser.add_argument("--implementation", choices=("packed", "ordered", "calibrated"), default="packed")
     args = parser.parse_args()
     native.strict(torch)
     native.checked_checkpoint()
@@ -45,11 +45,12 @@ def main():
             references[(seed, boundary)] = model.forward(data, boundary == "fixed")
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
-    if args.implementation == "ordered":
+    if args.implementation in ("ordered", "calibrated"):
         if not args.without_norm or not args.local_only or args.start_block:
             raise ValueError("Ordered qualification requires all 14 SO2 and unchanged native norm")
         from so2_ordered import install as install_ordered
-        installed = dict(so2=install_ordered(model.model), norm=[])
+        configuration = "calibrated" if args.implementation == "calibrated" else "triton"
+        installed = dict(so2=install_ordered(model.model, configuration, configuration, configuration), norm=[])
     else:
         installed = install(model.model, args.kernel, use_norm=not args.without_norm,
                             split_complex=args.split_complex, start_block=args.start_block)

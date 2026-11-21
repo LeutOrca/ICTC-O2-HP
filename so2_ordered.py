@@ -77,6 +77,13 @@ class _Ordered(torch.autograd.Function):
             zero[:, head:], result[:, :zero_width], edges, zero_width,
             *zero[:, head:].stride(), *result[:, :zero_width].stride(), 256)
         weights = []
+        backward_configs = []
+        first_mixer = channels == 2 * out_channels
+        if "calibrated" in (forward_config, backward_config, zero_backward_config):
+            if (channels, out_channels) not in ((128, 128), (256, 128)):
+                raise ValueError("Calibrated schedule supports only the frozen official FC shapes")
+        if zero_backward_config == "calibrated":
+            zero_backward_config = "-2x1l" if first_mixer else "-4x1a"
         offset = module.lmax + 1
         for layer in module.so2_m_linear:
             width, outputs = layer.in_features, layer.out_features
@@ -85,16 +92,19 @@ class _Ordered(torch.autograd.Function):
             if edges:
                 _pack_input[(triton.cdiv(packed.numel(), 256),)](
                     value, packed, edges, width, *value.stride(), 256)
-            products = product(packed, layer.fc.weight.t(), forward_config)
+            current_forward = ("8x1b" if first_mixer else "triton") if forward_config == "calibrated" else forward_config
+            products = product(packed, layer.fc.weight.t(), current_forward)
             if edges:
                 _complex_output[(triton.cdiv(edges * 2 * outputs, 256),)](
                     products, result, edges, outputs, result.stride(0), offset * out_channels,
                     256, enable_fp_fusion=False)
             offset += 2 * (module.lmax + 1 - layer.m)
             weights.append(layer.fc.weight)
+            backward_configs.append(("-2x1l" if first_mixer else "-8x1a" if layer.m == 1 else "-4x1a")
+                                    if backward_config == "calibrated" else backward_config)
         ctx.save_for_backward(module.fc_m0.weight, *weights)
         ctx.shape, ctx.lmax, ctx.head = inputs.shape, module.lmax, head
-        ctx.backward_config, ctx.zero_backward_config = backward_config, zero_backward_config
+        ctx.backward_configs, ctx.zero_backward_config = backward_configs, zero_backward_config
         return result.reshape(edges, components, out_channels), extra
 
     @staticmethod
@@ -112,14 +122,14 @@ class _Ordered(torch.autograd.Function):
         product(zero_derivative, zero_weight, ctx.zero_backward_config,
                 output=result[:, :(ctx.lmax + 1) * channels])
         offset = ctx.lmax + 1
-        for weight in weights:
+        for weight, backward_config in zip(weights, ctx.backward_configs):
             width, outputs = weight.shape[1], weight.shape[0] // 2
             packed = incoming.new_empty((edges * 2, outputs * 2))
             if edges:
                 _complex_adjoint[(triton.cdiv(packed.numel(), 256),)](
                     derivative, packed, edges, outputs, derivative.stride(0), offset * out_channels,
                     256, enable_fp_fusion=False)
-            gradient = product(packed, weight, ctx.backward_config).reshape(edges, width * 2)
+            gradient = product(packed, weight, backward_config).reshape(edges, width * 2)
             if edges:
                 _copy_matrix[(triton.cdiv(gradient.numel(), 256),)](
                     gradient, result[:, offset * channels:offset * channels + width * 2], edges, width * 2,
