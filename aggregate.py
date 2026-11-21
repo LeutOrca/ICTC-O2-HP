@@ -147,6 +147,7 @@ def main():
         summary.append(row)
         picked[case] = values
     ratios = []
+    summary_by_case={tuple(r[k] for k in ("family","rows","order","parity","role","metric")):r for r in summary}
     pairs = {"tp": (("public", "eqx-o2"), ("public", "cue-o2"), ("local-hpx","public"),
                     ("local-hpx","eqx-o2"), ("local-hpx","cue-o2")),
              "uvu": (("public", "eqx-o2"),),
@@ -164,15 +165,24 @@ def main():
                    for c, b in zip(candidate, baseline)):
                 continue
             speedup, low, high = spread([b["wall_ms"] / c["wall_ms"] for c, b in zip(candidate, baseline)])
+            paired_memory=dict(allocated_ratio="",reserved_ratio="",memory_gpu_uuid="",memory_cohort="",memory_status="missing-or-unpaired")
+            c_mem=summary_by_case[case]
+            b_mem=summary_by_case[case[:4]+(baseline_role,metric)]
+            if c_mem["peak_allocated"]!="" and b_mem["peak_allocated"]!="" and (
+                c_mem["memory_gpu_uuid"],c_mem["memory_cohort"]) == (b_mem["memory_gpu_uuid"],b_mem["memory_cohort"]):
+                paired_memory.update(allocated_ratio=c_mem["peak_allocated"]/b_mem["peak_allocated"],
+                    reserved_ratio=c_mem["peak_reserved"]/b_mem["peak_reserved"],memory_gpu_uuid=c_mem["memory_gpu_uuid"],
+                    memory_cohort=c_mem["memory_cohort"],memory_status="paired")
             ratios.append(dict(family=family, rows=rows, order=order, parity=parity, metric=metric,
                 candidate=role, baseline=baseline_role, speedup=speedup, q25=low, q75=high,
-                gpu_uuid=candidate[0]["gpu_uuid"], cohort=candidate[0]["cohort"]))
+                gpu_uuid=candidate[0]["gpu_uuid"], cohort=candidate[0]["cohort"],**paired_memory))
     summary_fields = ["family", "rows", "order", "parity", "role", "metric", "wall_ms", "wall_q25_ms", "wall_q75_ms",
         "event_ms", "throughput_rows_s", "throughput_q25", "throughput_q75", "peak_allocated", "peak_reserved",
         "time_gpu_uuid", "memory_gpu_uuid", "time_cohort", "memory_cohort", "repeats", "input_sha256", "canonical_weights_sha256",
         "equation", "input_dimension", "output_dimension", "paths","process_mode","time_job","memory_job",
         "torch","gpu","dtype","tf32","amp","cuda_graph","channels","hidden","seed","scale"]
-    ratio_fields = ["family", "rows", "order", "parity", "metric", "candidate", "baseline", "speedup", "q25", "q75", "gpu_uuid", "cohort"]
+    ratio_fields = ["family", "rows", "order", "parity", "metric", "candidate", "baseline", "speedup", "q25", "q75", "gpu_uuid", "cohort",
+        "allocated_ratio","reserved_ratio","memory_gpu_uuid","memory_cohort","memory_status"]
     for target in (ROOT, FIGURES / "data"):
         write_csv(target / "summary.csv", summary, summary_fields)
         write_csv(target / "speedups.csv", ratios, ratio_fields)
