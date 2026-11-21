@@ -22,6 +22,11 @@ def execute(command,log):
             if torch.cuda._is_in_bad_fork() or torch.cuda.is_initialized():
                 raise RuntimeError("Measurement child did not inherit a CUDA-clean process")
             import benchmark
+            # spawn preparation restores the parent's sys.path after preload;
+            # restore the frozen operator roots before lazy backend imports.
+            root=Path(benchmark.__file__).resolve().parent
+            sys.path[:0]=[str(root/path) for path in (
+                "upstream/official/src","upstream/eqx","upstream/ictp","upstream/local-so2","upstream")]
             sys.argv=command[command.index(str(Path(benchmark.__file__).resolve())):]
             benchmark.main()
         except SystemExit:
