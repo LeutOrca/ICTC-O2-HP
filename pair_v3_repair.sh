@@ -3,7 +3,8 @@
 set -euo pipefail
 py=${HPX_PYTHON:?Specify the pinned compute-node Python}
 implementation=${1:?Specify the frozen own-kernel implementation}
-study="measurements/${SLURM_JOB_ID:?Use Slurm}-v3-$implementation"
+suite_choice=${2:-both}
+study="measurements/${SLURM_JOB_ID:?Use Slurm}-v3-$implementation-$suite_choice"
 mkdir -p "$study/results"
 for suite in mptrj-b1 mptrj-b8; do
     "$py" -u qualify_v3.py --suite "$suite" --without-norm --local-only \
@@ -11,7 +12,11 @@ for suite in mptrj-b1 mptrj-b8; do
     "$py" -u qualify_v3.py --suite "$suite" --without-norm --local-only --start-block 5 \
         --output "$study/results/qualification-c591b16-$suite.json"
 done
-for suite in mptrj-b1 mptrj-b8; do
+suites=(mptrj-b1 mptrj-b8)
+if test "$suite_choice" != both; then
+    case "$suite_choice" in mptrj-b1|mptrj-b8) suites=("$suite_choice");; *) exit 2;; esac
+fi
+for suite in "${suites[@]}"; do
     qualification="$study/results/qualification-$suite.json"
     for stage in time memory trace; do
         repeats=(0 1 2 3 4)

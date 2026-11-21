@@ -28,7 +28,10 @@ py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 mkdir -p logs results "$MACE_RESULT_ROOT/receipts"
 sha256sum --quiet -c provenance/input.sha256
 printf 'job=%s node=%s stage=%s\n' "$SLURM_JOB_ID" "$SLURMD_NODENAME" "$*"
-if test "$1" = paired-v3-local; then
+if test "$1" = paired-v3-repair; then
+    export HPX_PYTHON="$py"
+    bash pair_v3_repair.sh "$2" "${3:-both}"
+elif test "$1" = paired-v3-local; then
     export HPX_PYTHON="$py"
     bash pair_v3_local.sh "$2" "$3"
 elif test "$1" = paired-local; then
