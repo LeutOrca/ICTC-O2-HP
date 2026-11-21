@@ -70,6 +70,62 @@
       ]
     },
     {
+      "path": "cohorts/7f2eec4/results/QUALIFY-NATIVE-BLOCK-b1.json",
+      "source": "7f2eec48eec099dc90e96a00615052c652674342",
+      "suite": "mptrj-b1",
+      "implementation": "native-block-tree",
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/7f2eec4/results/QUALIFY-NATIVE-BLOCK-b8.json",
+      "source": "7f2eec48eec099dc90e96a00615052c652674342",
+      "suite": "mptrj-b8",
+      "implementation": "native-block-tree",
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
       "path": "cohorts/9551dbf/results/QUALIFY-CALIBRATED-b1.json",
       "source": "9551dbfb19224f256787a6494446dde0bfe1bbeb",
       "suite": "mptrj-b1",
@@ -458,6 +514,560 @@
             "blocks.6.ga.so2_linear_2"
           ],
           "passed": false
+        }
+      ]
+    },
+    {
+      "path": "cohorts/30c9f9a/results/NATIVE-BLOCK-SCREEN.json",
+      "source": "30c9f9ac536758392b56fa47e462a4728c4c6174",
+      "metrics_dtype": "torch.float32",
+      "records": [
+        {
+          "forward": "native-block",
+          "backward": "native-block",
+          "zero_backward": "native-block",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 8.134084055200219e-07,
+              "relative_l2": 1.0664203728083521e-05,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": false,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": false
+        },
+        {
+          "forward": "native-block",
+          "backward": "native-block",
+          "zero_backward": "native-block",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 4.76837158203125e-07,
+              "relative_l2": 3.711535256911702e-08,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 7.37607479095459e-07,
+              "relative_l2": 9.810681149247102e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        },
+        {
+          "forward": "native-block-chain",
+          "backward": "native-block-chain",
+          "zero_backward": "native-block-chain",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 7.892277835708228e-07,
+              "relative_l2": 1.1288706446066499e-05,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": false,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": false
+        },
+        {
+          "forward": "native-block-chain",
+          "backward": "native-block-chain",
+          "zero_backward": "native-block-chain",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 4.76837158203125e-07,
+              "relative_l2": 3.711535256911702e-08,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 8.940696716308594e-07,
+              "relative_l2": 1.025255460262997e-05,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": false,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": false
+        },
+        {
+          "forward": "native-block-tree",
+          "backward": "native-block-tree",
+          "zero_backward": "native-block-tree",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 1.0766088962554932e-06,
+              "relative_l2": 1.1077012459281832e-05,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": false,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": false
+        },
+        {
+          "forward": "native-block-tree",
+          "backward": "native-block-tree",
+          "zero_backward": "native-block-tree",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 4.76837158203125e-07,
+              "relative_l2": 3.711535256911702e-08,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 8.596107363700867e-07,
+              "relative_l2": 9.632522051106207e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        }
+      ]
+    },
+    {
+      "path": "cohorts/8cf3a8f/results/NATIVE-BARRIER-SCREEN.json",
+      "source": "8cf3a8fbfef6a00c2a6ade93c74ed038fda0548c",
+      "metrics_dtype": "torch.float32",
+      "records": [
+        {
+          "forward": "native-block",
+          "backward": "native-block",
+          "zero_backward": "native-block",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 1.210719347000122e-06,
+              "relative_l2": 1.0282326002197806e-05,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": false,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": false
+        },
+        {
+          "forward": "native-block",
+          "backward": "native-block",
+          "zero_backward": "native-block",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 7.756816557957791e-07,
+              "relative_l2": 9.810555638978258e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        },
+        {
+          "forward": "native-block-chain",
+          "backward": "native-block-chain",
+          "zero_backward": "native-block-chain",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 7.227063179016113e-07,
+              "relative_l2": 9.430081263417378e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        },
+        {
+          "forward": "native-block-chain",
+          "backward": "native-block-chain",
+          "zero_backward": "native-block-chain",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 8.6212992300716e-07,
+              "relative_l2": 9.852828952716663e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        },
+        {
+          "forward": "native-block-tree",
+          "backward": "native-block-tree",
+          "zero_backward": "native-block-tree",
+          "seed": 20261003,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.019942348822951317,
+              "max_abs": 7.813789579813601e-07,
+              "relative_l2": 9.574198884365615e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
+        },
+        {
+          "forward": "native-block-tree",
+          "backward": "native-block-tree",
+          "zero_backward": "native-block-tree",
+          "seed": 20261004,
+          "numerics": {
+            "energy": {
+              "violations": 0,
+              "rms_ref": 6.423718452453613,
+              "max_abs": 0.0,
+              "relative_l2": 0.0,
+              "relative_applies": true,
+              "unit": "eV/atom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            },
+            "forces": {
+              "violations": 0,
+              "rms_ref": 0.01994229108095169,
+              "max_abs": 9.052455425262451e-07,
+              "relative_l2": 9.6014828159241e-06,
+              "relative_applies": true,
+              "unit": "eV/angstrom",
+              "passed": true,
+              "metrics_dtype": "torch.float32"
+            }
+          },
+          "installed": [
+            "blocks.0.ga.so2_linear_1",
+            "blocks.0.ga.so2_linear_2",
+            "blocks.1.ga.so2_linear_1",
+            "blocks.1.ga.so2_linear_2",
+            "blocks.2.ga.so2_linear_1",
+            "blocks.2.ga.so2_linear_2",
+            "blocks.3.ga.so2_linear_1",
+            "blocks.3.ga.so2_linear_2",
+            "blocks.4.ga.so2_linear_1",
+            "blocks.4.ga.so2_linear_2",
+            "blocks.5.ga.so2_linear_1",
+            "blocks.5.ga.so2_linear_2",
+            "blocks.6.ga.so2_linear_1",
+            "blocks.6.ga.so2_linear_2"
+          ],
+          "passed": true
         }
       ]
     },
