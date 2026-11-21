@@ -37,6 +37,8 @@ def main():
     first = next(row for row in pairs if row["case"] == "mptrj-b1")
     scope_trace = json.loads(((root / first["path"]).parent / "SO2-OWN-TRACE.json").read_text())
     assert scope_trace["passed"] and len(scope_trace["layers"]) == 14
+    assert scope_trace["source"] == candidate_source and scope_trace["implementation"] == implementation
+    assert scope_trace["suite"] == "mptrj-b1" and scope_trace["metrics_dtype"] == "torch.float32"
     assert not scope_trace["forbidden_library_matrix"]
     for path in (measured / "cache/triton").glob("*/*.ptx"):
         source = path.read_text()
