@@ -157,7 +157,11 @@ def main():
             if a.stage == "memory":
                 if a.role not in q.get("accepted_by_metric", {}).get(a.metric, q["accepted"]):
                     raise RuntimeError("Role failed qualification")
-                inputs, cotangent, _ = prepare(spec, a.role)
+                inputs, cotangent, unused_native_cotangent = prepare(spec, a.role)
+                record["discarded_preparation_cotangent_bytes"] = (
+                    0 if cotangent.data_ptr() == unused_native_cotangent.data_ptr()
+                    else unused_native_cotangent.numel() * unused_native_cotangent.element_size())
+                del unused_native_cotangent
                 function = spec.calls[a.role]
                 del spec
                 gc.collect()
