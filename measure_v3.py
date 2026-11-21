@@ -29,25 +29,43 @@ def main():
     parser.add_argument("--registry", action="store_true")
     args = parser.parse_args()
     qualification = json.loads(args.qualification.read_text())
+    source = Path("provenance/commit.txt").read_text().strip()
     if (qualification["suite"] != args.suite or len(qualification["records"]) != 4
+            or qualification.get("source") != source
+            or qualification.get("metrics_dtype") != "torch.float32"
             or bool(qualification.get("registry", False)) != args.registry
             or not qualification["passed"] or not all(
                 metric["passed"] for row in qualification["records"]
                 for metric in row["numerics"].values())):
         raise RuntimeError("The inherited whole-network E/F qualification did not pass")
     native.strict(torch)
+    native.checked_checkpoint()
     torch.set_num_threads(4)
     net = native.Network("native", "cuda")
     net.freeze_ema()
     net.model.requires_grad_(False)
     raw = net.batch(net.manifest["suites"][args.suite])
     fixed, topology = net.topology(raw)
+    if (qualification["checkpoint_sha256"] != native.CHECKPOINT_SHA
+            or qualification["input_positions_sha256"] != native.tensor_sha(raw.pos)
+            or qualification["topology_sha256"] != topology
+            or qualification["input_manifest_sha256"] != native.sha(native.PROV / "geometry.json")
+            or qualification["gpu_uuid"] != str(torch.cuda.get_device_properties(0).uuid)):
+        raise RuntimeError("Qualification and measurement must use identical frozen inputs and GPU")
     installed = {}
     if args.role in ("base", "own"):
         from optimizations import install as install_previous
         install_previous("gather-radial", net.model)
+    if args.role == "base":
+        installed = install(net.model, "triton", use_norm=False, start_block=5)
     if args.role == "own":
-        installed = install(net.model, qualification.get("kernel", "triton"),
+        implementation = qualification.get("implementation", "packed")
+        if implementation != "packed":
+            from so2_ordered import install as install_ordered
+            configuration = "triton" if implementation == "ordered" else implementation
+            installed = dict(so2=install_ordered(net.model, configuration, configuration, configuration), norm=[])
+        else:
+            installed = install(net.model, qualification.get("kernel", "triton"),
                             use_norm=bool(qualification["installed"]["norm"]),
                             split_complex=qualification.get("split_complex", False),
                             start_block=qualification.get("start_block", 0))
@@ -75,8 +93,7 @@ def main():
                   checkpoint_sha256=native.CHECKPOINT_SHA,
                   qualification_sha256=native.sha(args.qualification),
                   qualification_path=str(args.qualification),
-                  source=Path("provenance/commit.txt").read_text().strip(),
-                  base="9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
+                  source=source, base="c591b16", implementation=qualification.get("implementation", "packed"),
                   atoms=int(raw.natoms.sum()), structures=len(raw.natoms),
                   edges=fixed.edge_index.size(1), topology_sha256=topology,
                   input_positions_sha256=native.tensor_sha(raw.pos),

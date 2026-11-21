@@ -66,7 +66,7 @@ def main():
                   structures=next(iter(receipts.values()))["structures"], torch=next(iter(receipts.values()))["torch"],
                   tf32=False, amp=False, cuda_graph=next(iter(receipts.values()))["cuda_graph"])
     output.write_text(json.dumps(report, indent=2))
-    base = "78231f3" if args.model == "mace" else "9787a3a"
+    base = "78231f3" if args.model == "mace" else "c591b16"
     graph_boundary = "包括 Graph 捕获与回放" if report["cuda_graph"] else "为预热后单次完整 E/F"
     lines = [f"# {title} {args.case} / {args.candidate} 五轮同卡整网配对", "",
              f"严格 FP32、同 Graph 设置、同冻结 checkpoint 和输入，峰值显存{graph_boundary}。",
