@@ -15,4 +15,5 @@ export MPLBACKEND=Agg MPLCONFIGDIR="$PWD/.mpl-cache"
 "$py" tp_throughput.py
 "$py" message_throughput.py
 "$py" so2_throughput.py
+"$py" ictp_throughput.py
 "$py" speedups.py
