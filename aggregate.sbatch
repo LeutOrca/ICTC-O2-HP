@@ -10,6 +10,7 @@ source /etc/profile
 set -euo pipefail
 py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 "$py" aggregate.py
+"$py" report.py
 cd ../../figures/o2-hp-angular-operators-20261121-r1
 export MPLBACKEND=Agg MPLCONFIGDIR="$PWD/.mpl-cache"
 "$py" tp_throughput.py
