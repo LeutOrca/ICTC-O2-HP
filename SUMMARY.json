@@ -14,13 +14,511 @@
   "tf32": false,
   "amp": false,
   "cuda_graph": false,
-  "timing_started": false,
+  "timing_started": true,
+  "whole_network_pairs": [
+    {
+      "path": "cohorts/22825fc/measurements/115087-v3-native-block-tree-mptrj-b1/results/V3_LOCAL_PAIR_AUDIT-mptrj-b1-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b1",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 117.53314733505249,
+            "atoms_s": 238.230666283276,
+            "structures_s": 8.50823808154557,
+            "peak_allocated": 2010720256,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 112.33299039304256,
+            "atoms_s": 249.25892119519506,
+            "structures_s": 8.902104328399824,
+            "peak_allocated": 1817288192,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 127.66225636005402,
+            "atoms_s": 219.32872564174184,
+            "structures_s": 7.833168772919351,
+            "peak_allocated": 1789134848,
+            "peak_reserved": 1847590912
+          },
+          "vs_native": {
+            "speedup": 0.9205426271206246,
+            "paired_speedups": [
+              0.9205426271206246,
+              0.9190039993970719,
+              0.9261451600536738,
+              0.9135189392380937,
+              0.9237333098797295
+            ],
+            "allocated_reduction": 0.11020200713589468,
+            "reserved_reduction": 0.12772277227722773,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.8798139795741488,
+            "paired_speedups": [
+              0.8798139795741488,
+              0.8816728757971167,
+              0.8798211507887151,
+              0.879053723221632,
+              0.8793525611837331
+            ],
+            "allocated_reduction": 0.015491953408345305,
+            "reserved_reduction": 0.03715846994535521,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 119.77613624185324,
+            "atoms_s": 233.7694375402301,
+            "structures_s": 8.348908483579645,
+            "peak_allocated": 2010756608,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 114.64859265834093,
+            "atoms_s": 244.224541712793,
+            "structures_s": 8.722305061171179,
+            "peak_allocated": 1817324544,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 129.93958685547113,
+            "atoms_s": 215.48475470484425,
+            "structures_s": 7.69588409660158,
+            "peak_allocated": 1789171200,
+            "peak_reserved": 1847590912
+          },
+          "vs_native": {
+            "speedup": 0.9218600764726397,
+            "paired_speedups": [
+              0.9247797091502031,
+              0.9218600764726397,
+              0.923525009489041,
+              0.9205474383785568,
+              0.9174315007400337
+            ],
+            "allocated_reduction": 0.11020001481949626,
+            "reserved_reduction": 0.12772277227722773,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.8819156699707126,
+            "paired_speedups": [
+              0.8819156699707126,
+              0.8847465405423306,
+              0.8829002448413937,
+              0.8811393621199799,
+              0.8767864211986446
+            ],
+            "allocated_reduction": 0.015491643522314136,
+            "reserved_reduction": 0.03715846994535521,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "gpu_uuid": "f31def7c-1b59-13f6-e074-5a31665c9a29",
+      "atoms": 28,
+      "edges": 1272,
+      "structures": 1,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "native-block-tree"
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115088-v3-native-block-tree-mptrj-b8/results/V3_LOCAL_PAIR_AUDIT-mptrj-b8-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 208.63197091966867,
+            "atoms_s": 325.93278825028506,
+            "structures_s": 38.34503391179824,
+            "peak_allocated": 4797685248,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 193.1309150531888,
+            "atoms_s": 352.0927759352904,
+            "structures_s": 41.42267952179886,
+            "peak_allocated": 4215397376,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 235.30355840921402,
+            "atoms_s": 288.9884048491179,
+            "structures_s": 33.99863586460211,
+            "peak_allocated": 4190584832,
+            "peak_reserved": 4309647360
+          },
+          "vs_native": {
+            "speedup": 0.8866503011265089,
+            "paired_speedups": [
+              0.8897231598836862,
+              0.8857745617347903,
+              0.8851457540903583,
+              0.8866503011265089,
+              0.8877308436621223
+            ],
+            "allocated_reduction": 0.12654027611608754,
+            "reserved_reduction": 0.16019615856150393,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.822195896718323,
+            "paired_speedups": [
+              0.822195896718323,
+              0.8193205819287401,
+              0.820358980499644,
+              0.8231811327491317,
+              0.8238123650055525
+            ],
+            "allocated_reduction": 0.005886169626917792,
+            "reserved_reduction": 0.045517882025081335,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 225.13188607990742,
+            "atoms_s": 302.04517531499005,
+            "structures_s": 35.534726507645885,
+            "peak_allocated": 4797783552,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 210.17529908567667,
+            "atoms_s": 323.53944681330137,
+            "structures_s": 38.063464330976636,
+            "peak_allocated": 4215495680,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 251.95521395653486,
+            "atoms_s": 269.8892352024546,
+            "structures_s": 31.751674729700536,
+            "peak_allocated": 4190683136,
+            "peak_reserved": 4309647360
+          },
+          "vs_native": {
+            "speedup": 0.8946763165829603,
+            "paired_speedups": [
+              0.8916703257663348,
+              0.8961465673308002,
+              0.8914639216889577,
+              0.8946763165829603,
+              0.899896526111453
+            ],
+            "allocated_reduction": 0.12653768337400817,
+            "reserved_reduction": 0.16019615856150393,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 0.8347883692465397,
+            "paired_speedups": [
+              0.8334242493283339,
+              0.8347883692465397,
+              0.8322014057158633,
+              0.8355843661709966,
+              0.8376305436447279
+            ],
+            "allocated_reduction": 0.005886032363339955,
+            "reserved_reduction": 0.045517882025081335,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "gpu_uuid": "5dce2724-2ce2-55ed-a1e1-c1783fbee235",
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "native-block-tree"
+    },
+    {
+      "path": "cohorts/a977215/measurements/115094-v3-fused-block-mptrj-b1/results/V3_LOCAL_PAIR_AUDIT-mptrj-b1-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b1",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 119.61357574909925,
+            "atoms_s": 234.08714123497685,
+            "structures_s": 8.360255044106315,
+            "peak_allocated": 2010720256,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 114.2117502167821,
+            "atoms_s": 245.15866315728454,
+            "structures_s": 8.75566654133159,
+            "peak_allocated": 1817288192,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 111.13963555544615,
+            "atoms_s": 251.9353231640854,
+            "structures_s": 8.997690113003049,
+            "peak_allocated": 1817060352,
+            "peak_reserved": 1941962752
+          },
+          "vs_native": {
+            "speedup": 1.0787059552540825,
+            "paired_speedups": [
+              1.0628864820838118,
+              1.0873733916876789,
+              1.0877856358901423,
+              1.0748367368157903,
+              1.0787059552540825
+            ],
+            "allocated_reduction": 0.09631369824923075,
+            "reserved_reduction": 0.08316831683168313,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_base": {
+            "speedup": 1.027641935714314,
+            "paired_speedups": [
+              1.0188851427571355,
+              1.0321253971632784,
+              1.027641935714314,
+              1.026754270387654,
+              1.0322902338725455
+            ],
+            "allocated_reduction": 0.00012537362043230083,
+            "reserved_reduction": -0.012021857923497192,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 121.37782014906406,
+            "atoms_s": 230.68465033902578,
+            "structures_s": 8.238737512108063,
+            "peak_allocated": 2010756608,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 116.25918187201023,
+            "atoms_s": 240.84119249028612,
+            "structures_s": 8.601471160367362,
+            "peak_allocated": 1817324544,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 112.73873876780272,
+            "atoms_s": 248.36183468105799,
+            "structures_s": 8.870065524323499,
+            "peak_allocated": 1817096704,
+            "peak_reserved": 1941962752
+          },
+          "vs_native": {
+            "speedup": 1.0801918303546107,
+            "paired_speedups": [
+              1.0695665000845664,
+              1.0801918303546107,
+              1.0808595267851757,
+              1.0807892624073674,
+              1.072445687297521
+            ],
+            "allocated_reduction": 0.09631195701633122,
+            "reserved_reduction": 0.08316831683168313,
+            "speed_2x": false,
+            "allocated_10pct": false
+          },
+          "vs_base": {
+            "speedup": 1.0308347895303813,
+            "paired_speedups": [
+              1.0193710362858153,
+              1.0309613096237995,
+              1.0375218467857779,
+              1.0308347895303813,
+              1.0282438419447117
+            ],
+            "allocated_reduction": 0.0001253711125799306,
+            "reserved_reduction": -0.012021857923497192,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "gpu_uuid": "2111e3ca-aefb-2b81-0b3b-95cc162136d8",
+      "atoms": 28,
+      "edges": 1272,
+      "structures": 1,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "fused-block"
+    },
+    {
+      "path": "cohorts/a977215/measurements/115095-v3-fused-block-mptrj-b8/results/V3_LOCAL_PAIR_AUDIT-mptrj-b8-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 211.08220890164375,
+            "atoms_s": 322.1493670823077,
+            "structures_s": 37.89992553909503,
+            "peak_allocated": 4797685248,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 195.84038574248552,
+            "atoms_s": 347.22153830627445,
+            "structures_s": 40.84959274191464,
+            "peak_allocated": 4215397376,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 186.28690857440233,
+            "atoms_s": 365.0283346284693,
+            "structures_s": 42.9445099562905,
+            "peak_allocated": 4213562368,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.1332035341707505,
+            "paired_speedups": [
+              1.1332035341707505,
+              1.1305418840001757,
+              1.1471024223103357,
+              1.133102752721554,
+              1.137729371094444
+            ],
+            "allocated_reduction": 0.12175097985919392,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0545963603881212,
+            "paired_speedups": [
+              1.0535578842217737,
+              1.0548338047684014,
+              1.0573973607890088,
+              1.0489624334914336,
+              1.0545963603881212
+            ],
+            "allocated_reduction": 0.00043531079903580405,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 228.4565381705761,
+            "atoms_s": 297.64961223927895,
+            "structures_s": 35.01760143991517,
+            "peak_allocated": 4797783552,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 213.05450797080994,
+            "atoms_s": 319.1671495132903,
+            "structures_s": 37.54907641332827,
+            "peak_allocated": 4215495680,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 203.21804657578468,
+            "atoms_s": 334.6159514167027,
+            "structures_s": 39.36658251961209,
+            "peak_allocated": 4213660672,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.1240684340957914,
+            "paired_speedups": [
+              1.131262994683703,
+              1.1178215953331734,
+              1.1240684340957914,
+              1.1198905201046163,
+              1.1255266960004182
+            ],
+            "allocated_reduction": 0.12174848524721438,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0470930901053983,
+            "paired_speedups": [
+              1.0615926930909936,
+              1.0470930901053983,
+              1.0468337354820898,
+              1.0453259650261868,
+              1.0505163576698275
+            ],
+            "allocated_reduction": 0.00043530064772834276,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "gpu_uuid": "4da5e472-bcc6-4df8-e15f-bcbbed9f94af",
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "fused-block"
+    }
+  ],
+  "performance_coverage": {
+    "native-block-tree": [
+      "mptrj-b1",
+      "mptrj-b8"
+    ],
+    "fused-block": [
+      "mptrj-b1",
+      "mptrj-b8"
+    ]
+  },
+  "performance_complete": true,
   "qualifications": [
     {
       "path": "cohorts/1ac9ad8/results/QUALIFY-ORDERED-b1.json",
       "source": "1ac9ad8dd7ca1a8544202491b526f00835d59b54",
       "suite": "mptrj-b1",
       "implementation": "ordered",
+      "start_block": 0,
       "metrics_dtype": "historical FP64 statistics",
       "records": 4,
       "complete": true,
@@ -49,6 +547,7 @@
       "source": "1ac9ad8dd7ca1a8544202491b526f00835d59b54",
       "suite": "mptrj-b8",
       "implementation": "ordered",
+      "start_block": 0,
       "metrics_dtype": "historical FP64 statistics",
       "records": 3,
       "complete": false,
@@ -70,10 +569,330 @@
       ]
     },
     {
+      "path": "cohorts/22825fc/measurements/115087-v3-native-block-tree-mptrj-b1/results/qualification-c591b16-mptrj-b1.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115087-v3-native-block-tree-mptrj-b1/results/qualification-c591b16-mptrj-b8.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115087-v3-native-block-tree-mptrj-b1/results/qualification-mptrj-b1.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b1",
+      "implementation": "native-block-tree",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115087-v3-native-block-tree-mptrj-b1/results/qualification-mptrj-b8.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b8",
+      "implementation": "native-block-tree",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115088-v3-native-block-tree-mptrj-b8/results/qualification-c591b16-mptrj-b1.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115088-v3-native-block-tree-mptrj-b8/results/qualification-c591b16-mptrj-b8.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115088-v3-native-block-tree-mptrj-b8/results/qualification-mptrj-b1.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b1",
+      "implementation": "native-block-tree",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/22825fc/measurements/115088-v3-native-block-tree-mptrj-b8/results/qualification-mptrj-b8.json",
+      "source": "22825fcbdfbe9dcda82226f8c1ec90a23c90ab06",
+      "suite": "mptrj-b8",
+      "implementation": "native-block-tree",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/52c8002/results/QUALIFY-FUSED-BLOCK-b8.json",
+      "source": "52c8002d4bccc513d2e1961b8c8ed1cfcc0da96b",
+      "suite": "mptrj-b8",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/5ad9ae6/measurements/115092-probe-fused-block-mptrj-b8/results/qualification-mptrj-b1.json",
+      "source": "5ad9ae6500b4791e52b62a8abcb8d6b119866478",
+      "suite": "mptrj-b1",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/5ad9ae6/measurements/115092-probe-fused-block-mptrj-b8/results/qualification-mptrj-b8.json",
+      "source": "5ad9ae6500b4791e52b62a8abcb8d6b119866478",
+      "suite": "mptrj-b8",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
       "path": "cohorts/7f2eec4/results/QUALIFY-NATIVE-BLOCK-b1.json",
       "source": "7f2eec48eec099dc90e96a00615052c652674342",
       "suite": "mptrj-b1",
       "implementation": "native-block-tree",
+      "start_block": 0,
       "metrics_dtype": "torch.float32",
       "records": 4,
       "complete": true,
@@ -102,6 +921,7 @@
       "source": "7f2eec48eec099dc90e96a00615052c652674342",
       "suite": "mptrj-b8",
       "implementation": "native-block-tree",
+      "start_block": 0,
       "metrics_dtype": "torch.float32",
       "records": 4,
       "complete": true,
@@ -130,6 +950,7 @@
       "source": "9551dbfb19224f256787a6494446dde0bfe1bbeb",
       "suite": "mptrj-b1",
       "implementation": "calibrated",
+      "start_block": 0,
       "metrics_dtype": "torch.float32",
       "records": 4,
       "complete": true,
@@ -158,6 +979,7 @@
       "source": "9551dbfb19224f256787a6494446dde0bfe1bbeb",
       "suite": "mptrj-b8",
       "implementation": "calibrated",
+      "start_block": 0,
       "metrics_dtype": "torch.float32",
       "records": 1,
       "complete": false,
@@ -170,6 +992,238 @@
       ],
       "boundaries": [
         "fixed"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115094-v3-fused-block-mptrj-b1/results/qualification-c591b16-mptrj-b1.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115094-v3-fused-block-mptrj-b1/results/qualification-c591b16-mptrj-b8.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115094-v3-fused-block-mptrj-b1/results/qualification-mptrj-b1.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b1",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115094-v3-fused-block-mptrj-b1/results/qualification-mptrj-b8.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b8",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115095-v3-fused-block-mptrj-b8/results/qualification-c591b16-mptrj-b1.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115095-v3-fused-block-mptrj-b8/results/qualification-c591b16-mptrj-b8.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115095-v3-fused-block-mptrj-b8/results/qualification-mptrj-b1.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b1",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/a977215/measurements/115095-v3-fused-block-mptrj-b8/results/qualification-mptrj-b8.json",
+      "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
+      "suite": "mptrj-b8",
+      "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
       ]
     }
   ],
