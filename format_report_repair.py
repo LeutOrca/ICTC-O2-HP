@@ -42,6 +42,7 @@ def main():
             lines.append(f"- {row['case']}: source `{row['source']}`，GPU `{row['gpu_uuid']}`，[原始审计](../{row['path']})。")
         lines += [""]
     (root / "results/FINAL-PAIRS.zh-CN.md").write_text("\n".join(lines) + "\n")
+    (root / "PAIRED_RESULTS.zh-CN.md").write_text(("\n".join(lines) + "\n").replace("(../cohorts/", "(cohorts/"))
     gpu_ids = set((root / "provenance/GPU_JOBS.txt").read_text().split())
     with (root / "provenance/SLURM-RECEIPTS.tsv").open() as source:
         jobs = [row for row in csv.DictReader(source, delimiter="|") if row["JobIDRaw"] in gpu_ids]

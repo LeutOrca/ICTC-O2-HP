@@ -499,6 +499,248 @@
       "amp": false,
       "cuda_graph": false,
       "implementation": "fused-block"
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115102-v3-fused-compact-mptrj-b1/results/V3_LOCAL_PAIR_AUDIT-mptrj-b1-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b1",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 117.58189648389816,
+            "atoms_s": 238.13189646787472,
+            "structures_s": 8.504710588138384,
+            "peak_allocated": 2010720256,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 112.12047189474106,
+            "atoms_s": 249.73137846125425,
+            "structures_s": 8.918977802187651,
+            "peak_allocated": 1817288192,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 108.25233813375235,
+            "atoms_s": 258.6549212951345,
+            "structures_s": 9.237675760540517,
+            "peak_allocated": 1794524672,
+            "peak_reserved": 1914699776
+          },
+          "vs_native": {
+            "speedup": 1.0861834350276904,
+            "paired_speedups": [
+              1.0877715606580878,
+              1.0861834350276904,
+              1.0711911367712736,
+              1.0891096651055134,
+              1.0779982443018916
+            ],
+            "allocated_reduction": 0.10752146319453004,
+            "reserved_reduction": 0.09603960396039601,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0308397561586042,
+            "paired_speedups": [
+              1.0395594923982117,
+              1.0308397561586042,
+              1.024793606237591,
+              1.0367022943296662,
+              1.0279547975100447
+            ],
+            "allocated_reduction": 0.012526092504319797,
+            "reserved_reduction": 0.002185792349726823,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 119.51075680553913,
+            "atoms_s": 234.2885339230171,
+            "structures_s": 8.367447640107754,
+            "peak_allocated": 2010756608,
+            "peak_reserved": 2118123520
+          },
+          "base": {
+            "wall_ms": 114.41738437861204,
+            "atoms_s": 244.71805706855523,
+            "structures_s": 8.739930609591259,
+            "peak_allocated": 1817324544,
+            "peak_reserved": 1918894080
+          },
+          "own": {
+            "wall_ms": 110.51571182906628,
+            "atoms_s": 253.35764061590956,
+            "structures_s": 9.048487164853913,
+            "peak_allocated": 1794561024,
+            "peak_reserved": 1914699776
+          },
+          "vs_native": {
+            "speedup": 1.0813915490168984,
+            "paired_speedups": [
+              1.0943050419529068,
+              1.0802263556346854,
+              1.0813915490168984,
+              1.076476178135943,
+              1.084237136555217
+            ],
+            "allocated_reduction": 0.10751951933906068,
+            "reserved_reduction": 0.09603960396039601,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0338109393120885,
+            "paired_speedups": [
+              1.0420453563193623,
+              1.0338109393120885,
+              1.029489857282845,
+              1.0327369026137099,
+              1.0361938440689937
+            ],
+            "allocated_reduction": 0.012525841944497462,
+            "reserved_reduction": 0.002185792349726823,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "gpu_uuid": "5dce2724-2ce2-55ed-a1e1-c1783fbee235",
+      "atoms": 28,
+      "edges": 1272,
+      "structures": 1,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "fused-compact"
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115103-v3-fused-compact-mptrj-b8/results/V3_LOCAL_PAIR_AUDIT-mptrj-b8-own.json",
+      "status": "complete",
+      "model": "v3",
+      "candidate": "own",
+      "case": "mptrj-b8",
+      "boundaries": {
+        "fixed": {
+          "native": {
+            "wall_ms": 210.3243274614215,
+            "atoms_s": 323.31019821029895,
+            "structures_s": 38.03649390709399,
+            "peak_allocated": 4797685248,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 194.81811951845884,
+            "atoms_s": 349.043508725363,
+            "structures_s": 41.06394220298388,
+            "peak_allocated": 4215397376,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 184.85755287110806,
+            "atoms_s": 367.8508069800805,
+            "structures_s": 43.2765655270683,
+            "peak_allocated": 4213562368,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.137625228874141,
+            "paired_speedups": [
+              1.143526050650309,
+              1.137625228874141,
+              1.1405175662582023,
+              1.1345197040005475,
+              1.1349026999741827
+            ],
+            "allocated_reduction": 0.12175097985919392,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0539914412577445,
+            "paired_speedups": [
+              1.0611020852636177,
+              1.0539914412577445,
+              1.0615753458992294,
+              1.0529514121986412,
+              1.0467849100940707
+            ],
+            "allocated_reduction": 0.00043531079903580405,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        },
+        "e2e": {
+          "native": {
+            "wall_ms": 228.33841014653444,
+            "atoms_s": 297.8035975478743,
+            "structures_s": 35.03571735857345,
+            "peak_allocated": 4797783552,
+            "peak_reserved": 5131730944
+          },
+          "base": {
+            "wall_ms": 213.1755482405424,
+            "atoms_s": 318.9859276133788,
+            "structures_s": 37.52775618980927,
+            "peak_allocated": 4215495680,
+            "peak_reserved": 4515168256
+          },
+          "own": {
+            "wall_ms": 202.61261891573668,
+            "atoms_s": 335.61581881669525,
+            "structures_s": 39.48421397843474,
+            "peak_allocated": 4213660672,
+            "peak_reserved": 4515168256
+          },
+          "vs_native": {
+            "speedup": 1.12697033071517,
+            "paired_speedups": [
+              1.12697033071517,
+              1.1230586026373486,
+              1.1233710813604165,
+              1.129020887589959,
+              1.1272964700447043
+            ],
+            "allocated_reduction": 0.12174848524721438,
+            "reserved_reduction": 0.12014711892112795,
+            "speed_2x": false,
+            "allocated_10pct": true
+          },
+          "vs_base": {
+            "speedup": 1.0530720075897022,
+            "paired_speedups": [
+              1.055759567308188,
+              1.0516225576489082,
+              1.053960764149615,
+              1.0530720075897022,
+              1.0507559669682005
+            ],
+            "allocated_reduction": 0.00043530064772834276,
+            "reserved_reduction": 0.0,
+            "speed_2x": false,
+            "allocated_10pct": false
+          }
+        }
+      },
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "gpu_uuid": "5ad49e16-2802-236e-933b-d315984dbf38",
+      "atoms": 68,
+      "edges": 3472,
+      "structures": 8,
+      "torch": "2.7.1+cu128",
+      "tf32": false,
+      "amp": false,
+      "cuda_graph": false,
+      "implementation": "fused-compact"
     }
   ],
   "performance_coverage": {
@@ -509,7 +751,19 @@
     "fused-block": [
       "mptrj-b1",
       "mptrj-b8"
+    ],
+    "fused-compact": [
+      "mptrj-b1",
+      "mptrj-b8"
     ]
+  },
+  "latest_implementation": "fused-compact",
+  "acceptance": {
+    "numerics_fp32": true,
+    "whole_network_speed_2x": false,
+    "allocated_10pct": true,
+    "reserved_10pct": false,
+    "actual_checkpoint_so2_speed_5x": "not established by these whole-network measurements"
   },
   "performance_complete": true,
   "qualifications": [
@@ -1202,6 +1456,354 @@
       "source": "a97721560565ff9f3f22bf23f5d8b0340f7bd8a6",
       "suite": "mptrj-b8",
       "implementation": "fused-block",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/b1544ac/measurements/115101-probe-fused-compact-mptrj-b1/results/qualification-mptrj-b1.json",
+      "source": "b1544ac30c55d9fb307bcf66f20e5c58cd1ee371",
+      "suite": "mptrj-b1",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/b1544ac/measurements/115101-probe-fused-compact-mptrj-b1/results/qualification-mptrj-b8.json",
+      "source": "b1544ac30c55d9fb307bcf66f20e5c58cd1ee371",
+      "suite": "mptrj-b8",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115102-v3-fused-compact-mptrj-b1/results/qualification-c591b16-mptrj-b1.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115102-v3-fused-compact-mptrj-b1/results/qualification-c591b16-mptrj-b8.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115102-v3-fused-compact-mptrj-b1/results/qualification-mptrj-b1.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b1",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115102-v3-fused-compact-mptrj-b1/results/qualification-mptrj-b8.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b8",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115103-v3-fused-compact-mptrj-b8/results/qualification-c591b16-mptrj-b1.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b1",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        5.853580660186708e-06,
+        5.853580660186708e-06,
+        7.51420793676516e-06,
+        7.51420793676516e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115103-v3-fused-compact-mptrj-b8/results/qualification-c591b16-mptrj-b8.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b8",
+      "implementation": "packed",
+      "start_block": 5,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.357700946566183e-06,
+        9.357700946566183e-06,
+        9.279854566557333e-06,
+        9.279854566557333e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115103-v3-fused-compact-mptrj-b8/results/qualification-mptrj-b1.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b1",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/efb5a27/measurements/115103-v3-fused-compact-mptrj-b8/results/qualification-mptrj-b8.json",
+      "source": "efb5a271c58f76fc2f2eaaf49c78fa73f31f2985",
+      "suite": "mptrj-b8",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        9.574198884365615e-06,
+        9.574198884365615e-06,
+        9.6014828159241e-06,
+        9.6014828159241e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/f6a4e3f/measurements/115100-probe-fused-compact-mptrj-b1/results/qualification-mptrj-b1.json",
+      "source": "f6a4e3f8e4411c49ad3894d4f31cf73be215be65",
+      "suite": "mptrj-b1",
+      "implementation": "fused-compact",
+      "start_block": 0,
+      "metrics_dtype": "torch.float32",
+      "records": 4,
+      "complete": true,
+      "passed": true,
+      "force_relative_l2": [
+        7.247551820910303e-06,
+        7.247551820910303e-06,
+        6.517910605907673e-06,
+        6.517910605907673e-06
+      ],
+      "seeds": [
+        20261003,
+        20261003,
+        20261004,
+        20261004
+      ],
+      "boundaries": [
+        "fixed",
+        "e2e",
+        "fixed",
+        "e2e"
+      ]
+    },
+    {
+      "path": "cohorts/f6a4e3f/measurements/115100-probe-fused-compact-mptrj-b1/results/qualification-mptrj-b8.json",
+      "source": "f6a4e3f8e4411c49ad3894d4f31cf73be215be65",
+      "suite": "mptrj-b8",
+      "implementation": "fused-compact",
       "start_block": 0,
       "metrics_dtype": "torch.float32",
       "records": 4,
