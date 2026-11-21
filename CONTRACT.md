@@ -86,6 +86,14 @@ starts with CUDA uninitialized and a fresh context/allocator, records its PID
 and process_mode, and independently reconstructs the frozen workload. Import
 and construction time remains outside steady-state operator timing.
 
+The user requests a single complete submission before sleep, then morning
+collection. Four dependent overnight allocations are pre-submitted, scanning
+validated receipts and skipping complete paired time/memory cases. TP tails
+are bounded to3h each, UVU/Radial tails to4h each; the inclusive envelope is
+36 GPUh with all earlier failures charged and the unchanged500 GPUh cap.
+There is no automatic GPU resubmission from inside these jobs. Whole-model
+and training work remain paused. Stop manual polling after one startup audit.
+
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,
 edit, preflight, export vector PDF and PNG. The user explicitly authorized a
