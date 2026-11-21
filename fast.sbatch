@@ -19,6 +19,7 @@ if [[ "$1" == probe ]]; then
     "$py" -S -u fast_probe.py
 elif [[ "$1" == tp ]]; then
     export O2_INCLUDE_LOCAL_HPX=1
+    export O2_REFERENCE_CHUNK=4096
     "$py" -S -u continuation.py tp "$2" 1 --memory
 else
     "$py" -S -u phase_campaign.py "$@"

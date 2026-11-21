@@ -76,6 +76,9 @@ reference in4096-row chunks rather than512, to reduce repeated reference
 launches. Every row and every input adjoint is still checked at the original
 tolerances; no shared parameter gradients are claimed. The actual chunk size
 is preserved in each seed/scale qualification receipt.
+Error statistics remain in the original512-row windows even if reference
+execution batches4096 rows. The earlier5992a12 pilot that grouped statistics
+by4096 is superseded and excluded from formal timing/memory aggregation.
 
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,

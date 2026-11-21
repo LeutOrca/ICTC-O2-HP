@@ -72,6 +72,12 @@ def main():
         try:
             q = qualified[record["qualification_sha256"]]
             assert q.get("passed"), "qualification failed"
+            if q["family"] in ("tp","uvu","radial") and any(
+                v.get("reference_chunk_size",512)>512 and v.get("check_window_size")!=512
+                for v in q.get("numerics",{}).values()):
+                statuses.append(dict({k:record.get(k,"") for k in ("cohort","family","rows","order","parity","job","receipt","role","metric")},
+                    stage=record["stage"],status="superseded-reference-window",error="4096-row reference statistics must be rechecked in original 512-row windows"))
+                continue
             if "component_qualifications" in q:
                 components = [qualified[sha] for sha in q["component_qualifications"]]
                 assert all(all(c.get(k)==q.get(k) for k in IDENTITY) for c in components), "merged gate identities differ"
@@ -113,7 +119,7 @@ def main():
     for case, options in sorted(candidates.items()):
         # Complete CUDA payload supersedes the earlier incomplete SO2 package.
         key, values = max(options, key=lambda option: (
-            "local_hpx_source" in option[1][0], "fixed" in option[0][6],
+            "local_hpx_source" in option[1][0], option[1][0].get("process_mode")=="forkserver", "fixed" in option[0][6],
             "2f1e68c" in option[0][6] or "continuation" in option[0][6], option[0][6]))
         family, rows, order, parity, role, metric = case
         wall, wall_lo, wall_hi = spread([r["wall_ms"] for r in values])
