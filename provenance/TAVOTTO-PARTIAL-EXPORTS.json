@@ -1,0 +1,37 @@
+{
+  "stage": "partial; final all-operator Tavotto export waits for morning data",
+  "exports": [
+    {
+      "stem": "SO2Linear_edges",
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/SO2Linear_edges_1121_234807_proof.json",
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/SO2Linear_edges_1121_234807.pdf",
+          "sha256": "c11d063f48005fa0230309ba666922e20cee4b12888df9dc52cb68ce5f2931af"
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/SO2Linear_edges_1121_234807.png",
+          "sha256": "b490617527ac17943b7147648edf8a9cc14fb77e3aae69a3747e8594bff44575"
+        }
+      ]
+    },
+    {
+      "stem": "ICTP_atoms_edges",
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/ICTP_atoms_edges_1121_235529_proof.json",
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/ICTP_atoms_edges_1121_235529.pdf",
+          "sha256": "1607eacaba7a0bd9a5b5d9b91094f6eb331aa3b1a53fef0d118e1dc643f4fcc5"
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/ICTP_atoms_edges_1121_235529.png",
+          "sha256": "9859f291f6705bb97565b16f3e904486d21fbee16b27681f7b75edb100cf89b3"
+        }
+      ]
+    }
+  ]
+}

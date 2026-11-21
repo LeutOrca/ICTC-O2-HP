@@ -14,6 +14,9 @@ done < provenance/REMOTE-COHORTS.tsv
 ssh "${ssh_args[@]}" phy_bjxiao@10.10.4.99 'source /etc/profile; sacct -n -X -S 2026-11-15 -u phy_bjxiao --format=JobID,State,ElapsedRaw,AllocTRES,WorkDir,NodeList,Partition,ReqTRES,NNodes,SubmitLine -P' > provenance/project-gbu2-accounting-extended.tsv
 sacct -n -X -S 2026-11-15 -u bjxiao --format=JobID,State,ElapsedRaw,AllocTRES,WorkDir,NodeList,Partition,ReqTRES,NNodes,SubmitLine -P > provenance/project-aidam-accounting-extended.tsv
 ssh "${ssh_args[@]}" phy_bjxiao@10.10.4.99 'source /etc/profile; squeue -u phy_bjxiao -o "%.18i %.30j %.9T %.10M %.20R"' > provenance/MORNING-QUEUE.txt
+if [[ "${O2_COLLECT_ONLY:-0}" == 1 ]]; then
+    exit 0
+fi
 py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 "$py" budget.py
 "$py" aggregate.py
