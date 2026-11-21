@@ -247,7 +247,9 @@ class Spec:
                     block = value[:, offset:offset+width].reshape(len(x), 3**l, C, count)
                     factors = torch.stack([native.weight[p][:,0] * native.alpha[p]
                                            for p in range(weight_start, weight_start+count)], -1)
-                    out.append((block * factors).flatten(1))
+                    # Plain TP packs channel/path; weighted TP concatenates
+                    # each path's channels. Match the native output layout.
+                    out.append((block * factors).transpose(-1, -2).flatten(1))
                     offset += width
                     weight_start += count
                 return torch.cat(out, -1)
@@ -256,7 +258,8 @@ class Spec:
             self.reference = reference
             self.metadata.update(input_dimension=native.in1_dim, angular_dimension=native.in2_dim,
                 output_dimension=sum(3**l*C*n for l,n in enumerate(native.n_paths)),
-                paths=native.n_total_paths, equation="O3-ICTP-even-uvu-path-expanded")
+                paths=native.n_total_paths, equation="O3-ICTP-even-uvu-path-expanded",
+                output_layout="rank/cartesian-components/path/channel")
         else:
             raise ValueError(family)
         self.metadata["input_sha256"] = digest(self.logical)
