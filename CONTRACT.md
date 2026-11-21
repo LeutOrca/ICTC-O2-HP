@@ -52,6 +52,15 @@ Initial operator envelope: 8 GPUh inclusive of failures/builds. This joins the
 existing 500 GPUh project accounting, not a reset. GBU2 H100 is authorized;
 A100 remains unavailable until the other user's allocation ends.
 
+Pilot re-estimate: the full 88-configuration grid and separate corrected
+memory qualification require an inclusive 16 GPUh envelope. This follows the
+authorized PLAN.md pilot re-estimation rule and remains inside the unchanged
+500 GPUh project hard cap, verified in provenance/BUDGET-AUDIT.json. Preserve
+failed points and baselines rather than dropping them to reduce accounting.
+High-order forward and VJP builds may be isolated by role and phase with
+bounded timeouts; a backward build timeout does not invalidate a separately
+qualified inference-forward point. No numerical tolerance is changed.
+
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,
 edit, preflight, export vector PDF and PNG. The user explicitly authorized a
