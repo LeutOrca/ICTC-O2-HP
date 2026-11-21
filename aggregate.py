@@ -132,13 +132,16 @@ def main():
             input_sha256=values[0]["input_sha256"], canonical_weights_sha256=values[0].get("canonical_weights_sha256", ""),
             equation=values[0].get("equation", ""), input_dimension=values[0].get("input_dimension", ""),
             output_dimension=values[0].get("output_dimension", ""), paths=values[0].get("paths", ""))
+        row.update({field:values[0].get(field,"") for field in (
+            "torch","gpu","dtype","tf32","amp","cuda_graph","channels","hidden","seed","scale")})
+        row.update(process_mode=values[0].get("process_mode","exec"),time_job=values[0]["job"],memory_job="")
         memories = [m for m in memory.get(case, []) if all(m.get(k) == values[0].get(k)
                     for k in ("input_sha256", "canonical_weights_sha256", "torch"))]
         if memories:
             m = max(memories, key=lambda v: (v["cohort"] == key[6], "memory-692de50" == v["cohort"],
                 "fixed" in v["cohort"], "2f1e68c" in v["cohort"], v["cohort"]))
             row.update(peak_allocated=m["peak_allocated"], peak_reserved=m["peak_reserved"],
-                       memory_gpu_uuid=m["gpu_uuid"], memory_cohort=m["cohort"])
+                       memory_gpu_uuid=m["gpu_uuid"], memory_cohort=m["cohort"],memory_job=m["job"])
         else:
             row.update(peak_allocated="", peak_reserved="", memory_gpu_uuid="", memory_cohort="")
         summary.append(row)
@@ -167,7 +170,8 @@ def main():
     summary_fields = ["family", "rows", "order", "parity", "role", "metric", "wall_ms", "wall_q25_ms", "wall_q75_ms",
         "event_ms", "throughput_rows_s", "throughput_q25", "throughput_q75", "peak_allocated", "peak_reserved",
         "time_gpu_uuid", "memory_gpu_uuid", "time_cohort", "memory_cohort", "repeats", "input_sha256", "canonical_weights_sha256",
-        "equation", "input_dimension", "output_dimension", "paths"]
+        "equation", "input_dimension", "output_dimension", "paths","process_mode","time_job","memory_job",
+        "torch","gpu","dtype","tf32","amp","cuda_graph","channels","hidden","seed","scale"]
     ratio_fields = ["family", "rows", "order", "parity", "metric", "candidate", "baseline", "speedup", "q25", "q75", "gpu_uuid", "cohort"]
     for target in (ROOT, FIGURES / "data"):
         write_csv(target / "summary.csv", summary, summary_fields)

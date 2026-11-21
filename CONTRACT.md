@@ -80,6 +80,12 @@ Error statistics remain in the original512-row windows even if reference
 execution batches4096 rows. The earlier5992a12 pilot that grouped statistics
 by4096 is superseded and excluded from formal timing/memory aggregation.
 
+CPU-only module preload through a CUDA-clean forkserver is allowed after
+the four-process/four-arm probe passes. Every timing and memory child still
+starts with CUDA uninitialized and a fresh context/allocator, records its PID
+and process_mode, and independently reconstructs the frozen workload. Import
+and construction time remains outside steady-state operator timing.
+
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,
 edit, preflight, export vector PDF and PNG. The user explicitly authorized a
