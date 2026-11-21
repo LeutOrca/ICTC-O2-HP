@@ -1,6 +1,7 @@
 """Sequential, fresh-process qualification and five alternating paired rounds."""
 import argparse
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -12,7 +13,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--case", choices=("b1", "b8", "n512", "n4096"))
     args = parser.parse_args()
-    output = root / "results/campaign"
+    output = root / ("results/campaign" + os.getenv("O2_RESULT_SUFFIX", ""))
     output.mkdir(parents=True, exist_ok=True)
     attempts = []
     def run(stage, role, case, boundary="fixed", repeat=0, **kwargs):
@@ -40,16 +41,19 @@ def main():
         print(stage, role, case, boundary, repeat, result["status"], flush=True)
         return receipt, result
 
+    roles_to_test = os.getenv("O2_ROLES", "native,official,fork,local-hpx,eqx-current,cue-current").split(",")
     builds = {}
-    for role in ("official", "fork", "local-hpx", "eqx-current", "cue-current"):
-        cached = root / "results/preflight" / f"26-{role}-build.json"
+    preflight = Path(os.getenv("O2_PREFLIGHT_ROOT", str(root / "results/preflight")))
+    prefix = os.getenv("O2_RUNTIME", "26")
+    for role in roles_to_test:
+        cached = preflight / f"{prefix}-{role}-build.json"
         builds[role] = cached.exists() and json.loads(cached.read_text()).get("passed", False)
     for case in ((args.case,) if args.case else ("b1", "b8", "n512", "n4096")):
         ref, result = run("ref", "native", case)
         if not result.get("passed"):
             continue
         qualifications = {}
-        for role in ("native", "official", "fork", "local-hpx", "eqx-current", "cue-current"):
+        for role in roles_to_test:
             if role != "native" and not builds.get(role):
                 continue
             q, result = run("qualify", role, case, reference=ref.with_suffix(".pt"))
