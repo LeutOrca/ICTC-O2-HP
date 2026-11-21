@@ -38,6 +38,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("output", type=Path)
     parser.add_argument("--seed-index", type=int, default=0)
+    parser.add_argument("--extended", action="store_true")
     args = parser.parse_args()
     native.strict(torch)
     native.checked_checkpoint()
@@ -49,8 +50,8 @@ def main():
     fixed, topology = net.topology(raw)
     selected = {name: module for name, module in net.model.named_modules()
                 if isinstance(module, torch.nn.Linear) and ".so2_linear_" in name
-                and name.split(".")[1] in ("0", "3", "6")}
-    assert len(selected) == 18
+                and name.split(".")[1] in (("0",) if args.extended else ("0", "3", "6"))}
+    assert len(selected) == (6 if args.extended else 18)
     captures, handles = {}, []
     def hook(name):
         def forward(module, inputs, output):
@@ -76,6 +77,10 @@ def main():
     configs += [f"4x{stripe}{join}" for stripe in (1, 2, 4, 8, 16) for join in "lab"]
     configs += [f"8x{stripe}{join}" for stripe in (1, 4, 8) for join in "lab"]
     configs += [f"-{groups}x1{join}" for groups in (2, 4, 8) for join in "lab"]
+    if args.extended:
+        configs += [f"{groups}x{stripe}{join}" for groups in (8, 16, 32)
+                    for stripe in (1, 2, 4) for join in "ab"]
+        configs = list(dict.fromkeys(configs))
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
                   checkpoint_sha256=native.CHECKPOINT_SHA, topology=topology,
                   seed=native.SEEDS[args.seed_index], gpu_uuid=str(torch.cuda.get_device_properties(0).uuid),
