@@ -15,7 +15,7 @@ sha256sum "$lib" > provenance/cublas.sha256
 "$tool" --gpu-architecture sm_80 --dump-elf-symbols "$lib" > results/NATIVE-SYMBOLS.txt
 rg 'gemmSN_(TN|NN)_kernel' results/NATIVE-SYMBOLS.txt > results/SO2-SYMBOLS.txt
 head -12 results/SO2-SYMBOLS.txt
-symbol=$(awk '/gemmSN_TN_kernel/ && /Li128ELi16ELi2ELi4ELi2ELi2ELb1E/ {print $NF; exit}' results/SO2-SYMBOLS.txt)
+symbol=$(awk '/_Z16gemmSN_TN_kernelIfLi128ELi16ELi2ELi4ELi2ELi2ELb1E30/ && /IKfES2_S0_IfEE/ {print $NF; exit}' results/SO2-SYMBOLS.txt)
 test -n "$symbol"
 printf '%s\n' "$symbol" > results/SO2-FIRST-FORWARD.symbol
 "$tool" --gpu-architecture sm_80 --dump-sass --function "$symbol" "$lib" > results/SO2-FIRST-FORWARD.sass
