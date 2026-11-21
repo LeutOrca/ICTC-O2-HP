@@ -29,8 +29,8 @@ def main():
     angular=sum(r["gpu_h"] for r in rows if "o2-hp-angular-operators-20261121-r1" in r["workdir"])
     record=dict(project_period_start="2026-11-15",project_gpu_h=project,
         project_hard_cap=500,remaining_project_gpu_h=500-project,
-        angular_gpu_h=angular,proposed_inclusive_angular_envelope=16,
-        authorized_total_cap_preserved=project+max(0,16-angular)<=500,rows=rows)
+        angular_gpu_h=angular,proposed_inclusive_angular_envelope=20,
+        authorized_total_cap_preserved=project+max(0,20-angular)<=500,rows=rows)
     (ROOT/"provenance/BUDGET-AUDIT.json").write_text(json.dumps(record,indent=2))
     print(json.dumps({k:v for k,v in record.items() if k!="rows"}),flush=True)
     if not record["authorized_total_cap_preserved"]:

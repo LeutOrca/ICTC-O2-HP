@@ -1,6 +1,7 @@
 """Frozen native-layout operators and independent FP32 references."""
 from contextlib import nullcontext
 import hashlib
+import os
 from pathlib import Path
 import sys
 
@@ -128,6 +129,13 @@ class Spec:
             self.calls["public"] = native
             self.encode["public"] = [identity, identity]
             self.decode["public"] = identity
+            if os.environ.get("O2_INCLUDE_LOCAL_HPX") == "1":
+                from hpx_adapter import frozen
+                self.calls["local-hpx"] = frozen(native)
+                self.encode["local-hpx"] = [identity, identity]
+                self.decode["local-hpx"] = identity
+                self.metadata["local_hpx_source"] = "5f278ef91bedece75b0558700afdb76bcf267a1b"
+                self.metadata["local_hpx_boundary"] = "independent-output; frozen weights; input adjoint mask 3"
             eqx, signs = eqx_module([table] * 3, [C] * 3, paths, keys, "uuu")
             with torch.no_grad():
                 eqx.weight.copy_(native.weight * signs)

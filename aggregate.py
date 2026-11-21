@@ -91,6 +91,7 @@ def main():
     for case, options in sorted(candidates.items()):
         # Complete CUDA payload supersedes the earlier incomplete SO2 package.
         key, values = max(options, key=lambda option: (
+            "local_hpx_source" in option[1][0], "fixed" in option[0][6],
             "2f1e68c" in option[0][6] or "continuation" in option[0][6], option[0][6]))
         family, rows, order, parity, role, metric = case
         wall, wall_lo, wall_hi = spread([r["wall_ms"] for r in values])
@@ -114,7 +115,8 @@ def main():
         summary.append(row)
         picked[case] = values
     ratios = []
-    pairs = {"tp": (("public", "eqx-o2"), ("public", "cue-o2")),
+    pairs = {"tp": (("public", "eqx-o2"), ("public", "cue-o2"), ("local-hpx","public"),
+                    ("local-hpx","eqx-o2"), ("local-hpx","cue-o2")),
              "uvu": (("public", "eqx-o2"),),
              "radial": (("public", "eqx-o2"), ("public", "public-unfused")),
              "so2": (("so2-cuda2", "so2-native"), ("so2-triton", "so2-native"))}

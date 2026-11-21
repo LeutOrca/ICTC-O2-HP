@@ -17,13 +17,14 @@ def main():
     p.add_argument("rows", type=int)
     p.add_argument("start", type=int)
     p.add_argument("--parity", choices=("canonical", "full"))
+    p.add_argument("--memory", action="store_true")
     a = p.parse_args()
     result = ROOT / "results" / f"{a.family}-{a.rows}"
     result.mkdir(parents=True, exist_ok=True)
     attempts = []
 
     def run(stage, order, parity, timeout=1200, **options):
-        path = result / f"{stage}-L{order}-{parity}-all-both-r{options.get('repeat', 0)}.json"
+        path = result / f"{stage}-L{order}-{parity}-{options.get('role','all')}-{options.get('metric','both')}-r{options.get('repeat', 0)}.json"
         command = [sys.executable, "-S", "-u", str(ROOT / "benchmark.py"), stage,
             a.family, str(order), parity, str(a.rows), str(path)]
         for key, value in options.items():
@@ -60,6 +61,10 @@ def main():
                 continue
             for repeat in range(5):
                 run("time", order, parity, qualification=q, repeat=repeat)
+            if a.memory:
+                for metric in ("forward", "forward_vjp"):
+                    for role in gate["accepted_by_metric"][metric]:
+                        run("memory", order, parity, qualification=q, role=role, metric=metric)
             # Independent corrected memory campaigns retain their own GPU gates.
 
 
