@@ -114,6 +114,7 @@ def main():
                   rows=a.rows, repeat=a.repeat, role=a.role, metric=a.metric,
                   job=os.getenv("SLURM_JOB_ID"), status="starting", passed=False,
                   cuda_graph=False, tf32=False, amp=False, dtype="float32")
+    record.update(pid=os.getpid(),process_mode=os.getenv("O2_PROCESS_MODE","exec"))
     try:
         configure()
         record.update(torch=torch.__version__, gpu=torch.cuda.get_device_name(),

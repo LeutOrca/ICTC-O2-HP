@@ -30,14 +30,18 @@ def main():
             command.extend(("--reference-chunk","4096"))
         for key,value in options.items():
             command.extend(("--"+key,str(value)))
-        with path.with_suffix(".log").open("w") as log:
-            proc=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-            try:
-                code=proc.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                os.killpg(proc.pid,signal.SIGKILL)
-                proc.wait()
-                code=124
+        if os.environ.get("O2_PROCESS_MODE")=="forkserver":
+            from fork_runner import run as fork_run
+            code=fork_run(command,path.with_suffix(".log"),timeout)
+        else:
+            with path.with_suffix(".log").open("w") as log:
+                proc=subprocess.Popen(command,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+                try:
+                    code=proc.wait(timeout=timeout)
+                except subprocess.TimeoutExpired:
+                    os.killpg(proc.pid,signal.SIGKILL)
+                    proc.wait()
+                    code=124
         if code==124 or not path.exists():
             data=json.loads(path.read_text()) if path.exists() else {}
             data.update(stage=stage,family=a.family,order=order,parity=parity,rows=16384,
