@@ -2,7 +2,7 @@
 
 当前修复位于独立 Git 分支 `codex/v3-so2-fp32-repair`，从 c591b16 开始。`git log --oneline` 查看本轮增量，`cohorts/<commit>/` 为每一步实际执行源码，结果保存在相应 results/，作业日志在 logs/。不要修改已提交的 cohort。
 
-本轮合同为 REPAIR_CONTRACT.md；继承的 CONTRACT.md 仅保存前轮上下文。当前仍在数值修复，Git HEAD 不代表全 14 个替换已通过，未放行正式性能测量。全部新误差统计 FP32，原阈值不变。
+本轮合同为 REPAIR_CONTRACT.md；继承的 CONTRACT.md 仅保存前轮上下文。全部新误差统计 FP32，原阈值不变。分段修复版与融合版的全 14 个替换均已通过冻结 B1/B8 的完整 E/F 门；Git HEAD 还包含诊断/报告工具，具体通过版本及性能须按报告中每个独立快照识别。
 
 官方依赖保持 sibling run：`../o2-hpx-equiformerv3-oam-20261119-r2` 的 whole_network.py、输入和 checkpoint，以及 `../o2-hpx-equiformerv3-oam-20261119-r1/upstream/equiformer_v3`。检查点 SHA256 见本轮合同，不重复打包权重。
 

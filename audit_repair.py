@@ -33,7 +33,14 @@ def main():
                             records=report["records"]))
     pairs = []
     for path in sorted(args.root.glob("cohorts/*/measurements/*/results/V3_LOCAL_PAIR_AUDIT-*.json")):
-        pairs.append(dict(path=str(path.relative_to(args.root)), **json.loads(path.read_text())))
+        row = json.loads(path.read_text())
+        qualification = path.parent / f"qualification-{row['case']}.json"
+        row["implementation"] = json.loads(qualification.read_text())["implementation"]
+        pairs.append(dict(path=str(path.relative_to(args.root)), **row))
+    pair_coverage = {}
+    for row in pairs:
+        if row.get("status") == "complete":
+            pair_coverage.setdefault(row["implementation"], []).append(row["case"])
     timing_started = any(args.root.glob("cohorts/*/measurements/*/results/v3-time-*.json"))
     summary = dict(baseline="c591b16", model="EquiformerV3 + DeNS-OAM",
         metrics_dtype="torch.float32", thresholds=dict(atol=2e-5, rtol=2e-5, relative_l2=1e-5),
@@ -41,8 +48,8 @@ def main():
         scope="14 SO2Linear forward and input VJP; native norm unchanged",
         parity="official natural parity", angular_order="integer", tf32=False, amp=False,
         cuda_graph=False, timing_started=timing_started, whole_network_pairs=pairs,
-        performance_complete={row["case"] for row in pairs if row.get("status") == "complete"}
-                             == {"mptrj-b1", "mptrj-b8"},
+        performance_coverage=pair_coverage,
+        performance_complete=set(pair_coverage.get("fused-block", [])) == {"mptrj-b1", "mptrj-b8"},
         qualifications=qualifications, screens=screens)
     args.output.write_text(json.dumps(summary, indent=2) + "\n")
     for row in qualifications:
