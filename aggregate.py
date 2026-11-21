@@ -47,6 +47,23 @@ def main():
     statuses = [{k: r.get(k, "") for k in ("cohort", "family", "rows", "order", "parity",
                 "stage", "role", "metric", "status", "job", "receipt", "error")}
                 for r in records if r["stage"] in ("build", "qualify") or not r.get("passed")]
+    for record in records:
+        if record["stage"] == "build":
+            for role, built in record.get("builds", {}).items():
+                if not built.get("passed"):
+                    statuses.append(dict({k:record.get(k,"") for k in ("cohort","family","rows","order","parity","job","receipt")},
+                        stage="build",role=role,metric=record.get("metric",""),status="build-error",error=built.get("error","")))
+        if record["stage"] == "qualify":
+            roles = sorted({key.split("/")[0] for key in record.get("numerics",{})})
+            for metric in ("forward","forward_vjp"):
+                for role in roles:
+                    if role in record.get("accepted_by_metric",{}).get(metric,[]):
+                        continue
+                    items = [v for k,v in record["numerics"].items() if k.startswith(role+"/")]
+                    exception = next((v["error"] for v in items if "error" in v), "")
+                    statuses.append(dict({k:record.get(k,"") for k in ("cohort","family","rows","order","parity","job","receipt")},
+                        stage="qualify",role=role,metric=metric,
+                        status="qualification-error" if exception else "numerical-failure",error=exception))
     times, memory = {}, {}
     audit = []
     for record in records:
@@ -155,11 +172,29 @@ def main():
                 coverage.append(dict(family=family,rows=rows,order=order,parity=parity,
                     accepted_curves=len(points), status="measured" if points else (terminal[-1]["status"] if terminal else "pending")))
     write_csv(ROOT / "coverage.csv", coverage, ["family","rows","order","parity","accepted_curves","status"])
+    role_coverage = []
+    expected_roles = {"tp":("public","local-hpx","eqx-o2","cue-o2"),"uvu":("public","eqx-o2"),
+        "radial":("public","public-unfused","eqx-o2"),"so2":("so2-native","so2-cuda2","so2-triton"),"ictp":("ictp-native",)}
+    for config in coverage:
+        for role in expected_roles[config["family"]]:
+            for metric in ("forward","forward_vjp"):
+                case = tuple(config[k] for k in ("family","rows","order","parity")) + (role,metric)
+                if case in picked:
+                    status = "measured"
+                elif config["family"] == "ictp" and config["order"] > 3:
+                    status = "unsupported"
+                else:
+                    failed = [r for r in statuses if tuple(r.get(k) for k in ("family","rows","order","parity","role","metric")) == case
+                              and r["status"] in ("build-error","qualification-error","numerical-failure","oom","error","timeout","build_timeout")]
+                    status = failed[-1]["status"] if failed else "pending"
+                role_coverage.append(dict(zip(("family","rows","order","parity","role","metric"),case),status=status))
+    write_csv(ROOT/"role-coverage.csv",role_coverage,["family","rows","order","parity","role","metric","status"])
     result = dict(summary_points=len(summary), paired_ratios=len(ratios), measured_configurations=sum(r["status"]=="measured" for r in coverage),
         grid_configurations=len(coverage), pending_configurations=[r for r in coverage if r["status"]=="pending"],
         memory_missing_points=sum(r["peak_allocated"]=="" for r in summary), incomplete_repeat_groups=incomplete,
         audit_errors=errors, receipts=audit, strict_fp32=True, cuda_graph=False,
-        official_and_fork_same_executables=True, no_cross_equation_speedups=True)
+        official_and_fork_same_executables=True, no_cross_equation_speedups=True,
+        expected_role_metrics=len(role_coverage),pending_role_metrics=sum(r["status"]=="pending" for r in role_coverage))
     (ROOT / "SUMMARY.json").write_text(json.dumps(result, indent=2))
     print(json.dumps({k:v for k,v in result.items() if k not in ("receipts","incomplete_repeat_groups","pending_configurations")}), flush=True)
     if errors:
