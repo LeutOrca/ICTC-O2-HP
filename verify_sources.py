@@ -1,6 +1,7 @@
 """Compute-node seal of byte-identical official/fork executables and sources."""
 import hashlib
 import json
+import os
 from pathlib import Path
 
 
@@ -17,7 +18,7 @@ def main():
         fork="296e61f1c13b8ad5ff525cbe3d0bd63d4d6adaca", public=official,
         eqx="c646c7000af7adb367d6bd8b7eb5ea74c08dc37c", ictp="f40592a5687ec1d03219300ee557b2660f7d0369",
         all_source_hashes=hashes(root / "upstream"))
-    (root / "provenance/SOURCE-SEAL.json").write_text(json.dumps(result, indent=2))
+    (root / "provenance" / f"SOURCE-SEAL-{os.getenv('SLURM_JOB_ID','cpu')}.json").write_text(json.dumps(result, indent=2))
     print("Official and fork executables identical:", len(official), "files", flush=True)
 
 
