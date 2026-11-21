@@ -62,7 +62,7 @@ def invoke(function, inputs, cotangent, metric):
     return output, gradients
 
 
-def qualify(spec, role, metric="forward_vjp"):
+def qualify(spec, role, metric="forward_vjp", reference_chunk=512):
     inputs, cotangent, logical_cotangent = prepare(spec, role)
     if metric == "forward":
         with torch.no_grad():
@@ -75,7 +75,7 @@ def qualify(spec, role, metric="forward_vjp"):
         value = spec.decode[role](actual.detach())
         gradients = [g.detach() for g in spec.decode_grad(role, gradients)]
     chunks = []
-    chunk_size = spec.rows if spec.family == "so2" else 512
+    chunk_size = spec.rows if spec.family == "so2" else reference_chunk
     for start in range(0, spec.rows, chunk_size):
         end = min(spec.rows, start + chunk_size)
         logical = [v[start:end].detach().requires_grad_() for v in spec.logical]
@@ -108,6 +108,7 @@ def main():
     p.add_argument("--repeat", type=int, default=0)
     p.add_argument("--role")
     p.add_argument("--metric", choices=("forward", "forward_vjp"), default="forward_vjp")
+    p.add_argument("--reference-chunk",type=int,choices=(512,4096),default=512)
     a = p.parse_args()
     record = dict(stage=a.stage, family=a.family, order=a.order, parity=a.parity,
                   rows=a.rows, repeat=a.repeat, role=a.role, metric=a.metric,
@@ -148,7 +149,7 @@ def main():
                     for role in selected_roles:
                         key = f"{role}/{seed}/{scale}"
                         try:
-                            results[key] = qualify(spec, role, a.metric)
+                            results[key] = qualify(spec, role, a.metric,a.reference_chunk)
                         except Exception as exc:
                             results[key] = dict(passed=False, error=str(exc), traceback=traceback.format_exc())
             roles = selected_roles

@@ -26,6 +26,8 @@ def main():
         path=result/f"{stage}-L{order}-{parity}-{role}-{metric}-r{options.get('repeat',0)}.json"
         command=[sys.executable,"-S","-u",str(ROOT/"benchmark.py"),stage,a.family,str(order),parity,"16384",str(path),
                  "--role",role,"--metric",metric]
+        if stage=="qualify":
+            command.extend(("--reference-chunk","4096"))
         for key,value in options.items():
             command.extend(("--"+key,str(value)))
         with path.with_suffix(".log").open("w") as log:
