@@ -14,17 +14,21 @@ ROOT=Path(__file__).resolve().parent
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("mode",choices=("memory","curves","both"))
-    p.add_argument("family",choices=("uvu","radial"))
+    p.add_argument("family",choices=("tp","uvu","radial"))
     p.add_argument("start",type=int)
     p.add_argument("--role")
     p.add_argument("--parity",choices=("canonical","full"))
     p.add_argument("--descending",action="store_true")
+    p.add_argument("--end",type=int,default=8)
+    p.add_argument("--rows",type=int,default=16384)
+    p.add_argument("--build-timeout",type=int,default=360)
+    p.add_argument("--qualify-timeout",type=int,default=900)
     a=p.parse_args()
-    result=ROOT/"results"/f"{a.mode}-phase-{a.family}-16384"
+    result=ROOT/"results"/f"{a.mode}-phase-{a.family}-{a.rows}"
     result.mkdir(parents=True,exist_ok=True)
     def run(stage,order,parity,role,metric="forward_vjp",timeout=600,**options):
         path=result/f"{stage}-L{order}-{parity}-{role}-{metric}-r{options.get('repeat',0)}.json"
-        command=[sys.executable,"-S","-u",str(ROOT/"benchmark.py"),stage,a.family,str(order),parity,"16384",str(path),
+        command=[sys.executable,"-S","-u",str(ROOT/"benchmark.py"),stage,a.family,str(order),parity,str(a.rows),str(path),
                  "--role",role,"--metric",metric]
         if stage=="qualify":
             command.extend(("--reference-chunk","4096"))
@@ -44,24 +48,26 @@ def main():
                     code=124
         if code==124 or not path.exists():
             data=json.loads(path.read_text()) if path.exists() else {}
-            data.update(stage=stage,family=a.family,order=order,parity=parity,rows=16384,
+            data.update(stage=stage,family=a.family,order=order,parity=parity,rows=a.rows,
                         role=role,metric=metric,passed=False,status="timeout" if code==124 else "process-failure",timeout_s=timeout)
             path.write_text(json.dumps(data,indent=2))
         data=json.loads(path.read_text())
         print(a.mode,a.family,order,parity,role,metric,stage,data["status"],flush=True)
         return path,data
-    roles=(a.role,) if a.role else (("public","eqx-o2") if a.family=="uvu" else ("public","public-unfused","eqx-o2"))
-    orders=range(8,a.start-1,-1) if a.descending else range(a.start,9)
+    defaults={"tp":("public","local-hpx","eqx-o2","cue-o2"),"uvu":("public","eqx-o2"),
+              "radial":("public","public-unfused","eqx-o2")}
+    roles=(a.role,) if a.role else defaults[a.family]
+    orders=range(a.end,a.start-1,-1) if a.descending else range(a.start,a.end+1)
     for order in orders:
         for parity in ((a.parity,) if a.parity else ("canonical","full")):
             gates=[]
             for role in roles:
                 accepted=None
                 for metric in ("forward_vjp","forward"):
-                    _,built=run("build",order,parity,role,metric,timeout=360)
+                    _,built=run("build",order,parity,role,metric,timeout=a.build_timeout)
                     if not built.get("passed"):
                         continue
-                    q,gate=run("qualify",order,parity,role,metric,timeout=900)
+                    q,gate=run("qualify",order,parity,role,metric,timeout=a.qualify_timeout)
                     if gate.get("passed"):
                         accepted=(q,gate)
                         break
