@@ -21,13 +21,18 @@ if [ ! -f "$runtime_root/READY" ]; then
     touch "$runtime_root/READY"
 fi
 export O2_RUNTIME=211
-export PYTHONPATH="$runtime_root:$HPX_MACE_ENTRY/compatibility"
+base_site="${py%/bin/python}/lib/python3.11/site-packages"
+"$py" -S prepare_runtime.py "$base_site" "$PWD/deps-211" "$PWD/provenance/dependency-view-211.json"
+export PYTHONPATH="$runtime_root:$PWD/deps-211:$HPX_MACE_ENTRY/compatibility"
+export O2_CLEAN_RUNTIME=1
 export LD_LIBRARY_PATH="$runtime_root/nvidia/cuda_cupti/lib:$LD_LIBRARY_PATH"
 export TORCH_EXTENSIONS_DIR="$PWD/cache/extensions-211" TRITON_CACHE_DIR="$PWD/cache/triton-211"
-"$py" -u inventory.py "provenance/environment-h100-211-${SLURM_JOB_ID}.json"
+"$py" -S -u inventory.py "provenance/environment-h100-211-${SLURM_JOB_ID}.json"
 set +e
-"$py" -u whole.py ref native b1 fixed results/preflight/211-native-b1.json
-"$py" -u whole.py build cue-current b1 fixed results/preflight/211-cue-current-build.json
-if [ "$?" = 0 ]; then
-    "$py" -u whole.py qualify cue-current b1 fixed results/preflight/211-cue-current-b1.json --reference results/preflight/211-native-b1.pt
-fi
+"$py" -S -u whole.py ref native b1 fixed results/preflight/211-native-b1.json
+for role in eqx-current cue-current; do
+    "$py" -S -u whole.py build "$role" b1 fixed "results/preflight/211-${role}-build.json"
+    if [ "$?" = 0 ]; then
+        "$py" -S -u whole.py qualify "$role" b1 fixed "results/preflight/211-${role}-b1.json" --reference results/preflight/211-native-b1.pt
+    fi
+done

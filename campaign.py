@@ -18,7 +18,7 @@ def main():
     attempts = []
     def run(stage, role, case, boundary="fixed", repeat=0, **kwargs):
         receipt = output / f"{stage}-{role}-{case}-{boundary}-r{repeat}.json"
-        command = [sys.executable, "-u", str(root / "whole.py"), stage, role, case,
+        command = [sys.executable] + (["-S"] if os.getenv("O2_CLEAN_RUNTIME") else []) + ["-u", str(root / "whole.py"), stage, role, case,
                    boundary, str(receipt), "--repeat", str(repeat)]
         for key, value in kwargs.items():
             command.extend(["--" + key, str(value)])
