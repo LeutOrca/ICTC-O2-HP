@@ -86,14 +86,21 @@ def qualify(spec, role, metric="forward_vjp", reference_chunk=512):
         else:
             expected = spec.reference(*logical)
             expected_gradients = torch.autograd.grad(expected, logical, logical_cotangent[start:end])
-        checks = [error(value[start:end], expected)] + [
-            error(got[start:end], ref) for got, ref in zip(gradients, expected_gradients)]
-        chunks.append(dict(start=start, end=end, checks=checks))
+        check_window = spec.rows if spec.family == "so2" else 512
+        # Reference batching must not enlarge the original error-statistics
+        # window: check every original 512-row region independently.
+        for window in range(start,end,check_window):
+            stop=min(end,window+check_window)
+            local=slice(window-start,stop-start)
+            checks = [error(value[window:stop], expected[local])] + [
+                error(got[window:stop], ref[local]) for got, ref in zip(gradients, expected_gradients)]
+            chunks.append(dict(start=window, end=stop, checks=checks))
         del logical, expected, expected_gradients
     return dict(passed=all(c["passed"] for row in chunks for c in row["checks"]),
                 forward_passed=all(row["checks"][0]["passed"] for row in chunks),
                 vjp_passed=metric=="forward_vjp" and all(c["passed"] for row in chunks for c in row["checks"]),
-                chunks=chunks, full_workload=True, reference_chunk_size=chunk_size)
+                chunks=chunks, full_workload=True, reference_chunk_size=chunk_size,
+                check_window_size=spec.rows if spec.family == "so2" else 512)
 
 
 def main():
@@ -108,7 +115,7 @@ def main():
     p.add_argument("--repeat", type=int, default=0)
     p.add_argument("--role")
     p.add_argument("--metric", choices=("forward", "forward_vjp"), default="forward_vjp")
-    p.add_argument("--reference-chunk",type=int,choices=(512,4096),default=512)
+    p.add_argument("--reference-chunk",type=int,choices=(512,4096),default=int(os.getenv("O2_REFERENCE_CHUNK","512")))
     a = p.parse_args()
     record = dict(stage=a.stage, family=a.family, order=a.order, parity=a.parity,
                   rows=a.rows, repeat=a.repeat, role=a.role, metric=a.metric,
