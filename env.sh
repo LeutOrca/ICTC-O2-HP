@@ -9,3 +9,5 @@ export TORCH_EXTENSIONS_DIR="$PWD/cache/extensions-${O2_RUNTIME:-27}"
 export TRITON_CACHE_DIR="$PWD/cache/triton-${O2_RUNTIME:-27}"
 export CUDA_CACHE_PATH="$PWD/cache/cuda-${O2_RUNTIME:-27}"
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export NVIDIA_TF32_OVERRIDE=0 TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=0 EQX_USE_TF32=0
+export CXX=/usr/bin/g++-11 CC=/usr/bin/gcc-11

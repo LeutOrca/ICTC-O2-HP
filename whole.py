@@ -12,13 +12,13 @@ import traceback
 
 HERE = Path(__file__).resolve().parent
 RUNS = HERE.parent
-SOURCE = RUNS / "mace-ictc-o2-hp-gbu2-20261119-r1/frozen"
+SOURCE = Path(os.getenv("O2_MACE_SOURCE", str(RUNS / "mace-ictc-o2-hp-gbu2-20261119-r1/frozen")))
 os.environ["MACE_SOURCE"] = str(SOURCE)
 os.environ["MACE_RESULT_ROOT"] = str(HERE)
 # Append, never prepend the old environment. Torch/Triton remain those of the
 # selected interpreter. This supplies missing frozen MACE dependencies on 2.11.
 sys.path.append("/public/home/sps-xia/bjxiao/miniconda3/envs/o2/lib/python3.11/site-packages")
-sys.path.insert(0, str(RUNS / "mace-ictc-o2-hp-gbu2-20261120-r1"))
+sys.path.insert(0, os.getenv("HPX_MACE_ENTRY", str(RUNS / "mace-ictc-o2-hp-gbu2-20261120-r1")))
 import torch
 import qualify_force as prior
 
@@ -53,7 +53,7 @@ def setup(role):
         install(model)
         coverage = "first scalar conv_tp, 4 l paths; other layers native"
     elif role == "local-hpx":
-        sys.path.insert(0, str(RUNS / "hpx-custom-kernels-20261120-r1"))
+        sys.path.insert(0, os.getenv("O2_HPX_SOURCE", str(RUNS / "hpx-custom-kernels-20261120-r1")))
         from mace_variants import apply, evaluator as select
         apply(model, "final-input")
         evaluator = select("final-input", prior)

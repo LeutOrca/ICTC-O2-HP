@@ -1,0 +1,6 @@
+cache/
+upstream/
+logs/
+results/
+*.tar.gz
+__pycache__/
