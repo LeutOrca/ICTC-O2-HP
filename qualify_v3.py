@@ -13,6 +13,7 @@ sys.path.insert(0, str(ENTRY))
 import whole_network as native
 from matrix_kernels import OwnMatrixKernels
 from v3_native import install
+from fp32_gate import gate
 
 
 def main():
@@ -64,7 +65,7 @@ def main():
             mode = nullcontext() if args.registry or args.local_only else OwnMatrixKernels(args.kernel)
             with mode:
                 actual = model.forward(data, boundary == "fixed")
-            errors = native.gate(torch, actual, references[(seed, boundary)], raw.natoms)
+            errors = gate(torch, actual, references[(seed, boundary)], raw.natoms)
             record = dict(seed=seed, boundary=boundary, numerics=errors,
                           matrix_calls=dict(registered_calls if args.registry else
                                             {} if args.local_only else mode.calls))
@@ -77,6 +78,7 @@ def main():
                           local_only=args.local_only,
                           start_block=args.start_block, kernel=args.kernel,
                           implementation=args.implementation,
+                          metrics_dtype="torch.float32",
                           source=Path("provenance/commit.txt").read_text().strip(),
                           input_positions_sha256=native.tensor_sha(raw.pos), topology_sha256=topology,
                           input_manifest_sha256=native.sha(native.PROV / "geometry.json"),

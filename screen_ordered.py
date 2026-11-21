@@ -11,6 +11,7 @@ sys.path.insert(0, os.environ["HPX_V3_ENTRY"])
 import whole_network as native
 from optimizations import install as install_previous
 from so2_ordered import install
+from fp32_gate import gate
 
 
 def main():
@@ -42,14 +43,14 @@ def main():
                       ("4x8", "2x1", "4x8"))
     for forward, backward, zero in configurations:
         installed = install(network.model, forward, backward, zero)
-        errors = native.gate(torch, run(), reference, raw.natoms)
+        errors = gate(torch, run(), reference, raw.natoms)
         record = dict(forward=forward, backward=backward, zero_backward=zero,
                       numerics=errors, installed=installed,
                       passed=all(value["passed"] for value in errors.values()))
         records.append(record)
         args.output.write_text(json.dumps(dict(source=Path("provenance/commit.txt").read_text().strip(),
                                                checkpoint_sha256=native.CHECKPOINT_SHA, topology=topology,
-                                               records=records), indent=2))
+                                               records=records, metrics_dtype="torch.float32"), indent=2))
         print(json.dumps(record), flush=True)
 
 

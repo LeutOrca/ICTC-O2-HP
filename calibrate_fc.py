@@ -12,10 +12,11 @@ import whole_network as native
 from frozen_so2 import _pack_input
 from so2_ordered import product
 import triton
+from fp32_gate import gate
 
 
 def error(actual, expected):
-    actual, expected = actual.detach().double(), expected.detach().double()
+    actual, expected = actual.detach().float(), expected.detach().float()
     delta = actual - expected
     return dict(max_abs=float(delta.abs().max()),
                 relative_l2=float(delta.norm() / expected.norm().clamp_min(1e-30)))
@@ -68,7 +69,7 @@ def main():
     reference = run()
     for handle in handles:
         handle.remove()
-    repeat = native.gate(torch, run(), reference, raw.natoms)
+    repeat = gate(torch, run(), reference, raw.natoms)
     assert all(value["max_abs"] == 0 for value in repeat.values())
     configs = ["triton", "1x1l"]
     configs += [f"2x{stripe}l" for stripe in (1, 2, 4, 8, 16)]
@@ -78,7 +79,7 @@ def main():
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
                   checkpoint_sha256=native.CHECKPOINT_SHA, topology=topology,
                   seed=native.SEEDS[args.seed_index], gpu_uuid=str(torch.cuda.get_device_properties(0).uuid),
-                  tf32=False, amp=False, records={})
+                  tf32=False, amp=False, records={}, metrics_dtype="torch.float32")
     for name, module in selected.items():
         row = captures[name]
         left, derivative = flatten(row["input"]), flatten(row["cotangent"])

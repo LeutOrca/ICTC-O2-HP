@@ -15,6 +15,7 @@ import whole_network as native
 from optimizations import install as install_previous
 from frozen_so2 import FrozenWeightCache
 from so2_layer import frozen_layer
+from fp32_gate import gate
 
 
 def tensors(value):
@@ -22,7 +23,7 @@ def tensors(value):
 
 
 def error(actual, expected):
-    value, reference = actual.detach().double(), expected.detach().double()
+    value, reference = actual.detach().float(), expected.detach().float()
     delta = value - reference
     relative = float(delta.norm() / reference.norm().clamp_min(1e-30))
     violations = int((delta.abs() > native.ATOL + native.RTOL * reference.abs()).sum())
@@ -97,14 +98,14 @@ def main():
     reference = run()
     for handle in handles:
         handle.remove()
-    repeat = native.gate(torch, run(), reference, raw.natoms)
+    repeat = gate(torch, run(), reference, raw.natoms)
     assert all(row["passed"] and row["max_abs"] == 0 for row in repeat.values())
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
                   baseline="c591b16", checkpoint_sha256=native.CHECKPOINT_SHA,
                   suite=args.suite, seed=native.SEEDS[0], topology=topology,
                   input_positions_sha256=fingerprint(raw.pos), gpu=torch.cuda.get_device_name(),
                   gpu_uuid=str(torch.cuda.get_device_properties(0).uuid), torch=torch.__version__,
-                  tf32=False, amp=False, cuda_graph=False, native_repeat=repeat,
+                  tf32=False, amp=False, cuda_graph=False, native_repeat=repeat, metrics_dtype="torch.float32",
                   local={}, whole={}, individual={})
 
     def save():
@@ -139,7 +140,7 @@ def main():
     gc.collect()
 
     install_previous("gather-radial", network.model)
-    control = native.gate(torch, run(), reference, raw.natoms)
+    control = gate(torch, run(), reference, raw.natoms)
     assert all(row["passed"] for row in control.values())
     report["gather_control"] = control
 
@@ -156,7 +157,7 @@ def main():
 
     for primal, adjoint in ((False, False), (False, True), (True, False), (True, True)):
         select(layers, primal, adjoint)
-        errors = native.gate(torch, run(), reference, raw.natoms)
+        errors = gate(torch, run(), reference, raw.natoms)
         key = f"primal_{'own' if primal else 'native'}-adjoint_{'own' if adjoint else 'native'}"
         report["whole"][key] = errors
         save()
@@ -166,7 +167,7 @@ def main():
             report["individual"][name] = {}
             for primal, adjoint in ((False, True), (True, False), (True, True)):
                 select((name,), primal, adjoint)
-                errors = native.gate(torch, run(), reference, raw.natoms)
+                errors = gate(torch, run(), reference, raw.natoms)
                 key = f"primal_{'own' if primal else 'native'}-adjoint_{'own' if adjoint else 'native'}"
                 report["individual"][name][key] = errors
                 save()

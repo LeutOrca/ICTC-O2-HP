@@ -78,9 +78,9 @@ class _Ordered(torch.autograd.Function):
             *zero[:, head:].stride(), *result[:, :zero_width].stride(), 256)
         weights = []
         backward_configs = []
-        first_mixer = channels == 2 * out_channels
+        first_mixer = module.extra_m0_out_channels is not None
         if "calibrated" in (forward_config, backward_config, zero_backward_config):
-            if (channels, out_channels) not in ((128, 128), (256, 128)):
+            if (channels, out_channels) not in ((256, 64), (32, 128)):
                 raise ValueError("Calibrated schedule supports only the frozen official FC shapes")
         if zero_backward_config == "calibrated":
             zero_backward_config = "-2x1l" if first_mixer else "-4x1a"
