@@ -131,8 +131,39 @@ def main():
             torch.cuda.synchronize()
             record.update(status="built", passed=True)
         elif a.stage == "ref":
-            expected = {label: cpu(prior.evaluate(model, data))
-                        for label, data in (("fixed", fixed), ("perturbed", changed))}
+            if a.case == "n4096":
+                # Original capacity protocol: independent channels are tiled
+                # only for the eager numerical reference. Timing and Graph
+                # below keep the complete unpartitioned native scatter.
+                model._scatter_tile_width = 128
+                expected = {label: cpu(prior.graph_evaluate(model, data))
+                            for label, data in (("fixed", fixed), ("perturbed", changed))}
+                model._scatter_tile_width = None
+                record["reference_kind"] = "native deterministic scatter, channel tile 128, FP32"
+                legacy_path = HERE / "provenance/n4096-tiled-eager.pt"
+                if legacy_path.exists() and torch.__version__.startswith("2.6."):
+                    legacy = torch.load(legacy_path, map_location="cpu", weights_only=False)
+                    if any(v.dtype != torch.float32 for group in legacy.values() for v in group.values()):
+                        raise ValueError("The legacy numerical reference must contain FP32 values")
+                    record["legacy_reference_sha256"] = hashlib.sha256(legacy_path.read_bytes()).hexdigest()
+                    record["legacy_reference_exact"] = {label: {key: torch.equal(value[key], legacy[label][key])
+                        for key in value} for label, value in expected.items()}
+                    if not all(v for group in record["legacy_reference_exact"].values() for v in group.values()):
+                        raise RuntimeError("New large-system reference differs from frozen FP32 native reference")
+            else:
+                expected = {label: cpu(prior.evaluate(model, data))
+                            for label, data in (("fixed", fixed), ("perturbed", changed))}
+                record["reference_kind"] = "unmodified native eager, FP32"
+                model._scatter_tile_width = 128
+                tiled = {label: cpu(prior.graph_evaluate(model, data))
+                         for label, data in (("fixed", fixed), ("perturbed", changed))}
+                model._scatter_tile_width = None
+                record["tiled_control_exact"] = {label: {key: torch.equal(value[key], expected[label][key])
+                    for key in value} for label, value in tiled.items()}
+                if not all(v for group in record["tiled_control_exact"].values() for v in group.values()):
+                    raise RuntimeError("Tiled reference control differs from original native eager")
+            gc.collect()
+            torch.cuda.empty_cache()
             runner = prior.Replay(evaluate, model, fixed)
             actual = {label: cpu(runner.call(data))
                       for label, data in (("fixed", fixed), ("perturbed", changed))}
@@ -159,6 +190,8 @@ def main():
                 raise ValueError("Frozen inputs or runtime differ from reference")
             eager = {label: cpu(evaluate(model, data))
                      for label, data in (("fixed", fixed), ("perturbed", changed))}
+            gc.collect()
+            torch.cuda.empty_cache()
             runner = prior.Replay(evaluate, model, fixed)
             builder = None
             if a.role == "local-hpx":
