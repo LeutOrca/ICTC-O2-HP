@@ -12,6 +12,10 @@ for suite in mptrj-b1 mptrj-b8; do
     "$py" -u qualify_v3.py --suite "$suite" --without-norm --local-only --start-block 5 \
         --output "$study/results/qualification-c591b16-$suite.json"
 done
+if test "$implementation" = fused-compact && test "$suite_choice" = mptrj-b1; then
+    "$py" -u trace_so2_repair.py "$study/results/SO2-OWN-TRACE.json" \
+        --implementation "$implementation" --suite mptrj-b1
+fi
 suites=(mptrj-b1 mptrj-b8)
 if test "$suite_choice" != both; then
     case "$suite_choice" in mptrj-b1|mptrj-b8) suites=("$suite_choice");; *) exit 2;; esac

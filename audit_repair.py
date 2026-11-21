@@ -35,7 +35,8 @@ def main():
     for path in sorted(args.root.glob("cohorts/*/measurements/*/results/V3_LOCAL_PAIR_AUDIT-*.json")):
         row = json.loads(path.read_text())
         qualification = path.parent / f"qualification-{row['case']}.json"
-        row["implementation"] = json.loads(qualification.read_text())["implementation"]
+        row["implementation"] = (json.loads(qualification.read_text())["implementation"]
+                                 if row.get("status") == "complete" else "unresolved")
         pairs.append(dict(path=str(path.relative_to(args.root)), **row))
     pair_coverage = {}
     for row in pairs:
@@ -49,7 +50,8 @@ def main():
         parity="official natural parity", angular_order="integer", tf32=False, amp=False,
         cuda_graph=False, timing_started=timing_started, whole_network_pairs=pairs,
         performance_coverage=pair_coverage,
-        performance_complete=set(pair_coverage.get("fused-block", [])) == {"mptrj-b1", "mptrj-b8"},
+        latest_implementation="fused-compact",
+        performance_complete=set(pair_coverage.get("fused-compact", [])) == {"mptrj-b1", "mptrj-b8"},
         qualifications=qualifications, screens=screens)
     args.output.write_text(json.dumps(summary, indent=2) + "\n")
     for row in qualifications:

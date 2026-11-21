@@ -17,6 +17,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("output", type=Path)
     parser.add_argument("--implementation", choices=tuple(PROFILES), required=True)
+    parser.add_argument("--suite", choices=("mptrj-b1", "mptrj-b8"), default="mptrj-b8")
     args = parser.parse_args()
     native.strict(torch)
     native.checked_checkpoint()
@@ -24,7 +25,7 @@ def main():
     net = native.Network("native", "cuda")
     net.freeze_ema()
     net.model.requires_grad_(False)
-    raw = net.batch(net.manifest["suites"]["mptrj-b8"])
+    raw = net.batch(net.manifest["suites"][args.suite])
     fixed, topology = net.topology(raw)
     layers = {name: module for name, module in net.model.named_modules()
               if module.__class__.__name__ == "SO2Linear"}
@@ -66,7 +67,7 @@ def main():
     forbidden = [name for name in kernels if any(token in name.lower()
                  for token in ("cublas", "gemm", "gemv", "cutlass"))]
     report = dict(source=Path("provenance/commit.txt").read_text().strip(),
-                  implementation=args.implementation, checkpoint_sha256=native.CHECKPOINT_SHA,
+                  implementation=args.implementation, suite=args.suite, checkpoint_sha256=native.CHECKPOINT_SHA,
                   topology=topology, layers=list(layers), kernels=kernels,
                   forbidden_library_matrix=forbidden, metrics_dtype="torch.float32",
                   scope="all 14 own SO2 forward and input VJP, real native operands",

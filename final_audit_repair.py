@@ -25,18 +25,22 @@ def main():
                       "cuda_matrix.py", "csrc/matrix.cu")
     baseline_hashes = {name: digest(root / name) for name in baseline_files}
     assert all(value == digest(baseline / name) for name, value in baseline_hashes.items())
-    measured = root / "cohorts/a977215"
+    implementation = summary["latest_implementation"]
+    pairs = [row for row in summary["whole_network_pairs"] if row["implementation"] == implementation]
+    assert {row["case"] for row in pairs} == {"mptrj-b1", "mptrj-b8"}
+    assert len({row["source"] for row in pairs}) == 1
+    candidate_source = pairs[0]["source"]
+    measured = root / "cohorts" / candidate_source[:7]
     candidate_files = (*baseline_files, "fused_block.py", "so2_ordered.py", "scheduled_matrix.py", "fp32_gate.py")
     candidate_hashes = {name: digest(root / name) for name in candidate_files}
     assert all(value == digest(measured / name) for name, value in candidate_hashes.items())
-    scope_trace = json.loads((measured / "results/SO2-OWN-TRACE.json").read_text())
+    first = next(row for row in pairs if row["case"] == "mptrj-b1")
+    scope_trace = json.loads(((root / first["path"]).parent / "SO2-OWN-TRACE.json").read_text())
     assert scope_trace["passed"] and len(scope_trace["layers"]) == 14
     assert not scope_trace["forbidden_library_matrix"]
     for path in (measured / "cache/triton").glob("*/*.ptx"):
         source = path.read_text()
         assert ".f64" not in source and ".tf32" not in source, path
-    pairs = [row for row in summary["whole_network_pairs"] if row["implementation"] == "fused-block"]
-    assert {row["case"] for row in pairs} == {"mptrj-b1", "mptrj-b8"}
     reports = []
     for row in pairs:
         directory = (root / row["path"]).parent
@@ -65,7 +69,7 @@ def main():
     snapshot = json.loads((root / "provenance/SNAPSHOT_QA.json").read_text())
     assert compiler["passed"] and snapshot["passed"]
     report = dict(passed=True, metrics_dtype="torch.float32", baseline="c591b16",
-        checkpoint_sha256=summary["checkpoint_sha256"], candidate_kernel_source="a977215",
+        checkpoint_sha256=summary["checkpoint_sha256"], candidate_kernel_source=candidate_source,
         baseline_files=baseline_hashes, candidate_files=candidate_hashes, numerics=reports,
         summary_sha256=digest(root / "SUMMARY.json"),
         notes="Numerical and artifact acceptance only; speed and memory goals remain separate in SUMMARY.json")

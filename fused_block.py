@@ -52,6 +52,8 @@ def fused(left, linear, compact=False):
     n, k = weight.shape
     signature = (weight.data_ptr(), weight._version, weight.dtype, weight.device, tuple(weight.shape), tuple(weight.stride()))
     retain = not compact or left.shape[0] >= 4096
+    if not retain and hasattr(linear, "_hpx_fused_block_weight"):
+        delattr(linear, "_hpx_fused_block_weight")
     cache = getattr(linear, "_hpx_fused_block_weight", None) if retain else None
     if cache is None or cache[0] != signature:
         packed = weight.new_empty((k, n))

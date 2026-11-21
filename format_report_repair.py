@@ -16,7 +16,7 @@ def main():
              "三臂分别为官方原生、c591b16 后四个 SO2 替换、全 14 个 SO2 候选。每轮在同一卡交替，阶段和各臂独立进程。",
              "固定拓扑不含邻居重建；e2e 从驻 GPU 的冻结输入开始，含官方构图和 E/F，不含文件载入/H2D。",
              "CUDA Graph 两臂均关闭，FP32、TF32/AMP 关闭，原数值阈值保持。性能中位数与数值 FP32 门控分开。", ""]
-    for implementation in ("native-block-tree", "fused-block"):
+    for implementation in ("native-block-tree", "fused-block", "fused-compact"):
         pairs = [row for row in summary["whole_network_pairs"] if row["implementation"] == implementation]
         assert len(pairs) == 2 and all(row["status"] == "complete" for row in pairs)
         lines += [f"## {implementation}", "",
