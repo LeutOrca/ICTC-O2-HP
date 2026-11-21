@@ -140,7 +140,16 @@ def main():
         memories = [m for m in memory.get(case, []) if all(m.get(k) == values[0].get(k)
                     for k in ("input_sha256", "canonical_weights_sha256", "torch"))]
         if memories:
-            m = max(memories, key=lambda v: (v["cohort"] == key[6], "memory-692de50" == v["cohort"],
+            common_groups={}
+            for other_case,other_memories in memory.items():
+                if other_case[:4]!=case[:4] or other_case[5]!=metric:
+                    continue
+                for candidate_memory in other_memories:
+                    if all(candidate_memory.get(k)==values[0].get(k) for k in ("input_sha256","canonical_weights_sha256","torch")):
+                        group=(candidate_memory["cohort"],candidate_memory["gpu_uuid"],candidate_memory["job"])
+                        common_groups.setdefault(group,set()).add(other_case[4])
+            m = max(memories, key=lambda v: (len(common_groups[(v["cohort"],v["gpu_uuid"],v["job"])]),
+                v["cohort"] == key[6],v.get("process_mode")=="forkserver", "memory-692de50" == v["cohort"],
                 "fixed" in v["cohort"], "2f1e68c" in v["cohort"], v["cohort"]))
             row.update(peak_allocated=m["peak_allocated"], peak_reserved=m["peak_reserved"],
                        memory_gpu_uuid=m["gpu_uuid"], memory_cohort=m["cohort"],memory_job=m["job"])

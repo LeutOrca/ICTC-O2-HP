@@ -91,7 +91,8 @@ def main():
         "高阶构建诊断按角色/阶段保存期限，超时不是数值失败，也不是不支持；失败/OOM/unsupported 均不填零吞吐。",
         "", "## 资源、文件与快照", "",
         f"账本快照：本项目已分配 {budget['project_gpu_h']:.4f} GPUh，本角阶轮 {budget['angular_gpu_h']:.4f} GPUh，"
-        "最终值以收尾 Slurm 账本为准。本轮包含失败的上限包络20 GPUh，项目原总上限500 GPUh保持。CPU 汇总不记 GPUh。",
+        "最终值以收尾 Slurm 账本为准。按睡前一次提交要求加入有界、跳过已完成点的夜间补测，本轮包含失败的包络36 GPUh，项目原总上限500 GPUh保持。CPU 汇总不记 GPUh。"
+        "GBU2 按 GPU TRES 计数；AIDAM 旧记录缺少 GPU TRES，按原生请求/提交行/SBATCH请求补计并保存脚本指纹，避免漏计历史 GPU 作业。",
         "", "[逐点数据](summary.csv) · [同方程配对比](speedups.csv) · [失败与状态](status.csv) · [88位置覆盖](coverage.csv) · [机器审计](SUMMARY.json)",
         "", "图宽150mm，Times New Roman，无框图例。初始绘图与汇总在 CPU Slurm，Tavotto 打开、预检及导出使用用户已授权的本轮绘图例外。"
         "原先整网规模图保留为独立附录，不充当本轮角阶吞吐主图。训练及新增整网测量均未启动。"])
