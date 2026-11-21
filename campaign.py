@@ -49,14 +49,17 @@ def main():
         cached = preflight / f"{prefix}-{role}-build.json"
         builds[role] = cached.exists() and json.loads(cached.read_text()).get("passed", False)
     for case in ((args.case,) if args.case else ("b1", "b8", "n512", "n4096")):
-        ref, result = run("ref", "native", case)
+        cross = {}
+        if os.getenv("O2_CROSS_REFERENCE_ROOT"):
+            cross["cross-reference"] = Path(os.environ["O2_CROSS_REFERENCE_ROOT"]) / f"ref-native-{case}-fixed-r0.pt"
+        ref, result = run("ref", "native", case, **cross)
         if not result.get("passed"):
             continue
         qualifications = {}
         for role in roles_to_test:
             if role != "native" and not builds.get(role):
                 continue
-            q, result = run("qualify", role, case, reference=ref.with_suffix(".pt"))
+            q, result = run("qualify", role, case, reference=ref.with_suffix(".pt"), **cross)
             if result.get("passed"):
                 qualifications[role] = q
         roles = list(qualifications)

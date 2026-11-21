@@ -93,6 +93,7 @@ def main():
     p.add_argument("output", type=Path)
     p.add_argument("--reference", type=Path)
     p.add_argument("--qualification", type=Path)
+    p.add_argument("--cross-reference", type=Path)
     p.add_argument("--repeat", type=int, default=0)
     a = p.parse_args()
     record = dict(stage=a.stage, role=a.role, case=a.case, boundary=a.boundary,
@@ -141,6 +142,13 @@ def main():
                 for key in value} for label, value in actual.items()}
             record["passed"] = (all(m["passed"] for group in comparisons.values() for m in group.values())
                                 and all(v for group in record["graph_vs_eager_exact"].values() for v in group.values()))
+            if a.cross_reference is not None:
+                original = torch.load(a.cross_reference, map_location="cpu", weights_only=False)
+                if original["input_sha256"] != record["input_sha256"]:
+                    raise ValueError("Cross-runtime frozen inputs differ")
+                cross = {label: errors(value, original["values"][label]) for label, value in expected.items()}
+                record["cross_runtime_reference"] = cross
+                record["passed"] &= all(m["passed"] for group in cross.values() for m in group.values())
             if record["passed"]:
                 torch.save(dict(values=expected, input_sha256=record["input_sha256"],
                                 torch=torch.__version__), a.output.with_suffix(".pt"))
@@ -165,8 +173,18 @@ def main():
                                       repeat=errors(repeated, actual),
                                       graph_vs_eager=errors(actual, eager[ref_key]))
             record["numerics"] = compare
+            if a.cross_reference is not None:
+                original = torch.load(a.cross_reference, map_location="cpu", weights_only=False)
+                if original["input_sha256"] != record["input_sha256"]:
+                    raise ValueError("Cross-runtime frozen inputs differ")
+                cross = {}
+                for label, data in (("fixed", fixed), ("e2e", rebuilt), ("perturbed", changed)):
+                    cross[label] = errors(cpu(runner.call(data)), original["values"]["fixed" if label == "e2e" else label])
+                record["cross_runtime_reference"] = cross
             record["passed"] = all(m["passed"] for group in compare.values()
                                    for kind in group.values() for m in kind.values())
+            if a.cross_reference is not None:
+                record["passed"] &= all(m["passed"] for group in cross.values() for m in group.values())
             record["status"] = "passed" if record["passed"] else "numerical-failure"
         else:
             builder = None
