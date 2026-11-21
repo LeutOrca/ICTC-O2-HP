@@ -62,26 +62,37 @@ def invoke(function, inputs, cotangent, metric):
     return output, gradients
 
 
-def qualify(spec, role):
+def qualify(spec, role, metric="forward_vjp"):
     inputs, cotangent, logical_cotangent = prepare(spec, role)
-    actual = spec.calls[role](*inputs)
-    gradients = torch.autograd.grad(actual, inputs, cotangent)
-    value = spec.decode[role](actual.detach())
-    gradients = [g.detach() for g in spec.decode_grad(role, gradients)]
+    if metric == "forward":
+        with torch.no_grad():
+            actual = spec.calls[role](*inputs)
+            value = spec.decode[role](actual)
+        gradients = []
+    else:
+        actual = spec.calls[role](*inputs)
+        gradients = torch.autograd.grad(actual, inputs, cotangent)
+        value = spec.decode[role](actual.detach())
+        gradients = [g.detach() for g in spec.decode_grad(role, gradients)]
     chunks = []
     chunk_size = spec.rows if spec.family == "so2" else 512
     for start in range(0, spec.rows, chunk_size):
         end = min(spec.rows, start + chunk_size)
         logical = [v[start:end].detach().requires_grad_() for v in spec.logical]
-        expected = spec.reference(*logical)
-        expected_gradients = torch.autograd.grad(expected, logical, logical_cotangent[start:end])
+        if metric == "forward":
+            with torch.no_grad():
+                expected = spec.reference(*logical)
+            expected_gradients = []
+        else:
+            expected = spec.reference(*logical)
+            expected_gradients = torch.autograd.grad(expected, logical, logical_cotangent[start:end])
         checks = [error(value[start:end], expected)] + [
             error(got[start:end], ref) for got, ref in zip(gradients, expected_gradients)]
         chunks.append(dict(start=start, end=end, checks=checks))
         del logical, expected, expected_gradients
     return dict(passed=all(c["passed"] for row in chunks for c in row["checks"]),
                 forward_passed=all(row["checks"][0]["passed"] for row in chunks),
-                vjp_passed=all(c["passed"] for row in chunks for c in row["checks"]),
+                vjp_passed=metric=="forward_vjp" and all(c["passed"] for row in chunks for c in row["checks"]),
                 chunks=chunks, full_workload=True, reference_chunk_size=chunk_size)
 
 
@@ -108,12 +119,18 @@ def main():
                       gpu_uuid=str(torch.cuda.get_device_properties(0).uuid))
         spec = Spec(a.family, a.order, a.parity, a.rows)
         record.update(spec.metadata)
+        selected_roles = [a.role] if a.role else list(spec.calls)
         if a.stage == "build":
             results = {}
-            for role, function in spec.calls.items():
+            for role in selected_roles:
+                function = spec.calls[role]
+                record.update(status="building", active_role=role)
+                a.output.parent.mkdir(parents=True, exist_ok=True)
+                a.output.write_text(json.dumps(record, indent=2))
+                print("building", role, a.metric, flush=True)
                 try:
                     inputs, cotangent, _ = prepare(spec, role)
-                    invoke(function, inputs, cotangent, "forward_vjp")
+                    invoke(function, inputs, cotangent, a.metric)
                     torch.cuda.synchronize()
                     results[role] = dict(passed=True)
                 except Exception as exc:
@@ -128,13 +145,13 @@ def main():
                         gc.collect()
                         torch.cuda.empty_cache()
                         spec = Spec(a.family, a.order, a.parity, a.rows, seed, scale)
-                    for role in spec.calls:
+                    for role in selected_roles:
                         key = f"{role}/{seed}/{scale}"
                         try:
-                            results[key] = qualify(spec, role)
+                            results[key] = qualify(spec, role, a.metric)
                         except Exception as exc:
                             results[key] = dict(passed=False, error=str(exc), traceback=traceback.format_exc())
-            roles = list(spec.calls)
+            roles = selected_roles
             by_metric = {}
             for metric, field in (("forward", "forward_passed"), ("forward_vjp", "vjp_passed")):
                 by_metric[metric] = [role for role in roles if all(
