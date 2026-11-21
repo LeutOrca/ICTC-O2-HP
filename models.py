@@ -22,7 +22,8 @@ def digest(values):
     result = hashlib.sha256()
     for item in values:
         result.update(str(tuple(item.shape)).encode())
-        result.update(item.detach().contiguous().cpu().numpy().tobytes())
+        for chunk in item.detach().split(512, 0):
+            result.update(chunk.contiguous().cpu().numpy().tobytes())
     return result.hexdigest()
 
 
@@ -113,6 +114,7 @@ class Spec:
         identity = lambda x: x
         if family == "tp":
             native = TensorProduct(C, order, parity=parity).cuda().float().requires_grad_(False)
+            self.metadata["canonical_weights_sha256"] = digest([native.weight])
             self.logical = [random((rows, native.representation_dimension)) for _ in range(2)]
             self.reference = tp_reference(native)
             table = entries(native.blocks, C)
@@ -170,6 +172,7 @@ class Spec:
                 self.encode["eqx-o2"] = [enc_left, enc_right, lambda x: x * signs]
             else:
                 linear = torch.nn.Linear(H, native.weight_numel).cuda().float().requires_grad_(False)
+                self.metadata["canonical_weights_sha256"] = digest(list(linear.parameters()))
                 hidden = random((rows, H))
                 self.logical = [left, right, hidden]
                 self.reference = lambda x, y, h: ref(x, y, linear(h))
@@ -194,6 +197,7 @@ class Spec:
             from so2_layer import frozen_layer
             from matrix_kernels import OwnMatrixKernels
             native = SO2Linear(C, C, order, order).cuda().float().requires_grad_(False)
+            self.metadata["canonical_weights_sha256"] = digest(list(native.parameters()))
             self.logical = [random((rows, (order + 1) ** 2, C))]
             self.calls["so2-native"] = native
             for backend in ("cuda2", "triton"):
@@ -225,6 +229,7 @@ class Spec:
             from ictp.o3.cartesian_harmonics import CartesianHarmonics
             native = WeightedTensorProduct(order, order, order, C, 1, C,
                                            connection_mode="uvu").cuda().float().requires_grad_(False)
+            self.metadata["canonical_weights_sha256"] = digest(list(native.parameters()))
             plain = PlainTensorProduct(order, order, order, C, C, C).cuda().float()
             harmonic = CartesianHarmonics(order).cuda().float()
             with torch.no_grad():
