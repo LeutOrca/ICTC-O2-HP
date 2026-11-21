@@ -39,7 +39,12 @@ Separate build/qualification/timing/memory processes on Slurm compute nodes.
 Five independent paired timing processes per configuration, rotating role
 order; 30 warmups/30 synchronized samples for each boundary. Report wall and
 CUDA event ms, primary rows/s from wall time, both allocated/reserved peaks.
-Memory uses fresh processes per role. Failed/OOM/unsupported points have no
+Memory uses fresh processes per role. Timing and memory may use separate
+allocations; all arms within each phase use the same GPU and keep phase UUIDs
+explicit. The corrected memory sweep requalifies on its own GPU and removes
+an unused native-layout cotangent from preparation before resetting peaks.
+Earlier memory records retaining that unused tensor are superseded, while
+their unaffected timing records are preserved. Failed/OOM/unsupported points have no
 accepted throughput and are gaps in plots. Same GPU for all compared arms
 within each configured workload, source/input/weight hashes recorded.
 
