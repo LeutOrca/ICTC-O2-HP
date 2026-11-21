@@ -23,6 +23,8 @@ def main():
         receipts.append(data)
     assert len({r["pid"] for r in receipts})==4
     assert len({r["gpu_uuid"] for r in receipts})==1
+    assert all(set(roles)=={"public","local-hpx","eqx-o2","cue-o2"}
+               for roles in receipts[1]["accepted_by_metric"].values())
     (out/"PROBE.json").write_text(json.dumps(dict(passed=True,pids=[r["pid"] for r in receipts],
         accepted=receipts[1]["accepted_by_metric"],distinct_cuda_processes=True),indent=2))
     print("CUDA-clean forkserver: four independent phases passed",flush=True)
