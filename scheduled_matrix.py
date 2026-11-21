@@ -29,6 +29,11 @@ def _partials(A, B, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
             right = tl.load(B + k[:, None] * B0 + col[None, :] * B1,
                             (item[:, None] < CHUNK // GROUPS) & (k[:, None] < K) & (col[None, :] < N), other=0.)
             subtotal = tl.dot(left, right, input_precision="ieee")
+            # Keep the block's rounding boundary. Triton otherwise rewrites
+            # dot(A, B, 0) + total into dot(A, B, total), changing FP32 results.
+            subtotal = tl.inline_asm_elementwise(
+                "mov.b32 $0, $1;", constraints="=f,f", args=[subtotal],
+                dtype=tl.float32, is_pure=True, pack=1)
             total = total + subtotal
     else:
         for block in range(tl.cdiv(span, BK)):
