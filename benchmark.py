@@ -18,6 +18,9 @@ def error(actual, reference):
         raise TypeError("Numerical references and statistics must be FP32")
     delta = (actual.detach() - reference.detach()).abs()
     finite = bool(torch.isfinite(actual).all() and torch.isfinite(reference).all())
+    if not finite:
+        return dict(passed=False, max_abs=None, relative_l2=None, arithmetic="float32", finite=False)
+    reference = reference.detach()
     relative = float(delta.norm() / reference.norm().clamp_min(1e-30))
     passed = finite and relative <= 1e-5 and bool((
         (delta <= 1e-5 + 1e-4 * reference.abs()) &
@@ -77,6 +80,8 @@ def qualify(spec, role):
         chunks.append(dict(start=start, end=end, checks=checks))
         del logical, expected, expected_gradients
     return dict(passed=all(c["passed"] for row in chunks for c in row["checks"]),
+                forward_passed=all(row["checks"][0]["passed"] for row in chunks),
+                vjp_passed=all(c["passed"] for row in chunks for c in row["checks"]),
                 chunks=chunks, full_workload=True, reference_chunk_size=chunk_size)
 
 
@@ -130,20 +135,27 @@ def main():
                         except Exception as exc:
                             results[key] = dict(passed=False, error=str(exc), traceback=traceback.format_exc())
             roles = list(spec.calls)
-            accepted = [role for role in roles if all(
-                results[f"{role}/{seed}/{scale}"]["passed"]
-                for seed in (20261003, 20261004) for scale in (.1, 1.))]
+            by_metric = {}
+            for metric, field in (("forward", "forward_passed"), ("forward_vjp", "vjp_passed")):
+                by_metric[metric] = [role for role in roles if all(
+                    results[f"{role}/{seed}/{scale}"].get(field, False)
+                    for seed in (20261003, 20261004) for scale in (.1, 1.))]
+            accepted = [role for role in roles if any(role in values for values in by_metric.values())]
             record.update(status="qualified" if accepted else "numerical-failure",
-                          passed=bool(accepted), accepted=accepted, numerics=results)
+                          passed=bool(accepted), accepted=accepted, accepted_by_metric=by_metric, numerics=results)
         else:
             q = json.loads(a.qualification.read_text())
             if not q["passed"] or (q["family"], q["order"], q["parity"], q["rows"], q["torch"]) != (
                     a.family, a.order, a.parity, a.rows, torch.__version__):
                 raise RuntimeError("Matching accepted qualification is required")
             record["qualification_sha256"] = hashlib.sha256(a.qualification.read_bytes()).hexdigest()
+            if q["input_sha256"] != spec.metadata["input_sha256"] or q["gpu_uuid"] != record["gpu_uuid"]:
+                raise RuntimeError("Inputs or GPU differ from the accepted paired qualification")
+            if q.get("canonical_weights_sha256") != spec.metadata.get("canonical_weights_sha256"):
+                raise RuntimeError("Frozen weights differ from qualification")
             record["accepted"] = q["accepted"]
             if a.stage == "memory":
-                if a.role not in q["accepted"]:
+                if a.role not in q.get("accepted_by_metric", {}).get(a.metric, q["accepted"]):
                     raise RuntimeError("Role failed qualification")
                 inputs, cotangent, _ = prepare(spec, a.role)
                 function = spec.calls[a.role]
@@ -165,6 +177,8 @@ def main():
                 measurements = []
                 for role in roles:
                     for metric in (("forward", "forward_vjp") if a.repeat % 2 == 0 else ("forward_vjp", "forward")):
+                        if role not in q.get("accepted_by_metric", {}).get(metric, q["accepted"]):
+                            continue
                         inputs, cotangent = prepared[role]
                         for _ in range(30):
                             output = invoke(spec.calls[role], inputs, cotangent, metric)
