@@ -14,6 +14,7 @@ import whole_network as native
 from matrix_kernels import OwnMatrixKernels
 from v3_native import install
 from fp32_gate import gate
+from so2_ordered import PROFILES
 
 
 def main():
@@ -26,7 +27,7 @@ def main():
     parser.add_argument("--registry", action="store_true")
     parser.add_argument("--local-only", action="store_true")
     parser.add_argument("--start-block", type=int, choices=range(7), default=0)
-    parser.add_argument("--implementation", choices=("packed", "ordered", "calibrated"), default="packed")
+    parser.add_argument("--implementation", choices=("packed", "ordered", "calibrated", *PROFILES), default="packed")
     args = parser.parse_args()
     native.strict(torch)
     native.checked_checkpoint()
@@ -46,11 +47,11 @@ def main():
             references[(seed, boundary)] = model.forward(data, boundary == "fixed")
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
-    if args.implementation in ("ordered", "calibrated"):
+    if args.implementation != "packed":
         if not args.without_norm or not args.local_only or args.start_block:
             raise ValueError("Ordered qualification requires all 14 SO2 and unchanged native norm")
         from so2_ordered import install as install_ordered
-        configuration = "calibrated" if args.implementation == "calibrated" else "triton"
+        configuration = "triton" if args.implementation == "ordered" else args.implementation
         installed = dict(so2=install_ordered(model.model, configuration, configuration, configuration), norm=[])
     else:
         installed = install(model.model, args.kernel, use_norm=not args.without_norm,
@@ -71,7 +72,7 @@ def main():
                                             {} if args.local_only else mode.calls))
             records.append(record)
             passed = all(item["passed"] for item in errors.values())
-            report = dict(suite=args.suite, base="9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03",
+            report = dict(suite=args.suite, base="c591b16",
                           checkpoint_sha256=native.CHECKPOINT_SHA, installed=installed,
                           records=records, passed=passed, split_complex=args.split_complex,
                           registry=args.registry,

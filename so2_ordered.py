@@ -10,6 +10,23 @@ from frozen_so2 import _pack_input
 from matrix_kernels import matrix
 from so2_layer import assemble, zero_order_weight
 
+# Shape-only schedules, frozen independently of the input values or seed.
+# Tuple entries are m0/m1/m2 input adjoints for the second SO2 family.
+PROFILES = {
+    "tree32": ("t:-4x1a", "t:-8x1a", "t:-4x1a"),
+    "tree32-native-chain": ("triton", "triton", "triton"),
+    "tree32-butterfly": ("t:-4x1b", "t:-8x1b", "t:-4x1b"),
+    "tree32-four": ("t:-4x1a", "t:-4x1a", "t:-4x1a"),
+}
+
+
+def schedule(configuration, first, order, adjoint):
+    if configuration not in PROFILES:
+        return configuration
+    if adjoint:
+        return "t:-2x1l" if first else PROFILES[configuration][order]
+    return ("t:32x1a" if order == 1 else "t:32x1b") if first else "triton"
+
 
 @triton.jit
 def _complex_output(Parts, Result, E: tl.constexpr, O: tl.constexpr,
@@ -87,6 +104,7 @@ class _Ordered(torch.autograd.Function):
                 raise ValueError("Calibrated schedule supports only the frozen official FC shapes")
         if zero_backward_config == "calibrated":
             zero_backward_config = "-2x1l" if first_mixer else "-4x1a"
+        zero_backward_config = schedule(zero_backward_config, first_mixer, 0, True)
         offset = module.lmax + 1
         for layer in module.so2_m_linear:
             width, outputs = layer.in_features, layer.out_features
@@ -96,6 +114,7 @@ class _Ordered(torch.autograd.Function):
                 _pack_input[(triton.cdiv(packed.numel(), 256),)](
                     value, packed, edges, width, *value.stride(), 256)
             current_forward = ("8x1b" if first_mixer else "triton") if forward_config == "calibrated" else forward_config
+            current_forward = schedule(current_forward, first_mixer, layer.m, False)
             products = product(packed, layer.fc.weight.t(), current_forward)
             if edges:
                 _complex_output[(triton.cdiv(edges * 2 * outputs, 256),)](
@@ -103,8 +122,9 @@ class _Ordered(torch.autograd.Function):
                     256, enable_fp_fusion=False)
             offset += 2 * (module.lmax + 1 - layer.m)
             weights.append(layer.fc.weight)
-            backward_configs.append(("-2x1l" if first_mixer else "-8x1a" if layer.m == 1 else "-4x1a")
-                                    if backward_config == "calibrated" else backward_config)
+            current_backward = (("-2x1l" if first_mixer else "-8x1a" if layer.m == 1 else "-4x1a")
+                                if backward_config == "calibrated" else backward_config)
+            backward_configs.append(schedule(current_backward, first_mixer, layer.m, True))
         ctx.save_for_backward(module.fc_m0.weight, *weights)
         ctx.shape, ctx.lmax, ctx.head = inputs.shape, module.lmax, head
         ctx.backward_configs, ctx.zero_backward_config = backward_configs, zero_backward_config
