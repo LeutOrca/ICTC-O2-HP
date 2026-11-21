@@ -18,6 +18,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("output", type=Path)
     parser.add_argument("--profiles", action="store_true")
+    parser.add_argument("--profile-prefix", default="")
     args = parser.parse_args()
     native.strict(torch)
     torch.set_num_threads(4)
@@ -43,7 +44,7 @@ def main():
                       ("2x1", "4x8", "4x8"),
                       ("4x8", "2x1", "4x8"))
     if args.profiles:
-        configurations = [(profile,) * 3 for profile in PROFILES]
+        configurations = [(profile,) * 3 for profile in PROFILES if profile.startswith(args.profile_prefix)]
     for forward, backward, zero in configurations:
         installed = install(network.model, forward, backward, zero)
         for seed in native.SEEDS:

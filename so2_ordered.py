@@ -13,6 +13,9 @@ from so2_layer import assemble, zero_order_weight
 # Shape-only schedules, frozen independently of the input values or seed.
 # Tuple entries are m0/m1/m2 input adjoints for the second SO2 family.
 PROFILES = {
+    "native-block": ("t:-4x1a", "t:-8x1a", "t:-4x1a"),
+    "native-block-chain": ("triton", "triton", "triton"),
+    "native-block-tree": ("t:-4x1b", "t:-8x1b", "t:-4x1b"),
     "tree32": ("t:-4x1a", "t:-8x1a", "t:-4x1a"),
     "tree32-native-chain": ("triton", "triton", "triton"),
     "tree32-butterfly": ("t:-4x1b", "t:-8x1b", "t:-4x1b"),
@@ -25,6 +28,8 @@ def schedule(configuration, first, order, adjoint):
         return configuration
     if adjoint:
         return "t:-2x1l" if first else PROFILES[configuration][order]
+    if configuration.startswith("native-block"):
+        return "t:16x1l@256" if first else "triton"
     return ("t:32x1a" if order == 1 else "t:32x1b") if first else "triton"
 
 
