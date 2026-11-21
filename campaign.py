@@ -1,4 +1,5 @@
 """Sequential, fresh-process qualification and five alternating paired rounds."""
+import argparse
 import json
 from pathlib import Path
 import subprocess
@@ -8,6 +9,9 @@ import time
 
 def main():
     root = Path(__file__).resolve().parent
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--case", choices=("b1", "b8", "n512", "n4096"))
+    args = parser.parse_args()
     output = root / "results/campaign"
     output.mkdir(parents=True, exist_ok=True)
     attempts = []
@@ -27,7 +31,7 @@ def main():
                 code = 124
         attempts.append(dict(stage=stage, role=role, case=case, boundary=boundary,
                              repeat=repeat, returncode=code, wall_s=time.monotonic()-tick))
-        (output / "attempts.json").write_text(json.dumps(attempts, indent=2))
+        (output / f"attempts-{args.case or 'all'}.json").write_text(json.dumps(attempts, indent=2))
         if not receipt.exists():
             receipt.write_text(json.dumps(dict(stage=stage, role=role, case=case,
                 boundary=boundary, repeat=repeat, status="timeout" if code == 124 else "process-failure",
@@ -40,7 +44,7 @@ def main():
     for role in ("official", "fork", "local-hpx", "eqx-current", "cue-current"):
         cached = root / "results/preflight" / f"26-{role}-build.json"
         builds[role] = cached.exists() and json.loads(cached.read_text()).get("passed", False)
-    for case in ("b1", "b8", "n512", "n4096"):
+    for case in ((args.case,) if args.case else ("b1", "b8", "n512", "n4096")):
         ref, result = run("ref", "native", case)
         if not result.get("passed"):
             continue
@@ -54,10 +58,9 @@ def main():
         roles = list(qualifications)
         for repeat in range(5):
             order = roles if repeat % 2 == 0 else list(reversed(roles))
-            for boundary in ("fixed", "e2e"):
-                for role in order:
-                    run("time", role, case, boundary, repeat,
-                        qualification=qualifications[role])
+            for role in order:
+                run("time-both", role, case, "both", repeat,
+                    qualification=qualifications[role])
         for boundary in ("fixed", "e2e"):
             for role in roles:
                 run("memory", role, case, boundary, qualification=qualifications[role])

@@ -86,10 +86,10 @@ def cpu(value):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("stage", choices=("build", "ref", "qualify", "time", "memory", "trace"))
+    p.add_argument("stage", choices=("build", "ref", "qualify", "time", "time-both", "memory", "trace"))
     p.add_argument("role")
     p.add_argument("case", choices=tuple(prior.bench.CASES))
-    p.add_argument("boundary", choices=("fixed", "e2e"))
+    p.add_argument("boundary", choices=("fixed", "e2e", "both"))
     p.add_argument("output", type=Path)
     p.add_argument("--reference", type=Path)
     p.add_argument("--qualification", type=Path)
@@ -103,7 +103,7 @@ def main():
         torch.use_deterministic_algorithms(True)
         record.update(torch=torch.__version__, gpu=torch.cuda.get_device_name(),
                       gpu_uuid=str(torch.cuda.get_device_properties(0).uuid))
-        if a.stage in ("time", "memory", "trace"):
+        if a.stage in ("time", "time-both", "memory", "trace"):
             qualification = json.loads(a.qualification.read_text())
             if not (qualification["passed"] and qualification["case"] == a.case
                     and qualification["role"] == a.role and qualification["torch"] == torch.__version__):
@@ -121,7 +121,7 @@ def main():
             digest.update(name.encode())
             digest.update(value.detach().contiguous().cpu().numpy().tobytes())
         record["input_sha256"] = digest.hexdigest()
-        if a.stage in ("time", "memory", "trace") and record["input_sha256"] != qualification["input_sha256"]:
+        if a.stage in ("time", "time-both", "memory", "trace") and record["input_sha256"] != qualification["input_sha256"]:
             raise RuntimeError("Measurement inputs differ from qualified inputs")
         changed = dict(fixed, positions=fixed["positions"].detach().clone())
         changed["positions"][0, 0] += 0.005
@@ -133,10 +133,14 @@ def main():
             expected = {label: cpu(prior.evaluate(model, data))
                         for label, data in (("fixed", fixed), ("perturbed", changed))}
             runner = prior.Replay(evaluate, model, fixed)
-            comparisons = {label: errors(cpu(runner.call(data)), expected[label])
-                           for label, data in (("fixed", fixed), ("perturbed", changed))}
+            actual = {label: cpu(runner.call(data))
+                      for label, data in (("fixed", fixed), ("perturbed", changed))}
+            comparisons = {label: errors(value, expected[label]) for label, value in actual.items()}
             record["numerics"] = comparisons
-            record["passed"] = all(m["passed"] for group in comparisons.values() for m in group.values())
+            record["graph_vs_eager_exact"] = {label: {key: torch.equal(value[key], expected[label][key])
+                for key in value} for label, value in actual.items()}
+            record["passed"] = (all(m["passed"] for group in comparisons.values() for m in group.values())
+                                and all(v for group in record["graph_vs_eager_exact"].values() for v in group.values()))
             if record["passed"]:
                 torch.save(dict(values=expected, input_sha256=record["input_sha256"],
                                 torch=torch.__version__), a.output.with_suffix(".pt"))
@@ -177,25 +181,35 @@ def main():
             runner = prior.Replay(evaluate, model, fixed)
             torch.cuda.synchronize()
             record["capture_prepare_wall_ms"] = (time.perf_counter() - tick) * 1000
+            current_boundary = a.boundary
             def call():
-                data = fixed if a.boundary == "fixed" else (
+                data = fixed if current_boundary == "fixed" else (
                     builder(geometry) if builder else prior.inputs_for(geometry, model))
                 return runner.call(data)
-            if a.stage == "time":
-                for _ in range(5):
-                    out = call()
-                    del out
-                walls = []
-                for _ in range(15):
-                    torch.cuda.synchronize()
-                    tick = time.perf_counter()
-                    out = call()
-                    torch.cuda.synchronize()
-                    walls.append((time.perf_counter() - tick) * 1000)
-                    del out
-                record.update(wall_ms=median(walls), samples_ms=walls,
-                              atoms_s=record["atoms"] * 1000 / median(walls),
-                              structures_s=record["structures"] * 1000 / median(walls))
+            if a.stage in ("time", "time-both"):
+                boundaries = (["fixed", "e2e"] if a.repeat % 2 == 0 else ["e2e", "fixed"]) if a.stage == "time-both" else [a.boundary]
+                for current_boundary in boundaries:
+                    for _ in range(5):
+                        out = call()
+                        del out
+                    walls = []
+                    for _ in range(15):
+                        torch.cuda.synchronize()
+                        tick = time.perf_counter()
+                        out = call()
+                        torch.cuda.synchronize()
+                        walls.append((time.perf_counter() - tick) * 1000)
+                        del out
+                    timing = dict(wall_ms=median(walls), samples_ms=walls,
+                                  atoms_s=record["atoms"] * 1000 / median(walls),
+                                  structures_s=record["structures"] * 1000 / median(walls))
+                    if a.stage == "time":
+                        record.update(timing)
+                    else:
+                        one = dict(record, stage="time", boundary=current_boundary,
+                                   status="measured", passed=True, **timing)
+                        a.output.with_name(a.output.stem + "-" + current_boundary + ".json").write_text(
+                            json.dumps(one, indent=2) + "\n")
             elif a.stage == "memory":
                 out = call()
                 torch.cuda.synchronize()
