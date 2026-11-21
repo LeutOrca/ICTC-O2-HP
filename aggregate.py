@@ -187,7 +187,7 @@ def main():
             c_mem=summary_by_case[case]
             b_mem=summary_by_case[case[:4]+(baseline_role,metric)]
             if c_mem["peak_allocated"]!="" and b_mem["peak_allocated"]!="" and (
-                c_mem["memory_gpu_uuid"],c_mem["memory_cohort"]) == (b_mem["memory_gpu_uuid"],b_mem["memory_cohort"]):
+                c_mem["memory_gpu_uuid"],c_mem["memory_cohort"],c_mem["memory_job"]) == (b_mem["memory_gpu_uuid"],b_mem["memory_cohort"],b_mem["memory_job"]):
                 paired_memory.update(allocated_ratio=c_mem["peak_allocated"]/b_mem["peak_allocated"],
                     reserved_ratio=c_mem["peak_reserved"]/b_mem["peak_reserved"],memory_gpu_uuid=c_mem["memory_gpu_uuid"],
                     memory_cohort=c_mem["memory_cohort"],memory_status="paired")
