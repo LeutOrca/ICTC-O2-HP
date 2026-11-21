@@ -25,8 +25,10 @@ def main():
     parser.add_argument("--registry", action="store_true")
     parser.add_argument("--local-only", action="store_true")
     parser.add_argument("--start-block", type=int, choices=range(7), default=0)
+    parser.add_argument("--implementation", choices=("packed", "ordered"), default="packed")
     args = parser.parse_args()
     native.strict(torch)
+    native.checked_checkpoint()
     torch.set_num_threads(4)
     model = native.Network("native", "cuda")
     model.freeze_ema()
@@ -43,8 +45,14 @@ def main():
             references[(seed, boundary)] = model.forward(data, boundary == "fixed")
     from optimizations import install as install_previous
     install_previous("gather-radial", model.model)
-    installed = install(model.model, args.kernel, use_norm=not args.without_norm,
-                        split_complex=args.split_complex, start_block=args.start_block)
+    if args.implementation == "ordered":
+        if not args.without_norm or not args.local_only or args.start_block:
+            raise ValueError("Ordered qualification requires all 14 SO2 and unchanged native norm")
+        from so2_ordered import install as install_ordered
+        installed = dict(so2=install_ordered(model.model), norm=[])
+    else:
+        installed = install(model.model, args.kernel, use_norm=not args.without_norm,
+                            split_complex=args.split_complex, start_block=args.start_block)
     if args.registry:
         from kernel_registry import install as register
         registered_calls = register(args.kernel)
@@ -67,6 +75,11 @@ def main():
                           registry=args.registry,
                           local_only=args.local_only,
                           start_block=args.start_block, kernel=args.kernel,
+                          implementation=args.implementation,
+                          source=Path("provenance/commit.txt").read_text().strip(),
+                          input_positions_sha256=native.tensor_sha(raw.pos), topology_sha256=topology,
+                          input_manifest_sha256=native.sha(native.PROV / "geometry.json"),
+                          gpu_uuid=str(torch.cuda.get_device_properties(0).uuid), torch=torch.__version__,
                           tf32=False, amp=False, cuda_graph=False)
             args.output.write_text(json.dumps(report, indent=2))
             print(json.dumps(record), flush=True)
