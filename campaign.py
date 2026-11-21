@@ -1,0 +1,69 @@
+"""Sequential, fresh-process qualification and five alternating paired rounds."""
+import json
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+
+def main():
+    root = Path(__file__).resolve().parent
+    output = root / "results/campaign"
+    output.mkdir(parents=True, exist_ok=True)
+    attempts = []
+    def run(stage, role, case, boundary="fixed", repeat=0, **kwargs):
+        receipt = output / f"{stage}-{role}-{case}-{boundary}-r{repeat}.json"
+        command = [sys.executable, "-u", str(root / "whole.py"), stage, role, case,
+                   boundary, str(receipt), "--repeat", str(repeat)]
+        for key, value in kwargs.items():
+            command.extend(["--" + key, str(value)])
+        tick = time.monotonic()
+        with receipt.with_suffix(".log").open("w") as log:
+            try:
+                completed = subprocess.run(command, stdout=log, stderr=subprocess.STDOUT,
+                                           timeout=600, check=False)
+                code = completed.returncode
+            except subprocess.TimeoutExpired:
+                code = 124
+        attempts.append(dict(stage=stage, role=role, case=case, boundary=boundary,
+                             repeat=repeat, returncode=code, wall_s=time.monotonic()-tick))
+        (output / "attempts.json").write_text(json.dumps(attempts, indent=2))
+        if not receipt.exists():
+            receipt.write_text(json.dumps(dict(stage=stage, role=role, case=case,
+                boundary=boundary, repeat=repeat, status="timeout" if code == 124 else "process-failure",
+                passed=False, returncode=code)))
+        result = json.loads(receipt.read_text())
+        print(stage, role, case, boundary, repeat, result["status"], flush=True)
+        return receipt, result
+
+    builds = {}
+    for role in ("official", "fork", "local-hpx", "eqx-current", "cue-current"):
+        cached = root / "results/preflight" / f"26-{role}-build.json"
+        builds[role] = cached.exists() and json.loads(cached.read_text()).get("passed", False)
+    for case in ("b1", "b8", "n512", "n4096"):
+        ref, result = run("ref", "native", case)
+        if not result.get("passed"):
+            continue
+        qualifications = {}
+        for role in ("native", "official", "fork", "local-hpx", "eqx-current", "cue-current"):
+            if role != "native" and not builds.get(role):
+                continue
+            q, result = run("qualify", role, case, reference=ref.with_suffix(".pt"))
+            if result.get("passed"):
+                qualifications[role] = q
+        roles = list(qualifications)
+        for repeat in range(5):
+            order = roles if repeat % 2 == 0 else list(reversed(roles))
+            for boundary in ("fixed", "e2e"):
+                for role in order:
+                    run("time", role, case, boundary, repeat,
+                        qualification=qualifications[role])
+        for boundary in ("fixed", "e2e"):
+            for role in roles:
+                run("memory", role, case, boundary, qualification=qualifications[role])
+        for role in roles:
+            run("trace", role, case, qualification=qualifications[role])
+
+
+if __name__ == "__main__":
+    main()
