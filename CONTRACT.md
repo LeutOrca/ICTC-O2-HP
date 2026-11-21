@@ -61,6 +61,16 @@ High-order forward and VJP builds may be isolated by role and phase with
 bounded timeouts; a backward build timeout does not invalidate a separately
 qualified inference-forward point. No numerical tolerance is changed.
 
+The inclusive pilot envelope is revised to 20 GPUh to include a direct local
+HPX/public comparison and a complete SO2 rerun after correcting a CUDA worker
+context launch error. The unchanged 500 GPUh project cap is audited separately.
+Local HPX source is 5f278ef, independent-output preload API; donated-input
+inference is excluded from these paired first-input-VJP panels. A frozen-weight
+adapter requests its existing input adjoints with output_mask=3, bypassing the
+stock API's unused FP64 parameter-gradient computation. Thus this is explicitly
+the input-only inference adapter, not a stock HPX training benchmark. All new
+arms are requalified in FP32 and paired on their own common GPU allocation.
+
 Plots: 150 mm, Times New Roman, frameless legend, x=angular order1..8, separate
 atoms/s and edges/s panels and forward/VJP boundaries. Use Tavotto to open,
 edit, preflight, export vector PDF and PNG. The user explicitly authorized a
