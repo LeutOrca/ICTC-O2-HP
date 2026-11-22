@@ -1,0 +1,6 @@
+downloads/tavotto-0.21.3-py3-none-any.whl: OK
+Updated tavotto v0.21.0 -> v0.21.3
+ - tavotto==0.21.0
+ + tavotto==0.21.3
+Installed 1 executable: tavotto
+Tavotto engine 0.21.3

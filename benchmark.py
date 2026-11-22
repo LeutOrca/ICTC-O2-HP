@@ -96,7 +96,7 @@ def qualify(spec, role, metric="forward_vjp", reference_chunk=512):
                 error(got[window:stop], ref[local]) for got, ref in zip(gradients, expected_gradients)]
             chunks.append(dict(start=window, end=stop, checks=checks))
         del logical, expected, expected_gradients
-    return dict(passed=all(c["passed"] for row in chunks for c in row["checks"]),
+    return dict(passed=all(c["passed"] for row in chunks for c in row["checks"]), evaluated_metric=metric,
                 forward_passed=all(row["checks"][0]["passed"] for row in chunks),
                 vjp_passed=metric=="forward_vjp" and all(c["passed"] for row in chunks for c in row["checks"]),
                 chunks=chunks, full_workload=True, reference_chunk_size=chunk_size,
