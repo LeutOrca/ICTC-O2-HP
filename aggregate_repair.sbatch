@@ -14,9 +14,9 @@ py=/public/home/sps-xia/bjxiao/miniconda3/envs/o2/bin/python
 "$py" report_completed_repair.py
 cd ../../figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1
 export MPLBACKEND=Agg MPLCONFIGDIR="$PWD/.mpl-cache"
-"$py" tp_throughput.py
-"$py" message_throughput.py
-"$py" so2_throughput.py
-"$py" ictp_throughput.py
-"$py" speedups.py
-"$py" hpx_speedup.py
+"$py" repair_tp_throughput.py
+"$py" repair_message_throughput.py
+"$py" repair_so2_throughput.py
+"$py" repair_ictp_throughput.py
+"$py" repair_speedups.py
+"$py" repair_hpx_speedup.py

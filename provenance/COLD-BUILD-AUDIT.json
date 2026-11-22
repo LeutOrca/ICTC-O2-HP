@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cold_cases": 9,
+  "old_timeout_slots_covered": 15,
+  "max_cold_process_seconds": 116.49909482197836,
+  "deployed_executables_exact": 11
+}

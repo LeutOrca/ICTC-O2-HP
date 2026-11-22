@@ -48,6 +48,9 @@ def main():
         "原生失败槽继续保留失败，图中由明确标注的修复角色补充，不把失败填成零吞吐。",
         "UVU分母是未修改Eqx-O2 CUDA；Radial高阶VJP的分母是Eqx-O2加同一自写仿射输入伴随，因为原生Eqx隐藏输入伴随未过门。"
         "后者不能写成对未修改Eqx整算子的加速。", "",
+        "UVU L6–8对原生Eqx前向1.562–1.592×，前向+VJP1.021–1.078×，allocated基本持平。"
+        "径向L4–8对加同一伴随修复的Eqx，前向1.125–1.218×；VJP为0.848–0.912×，allocated降低75.0–80.7%、reserved降低73.6–80.1%。"
+        "径向流式版的速度门未通过，UVU显存10%门未通过，保留为单列修复候选。整网暂停，整网加速结论不更新。", "",
         "| 算子 | 角阶 | 边界 | 候选/分母 | 同卡加速 | allocated降低 | reserved降低 |",
         "|---|---:|---|---|---:|---:|---:|"]
     for r in pairs:
@@ -55,21 +58,23 @@ def main():
         lines.append(f"| {r['family']} | {r['order']} | {r['metric']} | {r['candidate']}/{r['baseline']} | "
                      f"{float(r['speedup']):.3f}× | {100*(1-float(r['allocated_ratio'])):.1f}% | {100*(1-float(r['reserved_ratio'])):.1f}% |")
     lines += ["", "小于1的加速表示退化，负显存降幅表示增加。构建修复不自动等于性能优化通过。", "",
-        f"![Full parity UVU/Radial 吞吐]({GALLERY}/O2_UVU_Radial_full.png)", "",
+        f"![Full parity UVU/Radial 吞吐]({GALLERY}/O2_UVU_Radial_full_repair20261122.png)", "",
         "横轴角阶1–8，C64；节点TP N4096，其余边算子E16384；UVU V1、径向H64。"
         "原子/s是节点特征行吞吐，边/s是逐边算子行吞吐，均不含整网、邻居构建、能量或力。"
         "O2 canonical/full分图，SO2/ICTP是不同方程的绝对成本参照，不作跨方程加速。",
-        f"[节点TP]({GALLERY}/O2_TP_atoms.pdf) · [边TP]({GALLERY}/O2_TP_edges.pdf) · "
-        f"[canonical UVU/Radial]({GALLERY}/O2_UVU_Radial_canonical.pdf) · [full UVU/Radial]({GALLERY}/O2_UVU_Radial_full.pdf) · "
-        f"[SO2Linear]({GALLERY}/SO2Linear_edges.pdf) · [ICTP]({GALLERY}/ICTP_atoms_edges.pdf)", "",
+        f"[节点TP]({GALLERY}/O2_TP_atoms_repair20261122.pdf) · [边TP]({GALLERY}/O2_TP_edges_repair20261122.pdf) · "
+        f"[canonical UVU/Radial]({GALLERY}/O2_UVU_Radial_canonical_repair20261122.pdf) · [full UVU/Radial]({GALLERY}/O2_UVU_Radial_full_repair20261122.pdf) · "
+        f"[SO2Linear]({GALLERY}/SO2Linear_edges_repair20261122.pdf) · [ICTP]({GALLERY}/ICTP_atoms_edges_repair20261122.pdf)", "",
         "## 不变的合同与来源", "",
         "GBU2 H10080GB，torch2.11.0+cu128/Triton3.6.0。FP32输入/权重/累加/参考/误差统计，TF32/AMP/CUDA Graph关闭。"
         "同时满足逐分量1e-5+1e-4|ref|和2e-5+2e-5|ref|，relative L2≤1e-5，不放宽门槛。"
         "两种子20261003/20261004、尺度0.1/1，E16384全负载，参考可分4096行，统计始终每512行。",
         "构建、资格、五轮计时、每角色显存用分离进程。每轮30次预热、30次同步墙钟，CUDA event辅助；"
         "五轮角色顺序轮换/反转，同一job/GPU/输入/权重/资格哈希配对。峰值allocated/reserved来自新CUDA上下文与分配器。"
+        "计时消费各自原生API布局，包含径向仿射前向、TP及所需输入VJP，不含输入生成、逻辑基变换、参考验证及构建。"
+        "这些是预编译后的Triton JIT稳态测量，不是离线动态AOT验收。"
         "整数角阶，无半整数/半精度编译；冻结参数，只验前向和所有位置相关输入一次VJP，不声明训练、参数梯度或二阶通过。",
-        "官方96815838与fork296e61f1的14份可执行源码一致；Eqx c646c700/TACE0.2.5 CUDA；ICTP f40592a5仅支持L≤3，4–8不支持留空；"
+        "官方96815838与fork296e61f1的14份可执行源码一致，执行包0.1.6.dev0；Eqx c646c700/TACE0.2.5 CUDA；ICTP f40592a5仅支持L≤3，4–8不支持留空；"
         "cuEq0.13 exact O2仅用于UUU。旧TP/HPX/SO2测量沿用原合格回执，新增角色的来源见快照和源封印。", "",
         "## 资源、连接与交付", "",
         f"本续轮{budget['repair_gpu_jobs']}个GPU作业、{budget['repair_gpu_h']:.4f}GPUh，含失败与取消；"
@@ -79,6 +84,11 @@ def main():
         "Tavotto插件及独立引擎安装为0.21.3，当前MCP仍加载旧0.21.0，需重连才加载新版。"
         "本轮使用已授权绘图例外完成Tavotto打开/预检/导出；数值、汇总及初始绘图均经Slurm。"
         "150mm、Times New Roman、无框图例；最终预检与导出证据另存，不将安装版本冒充运行中版本。", "",
+        "九图Tavotto最终导出均0错误、0警告、0不可验证项。无量纲角阶/加速比的单位格式提示保留。"
+        "新图名及数据比值文件均使用唯一名称，避免父子图库同名解析到旧源码；报告PNG/PDF固定文件按最终导出原字节同步。", "",
+        "[逐项快照](SNAPSHOTS.zh-CN.md) · [最终Tavotto导出与哈希](provenance/TAVOTTO-FINAL-EXPORTS.json) · "
+        "[同卡配对独立审计](provenance/FINAL-PAIRED-AUDIT.json) · [独立解包复算QA](provenance/DELIVERY-QA.json) · "
+        "[归档索引](provenance/DELIVERY.json)", "",
         "[数值独立审计](provenance/REPAIR-GATE-AUDIT.json) · [构建候选资格审计](provenance/BOUNDED-GATE-AUDIT.json) · "
         "[逐点延迟/吞吐/显存](summary.csv) · [同卡配对](speedups.csv) · [原始状态](status.csv) · [汇总审计](SUMMARY.json) · "
         "[账本](provenance/BUDGET-AUDIT.json)", ""]

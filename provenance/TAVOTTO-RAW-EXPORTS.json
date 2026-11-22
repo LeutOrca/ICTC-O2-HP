@@ -1,0 +1,2854 @@
+[
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-0dd00d1acbb9",
+    "stem": "O2_UVU_Radial_full_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549.pdf",
+        "bytes": 53881,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "b179f79db45ad6a270fc29b0f7f9d8d0306a0d5626269930532956bfea9be5f5",
+          "bytes": 53881,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            425.197
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:af40ca678baae30dc24cb87eb3cd1fc768276bc47cc0177f18f1a6a3567a125c",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:af40ca678baae30dc24cb87eb3cd1fc768276bc47cc0177f18f1a6a3567a125c",
+            "render": "sha256:ce200b5f554ed5f43ed63ab105568ecb3336f081053ef59625215f89bbc3db09",
+            "artifact": "b179f79db45ad6a270fc29b0f7f9d8d0306a0d5626269930532956bfea9be5f5",
+            "run": "2ed3048972d44cfd"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "b179f79db45ad6a270fc29b0f7f9d8d0306a0d5626269930532956bfea9be5f5",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "receipt_id": "sha256:97656eae31b9a3241975c8cbd55dc7caa65e46c42080149b8d2afea9eb90b1cd",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "9eb77f6d4b561ab9636789338ba2debc2d258c41",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:523c9e495f94fbe22212e829c5a681aa51a07c6147f35fe05c9db625d6b211e9",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549.png",
+        "bytes": 646015,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "ad381218cd77e3642761236bbb4ead7704af487478e051a9604d738dd38a4804",
+          "bytes": 646015,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            3543
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:af40ca678baae30dc24cb87eb3cd1fc768276bc47cc0177f18f1a6a3567a125c",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:af40ca678baae30dc24cb87eb3cd1fc768276bc47cc0177f18f1a6a3567a125c",
+            "render": "sha256:cb4141838baef18583a9778ea6c8bc81d15686df7b89958482c57dd5f98dc73e",
+            "artifact": "ad381218cd77e3642761236bbb4ead7704af487478e051a9604d738dd38a4804",
+            "run": "2ed3048972d44cfd"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "ad381218cd77e3642761236bbb4ead7704af487478e051a9604d738dd38a4804",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "receipt_id": "sha256:97656eae31b9a3241975c8cbd55dc7caa65e46c42080149b8d2afea9eb90b1cd",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "9eb77f6d4b561ab9636789338ba2debc2d258c41",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:523c9e495f94fbe22212e829c5a681aa51a07c6147f35fe05c9db625d6b211e9",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "O2_UVU_Radial_full_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel",
+            "axes_2.xlabel",
+            "axes_3.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-b34c122e48f2",
+    "stem": "O2_TP_atoms_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629.pdf",
+        "bytes": 56372,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "89fb6e0508ee0bfa259ce03358057fb219451b5d0ec3e22f37127960fd6295f2",
+          "bytes": 56372,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:dee363b116a373c197a1c535dcf8462e81611d7d53cf7e1bfba07d01c5307786",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:dee363b116a373c197a1c535dcf8462e81611d7d53cf7e1bfba07d01c5307786",
+            "render": "sha256:77419e6844ce1440e0db404bd0ac57b9b13f78b388abef58fec0e4d0b9a96f78",
+            "artifact": "89fb6e0508ee0bfa259ce03358057fb219451b5d0ec3e22f37127960fd6295f2",
+            "run": "bba84d483d584ef8"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "89fb6e0508ee0bfa259ce03358057fb219451b5d0ec3e22f37127960fd6295f2",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "receipt_id": "sha256:aa796659f466e1ab5525178e0da632012106ef1cd6fddb12cb179a07ff32ab69",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "11dd3bc7167ec9d65035b8eea526da48e4552424",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:80bdbbb8fb7f7be7e5736d405b66aaaa7ba4bce43665b3f31e3c5149def5c2d0",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629.png",
+        "bytes": 572408,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "862dc43e427a2c568313609ca9784dfe2736bd2554f3eeb1392cc58adc9bb70d",
+          "bytes": 572408,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:dee363b116a373c197a1c535dcf8462e81611d7d53cf7e1bfba07d01c5307786",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:dee363b116a373c197a1c535dcf8462e81611d7d53cf7e1bfba07d01c5307786",
+            "render": "sha256:245f5c89957186377cf1751d9add57b456e1b337b1c031bc1a2cf5646d7803c8",
+            "artifact": "862dc43e427a2c568313609ca9784dfe2736bd2554f3eeb1392cc58adc9bb70d",
+            "run": "bba84d483d584ef8"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "862dc43e427a2c568313609ca9784dfe2736bd2554f3eeb1392cc58adc9bb70d",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "receipt_id": "sha256:aa796659f466e1ab5525178e0da632012106ef1cd6fddb12cb179a07ff32ab69",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "11dd3bc7167ec9d65035b8eea526da48e4552424",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:80bdbbb8fb7f7be7e5736d405b66aaaa7ba4bce43665b3f31e3c5149def5c2d0",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "O2_TP_atoms_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel",
+            "axes_2.xlabel",
+            "axes_3.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-10fee37ca585",
+    "stem": "O2_TP_edges_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643.pdf",
+        "bytes": 55701,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "2947c7d0181e478de3359bda3f81778f70faa26fcd261d42874c2ecd1c85ad08",
+          "bytes": 55701,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:1511a77ec794154ea95ffd9321ce97a0beb7bbd28033fa8dd45022ee410c5f82",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:1511a77ec794154ea95ffd9321ce97a0beb7bbd28033fa8dd45022ee410c5f82",
+            "render": "sha256:52d2a053a5f06fd671be0e077d803b06ac3ec2fc68227ac0f717f325c491d062",
+            "artifact": "2947c7d0181e478de3359bda3f81778f70faa26fcd261d42874c2ecd1c85ad08",
+            "run": "d02371b6889349f2"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "2947c7d0181e478de3359bda3f81778f70faa26fcd261d42874c2ecd1c85ad08",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "receipt_id": "sha256:aa796659f466e1ab5525178e0da632012106ef1cd6fddb12cb179a07ff32ab69",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "11dd3bc7167ec9d65035b8eea526da48e4552424",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:80bdbbb8fb7f7be7e5736d405b66aaaa7ba4bce43665b3f31e3c5149def5c2d0",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643.png",
+        "bytes": 610794,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "1715fd2c37d2ab2347b24619194306cea3d626c60a6211bf15dd71ba37a4027d",
+          "bytes": 610794,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:1511a77ec794154ea95ffd9321ce97a0beb7bbd28033fa8dd45022ee410c5f82",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:1511a77ec794154ea95ffd9321ce97a0beb7bbd28033fa8dd45022ee410c5f82",
+            "render": "sha256:39c6ac3ad8adfa59e4c86e48436c021fa3e07b69254fa2d21fb1924439892757",
+            "artifact": "1715fd2c37d2ab2347b24619194306cea3d626c60a6211bf15dd71ba37a4027d",
+            "run": "d02371b6889349f2"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "1715fd2c37d2ab2347b24619194306cea3d626c60a6211bf15dd71ba37a4027d",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "receipt_id": "sha256:aa796659f466e1ab5525178e0da632012106ef1cd6fddb12cb179a07ff32ab69",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "11dd3bc7167ec9d65035b8eea526da48e4552424",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:80bdbbb8fb7f7be7e5736d405b66aaaa7ba4bce43665b3f31e3c5149def5c2d0",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:ad2b3b63e9e9638d8bf4e7337ae967e8b024ac90f16d6255529006e7889a894f",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "O2_TP_edges_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel",
+            "axes_2.xlabel",
+            "axes_3.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-8c9ce05a87fd",
+    "stem": "O2_UVU_Radial_canonical_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656.pdf",
+        "bytes": 50594,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "7e83a2b9007fed0774751d54e4a194216f3cc603a81cb8ead73483d9db6c7c2e",
+          "bytes": 50594,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:66185d454d5330f35db1c5a897a1f93c254f0053f84e41c46adf2225efaa089f",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:66185d454d5330f35db1c5a897a1f93c254f0053f84e41c46adf2225efaa089f",
+            "render": "sha256:55e844c04bec258abbcf66c5030c2687c79e4c04723530f13e07bc254788d8eb",
+            "artifact": "7e83a2b9007fed0774751d54e4a194216f3cc603a81cb8ead73483d9db6c7c2e",
+            "run": "6f7c2f005f524dab"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "7e83a2b9007fed0774751d54e4a194216f3cc603a81cb8ead73483d9db6c7c2e",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "receipt_id": "sha256:97656eae31b9a3241975c8cbd55dc7caa65e46c42080149b8d2afea9eb90b1cd",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "9eb77f6d4b561ab9636789338ba2debc2d258c41",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:523c9e495f94fbe22212e829c5a681aa51a07c6147f35fe05c9db625d6b211e9",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656.png",
+        "bytes": 511390,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "adab092047108b3839f7b4a6a6564fb953bd9e64b2404e9b33dbd0565ca8ce40",
+          "bytes": 511390,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:66185d454d5330f35db1c5a897a1f93c254f0053f84e41c46adf2225efaa089f",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:66185d454d5330f35db1c5a897a1f93c254f0053f84e41c46adf2225efaa089f",
+            "render": "sha256:7ee39847900db5604a2a805c1b33bb1f964c5c9352dd5f893a727673f18a7d25",
+            "artifact": "adab092047108b3839f7b4a6a6564fb953bd9e64b2404e9b33dbd0565ca8ce40",
+            "run": "6f7c2f005f524dab"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "adab092047108b3839f7b4a6a6564fb953bd9e64b2404e9b33dbd0565ca8ce40",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "receipt_id": "sha256:97656eae31b9a3241975c8cbd55dc7caa65e46c42080149b8d2afea9eb90b1cd",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "9eb77f6d4b561ab9636789338ba2debc2d258c41",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:523c9e495f94fbe22212e829c5a681aa51a07c6147f35fe05c9db625d6b211e9",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:cfea4e90195ea093decf59614e3c3b0d6dac9ebf1797329b20d4924bf65da909",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "O2_UVU_Radial_canonical_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel",
+            "axes_2.xlabel",
+            "axes_3.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-0e0b534913db",
+    "stem": "SO2Linear_edges_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717.pdf",
+        "bytes": 49460,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "8fdc33bdda789889528db049c0890cab01016007c6c4c89632810c6e604679e6",
+          "bytes": 49460,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            239.173
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:ac5abb6063dc824afb04df6b0b3cbef75283f5e6554a22f5c44ab861b6fc32d9",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:ac5abb6063dc824afb04df6b0b3cbef75283f5e6554a22f5c44ab861b6fc32d9",
+            "render": "sha256:ecc63c10d7dcf26a63cc52a160c61aaab9de4d65d29fd826065aa9a2f178ca69",
+            "artifact": "8fdc33bdda789889528db049c0890cab01016007c6c4c89632810c6e604679e6",
+            "run": "4e436800beb44e8b"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "8fdc33bdda789889528db049c0890cab01016007c6c4c89632810c6e604679e6",
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "receipt_id": "sha256:13a14aa3356891404e638f903a4f9809e8a5ff7c7b7de4aa246ba0f9aafad510",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "db7a222155a498fdd5231897d4f9a75b1168e1c8",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:4d3a78db623f662123bbb9eecdff62e09e8ca8deb644c078b6b9ed105951bb5c",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717.png",
+        "bytes": 381214,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "da1b6610959aadaee16a787354f8b5c49671e0107b4e0b139c06f72a55ce3ee4",
+          "bytes": 381214,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            1993
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:ac5abb6063dc824afb04df6b0b3cbef75283f5e6554a22f5c44ab861b6fc32d9",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:ac5abb6063dc824afb04df6b0b3cbef75283f5e6554a22f5c44ab861b6fc32d9",
+            "render": "sha256:cf78ad225c18bb5762107f358fd406284af988103b644f59177b34fc80eb4e9d",
+            "artifact": "da1b6610959aadaee16a787354f8b5c49671e0107b4e0b139c06f72a55ce3ee4",
+            "run": "4e436800beb44e8b"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "da1b6610959aadaee16a787354f8b5c49671e0107b4e0b139c06f72a55ce3ee4",
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "receipt_id": "sha256:13a14aa3356891404e638f903a4f9809e8a5ff7c7b7de4aa246ba0f9aafad510",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "db7a222155a498fdd5231897d4f9a75b1168e1c8",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:4d3a78db623f662123bbb9eecdff62e09e8ca8deb644c078b6b9ed105951bb5c",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:73e57c6e85faa68a82c27858a2f7bf0372bc95e02d71275255330688ec8c1ec0",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 2
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "SO2Linear_edges_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        },
+        {
+          "id": "fit-without-ci",
+          "severity": "suggestion",
+          "text": "有拟合曲线但没有置信区间填充带——投稿时通常要求给出拟合的不确定度",
+          "message": {
+            "key": "fitWithoutCi",
+            "params": {}
+          },
+          "object_ids": [
+            "SO2Linear_edges_repair20261122"
+          ],
+          "gids": [
+            "axes_0",
+            "axes_1"
+          ],
+          "detail": {}
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-d81494992171",
+    "stem": "ICTP_atoms_edges_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752.pdf",
+        "bytes": 47079,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "7cbae666066aebcca742753a2d2d901a89fa389a9ed0b56cb4974bc2078660e3",
+          "bytes": 47079,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:5a8bc3423180a78dfda4187a1632c20495b36b36a67001424882aada3f357367",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:5a8bc3423180a78dfda4187a1632c20495b36b36a67001424882aada3f357367",
+            "render": "sha256:ec72f43aad63142f1a357c1808ef9f414b9c8b241bed316af9bde27bcbc4bea3",
+            "artifact": "7cbae666066aebcca742753a2d2d901a89fa389a9ed0b56cb4974bc2078660e3",
+            "run": "326a9dc4bcee43af"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "7cbae666066aebcca742753a2d2d901a89fa389a9ed0b56cb4974bc2078660e3",
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "receipt_id": "sha256:9ad29ea9d0329071e7931dd7689612dd13f3e37f5ce09e33b775e4f0fd48b8c0",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "408acc78c80efc510df7b5d988b2a6a5820531dc",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:f154e326379bd88186602fe50212c8a0bd688753c13b0a47247fc073876896da",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752.png",
+        "bytes": 447756,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "08f76496da72d674df58d0b91af38641c475bde03e809851ee26e7f8194426b6",
+          "bytes": 447756,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:5a8bc3423180a78dfda4187a1632c20495b36b36a67001424882aada3f357367",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:5a8bc3423180a78dfda4187a1632c20495b36b36a67001424882aada3f357367",
+            "render": "sha256:f8fafffe3d7d5b1ea9cb7c0eb918ec375d6fad0056ac4d5cb219c732fba83308",
+            "artifact": "08f76496da72d674df58d0b91af38641c475bde03e809851ee26e7f8194426b6",
+            "run": "326a9dc4bcee43af"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "08f76496da72d674df58d0b91af38641c475bde03e809851ee26e7f8194426b6",
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "receipt_id": "sha256:9ad29ea9d0329071e7931dd7689612dd13f3e37f5ce09e33b775e4f0fd48b8c0",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "408acc78c80efc510df7b5d988b2a6a5820531dc",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:f154e326379bd88186602fe50212c8a0bd688753c13b0a47247fc073876896da",
+                  "matched": null,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:109050aae29d4d6017114a4aae30fd20abd3e08d864cd350094d7455d4d912c0",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "ICTP_atoms_edges_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_1.xlabel",
+            "axes_2.xlabel",
+            "axes_3.xlabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-86584b6eb780",
+    "stem": "O2_TP_same_equation_speedup_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940.pdf",
+        "bytes": 49847,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "22e7da4e30bbb8344de2d82ab629ab29264b877552e5321b1596112f0584ba56",
+          "bytes": 49847,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:d7ab5db67455b5c4e91b4aeaba5b69831fbc912574f101fbaf8d8ec357d0890c",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:d7ab5db67455b5c4e91b4aeaba5b69831fbc912574f101fbaf8d8ec357d0890c",
+            "render": "sha256:adbcc7a99cf5847ddaa411524d630c07a4486d6fc0bc5b8488a5e66693fc40bb",
+            "artifact": "22e7da4e30bbb8344de2d82ab629ab29264b877552e5321b1596112f0584ba56",
+            "run": "9726f172739a4133"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "22e7da4e30bbb8344de2d82ab629ab29264b877552e5321b1596112f0584ba56",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "receipt_id": "sha256:79fda4821cdbaadc5c06b07fcdbb39421b6def8131c106489f9632c59dd8dc15",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "6538388ae4e0ce680cae9718a84cb88c9ba3bc89",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:9c511440295d0f73d61e700b22f382559bba7e8d7584a875e7d753e652134e94",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940.png",
+        "bytes": 628476,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "66a3b8bd27a6ff8ae34f0a47be6a1506f412006510610c1bffc11d1ebc249086",
+          "bytes": 628476,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:d7ab5db67455b5c4e91b4aeaba5b69831fbc912574f101fbaf8d8ec357d0890c",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:d7ab5db67455b5c4e91b4aeaba5b69831fbc912574f101fbaf8d8ec357d0890c",
+            "render": "sha256:4bbdff1e43b84903c2a7f9cbc854f08893ec6d22ee1fbeaa4d5a1599811a24b9",
+            "artifact": "66a3b8bd27a6ff8ae34f0a47be6a1506f412006510610c1bffc11d1ebc249086",
+            "run": "9726f172739a4133"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "66a3b8bd27a6ff8ae34f0a47be6a1506f412006510610c1bffc11d1ebc249086",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "receipt_id": "sha256:79fda4821cdbaadc5c06b07fcdbb39421b6def8131c106489f9632c59dd8dc15",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "6538388ae4e0ce680cae9718a84cb88c9ba3bc89",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:9c511440295d0f73d61e700b22f382559bba7e8d7584a875e7d753e652134e94",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "O2_TP_same_equation_speedup_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_0.ylabel",
+            "axes_1.xlabel",
+            "axes_1.ylabel",
+            "axes_2.xlabel",
+            "axes_2.ylabel",
+            "axes_3.xlabel",
+            "axes_3.ylabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-c9de3d8d7f25",
+    "stem": "SO2_Radial_same_equation_speedup_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956.pdf",
+        "bytes": 50606,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "ec03b93de755e68a7828ec4e97b3ba19d4681b989fedb5feff08ed16a3e7a6d8",
+          "bytes": 50606,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            425.197
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:30d116f3608d64f940c60af7ef5c86f2fafa214f1dfba130a7918aaea5fcb63a",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:30d116f3608d64f940c60af7ef5c86f2fafa214f1dfba130a7918aaea5fcb63a",
+            "render": "sha256:014d26690da01c5b646a05639917d6cbae7c5d042e0ddb0eb90e9ba59e7b413d",
+            "artifact": "ec03b93de755e68a7828ec4e97b3ba19d4681b989fedb5feff08ed16a3e7a6d8",
+            "run": "223c967c511a4049"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "ec03b93de755e68a7828ec4e97b3ba19d4681b989fedb5feff08ed16a3e7a6d8",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "receipt_id": "sha256:79fda4821cdbaadc5c06b07fcdbb39421b6def8131c106489f9632c59dd8dc15",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "6538388ae4e0ce680cae9718a84cb88c9ba3bc89",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:9c511440295d0f73d61e700b22f382559bba7e8d7584a875e7d753e652134e94",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956.png",
+        "bytes": 572909,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "5370c103bcc2c3944dfc759a3765289f74471d671eb5fef5db6523da4c4da94b",
+          "bytes": 572909,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            3543
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:30d116f3608d64f940c60af7ef5c86f2fafa214f1dfba130a7918aaea5fcb63a",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:30d116f3608d64f940c60af7ef5c86f2fafa214f1dfba130a7918aaea5fcb63a",
+            "render": "sha256:bb8eabb565b22c0ffce1a8d6941d442f7b4094bdacd04789088b921b7fb023ad",
+            "artifact": "5370c103bcc2c3944dfc759a3765289f74471d671eb5fef5db6523da4c4da94b",
+            "run": "223c967c511a4049"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "5370c103bcc2c3944dfc759a3765289f74471d671eb5fef5db6523da4c4da94b",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "receipt_id": "sha256:79fda4821cdbaadc5c06b07fcdbb39421b6def8131c106489f9632c59dd8dc15",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "6538388ae4e0ce680cae9718a84cb88c9ba3bc89",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 4
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:9c511440295d0f73d61e700b22f382559bba7e8d7584a875e7d753e652134e94",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 4
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:11d99e665f58f39629d338e53d8edfdcd7cb0a62eeb0a95992de7ba0b6ab440b",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 2
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "SO2_Radial_same_equation_speedup_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_0.ylabel",
+            "axes_1.xlabel",
+            "axes_1.ylabel",
+            "axes_2.xlabel",
+            "axes_2.ylabel",
+            "axes_3.xlabel",
+            "axes_3.ylabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        },
+        {
+          "id": "fit-without-ci",
+          "severity": "suggestion",
+          "text": "有拟合曲线但没有置信区间填充带——投稿时通常要求给出拟合的不确定度",
+          "message": {
+            "key": "fitWithoutCi",
+            "params": {}
+          },
+          "object_ids": [
+            "SO2_Radial_same_equation_speedup_repair20261122"
+          ],
+          "gids": [
+            "axes_0",
+            "axes_2"
+          ],
+          "detail": {}
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956_proof.json"
+  },
+  {
+    "ok": true,
+    "status": "done",
+    "session_id": "s-2f138fab66d1",
+    "stem": "HPX_vs_GitHub_O2HP_repair20261122",
+    "export_dir": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final",
+    "files": [
+      {
+        "format": "pdf",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018.pdf",
+        "bytes": 46157,
+        "vector": true,
+        "dpi": null,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "pdf",
+          "sha256": "9fb15cdd52749f9fbec916709a3e0ddb3d4865d26eb514a7a8e130e031ccb9ac",
+          "bytes": 46157,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "carrier": "verified",
+            "fonts_embedded": "verified",
+            "text_layer": "unknown",
+            "image_ppi": "not_applicable",
+            "clipping": "unknown"
+          },
+          "notes": [
+            "计划里没有期望的文字行，文字层只抽不比",
+            "没有对象包围盒，裁切只对计划里的对象可判——本次无对象可判"
+          ],
+          "carrier": "vector",
+          "size_pt": [
+            425.197,
+            318.898
+          ],
+          "px": null,
+          "dpi": null,
+          "fonts_used": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ],
+          "plan_identity": "sha256:beed46e4b6b0ec298999f5ddfd3998120964469171df835b8f3d4999cbd1e696",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:beed46e4b6b0ec298999f5ddfd3998120964469171df835b8f3d4999cbd1e696",
+            "render": "sha256:4416348f445d4b86c2fbed62589407631036c9bfb8d964137e0c11a8949f765f",
+            "artifact": "9fb15cdd52749f9fbec916709a3e0ddb3d4865d26eb514a7a8e130e031ccb9ac",
+            "run": "e53258dba4c74aa6"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "9fb15cdd52749f9fbec916709a3e0ddb3d4865d26eb514a7a8e130e031ccb9ac",
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "receipt_id": "sha256:3c26e78334621d6a1d0c3b14ce26890a6173ab97fe6c5bf947d0abcfe5863289",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "ddc134e4adee2d894840762f01681cafbddd630f",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:3ee3466a46bea6521720a2c9823c50ca1600f81f61f1dfe4741b46a3cc4c3165",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      },
+      {
+        "format": "png",
+        "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018.png",
+        "bytes": 498493,
+        "vector": false,
+        "dpi": 600,
+        "status": "done",
+        "manifest": {
+          "manifest_version": 1,
+          "format": "png",
+          "sha256": "d9a044c7886457dcac74d145f7f82a10a62a6e2ed68011053fb479c926a9eecd",
+          "bytes": 498493,
+          "policy": "standard",
+          "verdict": "accepted",
+          "required": [
+            "integrity",
+            "size"
+          ],
+          "checks": {
+            "integrity": "verified",
+            "size": "verified",
+            "dpi_tag": "verified",
+            "raster_density": "unknown"
+          },
+          "notes": [
+            "没有规范给出最低 dpi，密度只记录不判"
+          ],
+          "carrier": null,
+          "size_pt": null,
+          "px": [
+            3543,
+            2657
+          ],
+          "dpi": 600,
+          "fonts_used": [],
+          "plan_identity": "sha256:beed46e4b6b0ec298999f5ddfd3998120964469171df835b8f3d4999cbd1e696",
+          "backend": "worker",
+          "text_outlined": false,
+          "identity": {
+            "identity_version": 1,
+            "semantic": "sha256:beed46e4b6b0ec298999f5ddfd3998120964469171df835b8f3d4999cbd1e696",
+            "render": "sha256:123354cd326fde0e75385d7b7fc940a8240cf190ee9dca9cb4ddb728a636f35c",
+            "artifact": "d9a044c7886457dcac74d145f7f82a10a62a6e2ed68011053fb479c926a9eecd",
+            "run": "e53258dba4c74aa6"
+          },
+          "provenance": {
+            "sources": [
+              {
+                "source_id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "origin": "execution",
+                "kind": "figure",
+                "bytes_sha256": "d9a044c7886457dcac74d145f7f82a10a62a6e2ed68011053fb479c926a9eecd",
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            ],
+            "execution_receipts": [
+              "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf"
+            ],
+            "receipts": [
+              {
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "receipt_id": "sha256:3c26e78334621d6a1d0c3b14ce26890a6173ab97fe6c5bf947d0abcfe5863289",
+                "completeness": "complete",
+                "runtime_rejected": null,
+                "pid_check": "ok",
+                "control_plane": "python_pool",
+                "python_source": "current_process",
+                "generation": 1,
+                "source_revision": "ddc134e4adee2d894840762f01681cafbddd630f",
+                "python_version": "3.11.15",
+                "python_implementation": "CPython",
+                "platform": "linux",
+                "machine": "x86_64",
+                "packages": {
+                  "matplotlib": "3.11.2",
+                  "numpy": "2.4.6",
+                  "pillow": "12.3.0"
+                },
+                "cwd_origin": "sandbox",
+                "observation": "partial",
+                "fidelity": {
+                  "level": "none_observed",
+                  "blocked": [],
+                  "intercepted": [
+                    {
+                      "op": "savefig",
+                      "kind": "savefig",
+                      "count": 2
+                    }
+                  ],
+                  "signals": [],
+                  "unobserved": [
+                    "native_io",
+                    "network",
+                    "subprocess",
+                    "os_open"
+                  ]
+                },
+                "binding": {
+                  "revision": "sha256:3ee3466a46bea6521720a2c9823c50ca1600f81f61f1dfe4741b46a3cc4c3165",
+                  "matched": true,
+                  "changed": 0,
+                  "unobserved": 2
+                }
+              }
+            ],
+            "nodes": [
+              {
+                "id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "node": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "instance": 1,
+                "kind": "figure",
+                "source_id": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122",
+                "origin": "execution",
+                "receipt_identity": "sha256:6cc92ea241d57dccc648b955b1543452d55cf6d56b9d675467f2ac33e630c0bf",
+                "internal": null
+              }
+            ],
+            "nodes_truncated": false
+          }
+        }
+      }
+    ],
+    "patch_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "profile": {
+      "profile_id": "lab-publication-v1",
+      "profile_version": "1.1.1",
+      "label": "课题组出版规范 v1"
+    },
+    "warnings": [],
+    "preflight": {
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "blocking": false,
+      "needs_confirm": false,
+      "errors": [],
+      "warnings": [],
+      "not_verifiable": [],
+      "suggestions": [
+        {
+          "id": "axis-label-format",
+          "severity": "suggestion",
+          "text": "坐标轴标题「Maximum angular order」不是规范的「Title (unit)」形式",
+          "message": {
+            "key": "axisLabelFormat",
+            "params": {
+              "label": "Maximum angular order",
+              "want": "Title (unit)"
+            }
+          },
+          "object_ids": [
+            "HPX_vs_GitHub_O2HP_repair20261122"
+          ],
+          "gids": [
+            "axes_0.xlabel",
+            "axes_0.ylabel",
+            "axes_1.xlabel",
+            "axes_1.ylabel",
+            "axes_2.xlabel",
+            "axes_2.ylabel",
+            "axes_3.xlabel",
+            "axes_3.ylabel"
+          ],
+          "detail": {
+            "text": "Maximum angular order"
+          }
+        }
+      ]
+    },
+    "forced": false,
+    "acknowledged": [],
+    "normalized": null,
+    "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018_proof.json"
+  }
+]

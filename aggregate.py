@@ -223,6 +223,8 @@ def main():
         write_csv(target/"numerics.csv",numerics,["family","rows","order","parity","role","metric",
             "max_abs","max_relative_l2","arithmetic","qualification_sha256","qualification"])
         write_csv(target / "status.csv", statuses, ["cohort", "family", "rows", "order", "parity", "stage", "role", "metric", "status", "job", "receipt", "error"])
+    # Unique name keeps Tavotto from resolving the parent's historical CSV.
+    write_csv(FIGURES / "data/repair_speedups.csv", ratios, ratio_fields)
     coverage = []
     for family, rows in (("tp",4096),("tp",16384),("uvu",16384),("radial",16384),("so2",16384),("ictp",4096),("ictp",16384)):
         for order in range(1,9):
