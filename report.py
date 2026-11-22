@@ -12,13 +12,18 @@ def main():
     ratios = list(csv.DictReader((ROOT/"speedups.csv").open()))
     summary = json.loads((ROOT/"SUMMARY.json").read_text())
     coverage = list(csv.DictReader((ROOT/"coverage.csv").open()))
+    role_coverage = list(csv.DictReader((ROOT/"role-coverage.csv").open()))
+    role_states = Counter(row["status"] for row in role_coverage)
     budget = json.loads((ROOT/"provenance/BUDGET-AUDIT.json").read_text())
     states = Counter(row["status"] for row in coverage)
     text = ["# 算子吞吐随角向阶数变化：H100 同卡配对", "",
         f"当前已汇总 **{summary['measured_configurations']}/88 个配置**、{summary['summary_points']} 个合格曲线点。"
-        f"未测完配置 {len(summary['pending_configurations'])} 个；状态统计 `{dict(states)}`。"
-        "88 个位置含原生 ICTP 不支持的 4–8 阶，完成不能解释为 88 个位置都有有效吞吐。",
-        "尚缺五次完整计时或仍在测量的点留空。每个数据点是五个独立进程的中位数，CSV 同时保留 IQR。",
+        f"仍待运行配置 {len(summary['pending_configurations'])} 个；配置状态统计 `{dict(states)}`。"
+        "measured 仅表示该配置至少一臂有有效数据，不表示所有角色/边界通过。88 个位置含原生 ICTP 不支持的 4–8 阶。",
+        f"逐角色/边界共 {len(role_coverage)} 项，终态为 `{dict(role_states)}`，待测 {summary['pending_role_metrics']} 项。"
+        "收集完成不代表所有实现通过数值门或构建成功。有效点是五个独立进程的中位数，CSV 同时保留 IQR。",
+        "2026-11-22 07:00 自动收集115550已回收到全部测量、日志与远端账本，随后本地记账库连接失败，未生成汇总。"
+        "本轮恢复了本地账本，并由CPU115739重新汇总。GBU2当前SSH重连失败，远端终态依据已回收的07:00账本；所有本轮GPU作业已终止。",
         "", "## 读取图表", "",
         "横轴为角向截断 1–8，固定 C64。节点 TP 固定 N4096，边 TP、UVU/RadialUVU、SO2Linear 固定 E16384。"
         "原子/s 是逐节点特征算子的行吞吐，不含邻居构建或整网 E/F；边/s 是逐边算子的行吞吐。"
@@ -89,12 +94,23 @@ def main():
         "", "早期 SO2 载荷漏带 matrix.cu，修复后又检测到 cuLaunchKernel status201。该重复失败不计有效吞吐；"
         "修复为在反向工作线程绑定模块所属 CUDA 上下文，调用后恢复。新批次先强制空上下文回归，再完整重做原数值门和配对。"
         "高阶构建诊断按角色/阶段保存期限，超时不是数值失败，也不是不支持；失败/OOM/unsupported 均不填零吞吐。",
+        "", "### 本轮未产生有效吞吐的角色/边界", "",
+        "以下是最终逐角色状态，历史中间失败仍完整保留于status.csv。数值失败不降低门槛，也不填入最快失败耗时。", "",
+        "| 算子 | 行数 | 角阶 | 宇称 | 实现 | 边界 | 终态 |", "|---|---:|---:|---|---|---|---|"])
+    for row in role_coverage:
+        if row["status"] not in ("measured", "unsupported"):
+            text.append("| " + " | ".join(row[k] for k in ("family","rows","order","parity","role","metric","status")) + " |")
+    text.extend([
         "", "## 资源、文件与快照", "",
         f"账本快照：本项目已分配 {budget['project_gpu_h']:.4f} GPUh，本角阶轮 {budget['angular_gpu_h']:.4f} GPUh，"
         "最终值以收尾 Slurm 账本为准。按睡前一次提交要求加入有界、跳过已完成点的夜间补测，本轮包含失败的包络36 GPUh，项目原总上限500 GPUh保持。CPU 汇总不记 GPUh。"
         "GBU2 按 GPU TRES 计数；AIDAM 旧记录缺少 GPU TRES，按原生请求/提交行/SBATCH请求补计并保存脚本指纹，避免漏计历史 GPU 作业。",
+        "新增夜间载荷d005f68的压缩包已按睡前SHA256核验，其12份控制/测量源码与Git一致；四个GPU源封印的上游逐文件哈希独立核对。"
+        "先前98份实际部署文件已独立归档核对。由于当前远端SSH断开，本次不能追加声称已重新下载夜间远端控制源码字节。",
         "", "[逐点数据](summary.csv) · [同方程配对比](speedups.csv) · [失败与状态](status.csv) · [88位置覆盖](coverage.csv) · [机器审计](SUMMARY.json)",
         "", "图宽150mm，Times New Roman，无框图例。初始绘图与汇总在 CPU Slurm，Tavotto 打开、预检及导出使用用户已授权的本轮绘图例外。"
+        "最终9图和预检证明位于[最终导出清单](provenance/TAVOTTO-FINAL-EXPORTS.json)，每图0错误、0警告。"
+        "重新加载共享绘图模块，避免旧worker缓存；预检的无拟合置信区间建议不适用于这里的原始测量点连线。"
         "原先整网规模图保留为独立附录，不充当本轮角阶吞吐主图。训练及新增整网测量均未启动。"])
     (ROOT/"REPORT.zh-CN.md").write_text("\n".join(text)+"\n")
     print("Report regenerated from audited CSV receipts",flush=True)

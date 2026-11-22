@@ -66,6 +66,8 @@ def main():
     seen=set()
     for cluster in ("aidam","gbu2"):
         extended=ROOT/f"provenance/project-{cluster}-accounting-extended.tsv"
+        if extended.exists() and extended.stat().st_size == 0:
+            raise RuntimeError(f"Empty accounting snapshot: {extended}; refresh on login before aggregation")
         source=extended if extended.exists() else ROOT/f"provenance/project-{cluster}-accounting.tsv"
         for line in source.read_text().splitlines():
             fields=line.split("|",9)

@@ -1,15 +1,18 @@
 """Direct local frozen-weight HPX / GitHub public O2-HP paired speedups."""
 import csv
+import importlib
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-from plot_helpers import setup, finish
+import plot_helpers
 from speedups import curve, style
 
 OUT = Path(__file__).resolve().parent
 
 
 def main():
+    helpers = importlib.reload(plot_helpers)
+    setup, finish = helpers.setup, helpers.finish
     setup()
     with (OUT/"data/speedups.csv").open() as stream:
         data = list(csv.DictReader(stream))
