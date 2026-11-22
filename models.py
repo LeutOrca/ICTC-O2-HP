@@ -178,6 +178,11 @@ class Spec:
                 self.calls["eqx-o2"] = eqx
                 self.encode["public"] = [identity] * 3
                 self.encode["eqx-o2"] = [enc_left, enc_right, lambda x: x * signs]
+                if os.environ.get("O2_BOUNDED_UVU") == "1":
+                    from candidate.bounded_uvu import bounded
+                    self.calls["public-repair"] = lambda x, y, w: bounded(native, x, y, w)
+                    self.encode["public-repair"] = [identity] * 3
+                    self.decode["public-repair"] = identity
             else:
                 linear = torch.nn.Linear(H, native.weight_numel).cuda().float().requires_grad_(False)
                 self.metadata["canonical_weights_sha256"] = digest(list(linear.parameters()))
@@ -210,6 +215,14 @@ class Spec:
                     self.decode["public-unfused-repair"] = identity
                     self.decode["eqx-o2-repair"] = self.decode["eqx-o2"]
                     self.metadata["radial_adjoint_candidate"] = "own IEEE FP32 ordered sum " + repair
+                    if os.environ.get("O2_BOUNDED_UVU") == "1":
+                        from candidate.bounded_uvu import bounded, streamed
+                        self.calls["public-unfused-repair"] = lambda x, y, h: bounded(native, x, y, affine(linear, h, repair))
+                        self.calls["public-repair"] = lambda x, y, h: streamed(native, linear, repair, x, y, h)
+                        self.encode["public-repair"] = [identity] * 3
+                        self.decode["public-repair"] = identity
+            if os.environ.get("O2_BOUNDED_UVU") == "1":
+                self.metadata["uvu_dispatch_candidate"] = "runtime path loop; frozen public Triton kernels; radial recompute blocks 4096"
             self.metadata.update(input_dimension=native.input1_dimension,
                 angular_dimension=native.input2_dimension, output_dimension=native.representation_dimension,
                 paths=len(native.paths), external_weights=native.weight_numel, equation="O2-uvu-V1")
