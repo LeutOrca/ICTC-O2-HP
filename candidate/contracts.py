@@ -14,6 +14,8 @@ def tensor_contract(name, value, *, device=None, dtype=torch.float32, ndim=2):
         raise TypeError(f"{name} must be a tensor")
     if value.layout != torch.strided or value.ndim != ndim:
         raise ValueError(f"{name} must be a dense {ndim}D tensor")
+    if value.is_neg() or value.is_conj():
+        raise ValueError(f"{name} must materialize lazy negative/conjugate views before entry")
     if value.dtype != dtype or value.device.type != "cuda":
         raise TypeError(f"{name} must use CUDA {dtype}")
     if device is not None and value.device != device:
@@ -21,6 +23,9 @@ def tensor_contract(name, value, *, device=None, dtype=torch.float32, ndim=2):
 
 
 def check_tp(tp, device):
+    from ictc_o2_hp.uvu_o2 import UvuTensorProduct
+    if not isinstance(tp, UvuTensorProduct):
+        raise TypeError("Candidate requires the frozen UvuTensorProduct plan type")
     if tp.channels_in2 != 1 or tp.shared_weights or tp.internal_weights:
         raise ValueError("Candidate requires V=1 external unshared weights")
     if tp.representation_dimension != tp.input1_dimension:
@@ -37,6 +42,8 @@ def check_tp(tp, device):
         tensor_contract("tp." + name, value, device=device, dtype=dtype, ndim=len(shape))
         if tuple(value.shape) != shape or not value.is_contiguous():
             raise ValueError(f"tp.{name} has an invalid shape or layout")
+        if value.requires_grad:
+            raise ValueError("Candidate requires frozen TP plan buffers")
 
 
 def check_features(tp, x, y):
@@ -80,3 +87,10 @@ def prepare_radial(tp, linear, x, y, hidden):
     check_features(tp, x, y)
     check_linear(linear, hidden, rows=len(x), device=x.device, outputs=tp.weight_numel)
     return x.contiguous(), y.contiguous(), hidden.contiguous()
+
+
+def prepare_cotangent(value, *, rows, width, device):
+    tensor_contract("output_cotangent", value, device=device)
+    if tuple(value.shape) != (rows, width):
+        raise ValueError("Output cotangent shape does not match the saved forward")
+    return value.contiguous()

@@ -180,7 +180,9 @@ class Spec:
                 self.encode["eqx-o2"] = [enc_left, enc_right, lambda x: x * signs]
                 if os.environ.get("O2_BOUNDED_UVU") == "1":
                     from candidate.bounded_uvu import bounded
+                    from candidate.reduction_policy import choose_uvu
                     self.calls["public-repair"] = lambda x, y, w: bounded(native, x, y, w)
+                    self.metadata["uvu_decision"] = choose_uvu(native, left, right, weights).metadata()
                     self.encode["public-repair"] = [identity] * 3
                     self.decode["public-repair"] = identity
             else:
@@ -205,24 +207,26 @@ class Spec:
                     self.diagnostics = dict(linear=linear, mapped=mapped, signs=signs)
                 repair = os.environ.get("O2_RADIAL_ADJOINT")
                 if repair:
-                    if repair == "shape-v2":
-                        repair = "-8x1b" if native.weight_numel >= 49152 else "16x1b@128"
                     from candidate.affine_adjoint import affine
-                    self.calls["public-unfused-repair"] = lambda x, y, h: native(x, y, affine(linear, h, repair))
-                    self.calls["eqx-o2-repair"] = lambda x, y, h: eqx(x, y, affine(mapped, h, repair))
+                    from candidate.reduction_policy import choose_radial
+                    self.calls["public-unfused-repair"] = lambda x, y, h: native(x, y, affine(linear, h, repair, tp=native))
+                    self.calls["eqx-o2-repair"] = lambda x, y, h: eqx(x, y, affine(mapped, h, repair, tp=native))
                     self.encode["public-unfused-repair"] = [identity] * 3
                     self.encode["eqx-o2-repair"] = [enc_left, enc_right, identity]
                     self.decode["public-unfused-repair"] = identity
                     self.decode["eqx-o2-repair"] = self.decode["eqx-o2"]
-                    self.metadata["radial_adjoint_candidate"] = "own IEEE FP32 ordered sum " + repair
+                    self.metadata["radial_adjoint_candidate"] = "guarded IEEE FP32 policy; new candidate untested"
+                    self.metadata["radial_unfused_decision"] = choose_radial(native, linear, hidden, repair, features=(left, right)).metadata()
+                    self.metadata["radial_eqx_affine_decision"] = choose_radial(native, mapped, hidden, repair).metadata()
                     if os.environ.get("O2_BOUNDED_UVU") == "1":
-                        from candidate.bounded_uvu import bounded, streamed
-                        self.calls["public-unfused-repair"] = lambda x, y, h: bounded(native, x, y, affine(linear, h, repair))
+                        from candidate.bounded_uvu import streamed, unfused
+                        self.calls["public-unfused-repair"] = lambda x, y, h: unfused(native, linear, repair, x, y, h)
                         self.calls["public-repair"] = lambda x, y, h: streamed(native, linear, repair, x, y, h)
+                        self.metadata["radial_streamed_decision"] = choose_radial(native, linear, hidden, repair, execution="streamed", features=(left, right)).metadata()
                         self.encode["public-repair"] = [identity] * 3
                         self.decode["public-repair"] = identity
             if os.environ.get("O2_BOUNDED_UVU") == "1":
-                self.metadata["uvu_dispatch_candidate"] = "runtime path loop; frozen public Triton kernels; radial recompute blocks 4096"
+                self.metadata["uvu_dispatch_candidate"] = "guarded bounded/streamed dispatch with native fallback; new candidate untested; see route/reasons"
             self.metadata.update(input_dimension=native.input1_dimension,
                 angular_dimension=native.input2_dimension, output_dimension=native.representation_dimension,
                 paths=len(native.paths), external_weights=native.weight_numel, equation="O2-uvu-V1")

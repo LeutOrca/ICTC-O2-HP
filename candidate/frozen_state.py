@@ -24,7 +24,9 @@ def tensor_stamp(value):
 
 def tp_metadata(tp):
     # The registered plan uses immutable tuples/NamedTuples, not GPU values.
-    return tuple(getattr(tp, name) for name in TP_METADATA)
+    return tuple(tuple(tuple(item) for item in getattr(tp, name)) if name in (
+        "entries_in1", "entries_in2", "entries_out", "paths") else getattr(tp, name)
+        for name in TP_METADATA)
 
 
 @dataclass(frozen=True)
@@ -59,6 +61,8 @@ class TPPlan:
         return tuple(getattr(self, name) for name in TP_BUFFERS)
 
     def with_buffers(self, values):
+        if len(values) != len(TP_BUFFERS):
+            raise RuntimeError("Saved TP buffer count changed")
         return replace(self, **dict(zip(TP_BUFFERS, values)))
 
 
