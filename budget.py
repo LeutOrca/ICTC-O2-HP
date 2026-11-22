@@ -89,15 +89,18 @@ def main():
                 workdir=workdir,nodes=nodes,partition=partition,submission=submission,**evidence))
     project=sum(r["gpu_h"] for r in rows)
     angular=sum(r["gpu_h"] for r in rows if "o2-hp-angular-operators-20261121-r1" in r["workdir"])
+    repair_rows=[r for r in rows if "o2-hp-full-parity-repair-20261122-r1" in r["workdir"]]
+    repair=sum(r["gpu_h"] for r in repair_rows)
     angular_rows=[r for r in rows if "o2-hp-angular-operators-20261121-r1" in r["workdir"]]
     record=dict(project_period_start="2026-11-15",project_gpu_h=project,
         project_hard_cap=500,remaining_project_gpu_h=500-project,
-        angular_gpu_h=angular,proposed_inclusive_angular_envelope=36,
+        angular_gpu_h=angular,repair_gpu_h=repair,inclusive_angular_gpu_h=angular+repair,
+        repair_gpu_jobs=len(repair_rows),proposed_inclusive_angular_envelope=36,
         project_gpu_h_by_cluster={c:sum(r["gpu_h"] for r in rows if r["cluster"]==c) for c in ("aidam","gbu2")},
         accounting_methods=dict(Counter(r["method"] for r in rows)),
         unresolved_gpu_jobs=[r for r in rows if r.get("unresolved")],
         angular_gpu_jobs=len(angular_rows),angular_nodes=sorted({r["nodes"] for r in angular_rows if r["seconds"]>0}),
-        authorized_total_cap_preserved=project+max(0,36-angular)<=500,rows=rows)
+        authorized_total_cap_preserved=project+max(0,36-angular-repair)<=500,rows=rows)
     (ROOT/"provenance/BUDGET-AUDIT.json").write_text(json.dumps(record,indent=2))
     print(json.dumps({k:v for k,v in record.items() if k!="rows"}),flush=True)
     if not record["authorized_total_cap_preserved"]:

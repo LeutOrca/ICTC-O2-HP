@@ -6,7 +6,7 @@ from pathlib import Path
 from statistics import median, quantiles
 
 ROOT = Path(__file__).resolve().parent
-FIGURES = ROOT.parents[1] / "figures" / ROOT.name
+FIGURES = ROOT.parents[1] / "figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1"
 IDENTITY = ("family", "order", "parity", "rows", "torch", "gpu_uuid",
             "input_sha256", "canonical_weights_sha256")
 
@@ -134,6 +134,7 @@ def main():
     for case, options in sorted(candidates.items()):
         # Complete CUDA payload supersedes the earlier incomplete SO2 package.
         key, values = max(options, key=lambda option: (
+            option[0][6].startswith("paired-repair-"),
             "local_hpx_source" in option[1][0], option[1][0].get("process_mode")=="forkserver", "fixed" in option[0][6],
             "2f1e68c" in option[0][6] or "continuation" in option[0][6], option[0][6]))
         family, rows, order, parity, role, metric = case
@@ -181,8 +182,10 @@ def main():
     summary_by_case={tuple(r[k] for k in ("family","rows","order","parity","role","metric")):r for r in summary}
     pairs = {"tp": (("public", "eqx-o2"), ("public", "cue-o2"), ("local-hpx","public"),
                     ("local-hpx","eqx-o2"), ("local-hpx","cue-o2")),
-             "uvu": (("public", "eqx-o2"),),
-             "radial": (("public", "eqx-o2"), ("public", "public-unfused")),
+             "uvu": (("public", "eqx-o2"), ("public-repair", "eqx-o2")),
+             "radial": (("public", "eqx-o2"), ("public", "public-unfused"),
+                        ("public-repair", "eqx-o2-repair"),
+                        ("public-repair", "public-unfused-repair")),
              "so2": (("so2-cuda2", "so2-native"), ("so2-triton", "so2-native"))}
     for case, candidate in picked.items():
         family, rows, order, parity, role, metric = case
@@ -234,7 +237,13 @@ def main():
     expected_roles = {"tp":("public","local-hpx","eqx-o2","cue-o2"),"uvu":("public","eqx-o2"),
         "radial":("public","public-unfused","eqx-o2"),"so2":("so2-native","so2-cuda2","so2-triton"),"ictp":("ictp-native",)}
     for config in coverage:
-        for role in expected_roles[config["family"]]:
+        roles = list(expected_roles[config["family"]])
+        if config["parity"] == "full":
+            if config["family"] == "uvu" and config["order"] >= 6:
+                roles += ["public-repair"]
+            elif config["family"] == "radial" and config["order"] >= 4:
+                roles += ["public-repair", "public-unfused-repair", "eqx-o2-repair"]
+        for role in roles:
             for metric in ("forward","forward_vjp"):
                 case = tuple(config[k] for k in ("family","rows","order","parity")) + (role,metric)
                 if case in picked:
