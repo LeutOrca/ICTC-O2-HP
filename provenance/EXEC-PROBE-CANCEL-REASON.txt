@@ -1,0 +1,1 @@
+Auxiliary exec probe317544 cancelled after primary317541 completed build and full L4/L5 gates; no evidence of stalled primary, no further process-model probe needed. All consumed time retained in accounting.

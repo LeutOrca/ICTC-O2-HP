@@ -24,6 +24,7 @@ def main():
     parser.add_argument("--reference-start", type=int, default=8192)
     parser.add_argument("--reference-rows", type=int, choices=(512, 4096), default=4096)
     parser.add_argument("--matrix-probe", action="store_true")
+    parser.add_argument("--extended", action="store_true")
     args = parser.parse_args()
     configure()
     if "H100" not in torch.cuda.get_device_name() or torch.__version__ != "2.11.0+cu128":
@@ -90,6 +91,20 @@ def main():
         configurations = ["2x1b", "4x1b", "8x1b", "16x1b", "32x1b",
             "4x8b", "8x8b", "16x8b", "16x1a", "16x1l",
             "8x1b@128", "8x1b@256", "16x1b@128", "16x1b@256", "32x1b@256"]
+        if args.extended:
+            configurations = ["-2x1b", "-4x1b", "-8x1b", "-16x1b", "-32x1b", "-64x1b",
+                              "64x1b", "64x4b", "32x8b", "16x16b", "8x32b", "4x64b", "2x128b"]
+            kernels = {}
+            for label, operand in (("reference-shape", local_weight_grad), ("full-shape", weight_grad)):
+                with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,
+                                                       torch.profiler.ProfilerActivity.CUDA]) as profile:
+                    replay = operand @ linear.weight
+                    torch.cuda.synchronize()
+                kernels[label] = sorted({event.name for event in profile.events()
+                                         if event.device_type == torch.autograd.DeviceType.CUDA})
+                del replay
+            record["native_matrix_kernels"] = kernels
+            print("native-matrix-kernels", json.dumps(kernels), flush=True)
         probes = {}
         for name in ["generic-ieee"] + configurations:
             result = (matrix(local_weight_grad, linear.weight) if name == "generic-ieee" else
@@ -101,7 +116,7 @@ def main():
             del result
         record["own_matrix_probes"] = probes
     torch.cuda.synchronize()
-    suffix = "-matrix-probe" if args.matrix_probe else ""
+    suffix = ("-extended-probe" if args.extended else "-matrix-probe") if args.matrix_probe else ""
     output_path = ROOT / "results" / f"radial-isolation-L{args.order}-{args.role}-{args.seed}-{first}-{args.reference_rows}{suffix}.json"
     output_path.parent.mkdir(exist_ok=True, parents=True)
     output_path.write_text(json.dumps(record, indent=2))
