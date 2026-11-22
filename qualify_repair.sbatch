@@ -12,6 +12,6 @@
 source /etc/profile
 set -euo pipefail
 source runtime.sh
-export O2_PROCESS_MODE=forkserver O2_RADIAL_ADJOINT=16x1b@128
+export O2_PROCESS_MODE=forkserver O2_RADIAL_ADJOINT=shape-v2
 "$py" -S -u verify_sources.py
 "$py" -S -u qualify_repair.py

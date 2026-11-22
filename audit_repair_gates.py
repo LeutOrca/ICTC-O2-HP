@@ -12,6 +12,7 @@ BASE = ROOT.parent / "o2-hp-angular-operators-20261121-r1"
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--require-all", action="store_true")
+    parser.add_argument("--cohort", default="repair-a5cbc8c")
     args = parser.parse_args()
     with (BASE / "summary.csv").open() as stream:
         old = list(csv.DictReader(stream))
@@ -19,7 +20,7 @@ def main():
                 (n, "public-unfused-repair", "public-unfused") for n in range(4, 7)]
     accepted, pending, failures = [], [], []
     for order, role, baseline_role in expected:
-        path = ROOT / "measurements/repair-a5cbc8c/numerical-repair" / f"qualify-L{order}-full-{role}.json"
+        path = ROOT / "measurements" / args.cohort / "numerical-repair" / f"qualify-L{order}-full-{role}.json"
         if not path.exists():
             pending.append(dict(order=order, role=role))
             continue
@@ -50,7 +51,7 @@ def main():
             receipt=str(path.relative_to(ROOT)), qualification_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
             checks=len(values), max_abs=max(c["max_abs"] for c in values),
             max_relative_l2=max(c["relative_l2"] for c in values)))
-    report = dict(all_eight_passed=len(accepted) == 8 and not failures, accepted=accepted, pending=pending,
+    report = dict(cohort=args.cohort, all_eight_passed=len(accepted) == 8 and not failures, accepted=accepted, pending=pending,
                   failures=failures, unchanged_baseline="6f641cf", original_fp32_gates=True,
                   timing_memory_not_measured=True)
     (ROOT / "provenance/REPAIR-GATE-AUDIT.json").write_text(json.dumps(report, indent=2))
