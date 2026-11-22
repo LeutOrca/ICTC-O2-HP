@@ -198,6 +198,16 @@ class Spec:
                 self.encode["eqx-o2"] = [enc_left, enc_right, identity]
                 if os.environ.get("O2_DIAGNOSTIC") == "1":
                     self.diagnostics = dict(linear=linear, mapped=mapped, signs=signs)
+                repair = os.environ.get("O2_RADIAL_ADJOINT")
+                if repair:
+                    from candidate.affine_adjoint import affine
+                    self.calls["public-unfused-repair"] = lambda x, y, h: native(x, y, affine(linear, h, repair))
+                    self.calls["eqx-o2-repair"] = lambda x, y, h: eqx(x, y, affine(mapped, h, repair))
+                    self.encode["public-unfused-repair"] = [identity] * 3
+                    self.encode["eqx-o2-repair"] = [enc_left, enc_right, identity]
+                    self.decode["public-unfused-repair"] = identity
+                    self.decode["eqx-o2-repair"] = self.decode["eqx-o2"]
+                    self.metadata["radial_adjoint_candidate"] = "own IEEE FP32 ordered sum " + repair
             self.metadata.update(input_dimension=native.input1_dimension,
                 angular_dimension=native.input2_dimension, output_dimension=native.representation_dimension,
                 paths=len(native.paths), external_weights=native.weight_numel, equation="O2-uvu-V1")
@@ -279,7 +289,7 @@ class Spec:
                 for fn, value in zip(self.encode[role], logical or self.logical)]
 
     def decode_grad(self, role, gradients):
-        if role not in ("eqx-o2", "cue-o2"):
+        if role not in ("eqx-o2", "cue-o2", "eqx-o2-repair"):
             return gradients
         # Transforms are orthogonal; their transposes map cotangents back.
         decoded = []
