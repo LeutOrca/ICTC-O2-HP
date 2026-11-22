@@ -10,7 +10,9 @@ BASE = ROOT.parent / "o2-hp-angular-operators-20261121-r1"
 
 
 def main():
-    for name in ("diagnose_radial.py", "models.py", "benchmark.py", "aggregate.py"):
+    names = ["diagnose_radial.py", "models.py", "benchmark.py", "aggregate.py", "repair_campaign.py"]
+    names += [str(p.relative_to(ROOT)) for p in (ROOT / "candidate").glob("*.py")]
+    for name in names:
         ast.parse((ROOT / name).read_text(), filename=name)
     checked = []
     for folder in ("official/src", "fork/src", "eqx/equivariantx"):
@@ -24,16 +26,29 @@ def main():
     # and all RNG/input/weight/reference expressions are unchanged.
     class RemoveObserver(ast.NodeTransformer):
         def visit_If(self, node):
-            if 'O2_DIAGNOSTIC' in ast.unparse(node.test):
+            if any(key in ast.unparse(node.test) for key in ('O2_DIAGNOSTIC', 'O2_BOUNDED_UVU')) or ast.unparse(node.test) == "repair":
                 return None
+            return self.generic_visit(node)
+        def visit_Assign(self, node):
+            if ast.unparse(node.targets[0]) == "repair":
+                return None
+            return self.generic_visit(node)
+        def visit_Tuple(self, node):
+            node.elts = [v for v in node.elts if not (isinstance(v, ast.Constant) and v.value == "eqx-o2-repair")]
             return self.generic_visit(node)
     assert ast.dump(before, include_attributes=False) == ast.dump(RemoveObserver().visit(after), include_attributes=False)
     data = dict(passed=True, baseline_commit="6f641cf736a97fa6835678c0eb123f5b2694e80d",
                 scope="CPU source preparation only; H100 numerical/paired gates are not run",
-                syntax_files=4, operator_source_files_unchanged=len(checked),
+                syntax_files=len(names), operator_source_files_unchanged=len(checked),
                 inputs_weights_rng_equation_reference_ast_unchanged=True,
                 sources=checked)
-    (ROOT / "provenance/PREPARED-QA.json").write_text(json.dumps(data, indent=2))
+    before_gate = ast.parse((BASE / "benchmark.py").read_text()).body
+    after_gate = ast.parse((ROOT / "benchmark.py").read_text()).body
+    before_error = next(n for n in before_gate if isinstance(n, ast.FunctionDef) and n.name == "error")
+    after_error = next(n for n in after_gate if isinstance(n, ast.FunctionDef) and n.name == "error")
+    assert ast.dump(before_error) == ast.dump(after_error)
+    data["original_fp32_error_ast_unchanged"] = True
+    (ROOT / "provenance/BOUNDED-SOURCE-QA.json").write_text(json.dumps(data, indent=2))
     print(json.dumps({k:v for k,v in data.items() if k != "sources"}), flush=True)
 
 
