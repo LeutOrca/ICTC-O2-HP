@@ -1,6 +1,6 @@
 {
-  "summary_points": 453,
-  "paired_ratios": 429,
+  "summary_points": 489,
+  "paired_ratios": 454,
   "measured_configurations": 78,
   "grid_configurations": 88,
   "pending_configurations": [],
@@ -8754,6 +8754,498 @@
       "sha256": "f0fddc5c7bfa590dae0a689ddab28a7027c4cb8a7af7c6e89e541e1e11b9d104",
       "qualification": "measurements/overnight-final-d005f68/memory-phase-radial-16384/qualify-L6-canonical-merged.json",
       "qualification_sha256": "088500ff3f676d310238301b3de5ece0e929e3e63a9e8603e61615a7749ccc58"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-eqx-o2-repair-forward-r0.json",
+      "sha256": "5e52e2b2ba11f80749f168fcd6a0681f49938831309a471c12a3e7ff623fde2c",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-eqx-o2-repair-forward_vjp-r0.json",
+      "sha256": "188c15921c67a23cc1f87484b30f79d662ce9e99cd18080610616c5bff9c0e4f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-public-repair-forward-r0.json",
+      "sha256": "4a1e45f574e2924e618ba833ab1ae626ec68f3135ec8f6a0312b9aaa8328ecf6",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-public-repair-forward_vjp-r0.json",
+      "sha256": "d5ae312379d266fa7fcc6c204428974ebfdf20f440312635d263fe3292959183",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-public-unfused-repair-forward-r0.json",
+      "sha256": "70ed683e9d73ed512c1fd85dca9839766fd01436a677b5e6011965f2217c52ea",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L4-full-public-unfused-repair-forward_vjp-r0.json",
+      "sha256": "f9fa9502d195c8cac7fbfff4d3c5b712d20f794c823d1ef1a5de7a1b31b19886",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-eqx-o2-repair-forward-r0.json",
+      "sha256": "e81046293991b5298536972749a9518d2527e94011544535e8345c2d0a7b0bd2",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-eqx-o2-repair-forward_vjp-r0.json",
+      "sha256": "f2f7a1b9014dd23cfd771e3f67dec6e70fec6e0139285b585128ba2e5b1cb15b",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-public-repair-forward-r0.json",
+      "sha256": "4439b034f21d8863717db9c6962aec749bf2b3b3aaf9bddaa715078775cc251f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-public-repair-forward_vjp-r0.json",
+      "sha256": "0f39d7a38a0606bc53ee4be0e445ce6d5b7a45ed631f63216f726d9e006f4b32",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-public-unfused-repair-forward-r0.json",
+      "sha256": "cefdc98cc2787218e83cfaf62aa859a546176b1ba19a7667cec32a8b6c7f634f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L5-full-public-unfused-repair-forward_vjp-r0.json",
+      "sha256": "e18a0b42332bb29ca34c00e2a8a6921cffca85c6b7555ccc6de54923bba38aa3",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-eqx-o2-repair-forward-r0.json",
+      "sha256": "895c88ea680f5191c0de17f0c88319afb4ae8acc1a67f37186e291cc3ee3a1a7",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-eqx-o2-repair-forward_vjp-r0.json",
+      "sha256": "0aae56bd3a3c1e24aa570ed1d912eab81bf62c7f51d6bd8ee0985139f37c132b",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-public-repair-forward-r0.json",
+      "sha256": "65516a3a51c46325b2859de4830caf9b62ce8b48168fd8bd7aa93a9abfc22ac5",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-public-repair-forward_vjp-r0.json",
+      "sha256": "5aee9f54c147cb55b067263209e026547079dbba3bcb3a6b94796b0610cce6b3",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-public-unfused-repair-forward-r0.json",
+      "sha256": "216971359349ae7fb890052b36f76821fad1aab22bac44d4b3905ad39a0dd589",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L6-full-public-unfused-repair-forward_vjp-r0.json",
+      "sha256": "fbe54d4e82a016d0518a6a43bf889d4376ecb2ecd0522325cf517e1c6e3086e7",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-eqx-o2-repair-forward-r0.json",
+      "sha256": "34def7cef0dbcd04139b97307d680710749cf2c19b090d170f4fbfa101afdc28",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-eqx-o2-repair-forward_vjp-r0.json",
+      "sha256": "f1bae8eeeb5e6c88110bc16f3aee6e472fc8f501be94e1f58b19c360244625bb",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-public-repair-forward-r0.json",
+      "sha256": "b96838f0224a8f92d0cb77b0ffe85b06a885514cb9771aca2977e81ef4c3e820",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-public-repair-forward_vjp-r0.json",
+      "sha256": "075c21829cb9247cb42e53c45d2601d0a486013d27cf7fc2d6fcd9f30dafcf38",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-public-unfused-repair-forward-r0.json",
+      "sha256": "570651f4bf9b7abe6fdb6bf89b8d79d8a1698351533900d43134f124be136b73",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L7-full-public-unfused-repair-forward_vjp-r0.json",
+      "sha256": "1fb91c399cc7308add8da3591a7d58afbc8dace2929e94a35e375c70a5c768c9",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-eqx-o2-repair-forward-r0.json",
+      "sha256": "9d5da04e7d2d2db42955319289579ed5e7946747cd8155c866514fe6c3854f0b",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-eqx-o2-repair-forward_vjp-r0.json",
+      "sha256": "f0a4b15409ac7d17e28f9c760d6745449bee3d184082ae497489c74733b7b801",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-public-repair-forward-r0.json",
+      "sha256": "6d6d789bbc9b44947673fb922ea1c2e07307d102982afb49fe2e0741d256cf0c",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-public-repair-forward_vjp-r0.json",
+      "sha256": "226cdff95223abc5217881a9171513c1980fdb382ac3c32c2e52252b2fc06510",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-public-unfused-repair-forward-r0.json",
+      "sha256": "f5b0c2e12250c1672001813e6b6d435026f494101012dcafd26ee683e5ee3c01",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/memory-L8-full-public-unfused-repair-forward_vjp-r0.json",
+      "sha256": "9b02b329ba965afac1471c3ef382924c0361b8deaa6703b9be06b0295f9b281f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L4-full-all-forward_vjp-r0.json",
+      "sha256": "c28599f161c23389964df4ee87da922ee21710bef4ef58083fbe420358d75161",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L4-full-all-forward_vjp-r1.json",
+      "sha256": "48e04664740c5482df0f28aa4692ef4c1f23c585401bf16222d322f1b5dc6c65",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L4-full-all-forward_vjp-r2.json",
+      "sha256": "604458c8257a5ecc3c9207f9c75d3c2afc67c5e3f563cff105b7ad0f356bb0e5",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L4-full-all-forward_vjp-r3.json",
+      "sha256": "02463ccacd550cc66448ce4cadf6d895f46a57aaf6fe4fdc691aedb33e168dab",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L4-full-all-forward_vjp-r4.json",
+      "sha256": "b95abfde5452affeb1fe2bf92fd5ada605e2943d50f2535198f8f4dbf4e89068",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L4-full-merged.json",
+      "qualification_sha256": "fca3d2aceae9f9f3e535161cb1c03c6e4283b9d1fa0eedcf4921708a3388ac60"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L5-full-all-forward_vjp-r0.json",
+      "sha256": "f6696a58c02a337657943627705e740b0942e582d64ff43e4e2847bfffbb582c",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L5-full-all-forward_vjp-r1.json",
+      "sha256": "308d86e804f284222efcf85662955ccb0a65f74824d8df85b5ae35392cb31f99",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L5-full-all-forward_vjp-r2.json",
+      "sha256": "24b2ee3f9e28984f1dbee7e64e93745025ec09ac301e1a87e42785cdef210056",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L5-full-all-forward_vjp-r3.json",
+      "sha256": "372a174d97922c9ff2043c3dbfedae57cc75e86d88974c77c8e7da2aa13cde77",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L5-full-all-forward_vjp-r4.json",
+      "sha256": "181d4891ba1083af39c7a8bfce21a8f07bb7fda3577ebd5cefa2ad808ce61240",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L5-full-merged.json",
+      "qualification_sha256": "aded692774bff795b5a83e9e0cf5d3583b72884d5122d9c0e9cb021c8433a34e"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L6-full-all-forward_vjp-r0.json",
+      "sha256": "49fbf57ac4c8ce7f16e5eff9d62e5e8dbe7e717e06f7ffb0dd00062e4fe760a4",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L6-full-all-forward_vjp-r1.json",
+      "sha256": "c621ddd54371344ec5a5626263fc4be479999886abc348cf0706973800f477cc",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L6-full-all-forward_vjp-r2.json",
+      "sha256": "72639a91351fe5768d7d9cb9a1f47eea9e19feee87def3b0039b13279eaab156",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L6-full-all-forward_vjp-r3.json",
+      "sha256": "0dc94ff857e361b6026a0c81ebadc383a02e4dcbf36ed765e9bad782d3c9a5c2",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L6-full-all-forward_vjp-r4.json",
+      "sha256": "b39ff61d7c8bbf621b775a0efa83a98222591d2a56394de1c679f3c92386b542",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L6-full-merged.json",
+      "qualification_sha256": "261a8e3097b917e0de0151e1fb2c1ac1469b9db44b92598e9841c9d6218a6284"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L7-full-all-forward_vjp-r0.json",
+      "sha256": "aa80e8d94fd9a6fe1696a4b3f19445ca01a09ffbfe6d609f70556b3b4b1b2a9f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L7-full-all-forward_vjp-r1.json",
+      "sha256": "4bb5beec77172d466597f8fe55d946f02490363b7dfcf7ce1d863b7e73b863e5",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L7-full-all-forward_vjp-r2.json",
+      "sha256": "ab703ec7af7bb7d16bec1629ff9dc82bee349494bff5a93d205634dae6165328",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L7-full-all-forward_vjp-r3.json",
+      "sha256": "cc95326261543794e063ca6bfec58326ba3026cebde0261ca0201d1e4d089b65",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L7-full-all-forward_vjp-r4.json",
+      "sha256": "f98e7489f382a86a84d5a9ef81cdeeb4b9f29b0574102db3e6d1b8d5e44903f2",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L7-full-merged.json",
+      "qualification_sha256": "3fada7426abf9cff73bfb442e6d5291c5b449bcf00b3aaf9aecbe362f3d7f9b1"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L8-full-all-forward_vjp-r0.json",
+      "sha256": "3c27d7b74316b945ce56e90bc4c27ffd0accff8f6e14d63e5e1491d5b78b8df6",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L8-full-all-forward_vjp-r1.json",
+      "sha256": "0bee8227fec19e8f7a17d12b974d9fb5c561c87560d7bdab4155324cc2ade993",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L8-full-all-forward_vjp-r2.json",
+      "sha256": "5d1891aa80b5c351c57091c1b689ea7792113ec045285e6e0069f91cf9e15a9b",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L8-full-all-forward_vjp-r3.json",
+      "sha256": "ec3ec51b4ce569e202e2750f3a6a571a07d63ecb63d1383b2b67309094dcf49f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-radial/time-L8-full-all-forward_vjp-r4.json",
+      "sha256": "d7c10dc4c66331e3770723a1d32816de67053232dc3d3dae4c4373c6e7c1f4b4",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-radial/qualify-L8-full-merged.json",
+      "qualification_sha256": "667c7816cc246e9ac2029f4bc5fc3676df6bd6a15e352ae6fc94fc0b81751d50"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L6-full-eqx-o2-forward-r0.json",
+      "sha256": "a5770a700146d6469a989c3c0db75209aa982100830d9db4bdfbb52f4ea5a689",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L6-full-eqx-o2-forward_vjp-r0.json",
+      "sha256": "16170b0850ee05684d40bf642b5dc48e9115df5f30f3a2f1ecdc955f91290032",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L6-full-public-repair-forward-r0.json",
+      "sha256": "fb86b179e9755f1240d2bd8da8c47a44458ff5b35c7ed26109ff795e06265e9d",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L6-full-public-repair-forward_vjp-r0.json",
+      "sha256": "66e7d3434a5e5186820e2ca8dde4e888f9725a59f3cf446c4e62936e56c63478",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L7-full-eqx-o2-forward-r0.json",
+      "sha256": "c93e16dc96d56f74a8068b40ee5a67e6b3c5e5fae3916ff429ccc74e3c6fd980",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L7-full-eqx-o2-forward_vjp-r0.json",
+      "sha256": "e6af5551baa8c33a4366772f8aaf32b4c3ed9439e1ddd15cd1a2b4fdbb49b7cd",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L7-full-public-repair-forward-r0.json",
+      "sha256": "5d30416f5b987957e979ff22aa6d579cd9bf3e58b31c922c796999b808ffc77f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L7-full-public-repair-forward_vjp-r0.json",
+      "sha256": "dfd13dcfbc166d3f2aef18fe4104f4dc539e5233586ef96d9a610cc2f051e4eb",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L8-full-eqx-o2-forward-r0.json",
+      "sha256": "c1f8ff023193afbc2a0f2d7b3543dd5c99376767307f8c209adcab3cad4a70f6",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L8-full-eqx-o2-forward_vjp-r0.json",
+      "sha256": "b9bfbe9fc0c6f1b6da6ce37e6336f73204b7e71ff067bb1d6049877647fba94f",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L8-full-public-repair-forward-r0.json",
+      "sha256": "4a7a2ec9e865620145ff99629c2f382295bd6efaecdbe19247a411d62b4351a2",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/memory-L8-full-public-repair-forward_vjp-r0.json",
+      "sha256": "2b401ba39003a9a3ad68d8fa2fb3182cffec5342ce4f00028471bcdd33d3a9b8",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L6-full-all-forward_vjp-r0.json",
+      "sha256": "6a9f32f42cc8fe9d8cc6c45dfae9551d04a57391c970ca985ef2ed8a14c2d212",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L6-full-all-forward_vjp-r1.json",
+      "sha256": "e1da386951704e52861c799079e8f13efaceae7566114109b231dbc0adccfa8d",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L6-full-all-forward_vjp-r2.json",
+      "sha256": "f31f154b1a001d36d94ccb7251af893cf7df0fb0f053b6fa72eed6376b90d61e",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L6-full-all-forward_vjp-r3.json",
+      "sha256": "51f267e4f650e6f55b205178049c5bb5502f2d9024a36aebbc4ca74c8e3b0980",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L6-full-all-forward_vjp-r4.json",
+      "sha256": "aab8662ac2ab3f61dd9becc59b286228e584c025df0f29eadf0ac558b66d55dc",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L6-full-merged.json",
+      "qualification_sha256": "2de60eea71ff744f7636863d535a7c2439fd503fbed4ae9f040ab077ca5aefa9"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L7-full-all-forward_vjp-r0.json",
+      "sha256": "9fcd24171986a111e5399c673cff1a1e69dafc17228e628887727d69f462c371",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L7-full-all-forward_vjp-r1.json",
+      "sha256": "05509a9cd674dcf15690943d0103483763002f9e84d50e976d9fe5dfc44d932a",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L7-full-all-forward_vjp-r2.json",
+      "sha256": "f5ffe897b59571800b032666e326889da499a954f4053804e88fb03fa1d1570b",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L7-full-all-forward_vjp-r3.json",
+      "sha256": "fbc69603f1dbb7049457ddcd9fa83497277a98de5f6ba5358f3b16c876fe4b20",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L7-full-all-forward_vjp-r4.json",
+      "sha256": "780161fc3111220ea5002a4eab3f8b08d65a0bf08d4b5789caab207d99940b6d",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L7-full-merged.json",
+      "qualification_sha256": "c7878b038fb969267b9b5e98eeee940cd25b4d6bef49e68505d74d561859e68b"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L8-full-all-forward_vjp-r0.json",
+      "sha256": "f8aab3d2a3c2bb74d323298888d901e7e5d552a691cf3da7227487d2b2f22eef",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L8-full-all-forward_vjp-r1.json",
+      "sha256": "fb5ac5c2eed4b53c97871f03f86d9c41db8d6b5d84480b0bea4e16523af40eb8",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L8-full-all-forward_vjp-r2.json",
+      "sha256": "5f78fab89511b8d13670b04d3bc918abbf06e190c5c3f603000bb85d3cd215f8",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L8-full-all-forward_vjp-r3.json",
+      "sha256": "6a5e5ab4908d8afbe7f3f583ac0d80633937fa561cfc53c9f26f2031b7a984d6",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
+    },
+    {
+      "receipt": "measurements/paired-repair-e48a156/measure-bounded-uvu/time-L8-full-all-forward_vjp-r4.json",
+      "sha256": "c76edc45a8d68cc1aa83ed9f77537c349dd622e5545ba6648252d6a687790a40",
+      "qualification": "measurements/paired-repair-e48a156/measure-bounded-uvu/qualify-L8-full-merged.json",
+      "qualification_sha256": "0dd3c1b3b4ae9b26fd53a71fd4473ec7f6f5bcc675e79ae3cd9f044ccd452aca"
     }
   ],
   "strict_fp32": true,
@@ -8761,6 +9253,6 @@
   "official_and_fork_same_executables": true,
   "no_cross_equation_speedups": true,
   "max_accepted_relative_l2": 2.2551566871698014e-06,
-  "expected_role_metrics": 496,
+  "expected_role_metrics": 532,
   "pending_role_metrics": 0
 }

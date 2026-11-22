@@ -1,17 +1,20 @@
 {
   "project_period_start": "2026-11-15",
-  "project_gpu_h": 111.7230555555555,
+  "project_gpu_h": 113.42777777777772,
   "project_hard_cap": 500,
-  "remaining_project_gpu_h": 388.2769444444445,
+  "remaining_project_gpu_h": 386.5722222222223,
   "angular_gpu_h": 25.04111111111111,
+  "repair_gpu_h": 1.7047222222222222,
+  "inclusive_angular_gpu_h": 26.745833333333334,
+  "repair_gpu_jobs": 14,
   "proposed_inclusive_angular_envelope": 36,
   "project_gpu_h_by_cluster": {
     "aidam": 62.79249999999994,
-    "gbu2": 48.93055555555556
+    "gbu2": 50.635277777777794
   },
   "accounting_methods": {
     "SBATCH-request": 583,
-    "AllocTRES": 164,
+    "AllocTRES": 178,
     "ReqTRES": 5
   },
   "unresolved_gpu_jobs": [],
@@ -255,7 +258,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110449_0",
+      "job": "110450",
       "state": "COMPLETED",
       "seconds": 64,
       "gpus": 1,
@@ -270,7 +273,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110449_1",
+      "job": "110451",
       "state": "COMPLETED",
       "seconds": 67,
       "gpus": 1,
@@ -285,7 +288,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110449_2",
+      "job": "110453",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -300,7 +303,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110449_3",
+      "job": "110454",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -315,7 +318,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110449_4",
+      "job": "110449",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -375,7 +378,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110459_0",
+      "job": "110460",
       "state": "COMPLETED",
       "seconds": 47,
       "gpus": 1,
@@ -390,7 +393,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110459_1",
+      "job": "110461",
       "state": "COMPLETED",
       "seconds": 47,
       "gpus": 1,
@@ -405,7 +408,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110459_2",
+      "job": "110464",
       "state": "COMPLETED",
       "seconds": 45,
       "gpus": 1,
@@ -420,7 +423,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110459_3",
+      "job": "110465",
       "state": "COMPLETED",
       "seconds": 46,
       "gpus": 1,
@@ -435,7 +438,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110459_4",
+      "job": "110459",
       "state": "COMPLETED",
       "seconds": 46,
       "gpus": 1,
@@ -495,7 +498,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_0",
+      "job": "110487",
       "state": "COMPLETED",
       "seconds": 107,
       "gpus": 1,
@@ -510,7 +513,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_1",
+      "job": "110490",
       "state": "COMPLETED",
       "seconds": 58,
       "gpus": 1,
@@ -525,7 +528,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_2",
+      "job": "110491",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -540,7 +543,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_3",
+      "job": "110493",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -555,7 +558,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_4",
+      "job": "110494",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -570,7 +573,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_5",
+      "job": "110496",
       "state": "COMPLETED",
       "seconds": 41,
       "gpus": 1,
@@ -585,7 +588,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_6",
+      "job": "110497",
       "state": "COMPLETED",
       "seconds": 44,
       "gpus": 1,
@@ -600,7 +603,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_7",
+      "job": "110498",
       "state": "COMPLETED",
       "seconds": 41,
       "gpus": 1,
@@ -615,7 +618,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_8",
+      "job": "110499",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -630,7 +633,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110481_9",
+      "job": "110481",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -645,7 +648,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110482_[0-4%2]",
+      "job": "110482",
       "state": "CANCELLED by 1035",
       "seconds": 0,
       "gpus": 1,
@@ -675,7 +678,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_0",
+      "job": "110505",
       "state": "COMPLETED",
       "seconds": 108,
       "gpus": 1,
@@ -690,7 +693,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_1",
+      "job": "110507",
       "state": "COMPLETED",
       "seconds": 79,
       "gpus": 1,
@@ -705,7 +708,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_2",
+      "job": "110508",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -720,7 +723,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_3",
+      "job": "110509",
       "state": "COMPLETED",
       "seconds": 41,
       "gpus": 1,
@@ -735,7 +738,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_4",
+      "job": "110511",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -750,7 +753,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_5",
+      "job": "110513",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -765,7 +768,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_6",
+      "job": "110516",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -780,7 +783,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_7",
+      "job": "110517",
       "state": "COMPLETED",
       "seconds": 42,
       "gpus": 1,
@@ -795,7 +798,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_8",
+      "job": "110518",
       "state": "COMPLETED",
       "seconds": 43,
       "gpus": 1,
@@ -810,7 +813,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110484_9",
+      "job": "110484",
       "state": "COMPLETED",
       "seconds": 41,
       "gpus": 1,
@@ -885,7 +888,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110514_0",
+      "job": "110522",
       "state": "COMPLETED",
       "seconds": 195,
       "gpus": 1,
@@ -900,7 +903,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110514_1",
+      "job": "110533",
       "state": "COMPLETED",
       "seconds": 117,
       "gpus": 1,
@@ -915,7 +918,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110514_2",
+      "job": "110514",
       "state": "COMPLETED",
       "seconds": 118,
       "gpus": 1,
@@ -930,7 +933,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110515_0",
+      "job": "110529",
       "state": "FAILED",
       "seconds": 152,
       "gpus": 1,
@@ -945,7 +948,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110515_1",
+      "job": "110537",
       "state": "FAILED",
       "seconds": 76,
       "gpus": 1,
@@ -960,7 +963,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110515_2",
+      "job": "110515",
       "state": "FAILED",
       "seconds": 76,
       "gpus": 1,
@@ -1005,7 +1008,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110562_0",
+      "job": "110565",
       "state": "COMPLETED",
       "seconds": 1561,
       "gpus": 1,
@@ -1020,7 +1023,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110562_1",
+      "job": "110566",
       "state": "COMPLETED",
       "seconds": 1301,
       "gpus": 1,
@@ -1035,7 +1038,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110562_2",
+      "job": "110600",
       "state": "COMPLETED",
       "seconds": 972,
       "gpus": 1,
@@ -1050,7 +1053,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110562_3",
+      "job": "110680",
       "state": "COMPLETED",
       "seconds": 955,
       "gpus": 1,
@@ -1065,7 +1068,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110562_4",
+      "job": "110562",
       "state": "COMPLETED",
       "seconds": 955,
       "gpus": 1,
@@ -1095,7 +1098,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110578_0",
+      "job": "110586",
       "state": "FAILED",
       "seconds": 299,
       "gpus": 1,
@@ -1110,7 +1113,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110578_1",
+      "job": "110587",
       "state": "FAILED",
       "seconds": 268,
       "gpus": 1,
@@ -1125,7 +1128,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110578_2",
+      "job": "110597",
       "state": "FAILED",
       "seconds": 143,
       "gpus": 1,
@@ -1140,7 +1143,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110578_3",
+      "job": "110598",
       "state": "FAILED",
       "seconds": 144,
       "gpus": 1,
@@ -1155,7 +1158,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110578_4",
+      "job": "110578",
       "state": "FAILED",
       "seconds": 144,
       "gpus": 1,
@@ -1335,7 +1338,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110766_0",
+      "job": "110767",
       "state": "COMPLETED",
       "seconds": 40,
       "gpus": 1,
@@ -1350,7 +1353,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110766_1",
+      "job": "110768",
       "state": "COMPLETED",
       "seconds": 39,
       "gpus": 1,
@@ -1365,7 +1368,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110766_2",
+      "job": "110770",
       "state": "COMPLETED",
       "seconds": 39,
       "gpus": 1,
@@ -1380,7 +1383,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110766_3",
+      "job": "110771",
       "state": "COMPLETED",
       "seconds": 38,
       "gpus": 1,
@@ -1395,7 +1398,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110766_4",
+      "job": "110766",
       "state": "COMPLETED",
       "seconds": 38,
       "gpus": 1,
@@ -1425,7 +1428,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110779_0",
+      "job": "110780",
       "state": "COMPLETED",
       "seconds": 78,
       "gpus": 1,
@@ -1440,7 +1443,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110779_1",
+      "job": "110781",
       "state": "COMPLETED",
       "seconds": 79,
       "gpus": 1,
@@ -1455,7 +1458,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110779_2",
+      "job": "110779",
       "state": "COMPLETED",
       "seconds": 77,
       "gpus": 1,
@@ -1710,7 +1713,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110862_0",
+      "job": "110863",
       "state": "COMPLETED",
       "seconds": 112,
       "gpus": 1,
@@ -1725,7 +1728,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110862_1",
+      "job": "110864",
       "state": "COMPLETED",
       "seconds": 111,
       "gpus": 1,
@@ -1740,7 +1743,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110862_2",
+      "job": "110866",
       "state": "COMPLETED",
       "seconds": 112,
       "gpus": 1,
@@ -1755,7 +1758,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110862_3",
+      "job": "110867",
       "state": "COMPLETED",
       "seconds": 112,
       "gpus": 1,
@@ -1770,7 +1773,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110862_4",
+      "job": "110862",
       "state": "COMPLETED",
       "seconds": 112,
       "gpus": 1,
@@ -1860,7 +1863,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110899_0",
+      "job": "111000",
       "state": "FAILED",
       "seconds": 3650,
       "gpus": 1,
@@ -1875,7 +1878,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110899_1",
+      "job": "111001",
       "state": "FAILED",
       "seconds": 3649,
       "gpus": 1,
@@ -1890,7 +1893,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110899_2",
+      "job": "111002",
       "state": "FAILED",
       "seconds": 3638,
       "gpus": 1,
@@ -1905,7 +1908,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110899_3",
+      "job": "111003",
       "state": "FAILED",
       "seconds": 3661,
       "gpus": 1,
@@ -1920,7 +1923,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110899_4",
+      "job": "110899",
       "state": "FAILED",
       "seconds": 3541,
       "gpus": 1,
@@ -2025,7 +2028,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110925_0",
+      "job": "110928",
       "state": "COMPLETED",
       "seconds": 217,
       "gpus": 1,
@@ -2040,7 +2043,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110925_1",
+      "job": "110929",
       "state": "COMPLETED",
       "seconds": 253,
       "gpus": 1,
@@ -2055,7 +2058,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110925_2",
+      "job": "110930",
       "state": "COMPLETED",
       "seconds": 217,
       "gpus": 1,
@@ -2070,7 +2073,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110925_3",
+      "job": "110931",
       "state": "COMPLETED",
       "seconds": 253,
       "gpus": 1,
@@ -2085,7 +2088,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110925_4",
+      "job": "110925",
       "state": "COMPLETED",
       "seconds": 216,
       "gpus": 1,
@@ -2400,7 +2403,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110955_0",
+      "job": "110956",
       "state": "COMPLETED",
       "seconds": 250,
       "gpus": 1,
@@ -2415,7 +2418,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110955_1",
+      "job": "110957",
       "state": "COMPLETED",
       "seconds": 250,
       "gpus": 1,
@@ -2430,7 +2433,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110955_2",
+      "job": "110958",
       "state": "COMPLETED",
       "seconds": 249,
       "gpus": 1,
@@ -2445,7 +2448,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110955_3",
+      "job": "110959",
       "state": "COMPLETED",
       "seconds": 237,
       "gpus": 1,
@@ -2460,7 +2463,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "110955_4",
+      "job": "110955",
       "state": "COMPLETED",
       "seconds": 237,
       "gpus": 1,
@@ -2775,7 +2778,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111062_0",
+      "job": "111066",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -2790,7 +2793,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111062_1",
+      "job": "111067",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -2805,7 +2808,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111062_2",
+      "job": "111068",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -2820,7 +2823,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111062_3",
+      "job": "111069",
       "state": "COMPLETED",
       "seconds": 94,
       "gpus": 1,
@@ -2835,7 +2838,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111062_4",
+      "job": "111062",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -2865,7 +2868,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111074_0",
+      "job": "111076",
       "state": "COMPLETED",
       "seconds": 251,
       "gpus": 1,
@@ -2880,7 +2883,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111074_1",
+      "job": "111077",
       "state": "COMPLETED",
       "seconds": 252,
       "gpus": 1,
@@ -2895,7 +2898,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111074_2",
+      "job": "111078",
       "state": "COMPLETED",
       "seconds": 251,
       "gpus": 1,
@@ -2910,7 +2913,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111074_3",
+      "job": "111079",
       "state": "COMPLETED",
       "seconds": 251,
       "gpus": 1,
@@ -2925,7 +2928,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "111074_4",
+      "job": "111074",
       "state": "COMPLETED",
       "seconds": 252,
       "gpus": 1,
@@ -3015,7 +3018,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112002_0",
+      "job": "112003",
       "state": "COMPLETED",
       "seconds": 60,
       "gpus": 1,
@@ -3030,7 +3033,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112002_1",
+      "job": "112004",
       "state": "COMPLETED",
       "seconds": 55,
       "gpus": 1,
@@ -3045,7 +3048,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112002_2",
+      "job": "112002",
       "state": "COMPLETED",
       "seconds": 55,
       "gpus": 1,
@@ -3075,7 +3078,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112014_0",
+      "job": "112015",
       "state": "COMPLETED",
       "seconds": 56,
       "gpus": 1,
@@ -3090,7 +3093,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112014_1",
+      "job": "112016",
       "state": "COMPLETED",
       "seconds": 53,
       "gpus": 1,
@@ -3105,7 +3108,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112014_2",
+      "job": "112014",
       "state": "COMPLETED",
       "seconds": 56,
       "gpus": 1,
@@ -3135,7 +3138,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112026_3",
+      "job": "112027",
       "state": "COMPLETED",
       "seconds": 52,
       "gpus": 1,
@@ -3150,7 +3153,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112026_4",
+      "job": "112026",
       "state": "COMPLETED",
       "seconds": 53,
       "gpus": 1,
@@ -3180,7 +3183,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112030_0",
+      "job": "112032",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -3195,7 +3198,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112030_1",
+      "job": "112033",
       "state": "COMPLETED",
       "seconds": 55,
       "gpus": 1,
@@ -3210,7 +3213,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112030_2",
+      "job": "112030",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -3225,7 +3228,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112040_0",
+      "job": "112041",
       "state": "FAILED",
       "seconds": 65,
       "gpus": 1,
@@ -3240,7 +3243,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112040_1",
+      "job": "112042",
       "state": "FAILED",
       "seconds": 58,
       "gpus": 1,
@@ -3255,7 +3258,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112040_2",
+      "job": "112043",
       "state": "FAILED",
       "seconds": 65,
       "gpus": 1,
@@ -3270,7 +3273,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112040_3",
+      "job": "112045",
       "state": "FAILED",
       "seconds": 54,
       "gpus": 1,
@@ -3285,7 +3288,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112040_4",
+      "job": "112040",
       "state": "FAILED",
       "seconds": 57,
       "gpus": 1,
@@ -3330,7 +3333,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112062_0",
+      "job": "112066",
       "state": "COMPLETED",
       "seconds": 55,
       "gpus": 1,
@@ -3345,7 +3348,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112062_1",
+      "job": "112067",
       "state": "COMPLETED",
       "seconds": 54,
       "gpus": 1,
@@ -3360,7 +3363,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112062_2",
+      "job": "112062",
       "state": "COMPLETED",
       "seconds": 55,
       "gpus": 1,
@@ -3420,7 +3423,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112087_0",
+      "job": "112088",
       "state": "COMPLETED",
       "seconds": 104,
       "gpus": 1,
@@ -3435,7 +3438,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112087_1",
+      "job": "112089",
       "state": "COMPLETED",
       "seconds": 108,
       "gpus": 1,
@@ -3450,7 +3453,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112087_2",
+      "job": "112090",
       "state": "COMPLETED",
       "seconds": 108,
       "gpus": 1,
@@ -3465,7 +3468,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112087_3",
+      "job": "112092",
       "state": "COMPLETED",
       "seconds": 104,
       "gpus": 1,
@@ -3480,7 +3483,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112087_4",
+      "job": "112087",
       "state": "COMPLETED",
       "seconds": 103,
       "gpus": 1,
@@ -3495,7 +3498,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112095_0",
+      "job": "112096",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -3510,7 +3513,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112095_1",
+      "job": "112097",
       "state": "COMPLETED",
       "seconds": 54,
       "gpus": 1,
@@ -3525,7 +3528,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112095_2",
+      "job": "112095",
       "state": "COMPLETED",
       "seconds": 56,
       "gpus": 1,
@@ -3570,7 +3573,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112221_0",
+      "job": "112222",
       "state": "COMPLETED",
       "seconds": 38,
       "gpus": 1,
@@ -3585,7 +3588,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112221_1",
+      "job": "112223",
       "state": "COMPLETED",
       "seconds": 37,
       "gpus": 1,
@@ -3600,7 +3603,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112221_2",
+      "job": "112225",
       "state": "COMPLETED",
       "seconds": 41,
       "gpus": 1,
@@ -3615,7 +3618,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112221_3",
+      "job": "112226",
       "state": "COMPLETED",
       "seconds": 39,
       "gpus": 1,
@@ -3630,7 +3633,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112221_4",
+      "job": "112221",
       "state": "COMPLETED",
       "seconds": 37,
       "gpus": 1,
@@ -3660,7 +3663,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112239_0",
+      "job": "112241",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3675,7 +3678,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112239_1",
+      "job": "112242",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -3690,7 +3693,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112239_2",
+      "job": "112243",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -3705,7 +3708,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112239_3",
+      "job": "112244",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3720,7 +3723,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112239_4",
+      "job": "112239",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -3735,7 +3738,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112240_0",
+      "job": "112246",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3750,7 +3753,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112240_1",
+      "job": "112247",
       "state": "COMPLETED",
       "seconds": 28,
       "gpus": 1,
@@ -3765,7 +3768,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112240_2",
+      "job": "112248",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3780,7 +3783,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112240_3",
+      "job": "112249",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3795,7 +3798,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112240_4",
+      "job": "112240",
       "state": "COMPLETED",
       "seconds": 27,
       "gpus": 1,
@@ -3825,7 +3828,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112254_0",
+      "job": "112255",
       "state": "COMPLETED",
       "seconds": 40,
       "gpus": 1,
@@ -3840,7 +3843,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112254_1",
+      "job": "112256",
       "state": "COMPLETED",
       "seconds": 40,
       "gpus": 1,
@@ -3855,7 +3858,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112254_2",
+      "job": "112259",
       "state": "COMPLETED",
       "seconds": 39,
       "gpus": 1,
@@ -3870,7 +3873,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112254_3",
+      "job": "112260",
       "state": "COMPLETED",
       "seconds": 39,
       "gpus": 1,
@@ -3885,7 +3888,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112254_4",
+      "job": "112254",
       "state": "COMPLETED",
       "seconds": 37,
       "gpus": 1,
@@ -3930,7 +3933,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112265_0",
+      "job": "112267",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -3945,7 +3948,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112265_1",
+      "job": "112268",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -3960,7 +3963,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112265_2",
+      "job": "112269",
       "state": "COMPLETED",
       "seconds": 24,
       "gpus": 1,
@@ -3975,7 +3978,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112265_3",
+      "job": "112270",
       "state": "COMPLETED",
       "seconds": 25,
       "gpus": 1,
@@ -3990,7 +3993,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112265_4",
+      "job": "112265",
       "state": "COMPLETED",
       "seconds": 25,
       "gpus": 1,
@@ -4005,7 +4008,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112266_0",
+      "job": "112271",
       "state": "COMPLETED",
       "seconds": 25,
       "gpus": 1,
@@ -4020,7 +4023,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112266_1",
+      "job": "112272",
       "state": "COMPLETED",
       "seconds": 25,
       "gpus": 1,
@@ -4035,7 +4038,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112266_2",
+      "job": "112273",
       "state": "COMPLETED",
       "seconds": 26,
       "gpus": 1,
@@ -4050,7 +4053,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112266_3",
+      "job": "112275",
       "state": "COMPLETED",
       "seconds": 24,
       "gpus": 1,
@@ -4065,7 +4068,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112266_4",
+      "job": "112266",
       "state": "COMPLETED",
       "seconds": 25,
       "gpus": 1,
@@ -4095,7 +4098,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112280_0",
+      "job": "112281",
       "state": "COMPLETED",
       "seconds": 67,
       "gpus": 1,
@@ -4110,7 +4113,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112280_1",
+      "job": "112282",
       "state": "COMPLETED",
       "seconds": 67,
       "gpus": 1,
@@ -4125,7 +4128,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112280_2",
+      "job": "112280",
       "state": "COMPLETED",
       "seconds": 65,
       "gpus": 1,
@@ -4140,7 +4143,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112284_0",
+      "job": "112285",
       "state": "COMPLETED",
       "seconds": 40,
       "gpus": 1,
@@ -4155,7 +4158,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112284_1",
+      "job": "112286",
       "state": "COMPLETED",
       "seconds": 59,
       "gpus": 1,
@@ -4170,7 +4173,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112284_2",
+      "job": "112287",
       "state": "COMPLETED",
       "seconds": 48,
       "gpus": 1,
@@ -4185,7 +4188,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112284_3",
+      "job": "112284",
       "state": "COMPLETED",
       "seconds": 143,
       "gpus": 1,
@@ -4230,7 +4233,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112294_0",
+      "job": "112295",
       "state": "COMPLETED",
       "seconds": 467,
       "gpus": 1,
@@ -4245,7 +4248,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112294_1",
+      "job": "112294",
       "state": "COMPLETED",
       "seconds": 457,
       "gpus": 1,
@@ -4260,7 +4263,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112296_0",
+      "job": "112302",
       "state": "COMPLETED",
       "seconds": 1244,
       "gpus": 1,
@@ -4275,7 +4278,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112296_1",
+      "job": "112316",
       "state": "COMPLETED",
       "seconds": 1250,
       "gpus": 1,
@@ -4290,7 +4293,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112296_2",
+      "job": "112317",
       "state": "COMPLETED",
       "seconds": 1248,
       "gpus": 1,
@@ -4305,7 +4308,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112296_3",
+      "job": "112329",
       "state": "COMPLETED",
       "seconds": 1253,
       "gpus": 1,
@@ -4320,7 +4323,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112296_4",
+      "job": "112296",
       "state": "COMPLETED",
       "seconds": 1250,
       "gpus": 1,
@@ -4335,7 +4338,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112300_0",
+      "job": "112301",
       "state": "COMPLETED",
       "seconds": 980,
       "gpus": 1,
@@ -4350,7 +4353,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112300_1",
+      "job": "112323",
       "state": "COMPLETED",
       "seconds": 1028,
       "gpus": 1,
@@ -4365,7 +4368,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112300_2",
+      "job": "112300",
       "state": "COMPLETED",
       "seconds": 1053,
       "gpus": 1,
@@ -4380,7 +4383,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_0",
+      "job": "112325",
       "state": "COMPLETED",
       "seconds": 1135,
       "gpus": 1,
@@ -4395,7 +4398,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_1",
+      "job": "112334",
       "state": "COMPLETED",
       "seconds": 1247,
       "gpus": 1,
@@ -4410,7 +4413,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_2",
+      "job": "112339",
       "state": "COMPLETED",
       "seconds": 1230,
       "gpus": 1,
@@ -4425,7 +4428,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_3",
+      "job": "112356",
       "state": "COMPLETED",
       "seconds": 1450,
       "gpus": 1,
@@ -4440,7 +4443,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_4",
+      "job": "112373",
       "state": "COMPLETED",
       "seconds": 1338,
       "gpus": 1,
@@ -4455,7 +4458,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_5",
+      "job": "112388",
       "state": "COMPLETED",
       "seconds": 1535,
       "gpus": 1,
@@ -4470,7 +4473,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_6",
+      "job": "112389",
       "state": "COMPLETED",
       "seconds": 1432,
       "gpus": 1,
@@ -4485,7 +4488,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_7",
+      "job": "112411",
       "state": "COMPLETED",
       "seconds": 1651,
       "gpus": 1,
@@ -4500,7 +4503,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_8",
+      "job": "112412",
       "state": "COMPLETED",
       "seconds": 1551,
       "gpus": 1,
@@ -4515,7 +4518,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_9",
+      "job": "112423",
       "state": "COMPLETED",
       "seconds": 1847,
       "gpus": 1,
@@ -4530,7 +4533,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_10",
+      "job": "112424",
       "state": "COMPLETED",
       "seconds": 1626,
       "gpus": 1,
@@ -4545,7 +4548,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112304_11",
+      "job": "112304",
       "state": "COMPLETED",
       "seconds": 1922,
       "gpus": 1,
@@ -4560,7 +4563,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_0",
+      "job": "112353",
       "state": "TIMEOUT",
       "seconds": 2225,
       "gpus": 1,
@@ -4575,7 +4578,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_1",
+      "job": "112354",
       "state": "TIMEOUT",
       "seconds": 2225,
       "gpus": 1,
@@ -4590,7 +4593,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_2",
+      "job": "112357",
       "state": "TIMEOUT",
       "seconds": 2241,
       "gpus": 1,
@@ -4605,7 +4608,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_3",
+      "job": "112391",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4620,7 +4623,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_4",
+      "job": "112392",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4635,7 +4638,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_5",
+      "job": "112396",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4650,7 +4653,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_6",
+      "job": "112419",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4665,7 +4668,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_7",
+      "job": "112420",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4680,7 +4683,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_8",
+      "job": "112422",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4695,7 +4698,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_9",
+      "job": "112451",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4710,7 +4713,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_10",
+      "job": "112452",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4725,7 +4728,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_11",
+      "job": "112453",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4740,7 +4743,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_12",
+      "job": "112480",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4755,7 +4758,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_13",
+      "job": "112481",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4770,7 +4773,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112305_14",
+      "job": "112305",
       "state": "TIMEOUT",
       "seconds": 2220,
       "gpus": 1,
@@ -4800,7 +4803,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112337_0",
+      "job": "112346",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -4815,7 +4818,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112337_1",
+      "job": "112347",
       "state": "COMPLETED",
       "seconds": 58,
       "gpus": 1,
@@ -4830,7 +4833,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112337_2",
+      "job": "112349",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -4845,7 +4848,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112337_3",
+      "job": "112350",
       "state": "COMPLETED",
       "seconds": 58,
       "gpus": 1,
@@ -4860,7 +4863,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112337_4",
+      "job": "112337",
       "state": "COMPLETED",
       "seconds": 57,
       "gpus": 1,
@@ -4890,7 +4893,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112344_0",
+      "job": "112479",
       "state": "COMPLETED",
       "seconds": 1284,
       "gpus": 1,
@@ -4905,7 +4908,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112344_1",
+      "job": "112487",
       "state": "COMPLETED",
       "seconds": 1332,
       "gpus": 1,
@@ -4920,7 +4923,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112344_2",
+      "job": "112344",
       "state": "COMPLETED",
       "seconds": 1329,
       "gpus": 1,
@@ -5025,7 +5028,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_0",
+      "job": "112505",
       "state": "COMPLETED",
       "seconds": 364,
       "gpus": 1,
@@ -5040,7 +5043,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_1",
+      "job": "112506",
       "state": "COMPLETED",
       "seconds": 316,
       "gpus": 1,
@@ -5055,7 +5058,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_2",
+      "job": "112507",
       "state": "COMPLETED",
       "seconds": 343,
       "gpus": 1,
@@ -5070,7 +5073,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_3",
+      "job": "112513",
       "state": "COMPLETED",
       "seconds": 346,
       "gpus": 1,
@@ -5085,7 +5088,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_4",
+      "job": "112514",
       "state": "COMPLETED",
       "seconds": 234,
       "gpus": 1,
@@ -5100,7 +5103,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_5",
+      "job": "112515",
       "state": "COMPLETED",
       "seconds": 290,
       "gpus": 1,
@@ -5115,7 +5118,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_6",
+      "job": "112520",
       "state": "COMPLETED",
       "seconds": 305,
       "gpus": 1,
@@ -5130,7 +5133,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_7",
+      "job": "112521",
       "state": "COMPLETED",
       "seconds": 268,
       "gpus": 1,
@@ -5145,7 +5148,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_8",
+      "job": "112522",
       "state": "COMPLETED",
       "seconds": 266,
       "gpus": 1,
@@ -5160,7 +5163,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_9",
+      "job": "112523",
       "state": "COMPLETED",
       "seconds": 284,
       "gpus": 1,
@@ -5175,7 +5178,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_10",
+      "job": "112524",
       "state": "COMPLETED",
       "seconds": 188,
       "gpus": 1,
@@ -5190,7 +5193,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_11",
+      "job": "112525",
       "state": "COMPLETED",
       "seconds": 227,
       "gpus": 1,
@@ -5205,7 +5208,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_12",
+      "job": "112526",
       "state": "COMPLETED",
       "seconds": 243,
       "gpus": 1,
@@ -5220,7 +5223,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_13",
+      "job": "112527",
       "state": "COMPLETED",
       "seconds": 243,
       "gpus": 1,
@@ -5235,7 +5238,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_14",
+      "job": "112528",
       "state": "COMPLETED",
       "seconds": 255,
       "gpus": 1,
@@ -5250,7 +5253,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_15",
+      "job": "112531",
       "state": "COMPLETED",
       "seconds": 269,
       "gpus": 1,
@@ -5265,7 +5268,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_16",
+      "job": "112532",
       "state": "COMPLETED",
       "seconds": 344,
       "gpus": 1,
@@ -5280,7 +5283,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_17",
+      "job": "112533",
       "state": "COMPLETED",
       "seconds": 375,
       "gpus": 1,
@@ -5295,7 +5298,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_18",
+      "job": "112537",
       "state": "COMPLETED",
       "seconds": 378,
       "gpus": 1,
@@ -5310,7 +5313,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_19",
+      "job": "112539",
       "state": "COMPLETED",
       "seconds": 414,
       "gpus": 1,
@@ -5325,7 +5328,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_20",
+      "job": "112541",
       "state": "TIMEOUT",
       "seconds": 428,
       "gpus": 1,
@@ -5340,7 +5343,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_21",
+      "job": "112544",
       "state": "COMPLETED",
       "seconds": 247,
       "gpus": 1,
@@ -5355,7 +5358,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112502_22",
+      "job": "112502",
       "state": "COMPLETED",
       "seconds": 310,
       "gpus": 1,
@@ -5370,7 +5373,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_3",
+      "job": "112534",
       "state": "COMPLETED",
       "seconds": 1300,
       "gpus": 1,
@@ -5385,7 +5388,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_4",
+      "job": "112545",
       "state": "COMPLETED",
       "seconds": 1364,
       "gpus": 1,
@@ -5400,7 +5403,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_5",
+      "job": "112549",
       "state": "COMPLETED",
       "seconds": 1395,
       "gpus": 1,
@@ -5415,7 +5418,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_6",
+      "job": "112556",
       "state": "COMPLETED",
       "seconds": 1353,
       "gpus": 1,
@@ -5430,7 +5433,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_7",
+      "job": "112566",
       "state": "COMPLETED",
       "seconds": 1402,
       "gpus": 1,
@@ -5445,7 +5448,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_8",
+      "job": "112576",
       "state": "COMPLETED",
       "seconds": 1381,
       "gpus": 1,
@@ -5460,7 +5463,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_9",
+      "job": "112577",
       "state": "COMPLETED",
       "seconds": 1348,
       "gpus": 1,
@@ -5475,7 +5478,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_10",
+      "job": "112578",
       "state": "COMPLETED",
       "seconds": 1398,
       "gpus": 1,
@@ -5490,7 +5493,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_11",
+      "job": "112581",
       "state": "COMPLETED",
       "seconds": 1389,
       "gpus": 1,
@@ -5505,7 +5508,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112504_12",
+      "job": "112504",
       "state": "COMPLETED",
       "seconds": 1250,
       "gpus": 1,
@@ -5550,7 +5553,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112512_0",
+      "job": "112558",
       "state": "COMPLETED",
       "seconds": 22,
       "gpus": 1,
@@ -5565,7 +5568,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112512_1",
+      "job": "112559",
       "state": "COMPLETED",
       "seconds": 23,
       "gpus": 1,
@@ -5580,7 +5583,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112512_2",
+      "job": "112560",
       "state": "COMPLETED",
       "seconds": 22,
       "gpus": 1,
@@ -5595,7 +5598,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112512_3",
+      "job": "112561",
       "state": "COMPLETED",
       "seconds": 23,
       "gpus": 1,
@@ -5610,7 +5613,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112512_4",
+      "job": "112512",
       "state": "COMPLETED",
       "seconds": 22,
       "gpus": 1,
@@ -5625,7 +5628,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112550_13",
+      "job": "112562",
       "state": "COMPLETED",
       "seconds": 1383,
       "gpus": 1,
@@ -5640,7 +5643,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112550_14",
+      "job": "112550",
       "state": "COMPLETED",
       "seconds": 1363,
       "gpus": 1,
@@ -5685,7 +5688,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112572_0",
+      "job": "112600",
       "state": "COMPLETED",
       "seconds": 6,
       "gpus": 1,
@@ -5700,7 +5703,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112572_1",
+      "job": "112601",
       "state": "COMPLETED",
       "seconds": 8,
       "gpus": 1,
@@ -5715,7 +5718,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112572_2",
+      "job": "112602",
       "state": "COMPLETED",
       "seconds": 7,
       "gpus": 1,
@@ -5730,7 +5733,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112572_3",
+      "job": "112572",
       "state": "COMPLETED",
       "seconds": 13,
       "gpus": 1,
@@ -5745,7 +5748,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112573_0",
+      "job": "112603",
       "state": "TIMEOUT",
       "seconds": 378,
       "gpus": 1,
@@ -5760,7 +5763,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112573_1",
+      "job": "112573",
       "state": "TIMEOUT",
       "seconds": 378,
       "gpus": 1,
@@ -5775,7 +5778,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112584_2",
+      "job": "112604",
       "state": "TIMEOUT",
       "seconds": 378,
       "gpus": 1,
@@ -5790,7 +5793,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112584_3",
+      "job": "112605",
       "state": "TIMEOUT",
       "seconds": 362,
       "gpus": 1,
@@ -5805,7 +5808,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112584_4",
+      "job": "112584",
       "state": "TIMEOUT",
       "seconds": 389,
       "gpus": 1,
@@ -5835,7 +5838,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112611_0",
+      "job": "112613",
       "state": "COMPLETED",
       "seconds": 187,
       "gpus": 1,
@@ -5850,7 +5853,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112611_1",
+      "job": "112614",
       "state": "COMPLETED",
       "seconds": 189,
       "gpus": 1,
@@ -5865,7 +5868,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112611_2",
+      "job": "112620",
       "state": "COMPLETED",
       "seconds": 186,
       "gpus": 1,
@@ -5880,7 +5883,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112611_3",
+      "job": "112611",
       "state": "COMPLETED",
       "seconds": 185,
       "gpus": 1,
@@ -5895,7 +5898,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112612_0",
+      "job": "112615",
       "state": "COMPLETED",
       "seconds": 60,
       "gpus": 1,
@@ -5910,7 +5913,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112612_1",
+      "job": "112616",
       "state": "COMPLETED",
       "seconds": 60,
       "gpus": 1,
@@ -5925,7 +5928,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112612_2",
+      "job": "112617",
       "state": "COMPLETED",
       "seconds": 59,
       "gpus": 1,
@@ -5940,7 +5943,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112612_3",
+      "job": "112612",
       "state": "COMPLETED",
       "seconds": 59,
       "gpus": 1,
@@ -5955,7 +5958,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112621_4",
+      "job": "112621",
       "state": "COMPLETED",
       "seconds": 187,
       "gpus": 1,
@@ -5970,7 +5973,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112622_4",
+      "job": "112622",
       "state": "COMPLETED",
       "seconds": 59,
       "gpus": 1,
@@ -6015,7 +6018,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_0",
+      "job": "112648",
       "state": "COMPLETED",
       "seconds": 2540,
       "gpus": 1,
@@ -6030,7 +6033,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_1",
+      "job": "112649",
       "state": "COMPLETED",
       "seconds": 2566,
       "gpus": 1,
@@ -6045,7 +6048,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_2",
+      "job": "112650",
       "state": "COMPLETED",
       "seconds": 2668,
       "gpus": 1,
@@ -6060,7 +6063,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_3",
+      "job": "112664",
       "state": "COMPLETED",
       "seconds": 2519,
       "gpus": 1,
@@ -6075,7 +6078,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_4",
+      "job": "112665",
       "state": "COMPLETED",
       "seconds": 2561,
       "gpus": 1,
@@ -6090,7 +6093,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_5",
+      "job": "112666",
       "state": "COMPLETED",
       "seconds": 2660,
       "gpus": 1,
@@ -6105,7 +6108,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_6",
+      "job": "112693",
       "state": "COMPLETED",
       "seconds": 2538,
       "gpus": 1,
@@ -6120,7 +6123,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_7",
+      "job": "112694",
       "state": "COMPLETED",
       "seconds": 2568,
       "gpus": 1,
@@ -6135,7 +6138,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_8",
+      "job": "112698",
       "state": "COMPLETED",
       "seconds": 2661,
       "gpus": 1,
@@ -6150,7 +6153,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_9",
+      "job": "112709",
       "state": "COMPLETED",
       "seconds": 2535,
       "gpus": 1,
@@ -6165,7 +6168,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_10",
+      "job": "112710",
       "state": "COMPLETED",
       "seconds": 2565,
       "gpus": 1,
@@ -6180,7 +6183,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_11",
+      "job": "112711",
       "state": "COMPLETED",
       "seconds": 2663,
       "gpus": 1,
@@ -6195,7 +6198,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_12",
+      "job": "112726",
       "state": "COMPLETED",
       "seconds": 2535,
       "gpus": 1,
@@ -6210,7 +6213,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_13",
+      "job": "112728",
       "state": "COMPLETED",
       "seconds": 2559,
       "gpus": 1,
@@ -6225,7 +6228,7 @@
     },
     {
       "cluster": "aidam",
-      "job": "112645_14",
+      "job": "112645",
       "state": "COMPLETED",
       "seconds": 2646,
       "gpus": 1,
@@ -8853,7 +8856,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_0",
+      "job": "311949",
       "state": "COMPLETED",
       "seconds": 205,
       "gpus": 1,
@@ -8866,7 +8869,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_1",
+      "job": "311950",
       "state": "COMPLETED",
       "seconds": 188,
       "gpus": 1,
@@ -8879,7 +8882,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_2",
+      "job": "311953",
       "state": "COMPLETED",
       "seconds": 96,
       "gpus": 1,
@@ -8892,7 +8895,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_3",
+      "job": "311954",
       "state": "COMPLETED",
       "seconds": 93,
       "gpus": 1,
@@ -8905,7 +8908,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_4",
+      "job": "311958",
       "state": "COMPLETED",
       "seconds": 73,
       "gpus": 1,
@@ -8918,7 +8921,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_5",
+      "job": "311959",
       "state": "COMPLETED",
       "seconds": 68,
       "gpus": 1,
@@ -8931,7 +8934,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_6",
+      "job": "311962",
       "state": "COMPLETED",
       "seconds": 76,
       "gpus": 1,
@@ -8944,7 +8947,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_7",
+      "job": "311965",
       "state": "COMPLETED",
       "seconds": 72,
       "gpus": 1,
@@ -8957,7 +8960,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_8",
+      "job": "311968",
       "state": "COMPLETED",
       "seconds": 200,
       "gpus": 1,
@@ -8970,7 +8973,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948_9",
+      "job": "311948",
       "state": "COMPLETED",
       "seconds": 106,
       "gpus": 1,
@@ -9113,7 +9116,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069_0",
+      "job": "312082",
       "state": "COMPLETED",
       "seconds": 2432,
       "gpus": 1,
@@ -9126,7 +9129,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069_1",
+      "job": "312083",
       "state": "COMPLETED",
       "seconds": 2197,
       "gpus": 1,
@@ -9139,7 +9142,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069_2",
+      "job": "312084",
       "state": "COMPLETED",
       "seconds": 1915,
       "gpus": 1,
@@ -9152,7 +9155,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069_3",
+      "job": "312101",
       "state": "COMPLETED",
       "seconds": 1237,
       "gpus": 1,
@@ -9165,7 +9168,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069_4",
+      "job": "312069",
       "state": "COMPLETED",
       "seconds": 1822,
       "gpus": 1,
@@ -9178,7 +9181,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070_0",
+      "job": "312078",
       "state": "FAILED",
       "seconds": 770,
       "gpus": 1,
@@ -9191,7 +9194,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070_1",
+      "job": "312102",
       "state": "FAILED",
       "seconds": 451,
       "gpus": 1,
@@ -9204,7 +9207,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070_2",
+      "job": "312103",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9217,7 +9220,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070_3",
+      "job": "312104",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9230,7 +9233,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070_4",
+      "job": "312070",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9243,7 +9246,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312071_[0-4%5]",
+      "job": "312071",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9334,7 +9337,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312134_0",
+      "job": "312138",
       "state": "COMPLETED",
       "seconds": 838,
       "gpus": 1,
@@ -9347,7 +9350,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312134_1",
+      "job": "312143",
       "state": "COMPLETED",
       "seconds": 1012,
       "gpus": 1,
@@ -9360,7 +9363,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312134_[2-4%5]",
+      "job": "312134",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9412,7 +9415,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205_0",
+      "job": "313421",
       "state": "COMPLETED",
       "seconds": 6383,
       "gpus": 1,
@@ -9425,7 +9428,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205_1",
+      "job": "313422",
       "state": "COMPLETED",
       "seconds": 6299,
       "gpus": 1,
@@ -9438,7 +9441,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205_2",
+      "job": "313423",
       "state": "COMPLETED",
       "seconds": 6078,
       "gpus": 1,
@@ -9451,7 +9454,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205_3",
+      "job": "313424",
       "state": "COMPLETED",
       "seconds": 5980,
       "gpus": 1,
@@ -9464,7 +9467,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205_4",
+      "job": "312205",
       "state": "COMPLETED",
       "seconds": 5520,
       "gpus": 1,
@@ -9529,7 +9532,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719_0",
+      "job": "313803",
       "state": "COMPLETED",
       "seconds": 135,
       "gpus": 1,
@@ -9542,7 +9545,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719_1",
+      "job": "313806",
       "state": "COMPLETED",
       "seconds": 92,
       "gpus": 1,
@@ -9555,7 +9558,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719_2",
+      "job": "313808",
       "state": "COMPLETED",
       "seconds": 100,
       "gpus": 1,
@@ -9568,7 +9571,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719_3",
+      "job": "313810",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -9581,7 +9584,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719_4",
+      "job": "313719",
       "state": "COMPLETED",
       "seconds": 102,
       "gpus": 1,
@@ -9594,7 +9597,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720_0",
+      "job": "313814",
       "state": "COMPLETED",
       "seconds": 85,
       "gpus": 1,
@@ -9607,7 +9610,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720_1",
+      "job": "313816",
       "state": "COMPLETED",
       "seconds": 88,
       "gpus": 1,
@@ -9620,7 +9623,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720_2",
+      "job": "313820",
       "state": "COMPLETED",
       "seconds": 391,
       "gpus": 1,
@@ -9633,7 +9636,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720_3",
+      "job": "313821",
       "state": "COMPLETED",
       "seconds": 328,
       "gpus": 1,
@@ -9646,7 +9649,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720_4",
+      "job": "313720",
       "state": "COMPLETED",
       "seconds": 224,
       "gpus": 1,
@@ -9685,7 +9688,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753_0",
+      "job": "313838",
       "state": "COMPLETED",
       "seconds": 104,
       "gpus": 1,
@@ -9698,7 +9701,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753_1",
+      "job": "313842",
       "state": "COMPLETED",
       "seconds": 83,
       "gpus": 1,
@@ -9711,7 +9714,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753_2",
+      "job": "313843",
       "state": "COMPLETED",
       "seconds": 114,
       "gpus": 1,
@@ -9724,7 +9727,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753_3",
+      "job": "313847",
       "state": "COMPLETED",
       "seconds": 77,
       "gpus": 1,
@@ -9737,7 +9740,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753_4",
+      "job": "313753",
       "state": "COMPLETED",
       "seconds": 70,
       "gpus": 1,
@@ -9750,7 +9753,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754_0",
+      "job": "313852",
       "state": "COMPLETED",
       "seconds": 86,
       "gpus": 1,
@@ -9763,7 +9766,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754_1",
+      "job": "313853",
       "state": "COMPLETED",
       "seconds": 79,
       "gpus": 1,
@@ -9776,7 +9779,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754_2",
+      "job": "313855",
       "state": "COMPLETED",
       "seconds": 135,
       "gpus": 1,
@@ -9789,7 +9792,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754_3",
+      "job": "313856",
       "state": "COMPLETED",
       "seconds": 110,
       "gpus": 1,
@@ -9802,7 +9805,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754_4",
+      "job": "313754",
       "state": "COMPLETED",
       "seconds": 83,
       "gpus": 1,
@@ -10426,7 +10429,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317095_0",
+      "job": "317105",
       "state": "COMPLETED",
       "seconds": 785,
       "gpus": 1,
@@ -10439,7 +10442,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317095_1",
+      "job": "317106",
       "state": "COMPLETED",
       "seconds": 761,
       "gpus": 1,
@@ -10452,7 +10455,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317095_2",
+      "job": "317107",
       "state": "COMPLETED",
       "seconds": 761,
       "gpus": 1,
@@ -10465,7 +10468,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317095_3",
+      "job": "317095",
       "state": "COMPLETED",
       "seconds": 88,
       "gpus": 1,
@@ -10491,7 +10494,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317116_3",
+      "job": "317116",
       "state": "CANCELLED by 22720",
       "seconds": 11,
       "gpus": 1,
@@ -10504,7 +10507,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317117_3",
+      "job": "317117",
       "state": "COMPLETED",
       "seconds": 1152,
       "gpus": 1,
@@ -10969,6 +10972,188 @@
       "nodes": "gpuh12",
       "partition": "NV_H100",
       "submission": "sbatch --dependency=afterany:317370:317401 night.sbatch radial 16384"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317539",
+      "state": "COMPLETED",
+      "seconds": 108,
+      "gpus": 1,
+      "gpu_h": 0.03,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-756c995",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable diagnose.sbatch --order 4 --role eqx-o2 --seed 20261003 --reference-start 8192 --reference-rows 4096"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317540",
+      "state": "COMPLETED",
+      "seconds": 99,
+      "gpus": 1,
+      "gpu_h": 0.0275,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-df591ce",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=00:15:00 diagnose.sbatch --order 4 --role eqx-o2 --seed 20261003 --reference-start 8192 --reference-rows 4096 --matrix-probe"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317541",
+      "state": "FAILED",
+      "seconds": 921,
+      "gpus": 1,
+      "gpu_h": 0.25583333333333336,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-a5cbc8c",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable qualify_repair.sbatch"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317544",
+      "state": "CANCELLED by 22720",
+      "seconds": 259,
+      "gpus": 1,
+      "gpu_h": 0.07194444444444445,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-a5cbc8c",
+      "nodes": "gpuh08",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable provenance/exec_probe.sbatch"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317549",
+      "state": "COMPLETED",
+      "seconds": 127,
+      "gpus": 1,
+      "gpu_h": 0.035277777777777776,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-df591ce",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=00:15:00 diagnose.sbatch --order 8 --role eqx-o2 --seed 20261003 --reference-start 0 --reference-rows 4096 --matrix-probe"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317550",
+      "state": "COMPLETED",
+      "seconds": 93,
+      "gpus": 1,
+      "gpu_h": 0.025833333333333333,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-8e23cb5",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=00:15:00 diagnose.sbatch --order 8 --role eqx-o2 --seed 20261003 --reference-start 0 --reference-rows 4096 --matrix-probe --extended"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317553",
+      "state": "COMPLETED",
+      "seconds": 513,
+      "gpus": 1,
+      "gpu_h": 0.1425,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-73a2e61",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable qualify_repair.sbatch"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317559",
+      "state": "COMPLETED",
+      "seconds": 232,
+      "gpus": 1,
+      "gpu_h": 0.06444444444444444,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh09",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=01:00:00 repair_campaign.sbatch qualify uvu 6 7 8"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317560",
+      "state": "COMPLETED",
+      "seconds": 205,
+      "gpus": 1,
+      "gpu_h": 0.05694444444444444,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh09",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=01:00:00 repair_campaign.sbatch qualify radial 4 5 6"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317561",
+      "state": "COMPLETED",
+      "seconds": 209,
+      "gpus": 1,
+      "gpu_h": 0.058055555555555555,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh09",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable --time=01:00:00 repair_campaign.sbatch qualify radial 7 8"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317566",
+      "state": "COMPLETED",
+      "seconds": 1131,
+      "gpus": 1,
+      "gpu_h": 0.31416666666666665,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable repair_campaign.sbatch measure uvu 6 7 8"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317567",
+      "state": "COMPLETED",
+      "seconds": 992,
+      "gpus": 1,
+      "gpu_h": 0.27555555555555555,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable repair_campaign.sbatch measure radial 4 5 6"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317568",
+      "state": "COMPLETED",
+      "seconds": 807,
+      "gpus": 1,
+      "gpu_h": 0.22416666666666665,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-e48a156",
+      "nodes": "gpuh13",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable repair_campaign.sbatch measure radial 7 8"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317569",
+      "state": "COMPLETED",
+      "seconds": 441,
+      "gpus": 1,
+      "gpu_h": 0.1225,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-full-parity-repair-20261122-r1-f523ee0",
+      "nodes": "gpuh09",
+      "partition": "NV_H100",
+      "submission": "sbatch --parsable cold_build.sbatch"
     }
   ]
 }

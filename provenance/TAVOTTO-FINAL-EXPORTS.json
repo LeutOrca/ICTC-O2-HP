@@ -1,9 +1,145 @@
 {
   "date": "2026-11-22",
-  "scope": "Angular order 1..8 operator throughput; fixed C64/N4096/E16384; strict FP32; Graph off.",
+  "scope": "Angular orders 1..8; frozen 6f641cf baseline plus repaired roles; strict FP32; Graph off",
+  "installed_plugin_version": "0.21.3",
+  "installed_engine_version": "0.21.3",
+  "active_mcp_engine_version": "0.21.0",
+  "requires_mcp_reconnect": true,
   "figures": [
     {
-      "stem": "O2_TP_edges",
+      "stem": "O2_UVU_Radial_full_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549.pdf",
+          "sha256": "b179f79db45ad6a270fc29b0f7f9d8d0306a0d5626269930532956bfea9be5f5",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549.png",
+          "sha256": "ad381218cd77e3642761236bbb4ead7704af487478e051a9604d738dd38a4804",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_full_repair20261122_1122_131549_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_full_repair20261122"
+    },
+    {
+      "stem": "O2_TP_atoms_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629.pdf",
+          "sha256": "89fb6e0508ee0bfa259ce03358057fb219451b5d0ec3e22f37127960fd6295f2",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629.png",
+          "sha256": "862dc43e427a2c568313609ca9784dfe2736bd2554f3eeb1392cc58adc9bb70d",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_atoms_repair20261122_1122_131629_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_atoms_repair20261122"
+    },
+    {
+      "stem": "O2_TP_edges_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643.pdf",
+          "sha256": "2947c7d0181e478de3359bda3f81778f70faa26fcd261d42874c2ecd1c85ad08",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643.png",
+          "sha256": "1715fd2c37d2ab2347b24619194306cea3d626c60a6211bf15dd71ba37a4027d",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_edges_repair20261122_1122_131643_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_tp_throughput.py#O2_TP_edges_repair20261122"
+    },
+    {
+      "stem": "O2_UVU_Radial_canonical_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656.pdf",
+          "sha256": "7e83a2b9007fed0774751d54e4a194216f3cc603a81cb8ead73483d9db6c7c2e",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656.png",
+          "sha256": "adab092047108b3839f7b4a6a6564fb953bd9e64b2404e9b33dbd0565ca8ce40",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_UVU_Radial_canonical_repair20261122_1122_131656_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_message_throughput.py#O2_UVU_Radial_canonical_repair20261122"
+    },
+    {
+      "stem": "SO2Linear_edges_repair20261122",
       "status": "done",
       "preflight": {
         "error": 0,
@@ -14,25 +150,95 @@
       "files": [
         {
           "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_edges_1122_111242.pdf",
-          "sha256": "dc2b3be23741f68a680e7f992f1411a8d07834bd01bc53c540923fdd6891401f",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717.pdf",
+          "sha256": "8fdc33bdda789889528db049c0890cab01016007c6c4c89632810c6e604679e6",
           "status": "done",
+          "vector": true,
           "fonts": [
-            "TimesNewRomanPSMT"
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
           ]
         },
         {
           "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_edges_1122_111242.png",
-          "sha256": "22af02580e9006b1fe411ad83bdc43f6198cfbda1d8758ec9dc09cc3948e3c0b",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717.png",
+          "sha256": "da1b6610959aadaee16a787354f8b5c49671e0107b4e0b139c06f72a55ce3ee4",
           "status": "done",
+          "vector": false,
           "fonts": []
         }
       ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_edges_1122_111242_proof.json"
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2Linear_edges_repair20261122_1122_131717_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_so2_throughput.py#SO2Linear_edges_repair20261122"
     },
     {
-      "stem": "O2_TP_atoms",
+      "stem": "ICTP_atoms_edges_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752.pdf",
+          "sha256": "7cbae666066aebcca742753a2d2d901a89fa389a9ed0b56cb4974bc2078660e3",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752.png",
+          "sha256": "08f76496da72d674df58d0b91af38641c475bde03e809851ee26e7f8194426b6",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/ICTP_atoms_edges_repair20261122_1122_131752_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_ictp_throughput.py#ICTP_atoms_edges_repair20261122"
+    },
+    {
+      "stem": "O2_TP_same_equation_speedup_repair20261122",
+      "status": "done",
+      "preflight": {
+        "error": 0,
+        "warn": 0,
+        "not_verifiable": 0,
+        "suggestion": 1
+      },
+      "files": [
+        {
+          "format": "pdf",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940.pdf",
+          "sha256": "22e7da4e30bbb8344de2d82ab629ab29264b877552e5321b1596112f0584ba56",
+          "status": "done",
+          "vector": true,
+          "fonts": [
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
+          ]
+        },
+        {
+          "format": "png",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940.png",
+          "sha256": "66a3b8bd27a6ff8ae34f0a47be6a1506f412006510610c1bffc11d1ebc249086",
+          "status": "done",
+          "vector": false,
+          "fonts": []
+        }
+      ],
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/O2_TP_same_equation_speedup_repair20261122_1122_131940_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_speedups.py#O2_TP_same_equation_speedup_repair20261122"
+    },
+    {
+      "stem": "SO2_Radial_same_equation_speedup_repair20261122",
       "status": "done",
       "preflight": {
         "error": 0,
@@ -43,227 +249,59 @@
       "files": [
         {
           "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_atoms_1122_111252.pdf",
-          "sha256": "d9500f5e07b7c9e79ce705dc393a98027c8091b4716b2ec51ccd60a712c2d107",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956.pdf",
+          "sha256": "ec03b93de755e68a7828ec4e97b3ba19d4681b989fedb5feff08ed16a3e7a6d8",
           "status": "done",
+          "vector": true,
           "fonts": [
-            "TimesNewRomanPSMT"
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
           ]
         },
         {
           "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_atoms_1122_111252.png",
-          "sha256": "417d054a9772fecc5bfd452d818e0e640c93d9698d7ff1caf2c28e75cf0a6fa8",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956.png",
+          "sha256": "5370c103bcc2c3944dfc759a3765289f74471d671eb5fef5db6523da4c4da94b",
           "status": "done",
+          "vector": false,
           "fonts": []
         }
       ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_atoms_1122_111252_proof.json"
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/SO2_Radial_same_equation_speedup_repair20261122_1122_131956_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_speedups.py#SO2_Radial_same_equation_speedup_repair20261122"
     },
     {
-      "stem": "O2_UVU_Radial_canonical",
+      "stem": "HPX_vs_GitHub_O2HP_repair20261122",
       "status": "done",
       "preflight": {
         "error": 0,
         "warn": 0,
         "not_verifiable": 0,
-        "suggestion": 2
+        "suggestion": 1
       },
       "files": [
         {
           "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_canonical_1122_111302.pdf",
-          "sha256": "71a6847dc97addd3ef3b4a449da01d4ce94443a8d792abaaf9a93d9439b1edc8",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018.pdf",
+          "sha256": "9fb15cdd52749f9fbec916709a3e0ddb3d4865d26eb514a7a8e130e031ccb9ac",
           "status": "done",
+          "vector": true,
           "fonts": [
-            "TimesNewRomanPSMT"
+            "TimesNewRomanPSMT",
+            "TimesNewRomanPS-BoldMT"
           ]
         },
         {
           "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_canonical_1122_111302.png",
-          "sha256": "6c2ffd73d1e5c830cc9486c7f72981370ed31fe2e71933244c361c7bf1ee87b7",
+          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018.png",
+          "sha256": "d9a044c7886457dcac74d145f7f82a10a62a6e2ed68011053fb479c926a9eecd",
           "status": "done",
+          "vector": false,
           "fonts": []
         }
       ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_canonical_1122_111302_proof.json"
-    },
-    {
-      "stem": "O2_UVU_Radial_full",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 2
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_full_1122_111312.pdf",
-          "sha256": "2bc691d59a2f49b6bf61b2b8b6fd3d41e0a63eb12be733f817b1154d217bfc3b",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_full_1122_111312.png",
-          "sha256": "6e8f95e99f207853732e2bf46e4d6c90796d36d0fcb8003210a9d95d23a69d5a",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_UVU_Radial_full_1122_111312_proof.json"
-    },
-    {
-      "stem": "SO2Linear_edges",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 3
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2Linear_edges_1122_111322.pdf",
-          "sha256": "42b4c0d14616f9864175fdbe4bd882d60d337f233bed1ec949d327eb0eb7867d",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2Linear_edges_1122_111322.png",
-          "sha256": "b490617527ac17943b7147648edf8a9cc14fb77e3aae69a3747e8594bff44575",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2Linear_edges_1122_111322_proof.json"
-    },
-    {
-      "stem": "ICTP_atoms_edges",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 2
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/ICTP_atoms_edges_1122_111330.pdf",
-          "sha256": "14487fdfbcd41014f27dedcdb21121a7a64f14acf6dc6906337e5e9e0e4e22c9",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/ICTP_atoms_edges_1122_111330.png",
-          "sha256": "98d59746ddf84942d96b3e1d2b0c49d9c4d4231adeabd86a40943a385e1ddc25",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/ICTP_atoms_edges_1122_111330_proof.json"
-    },
-    {
-      "stem": "O2_TP_same_equation_speedup",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 2
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_same_equation_speedup_1122_111340.pdf",
-          "sha256": "9ee1f74af8058e160cce17d1b1d3c52ef2b20abee429172274d312c3863aebd2",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_same_equation_speedup_1122_111340.png",
-          "sha256": "727e970cfba18e84d2e86b61e58b1182a5ad7d9313fd840f46706be1da78f623",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/O2_TP_same_equation_speedup_1122_111340_proof.json"
-    },
-    {
-      "stem": "SO2_Radial_same_equation_speedup",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 3
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2_Radial_same_equation_speedup_1122_111350.pdf",
-          "sha256": "d8b25f6e8079d5c2d0dddab1e501eff335357a0e6600eb654679467388c2f12f",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2_Radial_same_equation_speedup_1122_111350.png",
-          "sha256": "ffdabc33464b9e504735bb2e0dceada3d6b767cb24461b3345b693ce89e4e029",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/SO2_Radial_same_equation_speedup_1122_111350_proof.json"
-    },
-    {
-      "stem": "HPX_vs_GitHub_O2HP",
-      "status": "done",
-      "preflight": {
-        "error": 0,
-        "warn": 0,
-        "not_verifiable": 0,
-        "suggestion": 2
-      },
-      "files": [
-        {
-          "format": "pdf",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/HPX_vs_GitHub_O2HP_1122_111431.pdf",
-          "sha256": "34c7289a6183a85804f350ab1e17ebcaa171bf00d78e2f4481040eea3fa734ab",
-          "status": "done",
-          "fonts": [
-            "TimesNewRomanPSMT"
-          ]
-        },
-        {
-          "format": "png",
-          "path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/HPX_vs_GitHub_O2HP_1122_111431.png",
-          "sha256": "b8d01e795a41b70532e09b732279b69f663e93d7bcb2a12a36cd63d1b8b38264",
-          "status": "done",
-          "fonts": []
-        }
-      ],
-      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/final/HPX_vs_GitHub_O2HP_1122_111431_proof.json"
+      "proof_path": "/public/home/sps-xia/bjxiao/o2-benchmark/figures/o2-hp-angular-operators-20261121-r1/repair-20261122-r1/final/HPX_vs_GitHub_O2HP_repair20261122_1122_132018_proof.json",
+      "source": "runtime:repair-20261122-r1/repair_hpx_speedup.py#HPX_vs_GitHub_O2HP_repair20261122"
     }
-  ],
-  "note": "All primary data aggregation and initial rendering via Slurm; authorized Tavotto-only login exception used for final render/preflight/export. No fitting or interpolation of missing data.",
-  "plugin_update": "Tavotto offers 0.21.3; current 0.21.2 retained. Optional later command: codex plugin marketplace upgrade tavotto."
+  ]
 }

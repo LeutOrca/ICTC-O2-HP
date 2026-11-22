@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "original_points_preserved": 453,
+  "repaired_points": 36,
+  "repaired_same_gpu_pairs": 26,
+  "all_original_input_weight_hashes_preserved": true,
+  "all_new_points_five_repeats_and_same_gpu_job_allocated_reserved": true,
+  "original_nine_exports_hash_unchanged": true,
+  "original_failed_roles_not_relabelled": true,
+  "original_gallery_scientific_files_byte_identical": 53,
+  "role_status_counts": {
+    "measured": 489,
+    "timeout": 15,
+    "numerical-failure": 8,
+    "unsupported": 20
+  },
+  "maximum_accepted_relative_l2": 2.2551566871698014e-06
+}
