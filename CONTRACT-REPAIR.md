@@ -1,5 +1,15 @@
 # Full-parity repair continuation
 
+Current receipt amendment (2026-11-22): SSH recovered with the same key at11:46;
+the earlier access failure is historical and its server-side cause is unknown.
+H100317553/core73a2e61 and independent CPU115807 passed all8 original failed
+gates,4096 FP32 checks, unchanged input/canonical-weight hashes. Construction
+repair may now proceed. Candidate e48a156 uses bounded runtime path loops
+from the frozen public Triton kernels and4096-row private radial recomputation.
+Unmodified upstream roles and repaired roles stay distinct. No new timing or
+memory acceptance is implied. The initial blocked/diagnostic notes below are
+retained as historical contract provenance, superseded only by these receipts.
+
 Baseline: 6f641cf736a97fa6835678c0eb123f5b2694e80d. Preserve its inputs, seeds,
 weights, equations, full parity, FP32 component and relative-L2 tolerances,
 512-row statistics windows, disabled TF32/AMP/CUDA Graph, and all timing and
