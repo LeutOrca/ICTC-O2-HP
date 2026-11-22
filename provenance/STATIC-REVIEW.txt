@@ -1,0 +1,13 @@
+STATIC TEXT/FILE REVIEW ONLY - NO EXECUTION VALIDATION
+Baseline: 0704ee0d3aa4f8d8635a6626949dde4433dc2530
+No Python, import, AST, syntax compile, build, tests, Slurm, deployment, whole-network or training executed.
+benchmark.py: byte-identical to baseline (git show | cmp).
+candidate/ordered_matrix.py: byte-identical to baseline (git show | cmp).
+Upstream dependency hashes: candidate vs baseline byte-identical (two sorted sha256sum manifests | cmp); excludes Git and Python cache metadata.
+Upstream files: 3116
+models.py diff manually reviewed: only repair-role wrappers/dispatch metadata; original RNG, input, parameter construction, canonical reference and tolerances retained.
+Exact-K table verified by text reading original paired-repair-e48a156 qualification receipts: L4/15616 L5/23296 L6/32512 L7/43264 L8/55552.
+O3-HPX reference: immutable local 45d36f0 history, f6c3670/67f4dc5/45f1e5f/d9c42a4.
+Host-only state and route checks manually reviewed; all numerical, syntax, dispatch, mutation and fallback execution validation remains pending.
+git diff --check: no whitespace errors.
+No new scientific pass or performance claim; inherited receipts belong to baseline only.

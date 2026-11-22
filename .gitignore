@@ -5,3 +5,7 @@ logs/
 measurements/
 *.tgz
 __pycache__/
+provenance/snapshots/*.bundle
+provenance/candidate-final.bundle
+provenance/CANDIDATE-FROZEN-GIT.txt
+provenance/DELIVERY*

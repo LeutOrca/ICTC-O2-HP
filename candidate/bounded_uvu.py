@@ -13,8 +13,9 @@ from torch.autograd.function import once_differentiable
 
 from ictc_o2_hp.uvu_triton import _forward, _input_grad, _weight_unshared
 from .ordered_matrix import scheduled
-from .contracts import prepare_radial, prepare_uvu
+from .contracts import prepare_cotangent, prepare_radial, prepare_uvu
 from .frozen_state import ForwardState
+from .reduction_policy import BLOCK_ROWS, assert_reduction_context, choose_radial, choose_uvu
 
 
 def check(tp):
@@ -73,8 +74,9 @@ class BoundedUVU(torch.autograd.Function):
     def backward(ctx, grad):
         ctx.state.assert_current()
         x, y, w, *buffers = ctx.saved_tensors
+        assert_reduction_context(x)
         plan = ctx.state.plan.with_buffers(buffers)
-        g = grad.contiguous()
+        g = prepare_cotangent(grad, rows=len(x), width=plan.representation_dimension, device=x.device)
         gx = torch.empty_like(x) if ctx.needs_input_grad[0] else None
         gy = torch.empty_like(y) if ctx.needs_input_grad[1] else None
         inputs_into(plan, x, y, w, g, gx, gy)
@@ -84,8 +86,10 @@ class BoundedUVU(torch.autograd.Function):
         return gx, gy, gw, None
 
 
-def bounded(tp, x, y, w):
+def bounded(tp, x, y, w, *, policy="auto"):
     x, y, w = prepare_uvu(tp, x, y, w)
+    if choose_uvu(tp, x, y, w, policy).route == "native":
+        return tp(x, y, w)
     return BoundedUVU.apply(x, y, w, tp)
 
 
@@ -98,8 +102,8 @@ class StreamedRadial(torch.autograd.Function):
         state = ForwardState(tp, linear)
         out = x.new_empty((len(x), tp.representation_dimension))
         # Same affine equation, bounded private weights; no input donation.
-        for start in range(0, len(x), 4096):
-            stop = min(start + 4096, len(x))
+        for start in range(0, len(x), BLOCK_ROWS):
+            stop = min(start + BLOCK_ROWS, len(x))
             w = F.linear(h[start:stop], state.weight, state.bias)
             forward_into(state.plan, x[start:stop], y[start:stop], w, out[start:stop])
             del w
@@ -113,13 +117,14 @@ class StreamedRadial(torch.autograd.Function):
     def backward(ctx, grad):
         ctx.state.assert_current()
         x, y, h, weight, bias, *buffers = ctx.saved_tensors
+        assert_reduction_context(h)
         plan = ctx.state.plan.with_buffers(buffers)
-        g = grad.contiguous()
+        g = prepare_cotangent(grad, rows=len(x), width=plan.representation_dimension, device=x.device)
         gx = torch.empty_like(x) if ctx.needs_input_grad[0] else None
         gy = torch.empty_like(y) if ctx.needs_input_grad[1] else None
         gh = torch.empty_like(h) if ctx.needs_input_grad[2] else None
-        for start in range(0, len(x), 4096):
-            stop = min(start + 4096, len(x))
+        for start in range(0, len(x), BLOCK_ROWS):
+            stop = min(start + BLOCK_ROWS, len(x))
             xs, ys, gs = x[start:stop], y[start:stop], g[start:stop]
             if gx is not None or gy is not None:
                 w = F.linear(h[start:stop], weight, bias)
@@ -139,4 +144,17 @@ class StreamedRadial(torch.autograd.Function):
 
 def streamed(tp, linear, configuration, x, y, h):
     x, y, h = prepare_radial(tp, linear, x, y, h)
-    return StreamedRadial.apply(x, y, h, tp, linear, configuration)
+    decision = choose_radial(tp, linear, h, configuration, execution="streamed", features=(x, y))
+    if decision.route == "native":
+        return tp(x, y, linear(h))
+    return StreamedRadial.apply(x, y, h, tp, linear, decision.configuration)
+
+
+def unfused(tp, linear, configuration, x, y, h):
+    x, y, h = prepare_radial(tp, linear, x, y, h)
+    decision = choose_radial(tp, linear, h, configuration, execution="unfused", features=(x, y))
+    if decision.route == "native":
+        return tp(x, y, linear(h))
+    from .affine_adjoint import ordered_affine
+    weights = ordered_affine(linear, h, tp, decision)
+    return BoundedUVU.apply(x, y, weights, tp)

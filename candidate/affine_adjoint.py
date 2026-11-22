@@ -8,27 +8,49 @@ import torch
 from torch.autograd.function import once_differentiable
 
 from .ordered_matrix import scheduled
+from .contracts import check_linear, check_tp, prepare_cotangent
+from .frozen_state import ForwardState
+from .reduction_policy import assert_reduction_context, choose_radial
 
 
 class FrozenAffineInputAdjoint(torch.autograd.Function):
     @staticmethod
-    def forward(ctx, hidden, generated, weight, configuration):
+    def forward(ctx, hidden, generated, state, configuration):
+        weight = state.weight
         if weight.requires_grad or weight.dtype != torch.float32:
             raise ValueError("Only frozen FP32 affine input adjoints are supported")
-        ctx.save_for_backward(weight)
+        state.assert_current()
+        ctx.save_for_backward(weight, state.bias, *state.plan.buffers)
+        ctx.state = state
         ctx.configuration = configuration
+        ctx.rows = len(hidden)
         return generated
 
     @staticmethod
     @once_differentiable
     def backward(ctx, grad_generated):
-        weight, = ctx.saved_tensors
-        hidden_grad = scheduled(grad_generated.contiguous(), weight, ctx.configuration)
+        ctx.state.assert_current()
+        weight, _, *_ = ctx.saved_tensors
+        assert_reduction_context(weight)
+        grad = prepare_cotangent(grad_generated, rows=ctx.rows, width=weight.shape[0], device=weight.device)
+        hidden_grad = scheduled(grad, weight, ctx.configuration)
         return hidden_grad, None, None, None
 
 
-def affine(linear, hidden, configuration):
-    if linear.weight.requires_grad or (linear.bias is not None and linear.bias.requires_grad):
-        raise ValueError("Affine parameters must be frozen")
+def ordered_affine(linear, hidden, tp, decision):
+    """Internal entry after a radial coverage decision; forward stays native."""
+    state = ForwardState(tp, linear)
     generated = linear(hidden)
-    return FrozenAffineInputAdjoint.apply(hidden, generated, linear.weight, configuration)
+    state.assert_current()
+    return FrozenAffineInputAdjoint.apply(hidden, generated, state, decision.configuration)
+
+
+def affine(linear, hidden, configuration="auto", *, tp=None):
+    check_linear(linear, hidden, outputs=None if tp is None else tp.weight_numel)
+    if tp is not None:
+        check_tp(tp, hidden.device)
+    hidden = hidden.contiguous()
+    decision = choose_radial(tp, linear, hidden, configuration, execution="unfused")
+    if decision.route == "native":
+        return linear(hidden)
+    return ordered_affine(linear, hidden, tp, decision)
