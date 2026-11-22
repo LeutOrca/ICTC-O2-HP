@@ -196,6 +196,8 @@ class Spec:
                 self.calls["eqx-o2"] = lambda x, y, h: eqx(x, y, mapped(h))
                 self.encode["public"] = [identity] * 3
                 self.encode["eqx-o2"] = [enc_left, enc_right, identity]
+                if os.environ.get("O2_DIAGNOSTIC") == "1":
+                    self.diagnostics = dict(linear=linear, mapped=mapped, signs=signs)
             self.metadata.update(input_dimension=native.input1_dimension,
                 angular_dimension=native.input2_dimension, output_dimension=native.representation_dimension,
                 paths=len(native.paths), external_weights=native.weight_numel, equation="O2-uvu-V1")

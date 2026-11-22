@@ -1,0 +1,2 @@
+{"passed": true, "baseline_commit": "6f641cf736a97fa6835678c0eb123f5b2694e80d", "scope": "CPU source preparation only; H100 numerical/paired gates are not run", "syntax_files": 4, "operator_source_files_unchanged": 719, "inputs_weights_rng_equation_reference_ast_unchanged": true}
+{"plugin_version": "0.21.3", "installed_engine_version": "0.21.3", "requires_mcp_reconnect": true}
