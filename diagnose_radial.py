@@ -23,6 +23,7 @@ def main():
     parser.add_argument("--seed", type=int, choices=(20261003, 20261004), default=20261003)
     parser.add_argument("--reference-start", type=int, default=8192)
     parser.add_argument("--reference-rows", type=int, choices=(512, 4096), default=4096)
+    parser.add_argument("--matrix-probe", action="store_true")
     args = parser.parse_args()
     configure()
     if "H100" not in torch.cuda.get_device_name() or torch.__version__ != "2.11.0+cu128":
@@ -83,8 +84,25 @@ def main():
         reference_linear_replay=windows(reference_replay, expected_grads[2], first),
         strides=dict(weight=list(linear.weight.stride()), actual_gw=list(local_weight_grad.stride()),
                      reference_gw=list(reference_weight_grad.stride())))
+    if args.matrix_probe:
+        from candidate.ordered_matrix import scheduled
+        from matrix_kernels import matrix
+        configurations = ["2x1b", "4x1b", "8x1b", "16x1b", "32x1b",
+            "4x8b", "8x8b", "16x8b", "16x1a", "16x1l",
+            "8x1b@128", "8x1b@256", "16x1b@128", "16x1b@256", "32x1b@256"]
+        probes = {}
+        for name in ["generic-ieee"] + configurations:
+            result = (matrix(local_weight_grad, linear.weight) if name == "generic-ieee" else
+                      scheduled(local_weight_grad, linear.weight, name))
+            checks = windows(result, expected_grads[2], first)
+            probes[name] = dict(passed=all(r["passed"] for r in checks), checks=checks)
+            print("matrix-probe", name, probes[name]["passed"],
+                  max(r["max_abs"] for r in checks), flush=True)
+            del result
+        record["own_matrix_probes"] = probes
     torch.cuda.synchronize()
-    output_path = ROOT / "results" / f"radial-isolation-L{args.order}-{args.role}-{args.seed}-{first}-{args.reference_rows}.json"
+    suffix = "-matrix-probe" if args.matrix_probe else ""
+    output_path = ROOT / "results" / f"radial-isolation-L{args.order}-{args.role}-{args.seed}-{first}-{args.reference_rows}{suffix}.json"
     output_path.parent.mkdir(exist_ok=True, parents=True)
     output_path.write_text(json.dumps(record, indent=2))
     print(json.dumps(dict(receipt=str(output_path), isolated_components=list(record["isolation"]),
