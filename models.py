@@ -200,6 +200,8 @@ class Spec:
                     self.diagnostics = dict(linear=linear, mapped=mapped, signs=signs)
                 repair = os.environ.get("O2_RADIAL_ADJOINT")
                 if repair:
+                    if repair == "shape-v2":
+                        repair = "-8x1b" if native.weight_numel >= 49152 else "16x1b@128"
                     from candidate.affine_adjoint import affine
                     self.calls["public-unfused-repair"] = lambda x, y, h: native(x, y, affine(linear, h, repair))
                     self.calls["eqx-o2-repair"] = lambda x, y, h: eqx(x, y, affine(mapped, h, repair))
