@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "baseline_commit": "6f641cf736a97fa6835678c0eb123f5b2694e80d",
+  "role_status_counts": {
+    "measured": 453,
+    "timeout": 15,
+    "numerical-failure": 8,
+    "unsupported": 20
+  },
+  "measurement_csv_byte_identical": {
+    "summary.csv": "3a9ad4c6ac651ee4b994b4d3cdcf95705c21f28b74dc73ab12374c6925155c42",
+    "speedups.csv": "abb115bf75209497851736e2706312e7072cc89df867a07457da022ec66a15e7",
+    "numerics.csv": "4e833470c89623adae19a384f11e4d8260836fa0bc601ddd27d583e37b7c202f"
+  },
+  "corrected_cases": [
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "5",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    }
+  ]
+}

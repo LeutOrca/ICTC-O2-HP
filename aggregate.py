@@ -6,7 +6,7 @@ from pathlib import Path
 from statistics import median, quantiles
 
 ROOT = Path(__file__).resolve().parent
-FIGURES = ROOT.parents[1] / "figures/o2-hp-angular-operators-20261121-r1"
+FIGURES = ROOT.parents[1] / "figures" / ROOT.name
 IDENTITY = ("family", "order", "parity", "rows", "torch", "gpu_uuid",
             "input_sha256", "canonical_weights_sha256")
 
@@ -26,6 +26,17 @@ def write_csv(path, rows, fields):
 def spread(values):
     q = quantiles(values, n=4, method="inclusive")
     return median(values), q[0], q[2]
+
+
+def metric_was_evaluated(value, metric, fallback):
+    """A forward-only receipt provides no evidence of a failed input VJP."""
+    explicit = value.get("evaluated_metric")
+    if explicit is not None:
+        return metric == "forward" or explicit == "forward_vjp"
+    chunks = value.get("chunks", [])
+    if chunks:
+        return metric == "forward" or any(len(row.get("checks", [])) > 1 for row in chunks)
+    return metric == "forward" or fallback == "forward_vjp"
 
 
 def main():
@@ -60,6 +71,8 @@ def main():
                     if role in record.get("accepted_by_metric",{}).get(metric,[]):
                         continue
                     items = [v for k,v in record["numerics"].items() if k.startswith(role+"/")]
+                    if not all(metric_was_evaluated(v, metric, record.get("metric")) for v in items):
+                        continue
                     exception = next((v["error"] for v in items if "error" in v), "")
                     statuses.append(dict({k:record.get(k,"") for k in ("cohort","family","rows","order","parity","job","receipt")},
                         stage="qualify",role=role,metric=metric,
