@@ -9,3 +9,9 @@
 当前代码仅经过源文件阅读和Git差异审阅，**尚未运行、编译或做数值/性能验证**。本步骤没有修改矩阵核、TP方程、输入/权重生成器、FP32参考或容差。
 
 继承的489点数据、旧SUMMARY和原报告已移入`provenance/baseline-0704ee0/`，只表示基线结果，不是本候选的验收。参数一致性保护和调度适用域将在后续独立快照完成。
+
+## 第二步：前向状态与参数一致性
+
+新增`candidate/frozen_state.py`。前向保存实际使用的weight、bias和四份TP缓冲，捕获不可变TP计划，并记录对象身份、storage/数据指针、shape/stride、dtype/device、requires_grad及version。反向先检查模块是否被正常更新/替换，再解包saved_tensors，计算只用前向保存的权重和计划，不读取当前模块参数重算。UVU同样保存并保护计划缓冲。未知version的inference tensor不进入此保护路径。
+
+流式仿射改为对捕获的同一weight/bias调用原生`F.linear`；矩阵核、分块4096和FP32计算式保持。后续调度会拒绝或回退非普通Linear/有hook的模块，避免绕过其forward语义。本步骤仍未运行或编译，不能据此声称保护或精度已实测通过。
