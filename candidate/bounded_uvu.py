@@ -12,6 +12,7 @@ from torch.autograd.function import once_differentiable
 
 from ictc_o2_hp.uvu_triton import _forward, _input_grad, _weight_unshared
 from .ordered_matrix import scheduled
+from .contracts import prepare_radial, prepare_uvu
 
 
 def check(tp):
@@ -78,6 +79,7 @@ class BoundedUVU(torch.autograd.Function):
 
 
 def bounded(tp, x, y, w):
+    x, y, w = prepare_uvu(tp, x, y, w)
     return BoundedUVU.apply(x, y, w, tp)
 
 
@@ -126,4 +128,5 @@ class StreamedRadial(torch.autograd.Function):
 
 
 def streamed(tp, linear, configuration, x, y, h):
+    x, y, h = prepare_radial(tp, linear, x, y, h)
     return StreamedRadial.apply(x, y, h, tp, linear, configuration)
