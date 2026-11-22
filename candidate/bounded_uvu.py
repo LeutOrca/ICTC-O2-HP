@@ -7,12 +7,14 @@ The unchanged radial affine forward is native; its input adjoint is our
 ordered IEEE FP32 implementation. Only first input derivatives are supported.
 """
 import torch
+import torch.nn.functional as F
 import triton
 from torch.autograd.function import once_differentiable
 
 from ictc_o2_hp.uvu_triton import _forward, _input_grad, _weight_unshared
 from .ordered_matrix import scheduled
 from .contracts import prepare_radial, prepare_uvu
+from .frozen_state import ForwardState
 
 
 def check(tp):
@@ -59,22 +61,26 @@ class BoundedUVU(torch.autograd.Function):
         if not all(v.is_contiguous() and v.dtype == torch.float32 and v.is_cuda for v in (x, y, w)):
             raise ValueError("Candidate requires contiguous CUDA FP32 operands")
         out = x.new_empty((len(x), tp.representation_dimension))
-        forward_into(tp, x, y, w, out)
-        ctx.save_for_backward(x, y, w)
-        ctx.tp = tp
+        state = ForwardState(tp)
+        forward_into(state.plan, x, y, w, out)
+        state.assert_current()
+        ctx.save_for_backward(x, y, w, *state.plan.buffers)
+        ctx.state = state
         return out
 
     @staticmethod
     @once_differentiable
     def backward(ctx, grad):
-        x, y, w = ctx.saved_tensors
+        ctx.state.assert_current()
+        x, y, w, *buffers = ctx.saved_tensors
+        plan = ctx.state.plan.with_buffers(buffers)
         g = grad.contiguous()
         gx = torch.empty_like(x) if ctx.needs_input_grad[0] else None
         gy = torch.empty_like(y) if ctx.needs_input_grad[1] else None
-        inputs_into(ctx.tp, x, y, w, g, gx, gy)
+        inputs_into(plan, x, y, w, g, gx, gy)
         gw = torch.empty_like(w) if ctx.needs_input_grad[2] else None
         if gw is not None:
-            weights_into(ctx.tp, x, y, g, gw)
+            weights_into(plan, x, y, g, gw)
         return gx, gy, gw, None
 
 
@@ -89,21 +95,25 @@ class StreamedRadial(torch.autograd.Function):
         check(tp)
         if any(p.requires_grad for p in linear.parameters()):
             raise ValueError("Only frozen affine parameters are supported")
+        state = ForwardState(tp, linear)
         out = x.new_empty((len(x), tp.representation_dimension))
         # Same affine equation, bounded private weights; no input donation.
         for start in range(0, len(x), 4096):
             stop = min(start + 4096, len(x))
-            w = linear(h[start:stop])
-            forward_into(tp, x[start:stop], y[start:stop], w, out[start:stop])
+            w = F.linear(h[start:stop], state.weight, state.bias)
+            forward_into(state.plan, x[start:stop], y[start:stop], w, out[start:stop])
             del w
-        ctx.save_for_backward(x, y, h)
-        ctx.tp, ctx.linear, ctx.configuration = tp, linear, configuration
+        state.assert_current()
+        ctx.save_for_backward(x, y, h, state.weight, state.bias, *state.plan.buffers)
+        ctx.state, ctx.configuration = state, configuration
         return out
 
     @staticmethod
     @once_differentiable
     def backward(ctx, grad):
-        x, y, h = ctx.saved_tensors
+        ctx.state.assert_current()
+        x, y, h, weight, bias, *buffers = ctx.saved_tensors
+        plan = ctx.state.plan.with_buffers(buffers)
         g = grad.contiguous()
         gx = torch.empty_like(x) if ctx.needs_input_grad[0] else None
         gy = torch.empty_like(y) if ctx.needs_input_grad[1] else None
@@ -112,17 +122,17 @@ class StreamedRadial(torch.autograd.Function):
             stop = min(start + 4096, len(x))
             xs, ys, gs = x[start:stop], y[start:stop], g[start:stop]
             if gx is not None or gy is not None:
-                w = ctx.linear(h[start:stop])
-                inputs_into(ctx.tp, xs, ys, w, gs,
+                w = F.linear(h[start:stop], weight, bias)
+                inputs_into(plan, xs, ys, w, gs,
                             None if gx is None else gx[start:stop],
                             None if gy is None else gy[start:stop])
                 # gW does not depend on generated weights. Release before
                 # allocating gW, allowing safe same-stream allocator reuse.
                 del w
             if gh is not None:
-                gw = x.new_empty((stop - start, ctx.tp.weight_numel))
-                weights_into(ctx.tp, xs, ys, gs, gw)
-                scheduled(gw, ctx.linear.weight, ctx.configuration, output=gh[start:stop])
+                gw = x.new_empty((stop - start, plan.weight_numel))
+                weights_into(plan, xs, ys, gs, gw)
+                scheduled(gw, weight, ctx.configuration, output=gh[start:stop])
                 del gw
         return gx, gy, gh, None, None, None
 
