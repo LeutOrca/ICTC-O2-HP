@@ -1,27 +1,28 @@
 {
   "project_period_start": "2026-11-15",
-  "project_gpu_h": 103.85166666666662,
+  "project_gpu_h": 111.7230555555555,
   "project_hard_cap": 500,
-  "remaining_project_gpu_h": 396.14833333333337,
-  "angular_gpu_h": 17.169722222222223,
+  "remaining_project_gpu_h": 388.2769444444445,
+  "angular_gpu_h": 25.04111111111111,
   "proposed_inclusive_angular_envelope": 36,
   "project_gpu_h_by_cluster": {
     "aidam": 62.79249999999994,
-    "gbu2": 41.05916666666666
+    "gbu2": 48.93055555555556
   },
   "accounting_methods": {
     "SBATCH-request": 583,
-    "AllocTRES": 160,
+    "AllocTRES": 164,
     "ReqTRES": 5
   },
   "unresolved_gpu_jobs": [],
-  "angular_gpu_jobs": 29,
+  "angular_gpu_jobs": 33,
   "angular_nodes": [
     "gpuh01",
     "gpuh03",
     "gpuh04",
     "gpuh06",
     "gpuh09",
+    "gpuh12",
     "gpuh13",
     "gpuh14"
   ],
@@ -8852,7 +8853,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311949",
+      "job": "311948_0",
       "state": "COMPLETED",
       "seconds": 205,
       "gpus": 1,
@@ -8865,7 +8866,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311950",
+      "job": "311948_1",
       "state": "COMPLETED",
       "seconds": 188,
       "gpus": 1,
@@ -8878,7 +8879,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311953",
+      "job": "311948_2",
       "state": "COMPLETED",
       "seconds": 96,
       "gpus": 1,
@@ -8891,7 +8892,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311954",
+      "job": "311948_3",
       "state": "COMPLETED",
       "seconds": 93,
       "gpus": 1,
@@ -8904,7 +8905,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311958",
+      "job": "311948_4",
       "state": "COMPLETED",
       "seconds": 73,
       "gpus": 1,
@@ -8917,7 +8918,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311959",
+      "job": "311948_5",
       "state": "COMPLETED",
       "seconds": 68,
       "gpus": 1,
@@ -8930,7 +8931,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311962",
+      "job": "311948_6",
       "state": "COMPLETED",
       "seconds": 76,
       "gpus": 1,
@@ -8943,7 +8944,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311965",
+      "job": "311948_7",
       "state": "COMPLETED",
       "seconds": 72,
       "gpus": 1,
@@ -8956,7 +8957,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311968",
+      "job": "311948_8",
       "state": "COMPLETED",
       "seconds": 200,
       "gpus": 1,
@@ -8969,7 +8970,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "311948",
+      "job": "311948_9",
       "state": "COMPLETED",
       "seconds": 106,
       "gpus": 1,
@@ -9112,7 +9113,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312082",
+      "job": "312069_0",
       "state": "COMPLETED",
       "seconds": 2432,
       "gpus": 1,
@@ -9125,7 +9126,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312083",
+      "job": "312069_1",
       "state": "COMPLETED",
       "seconds": 2197,
       "gpus": 1,
@@ -9138,7 +9139,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312084",
+      "job": "312069_2",
       "state": "COMPLETED",
       "seconds": 1915,
       "gpus": 1,
@@ -9151,7 +9152,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312101",
+      "job": "312069_3",
       "state": "COMPLETED",
       "seconds": 1237,
       "gpus": 1,
@@ -9164,7 +9165,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312069",
+      "job": "312069_4",
       "state": "COMPLETED",
       "seconds": 1822,
       "gpus": 1,
@@ -9177,7 +9178,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312078",
+      "job": "312070_0",
       "state": "FAILED",
       "seconds": 770,
       "gpus": 1,
@@ -9190,7 +9191,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312102",
+      "job": "312070_1",
       "state": "FAILED",
       "seconds": 451,
       "gpus": 1,
@@ -9203,7 +9204,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312103",
+      "job": "312070_2",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9216,7 +9217,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312104",
+      "job": "312070_3",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9229,7 +9230,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312070",
+      "job": "312070_4",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9242,7 +9243,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312071",
+      "job": "312071_[0-4%5]",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9333,7 +9334,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312138",
+      "job": "312134_0",
       "state": "COMPLETED",
       "seconds": 838,
       "gpus": 1,
@@ -9346,7 +9347,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312143",
+      "job": "312134_1",
       "state": "COMPLETED",
       "seconds": 1012,
       "gpus": 1,
@@ -9359,7 +9360,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312134",
+      "job": "312134_[2-4%5]",
       "state": "CANCELLED by 22720",
       "seconds": 0,
       "gpus": 1,
@@ -9411,7 +9412,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313421",
+      "job": "312205_0",
       "state": "COMPLETED",
       "seconds": 6383,
       "gpus": 1,
@@ -9424,7 +9425,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313422",
+      "job": "312205_1",
       "state": "COMPLETED",
       "seconds": 6299,
       "gpus": 1,
@@ -9437,7 +9438,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313423",
+      "job": "312205_2",
       "state": "COMPLETED",
       "seconds": 6078,
       "gpus": 1,
@@ -9450,7 +9451,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313424",
+      "job": "312205_3",
       "state": "COMPLETED",
       "seconds": 5980,
       "gpus": 1,
@@ -9463,7 +9464,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "312205",
+      "job": "312205_4",
       "state": "COMPLETED",
       "seconds": 5520,
       "gpus": 1,
@@ -9528,7 +9529,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313803",
+      "job": "313719_0",
       "state": "COMPLETED",
       "seconds": 135,
       "gpus": 1,
@@ -9541,7 +9542,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313806",
+      "job": "313719_1",
       "state": "COMPLETED",
       "seconds": 92,
       "gpus": 1,
@@ -9554,7 +9555,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313808",
+      "job": "313719_2",
       "state": "COMPLETED",
       "seconds": 100,
       "gpus": 1,
@@ -9567,7 +9568,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313810",
+      "job": "313719_3",
       "state": "COMPLETED",
       "seconds": 95,
       "gpus": 1,
@@ -9580,7 +9581,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313719",
+      "job": "313719_4",
       "state": "COMPLETED",
       "seconds": 102,
       "gpus": 1,
@@ -9593,7 +9594,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313814",
+      "job": "313720_0",
       "state": "COMPLETED",
       "seconds": 85,
       "gpus": 1,
@@ -9606,7 +9607,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313816",
+      "job": "313720_1",
       "state": "COMPLETED",
       "seconds": 88,
       "gpus": 1,
@@ -9619,7 +9620,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313820",
+      "job": "313720_2",
       "state": "COMPLETED",
       "seconds": 391,
       "gpus": 1,
@@ -9632,7 +9633,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313821",
+      "job": "313720_3",
       "state": "COMPLETED",
       "seconds": 328,
       "gpus": 1,
@@ -9645,7 +9646,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313720",
+      "job": "313720_4",
       "state": "COMPLETED",
       "seconds": 224,
       "gpus": 1,
@@ -9684,7 +9685,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313838",
+      "job": "313753_0",
       "state": "COMPLETED",
       "seconds": 104,
       "gpus": 1,
@@ -9697,7 +9698,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313842",
+      "job": "313753_1",
       "state": "COMPLETED",
       "seconds": 83,
       "gpus": 1,
@@ -9710,7 +9711,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313843",
+      "job": "313753_2",
       "state": "COMPLETED",
       "seconds": 114,
       "gpus": 1,
@@ -9723,7 +9724,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313847",
+      "job": "313753_3",
       "state": "COMPLETED",
       "seconds": 77,
       "gpus": 1,
@@ -9736,7 +9737,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313753",
+      "job": "313753_4",
       "state": "COMPLETED",
       "seconds": 70,
       "gpus": 1,
@@ -9749,7 +9750,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313852",
+      "job": "313754_0",
       "state": "COMPLETED",
       "seconds": 86,
       "gpus": 1,
@@ -9762,7 +9763,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313853",
+      "job": "313754_1",
       "state": "COMPLETED",
       "seconds": 79,
       "gpus": 1,
@@ -9775,7 +9776,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313855",
+      "job": "313754_2",
       "state": "COMPLETED",
       "seconds": 135,
       "gpus": 1,
@@ -9788,7 +9789,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313856",
+      "job": "313754_3",
       "state": "COMPLETED",
       "seconds": 110,
       "gpus": 1,
@@ -9801,7 +9802,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "313754",
+      "job": "313754_4",
       "state": "COMPLETED",
       "seconds": 83,
       "gpus": 1,
@@ -10425,7 +10426,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317105",
+      "job": "317095_0",
       "state": "COMPLETED",
       "seconds": 785,
       "gpus": 1,
@@ -10438,7 +10439,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317106",
+      "job": "317095_1",
       "state": "COMPLETED",
       "seconds": 761,
       "gpus": 1,
@@ -10451,7 +10452,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317107",
+      "job": "317095_2",
       "state": "COMPLETED",
       "seconds": 761,
       "gpus": 1,
@@ -10464,7 +10465,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317095",
+      "job": "317095_3",
       "state": "COMPLETED",
       "seconds": 88,
       "gpus": 1,
@@ -10490,7 +10491,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317116",
+      "job": "317116_3",
       "state": "CANCELLED by 22720",
       "seconds": 11,
       "gpus": 1,
@@ -10503,7 +10504,7 @@
     },
     {
       "cluster": "gbu2",
-      "job": "317117",
+      "job": "317117_3",
       "state": "COMPLETED",
       "seconds": 1152,
       "gpus": 1,
@@ -10751,10 +10752,10 @@
     {
       "cluster": "gbu2",
       "job": "317369",
-      "state": "RUNNING",
-      "seconds": 4552,
+      "state": "TIMEOUT",
+      "seconds": 5400,
       "gpus": 1,
-      "gpu_h": 1.2644444444444445,
+      "gpu_h": 1.5,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b",
       "nodes": "gpuh14",
@@ -10764,10 +10765,10 @@
     {
       "cluster": "gbu2",
       "job": "317370",
-      "state": "RUNNING",
-      "seconds": 4552,
+      "state": "TIMEOUT",
+      "seconds": 5400,
       "gpus": 1,
-      "gpu_h": 1.2644444444444445,
+      "gpu_h": 1.5,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b",
       "nodes": "gpuh14",
@@ -10868,10 +10869,10 @@
     {
       "cluster": "gbu2",
       "job": "317398",
-      "state": "RUNNING",
-      "seconds": 1972,
+      "state": "COMPLETED",
+      "seconds": 5039,
       "gpus": 1,
-      "gpu_h": 0.5477777777777778,
+      "gpu_h": 1.3997222222222223,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043",
       "nodes": "gpuh14",
@@ -10881,10 +10882,10 @@
     {
       "cluster": "gbu2",
       "job": "317399",
-      "state": "RUNNING",
-      "seconds": 1971,
+      "state": "COMPLETED",
+      "seconds": 5063,
       "gpus": 1,
-      "gpu_h": 0.5475,
+      "gpu_h": 1.406388888888889,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043",
       "nodes": "gpuh14",
@@ -10894,10 +10895,10 @@
     {
       "cluster": "gbu2",
       "job": "317400",
-      "state": "RUNNING",
-      "seconds": 1971,
+      "state": "TIMEOUT",
+      "seconds": 3604,
       "gpus": 1,
-      "gpu_h": 0.5475,
+      "gpu_h": 1.001111111111111,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043",
       "nodes": "gpuh14",
@@ -10907,15 +10908,67 @@
     {
       "cluster": "gbu2",
       "job": "317401",
-      "state": "RUNNING",
-      "seconds": 1971,
+      "state": "TIMEOUT",
+      "seconds": 3604,
       "gpus": 1,
-      "gpu_h": 0.5475,
+      "gpu_h": 1.001111111111111,
       "method": "AllocTRES",
       "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043",
       "nodes": "gpuh14",
       "partition": "NV_H100",
       "submission": "sbatch fast.sbatch both radial 4 --descending"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317429",
+      "state": "COMPLETED",
+      "seconds": 11,
+      "gpus": 1,
+      "gpu_h": 0.0030555555555555557,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68",
+      "nodes": "gpuh03",
+      "partition": "NV_H100",
+      "submission": "sbatch --time=03:00:00 --dependency=afterany:317398 night.sbatch tp 4096"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317430",
+      "state": "COMPLETED",
+      "seconds": 11,
+      "gpus": 1,
+      "gpu_h": 0.0030555555555555557,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68",
+      "nodes": "gpuh12",
+      "partition": "NV_H100",
+      "submission": "sbatch --time=03:00:00 --dependency=afterany:317399 night.sbatch tp 16384"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317431",
+      "state": "COMPLETED",
+      "seconds": 5590,
+      "gpus": 1,
+      "gpu_h": 1.5527777777777778,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68",
+      "nodes": "gpuh01",
+      "partition": "NV_H100",
+      "submission": "sbatch --dependency=afterany:317369:317400 night.sbatch uvu 16384"
+    },
+    {
+      "cluster": "gbu2",
+      "job": "317432",
+      "state": "COMPLETED",
+      "seconds": 11604,
+      "gpus": 1,
+      "gpu_h": 3.223333333333333,
+      "method": "AllocTRES",
+      "workdir": "/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68",
+      "nodes": "gpuh12",
+      "partition": "NV_H100",
+      "submission": "sbatch --dependency=afterany:317370:317401 night.sbatch radial 16384"
     }
   ]
 }

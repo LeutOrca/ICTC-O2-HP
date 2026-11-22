@@ -56,8 +56,9 @@ def main():
     for path in (ROOT/"upstream/so2_ops.py",provenance/"Times.TTF",provenance/"BUDGET-AUDIT.json"):
         sources.append((str(path.relative_to(ROOT)),path))
     for path in (provenance/"DEPLOYED-HARNESS.tgz",provenance/"DEPLOYED-HARNESS.sha256",
-                 provenance/"DEPLOYMENT-AUDIT.json",provenance/"CUDA-matrix.original.py"):
+                 provenance/"DEPLOYMENT-AUDIT.json",provenance/"CUDA-matrix.original.py",ROOT/"night.tgz"):
         sources.append((str(path.relative_to(ROOT)),path))
+    sources.extend((str(p.relative_to(ROOT)),p) for p in sorted((provenance/"git-harness").glob("*.tar.gz")))
     sources.extend((str(p.relative_to(ROOT)),p) for p in sorted((provenance/"licenses").glob("*")) if p.is_file())
     source_archive=provenance/f"angular-sources-{commit[:7]}.tar.gz"
     source_manifest=archive(source_archive,sources)
@@ -70,6 +71,13 @@ def main():
     figure_archive=provenance/f"angular-figures-{commit[:7]}.tar.gz"
     figure_manifest=archive(figure_archive,fig_members)
     compare=("summary.csv","speedups.csv","coverage.csv","role-coverage.csv","status.csv","numerics.csv")
+    exports=json.loads((provenance/"TAVOTTO-FINAL-EXPORTS.json").read_text())
+    assert len(exports["figures"])==9
+    for figure in exports["figures"]:
+        assert figure["status"]=="done" and not figure["preflight"]["error"] and not figure["preflight"]["warn"]
+        for item in figure["files"]:
+            assert item["status"]=="done" and sha(Path(item["path"]))==item["sha256"]
+            assert sha(FIG/f"{figure['stem']}.{item['format']}")==item["sha256"]
     with tempfile.TemporaryDirectory(prefix="angular-restore-") as temp:
         work=Path(temp)
         restored=work/"runs"/ROOT.name
@@ -94,6 +102,7 @@ def main():
         source_members=len(source_manifest),receipt_members=len(raw_manifest),figure_members=len(figure_manifest),
         restored_csv_byte_identical=list(compare),
         git_control_on_login=True,cpu_independent_recovery_audit=True,
+        tavotto_exports_verified=9,tavotto_canonical_files_match_export=True,
         archives={p.name:dict(sha256=sha(p),bytes=p.stat().st_size) for p in (
             bundle,original_code,recovered_code,source_archive,raw_archive,figure_archive)},
         source_manifest=source_manifest,receipt_manifest=raw_manifest,figure_manifest=figure_manifest)

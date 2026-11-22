@@ -1,0 +1,342 @@
+309734|COMPLETED|80|billing=4,cpu=4,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/icml2027-o2-p0-h100-20261115-r1|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable slurm/h100_env_probe.sbatch
+311931|FAILED|3|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable h100_probe.sbatch
+311938|FAILED|78|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable h100_probe-v2.sbatch
+311941|FAILED|56|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable h100_probe-v2.sbatch
+311946|FAILED|8|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable --time=00:15:00 h100_probe-v2.sbatch
+311947|FAILED|194|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --job-name=o2-hpx-h100-q h100_run.sbatch single_inference.py qualify --grid screen
+311948_0|COMPLETED|205|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_1|COMPLETED|188|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_2|COMPLETED|96|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_3|COMPLETED|93|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_4|COMPLETED|73|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_5|COMPLETED|68|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_6|COMPLETED|76|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_7|COMPLETED|72|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_8|COMPLETED|200|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311948_9|COMPLETED|106|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --array=0-9%2 --job-name=o2-hpx-h100-t h100_run.sbatch single_inference.py time --grid screen
+311955|COMPLETED|280|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable --time=00:15:00 h100_probe-v2.sbatch
+311956|COMPLETED|144|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:15:00 --job-name=o2-hpx-h100-q2 h100_run.sbatch single_inference.py qualify --grid screen
+311957|TIMEOUT|1816|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:30:00 --job-name=o2-hpx-h100-fullq h100_run.sbatch single_inference.py qualify --grid full
+311970|TIMEOUT|1815|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --export=ALL,CUE_METHOD=uniform_1d --job-name=o2-hpx-cue13-uniform h100_run.sbatch study.py cue
+311971|TIMEOUT|1814|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --export=ALL,CUE_METHOD=fused_tp --job-name=o2-hpx-cue13-fused h100_run.sbatch study.py cue
+311972|COMPLETED|332|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-replay-qual h100_run.sbatch training_study.py qualify candidate
+311973|COMPLETED|345|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --export=ALL,CUE_METHOD=uniform_1d --job-name=o2-hpx-cue13-trainqual h100_run.sbatch training_study.py qualify cue
+312068|COMPLETED|1070|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:30:00 --job-name=o2-hpx-h100-finishq h100_run.sbatch harness-v3/single_inference.py qualify --grid full --start-index 181
+312072|COMPLETED|783|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:30:00 --export=ALL,CUE_METHOD=uniform_1d --job-name=o2-hpx-cue13-batch-build h100_run.sbatch harness-v3/external_batch.py build cue --grid full
+312073|FAILED|124|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:30:00 --job-name=o2-hpx-aot-build h100_run.sbatch aot_build_probe_v1.py
+312069_0|COMPLETED|2432|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:312068 --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-paired h100_run.sbatch harness-v3/pair_inference.py --grid full
+312069_1|COMPLETED|2197|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:312068 --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-paired h100_run.sbatch harness-v3/pair_inference.py --grid full
+312069_2|COMPLETED|1915|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh04|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:312068 --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-paired h100_run.sbatch harness-v3/pair_inference.py --grid full
+312069_3|COMPLETED|1237|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:312068 --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-paired h100_run.sbatch harness-v3/pair_inference.py --grid full
+312069_4|COMPLETED|1822|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:312068 --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-paired h100_run.sbatch harness-v3/pair_inference.py --grid full
+312070_0|FAILED|770|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-train-pairs h100_run.sbatch harness-v2/pair_training.py --grid screen
+312070_1|FAILED|451|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-train-pairs h100_run.sbatch harness-v2/pair_training.py --grid screen
+312070_2|CANCELLED by 22720|0||/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|None assigned|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-train-pairs h100_run.sbatch harness-v2/pair_training.py --grid screen
+312070_3|CANCELLED by 22720|0||/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|None assigned|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-train-pairs h100_run.sbatch harness-v2/pair_training.py --grid screen
+312070_4|CANCELLED by 22720|0||/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|None assigned|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --job-name=o2-hpx-h100-train-pairs h100_run.sbatch harness-v2/pair_training.py --grid screen
+312071_[0-4%5]|CANCELLED by 22720|0||/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|None assigned|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=01:00:00 --array=0-4%5 --export=ALL,CUE_METHOD=uniform_1d --job-name=o2-hpx-cue13-trainpairs h100_run.sbatch harness-v2/pair_training.py --grid screen --competitor cue
+312109|COMPLETED|125|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-build-v3 --mem=16G --time=00:05:00 h100_run.sbatch aot_build_probe_v3.py
+312112|COMPLETED|147|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-load-v3 --mem=16G --time=00:05:00 --dependency=afterok:312109 h100_run.sbatch aot_load_probe_v1.py --build-job 312109
+312113|TIMEOUT|180|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-time-v3 --mem=16G --time=00:05:00 --dependency=afterok:312112 h100_run.sbatch aot_timing_probe_v1.py --build-job 312109
+312119|COMPLETED|112|billing=8,cpu=8,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=32G,node=1|1|sbatch --parsable --job-name=o2-hpx-cue13-q --time=00:10:00 --mem=32G --export=ALL,CUE_METHOD=uniform_1d h100_run.sbatch harness-v3/external_batch.py validate cue
+312126|COMPLETED|123|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-boxed-v3 --mem=16G --time=00:10:00 h100_run.sbatch aot_timing_probe_v1.py --build-job 312109 --backend boxed
+312133|COMPLETED|34|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=16G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-direct-load --mem=16G --time=00:05:00 h100_run.sbatch aot_direct_load_v1.py --build-job 312109
+312134_0|COMPLETED|838|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-cue13-full-time --time=00:30:00 --array=0-4%5 --dependency=afterok:312072:312119 --export=ALL,CUE_METHOD=uniform_1d h100_run.sbatch harness-v3/external_batch.py time cue --grid full
+312134_1|COMPLETED|1012|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-cue13-full-time --time=00:30:00 --array=0-4%5 --dependency=afterok:312072:312119 --export=ALL,CUE_METHOD=uniform_1d h100_run.sbatch harness-v3/external_batch.py time cue --grid full
+312134_[2-4%5]|CANCELLED by 22720|0||/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|None assigned|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-cue13-full-time --time=00:30:00 --array=0-4%5 --dependency=afterok:312072:312119 --export=ALL,CUE_METHOD=uniform_1d h100_run.sbatch harness-v3/external_batch.py time cue --grid full
+312139|COMPLETED|439|billing=8,cpu=8,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=32G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-library-screen --time=00:20:00 --mem=32G --dependency=afterok:312133 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch aot_screen_study_v2.py
+312200|TIMEOUT|1822|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-full-qualify --time=00:30:00 --mem=64G --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch aot_full_qualify_v1.py
+312201|TIMEOUT|3629|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-eqx-full-build --time=01:00:00 --mem=64G --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch external_full_build_v1.py
+312205_0|COMPLETED|6383|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-forward-formal --time=02:00:00 --mem=64G --array=0-4%5 --dependency=afterok:312200:312201:312072:312119 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch formal_forward_pair_v2.py
+312205_1|COMPLETED|6299|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-forward-formal --time=02:00:00 --mem=64G --array=0-4%5 --dependency=afterok:312200:312201:312072:312119 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch formal_forward_pair_v2.py
+312205_2|COMPLETED|6078|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh04|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-forward-formal --time=02:00:00 --mem=64G --array=0-4%5 --dependency=afterok:312200:312201:312072:312119 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch formal_forward_pair_v2.py
+312205_3|COMPLETED|5980|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh06|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-forward-formal --time=02:00:00 --mem=64G --array=0-4%5 --dependency=afterok:312200:312201:312072:312119 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch formal_forward_pair_v2.py
+312205_4|COMPLETED|5520|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh02|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-forward-formal --time=02:00:00 --mem=64G --array=0-4%5 --dependency=afterok:312200:312201:312072:312119 --export=ALL,O2_AOT_CUDA_HOME=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1/toolchain/cuda_host_v3 h100_run.sbatch formal_forward_pair_v2.py
+313354|COMPLETED|137|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-aot-q-resume --time=00:15:00 h100_run.sbatch aot_grid_v5.py qualify --grid full --start-family 57
+313355|COMPLETED|2269|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-opt-20261117-r1|gpuh13|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --job-name=o2-hpx-eqx-torch-resume --time=01:30:00 h100_run.sbatch harness-v5/external_batch.py build eqx_torch --grid full
+313609|COMPLETED|1|billing=2,cpu=2,mem=4G,node=1|/public_hw/home/phy_bjxiao|npu01|HW_910b|billing=2,cpu=2,mem=4G,node=1|1|srun --immediate=90 -p HW_910b -A phy_gjxia -J archive-cpu -n1 -c2 --mem=4G -t 03:00:00 --mpi=none bash -c hostname; id -un; git --version; command -v zstd; command -v tar; df -B1 "$HOME"
+313611|COMPLETED|2232|billing=2,cpu=2,mem=4G,node=1|/public_hw/home/phy_bjxiao|npu01|HW_910b|billing=2,cpu=2,mem=4G,node=1|1|srun --immediate=90 -p HW_910b -A phy_gjxia -J archive-receive -n1 -c2 --mem=4G -t 03:00:00 --mpi=none bash -c set -eo pipefail; cd /public_hw/home/phy_bjxiao/archives/GBU-research-20261118/data; zstd -q -dc | tar --no-same-owner --same-permissions --acls --xattrs --delay-directory-restore -xf -
+313650|FAILED|5|billing=4,cpu=4,mem=4G,node=1|/public_hw/home/phy_bjxiao|npu01|HW_910b|billing=4,cpu=4,mem=4G,node=1|1|srun --immediate=90 -p HW_910b -A phy_gjxia -J archive-git-verify -n1 -c4 --mem=4G -t 03:00:00 --mpi=none bash -c python3 -c '"""Verify the extracted files against the source and commit their actual Git blobs."""
+import hashlib,json,os,stat,subprocess as sp,sys,time
+from pathlib import Path
+root=Path(sys.argv[1]);os.chdir(root)
+src=json.loads(Path('"'"'audit/manifest1.json'"'"').read_text())
+roots=json.loads(Path('"'"'audit/roots.json'"'"').read_text())
+meta=json.loads(Path('"'"'audit/metadata.json'"'"').read_text())
+assert set(meta['"'"'paths'"'"'])==set(src)
+def fail(e):raise e
+def meta_type(p):
+ s=p.lstat()
+ return ('"'"'l'"'"' if stat.S_ISLNK(s.st_mode) else '"'"'d'"'"' if stat.S_ISDIR(s.st_mode) else '"'"'f'"'"' if stat.S_ISREG(s.st_mode) else '"'"'special'"'"',s)
+observed=set()
+for group in roots:
+ p=Path('"'"'data'"'"')/group
+ assert p.is_dir() and not p.is_symlink()
+ observed.add(group)
+ for d,ds,fs in os.walk(p,onerror=fail,followlinks=False):
+  observed.update(str((Path(d)/n).relative_to('"'"'data'"'"')) for n in ds+fs)
+assert observed==set(src),('"'"'path set mismatch'"'"',sorted(observed^set(src))[:10])
+items=[];mode_fixed=0
+for name,row in src.items():
+ p=Path('"'"'data'"'"')/name;kind,s=meta_type(p)
+ assert row[0]==kind,(name,row[0],kind)
+ if kind!='"'"'l'"'"' and stat.S_IMODE(s.st_mode)!=row[1]:
+  os.chmod(p,row[1]);mode_fixed+=1
+ assert stat.S_IMODE(p.lstat().st_mode)==row[1],name
+ if kind=='"'"'l'"'"':assert os.readlink(p)==row[2],name
+ if kind=='"'"'f'"'"':assert s.st_size==row[2],name
+ if kind!='"'"'d'"'"':items.append((str(p),row))
+for links in meta['"'"'hardlinks'"'"']:
+ assert len({(os.lstat(Path('"'"'data'"'"')/n).st_dev,os.lstat(Path('"'"'data'"'"')/n).st_ino) for n in links})==1,links
+for p in [Path('"'"'README.md'"'"'),*sorted(Path('"'"'audit'"'"').iterdir())]:
+ items.append((str(p),['"'"'f'"'"',0o644,p.stat().st_size,None]))
+assert not Path('"'"'.git'"'"').exists()
+sp.run(['"'"'git'"'"','"'"'init'"'"','"'"'-q'"'"','"'"'-b'"'"','"'"'archive'"'"'],check=True)
+sp.run(['"'"'git'"'"','"'"'config'"'"','"'"'core.quotePath'"'"','"'"'false'"'"'],check=True)
+cmd=['"'"'git'"'"','"'"'-c'"'"','"'"'core.compression=0'"'"','"'"'-c'"'"','"'"'pack.compression=0'"'"','"'"'fast-import'"'"','"'"'--quiet'"'"','"'"'--depth=0'"'"','"'"'--big-file-threshold=16m'"'"','"'"'--done'"'"']
+pr=sp.Popen(cmd,stdin=sp.PIPE);stream=pr.stdin;marks={};listing=[];sizes={};expected={}
+def write(line):stream.write(line.encode()+b'"'"'\n'"'"')
+for name,row in items:
+ p=Path(name); kind=row[0]
+ link=os.fsencode(os.readlink(p)) if kind=='"'"'l'"'"' else None
+ size=len(link) if kind=='"'"'l'"'"' else row[2]
+ key=row[3] if kind=='"'"'f'"'"' else None
+ cached=marks.get(key) if key else None
+ # Every working-tree file is read, even when another file has identical content.
+ sha=hashlib.sha256();oid=hashlib.sha1(b'"'"'blob '"'"'+str(size).encode()+b'"'"'\x00'"'"')
+ if not cached:
+  mark=len(listing)+1;write('"'"'blob'"'"');write('"'"'mark :'"'"'+str(mark));write('"'"'data '"'"'+str(size))
+ else:mark=cached
+ def chunk(b):
+  sha.update(b);oid.update(b)
+  if not cached:stream.write(b)
+ if link is not None:chunk(link)
+ else:
+  with p.open('"'"'rb'"'"') as f:
+   for b in iter(lambda:f.read(4<<20),b'"'"''"'"'):chunk(b)
+   os.fsync(f.fileno())
+ if key is not None:assert sha.hexdigest()==key,name
+ if not cached:stream.write(b'"'"'\n'"'"')
+ if key:marks[key]=mark
+ mode='"'"'120000'"'"' if kind=='"'"'l'"'"' else ('"'"'100755'"'"' if row[1]&0o100 else '"'"'100644'"'"')
+ nameb=os.fsencode(name);quoted=b'"'"'"'"'"'+b'"'"''"'"'.join((b'"'"'\\'"'"'+('"'"'%03o'"'"'%v).encode() if v<32 or v>=127 or v in (34,92) else bytes([v])) for v in nameb)+b'"'"'"'"'"'
+ listing.append(b'"'"'M '"'"'+mode.encode()+b'"'"' :'"'"'+str(mark).encode()+b'"'"' '"'"'+quoted+b'"'"'\n'"'"')
+ expected[nameb]=(mode.encode(),oid.hexdigest().encode())
+write('"'"'commit refs/heads/archive'"'"');write('"'"'committer GBU Archive <archive@localhost> '"'"'+str(int(time.time()))+'"'"' +0800'"'"');write('"'"'data 33'"'"');stream.write(b'"'"'Archive seven GBU research tasks.\n'"'"')
+for entry in listing:stream.write(entry)
+write('"'"''"'"');write('"'"'done'"'"');stream.close();assert pr.wait()==0
+def git(*args):return sp.check_output(['"'"'git'"'"',*args])
+entries={}
+for line in git('"'"'ls-tree'"'"','"'"'-rz'"'"','"'"'HEAD'"'"').split(b'"'"'\0'"'"'):
+ if line:
+  head,n=line.split(b'"'"'\t'"'"',1);mode,typ,oid=head.split();assert typ==b'"'"'blob'"'"';entries[n]=(mode,oid)
+assert entries==expected
+sp.run(['"'"'git'"'"','"'"'fsck'"'"','"'"'--full'"'"','"'"'--strict'"'"','"'"'--no-dangling'"'"'],check=True)
+git('"'"'read-tree'"'"','"'"'HEAD'"'"')
+for d,ds,fs in os.walk('"'"'.git'"'"'):
+ for n in fs:
+  with open(os.path.join(d,n),'"'"'rb'"'"') as f:os.fsync(f.fileno())
+r={'"'"'commit'"'"':git('"'"'rev-parse'"'"','"'"'HEAD'"'"').decode().strip(),'"'"'git_entries'"'"':len(entries),'"'"'source_entries'"'"':len(src),'"'"'mode_restorations'"'"':mode_fixed,'"'"'exact_content_and_links_verified'"'"':True,'"'"'git_fsck_passed'"'"':True,'"'"'git_tree_matches_verified_blob_ids'"'"':True,'"'"'hardlink_groups_verified'"'"':len(meta['"'"'hardlinks'"'"']),'"'"'archive'"'"':str(root)}
+Path('"'"'.git/migration-verification.json'"'"').write_text(json.dumps(r,indent=2))
+print(json.dumps(r))
+' /public_hw/home/phy_bjxiao/archives/GBU-research-20261118
+313670|COMPLETED|3526|billing=4,cpu=4,mem=4G,node=1|/public_hw/home/phy_bjxiao|npu01|HW_910b|billing=4,cpu=4,mem=4G,node=1|1|srun --immediate=90 -p HW_910b -A phy_gjxia -J archive-git-verify -n1 -c4 --mem=4G -t 03:00:00 --mpi=none bash -c python3 -c '"""Verify the extracted files against the source and commit their actual Git blobs."""
+import hashlib,json,os,stat,subprocess as sp,sys,time
+from pathlib import Path
+root=Path(sys.argv[1]);os.chdir(root)
+src=json.loads(Path('"'"'audit/manifest1.json'"'"').read_text())
+roots=json.loads(Path('"'"'audit/roots.json'"'"').read_text())
+meta=json.loads(Path('"'"'audit/metadata.json'"'"').read_text())
+assert set(meta['"'"'paths'"'"'])==set(src)
+def fail(e):raise e
+def meta_type(p):
+ s=p.lstat()
+ return ('"'"'l'"'"' if stat.S_ISLNK(s.st_mode) else '"'"'d'"'"' if stat.S_ISDIR(s.st_mode) else '"'"'f'"'"' if stat.S_ISREG(s.st_mode) else '"'"'special'"'"',s)
+observed=set()
+for group in roots:
+ p=Path('"'"'data'"'"')/group
+ assert p.is_dir() and not p.is_symlink()
+ observed.add(group)
+ for d,ds,fs in os.walk(p,onerror=fail,followlinks=False):
+  observed.update(str((Path(d)/n).relative_to('"'"'data'"'"')) for n in ds+fs)
+assert observed==set(src),('"'"'path set mismatch'"'"',sorted(observed^set(src))[:10])
+items=[];mode_fixed=0;link_modes={}
+for name,row in src.items():
+ p=Path('"'"'data'"'"')/name;kind,s=meta_type(p)
+ assert row[0]==kind,(name,row[0],kind)
+ if kind!='"'"'l'"'"' and stat.S_IMODE(s.st_mode)!=row[1]:
+  os.chmod(p,row[1]);mode_fixed+=1
+ if kind=='"'"'l'"'"' and stat.S_IMODE(s.st_mode)!=row[1]:
+  link_modes[name]=[oct(row[1]),oct(stat.S_IMODE(s.st_mode))]
+ elif kind!='"'"'l'"'"':assert stat.S_IMODE(p.lstat().st_mode)==row[1],name
+ if kind=='"'"'l'"'"':assert os.readlink(p)==row[2],name
+ if kind=='"'"'f'"'"':assert s.st_size==row[2],name
+ if kind!='"'"'d'"'"':items.append((str(p),row))
+for links in meta['"'"'hardlinks'"'"']:
+ assert len({(os.lstat(Path('"'"'data'"'"')/n).st_dev,os.lstat(Path('"'"'data'"'"')/n).st_ino) for n in links})==1,links
+for p in [Path('"'"'README.md'"'"'),*sorted(Path('"'"'audit'"'"').iterdir())]:
+ items.append((str(p),['"'"'f'"'"',0o644,p.stat().st_size,None]))
+assert not Path('"'"'.git'"'"').exists()
+sp.run(['"'"'git'"'"','"'"'init'"'"','"'"'-q'"'"','"'"'-b'"'"','"'"'archive'"'"'],check=True)
+sp.run(['"'"'git'"'"','"'"'config'"'"','"'"'core.quotePath'"'"','"'"'false'"'"'],check=True)
+cmd=['"'"'git'"'"','"'"'-c'"'"','"'"'core.compression=0'"'"','"'"'-c'"'"','"'"'pack.compression=0'"'"','"'"'fast-import'"'"','"'"'--quiet'"'"','"'"'--depth=0'"'"','"'"'--big-file-threshold=16m'"'"','"'"'--done'"'"']
+pr=sp.Popen(cmd,stdin=sp.PIPE);stream=pr.stdin;marks={};listing=[];sizes={};expected={}
+def write(line):stream.write(line.encode()+b'"'"'\n'"'"')
+for name,row in items:
+ p=Path(name); kind=row[0]
+ link=os.fsencode(os.readlink(p)) if kind=='"'"'l'"'"' else None
+ size=len(link) if kind=='"'"'l'"'"' else row[2]
+ key=row[3] if kind=='"'"'f'"'"' else None
+ cached=marks.get(key) if key else None
+ # Every working-tree file is read, even when another file has identical content.
+ sha=hashlib.sha256();oid=hashlib.sha1(b'"'"'blob '"'"'+str(size).encode()+b'"'"'\x00'"'"')
+ if not cached:
+  mark=len(listing)+1;write('"'"'blob'"'"');write('"'"'mark :'"'"'+str(mark));write('"'"'data '"'"'+str(size))
+ else:mark=cached
+ def chunk(b):
+  sha.update(b);oid.update(b)
+  if not cached:stream.write(b)
+ if link is not None:chunk(link)
+ else:
+  with p.open('"'"'rb'"'"') as f:
+   for b in iter(lambda:f.read(4<<20),b'"'"''"'"'):chunk(b)
+   os.fsync(f.fileno())
+ if key is not None:assert sha.hexdigest()==key,name
+ if not cached:stream.write(b'"'"'\n'"'"')
+ if key:marks[key]=mark
+ mode='"'"'120000'"'"' if kind=='"'"'l'"'"' else ('"'"'100755'"'"' if row[1]&0o100 else '"'"'100644'"'"')
+ nameb=os.fsencode(name);quoted=b'"'"'"'"'"'+b'"'"''"'"'.join((b'"'"'\\'"'"'+('"'"'%03o'"'"'%v).encode() if v<32 or v>=127 or v in (34,92) else bytes([v])) for v in nameb)+b'"'"'"'"'"'
+ listing.append(b'"'"'M '"'"'+mode.encode()+b'"'"' :'"'"'+str(mark).encode()+b'"'"' '"'"'+quoted+b'"'"'\n'"'"')
+ expected[nameb]=(mode.encode(),oid.hexdigest().encode())
+write('"'"'commit refs/heads/archive'"'"');write('"'"'committer GBU Archive <archive@localhost> '"'"'+str(int(time.time()))+'"'"' +0800'"'"');write('"'"'data 33'"'"');stream.write(b'"'"'Archive seven GBU research tasks.\n'"'"')
+for entry in listing:stream.write(entry)
+write('"'"''"'"');write('"'"'done'"'"');stream.close();assert pr.wait()==0
+def git(*args):return sp.check_output(['"'"'git'"'"',*args])
+entries={}
+for line in git('"'"'ls-tree'"'"','"'"'-rz'"'"','"'"'HEAD'"'"').split(b'"'"'\0'"'"'):
+ if line:
+  head,n=line.split(b'"'"'\t'"'"',1);mode,typ,oid=head.split();assert typ==b'"'"'blob'"'"';entries[n]=(mode,oid)
+assert entries==expected
+sp.run(['"'"'git'"'"','"'"'fsck'"'"','"'"'--full'"'"','"'"'--strict'"'"','"'"'--no-dangling'"'"'],check=True)
+git('"'"'read-tree'"'"','"'"'HEAD'"'"')
+for d,ds,fs in os.walk('"'"'.git'"'"'):
+ for n in fs:
+  with open(os.path.join(d,n),'"'"'rb'"'"') as f:os.fsync(f.fileno())
+r={'"'"'commit'"'"':git('"'"'rev-parse'"'"','"'"'HEAD'"'"').decode().strip(),'"'"'git_entries'"'"':len(entries),'"'"'source_entries'"'"':len(src),'"'"'mode_restorations'"'"':mode_fixed,'"'"'symlink_mode_differences'"'"':link_modes,'"'"'exact_content_and_links_verified'"'"':True,'"'"'git_fsck_passed'"'"':True,'"'"'git_tree_matches_verified_blob_ids'"'"':True,'"'"'hardlink_groups_verified'"'"':len(meta['"'"'hardlinks'"'"']),'"'"'archive'"'"':str(root)}
+Path('"'"'.git/migration-verification.json'"'"').write_text(json.dumps(r,indent=2))
+print(json.dumps(r))
+' /public_hw/home/phy_bjxiao/archives/GBU-research-20261118
+313698|COMPLETED|134|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh04|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable -J o2-hpx-owned-port -t 00:12:00 h100.sbatch solo_wave.py validate
+313707|FAILED|96|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-final-20261118-r1|gpuh02|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable -J o2-hpx-target-build -t 00:16:00 h100-final.sbatch target_build.py
+313719_0|COMPLETED|135|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-time -t 00:08:00 h100.sbatch solo_wave.py time
+313719_1|COMPLETED|92|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-time -t 00:08:00 h100.sbatch solo_wave.py time
+313719_2|COMPLETED|100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-time -t 00:08:00 h100.sbatch solo_wave.py time
+313719_3|COMPLETED|95|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-time -t 00:08:00 h100.sbatch solo_wave.py time
+313719_4|COMPLETED|102|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-time -t 00:08:00 h100.sbatch solo_wave.py time
+313720_0|COMPLETED|85|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-mem -t 00:08:00 h100.sbatch solo_wave.py memory
+313720_1|COMPLETED|88|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-mem -t 00:08:00 h100.sbatch solo_wave.py memory
+313720_2|COMPLETED|391|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-mem -t 00:08:00 h100.sbatch solo_wave.py memory
+313720_3|COMPLETED|328|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh14|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-mem -t 00:08:00 h100.sbatch solo_wave.py memory
+313720_4|COMPLETED|224|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-owned-20261118-r1|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313698 --array=0-4%5 -J o2-hpx-port-mem -t 00:08:00 h100.sbatch solo_wave.py memory
+313728|COMPLETED|197|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh14|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --time=00:10:00 --job-name=o2-hpx-port-build h100-final.sbatch target_build.py
+313729|COMPLETED|143|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh06|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313728 --time=00:06:00 --job-name=o2-hpx-port-validate h100-final.sbatch package_wave.py validate
+313753_0|COMPLETED|104|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-time h100-final.sbatch package_wave.py time
+313753_1|COMPLETED|83|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-time h100-final.sbatch package_wave.py time
+313753_2|COMPLETED|114|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-time h100-final.sbatch package_wave.py time
+313753_3|COMPLETED|77|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-time h100-final.sbatch package_wave.py time
+313753_4|COMPLETED|70|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-time h100-final.sbatch package_wave.py time
+313754_0|COMPLETED|86|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-mem h100-final.sbatch package_wave.py memory
+313754_1|COMPLETED|79|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-mem h100-final.sbatch package_wave.py memory
+313754_2|COMPLETED|135|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh04|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-mem h100-final.sbatch package_wave.py memory
+313754_3|COMPLETED|110|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh05|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-mem h100-final.sbatch package_wave.py memory
+313754_4|COMPLETED|83|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hpx-confirm-portable-20261118-r1|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=64G,node=1|1|sbatch --parsable --dependency=afterok:313729 --array=0-4%5 --time=00:05:00 --job-name=o2-hpx-abi-mem h100-final.sbatch package_wave.py memory
+314958|TIMEOUT|624|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable qualify.sbatch
+314963|COMPLETED|181|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable --dependency=afterany:314958 bulk_ef_trace.sbatch
+314964|COMPLETED|358|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable --kill-on-invalid-dep=yes --dependency=afterok:314963 bulk_pair.sbatch
+314966|COMPLETED|112|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable deterministic.sbatch
+314970|COMPLETED|329|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable anchor_h100.sbatch
+314975|COMPLETED|260|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable hotspot_h100.sbatch
+314978|COMPLETED|215|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable capture_h100.sbatch
+314980|COMPLETED|61|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable narrow_h100.sbatch
+314982|COMPLETED|157|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable capture_combined_h100.sbatch
+314986|COMPLETED|172|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable capture_clean_h100.sbatch
+314987|COMPLETED|305|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable capture_compact_h100.sbatch
+314995|COMPLETED|418|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261119-r1|gpuh03|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=26G,node=1|1|sbatch --parsable capture_both_h100.sbatch
+315573|FAILED|6|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1|gpuh12|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable qualify_force.sbatch
+315575|FAILED|92|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1|gpuh12|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable qualify_force.sbatch
+315581|COMPLETED|111|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-b1b77dd|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --parsable qualify_force.sbatch --mode scalar-graph --mode uvu-only-graph --mode uvu-graph --mode packed-first-graph --mode packed-second-graph --mode packed-both-graph --mode frozen-1b65a8c-graph
+315582|COMPLETED|264|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-b1b77dd|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable measure_receiver.sbatch
+315589|FAILED|167|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-f0f2c84|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1|1|sbatch --parsable capacity_4100.sbatch
+315602|COMPLETED|238|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-41469b1|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable measure_parallel.sbatch
+315605|CANCELLED by 22720|653|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-6e9330b|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=58G,node=1|1|sbatch --parsable capacity_4100.sbatch
+315608|CANCELLED by 22720|533|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-8d6818c|gpuh12|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable measure_partition.sbatch
+315622|COMPLETED|192|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-630f4c2|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=48G,node=1|1|sbatch --parsable measure_pinned.sbatch
+315635|COMPLETED|700|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-6e9330b|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|1|sbatch --parsable --nodelist=gpuh10 capacity_4100.sbatch
+315636|COMPLETED|432|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-8d6818c|gpuh10|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|1|sbatch --parsable --nodelist=gpuh10 measure_partition.sbatch
+315691|COMPLETED|1021|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-fe24b6a|gpuh09|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|1|sbatch --parsable --nodelist=gpuh10 --dependency=afterok:315636 capacity_partition.sbatch
+315701|COMPLETED|91|billing=4,cpu=4,gres/gpu=1,mem=8G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-7789e20|gpuh08|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=8G,node=1|1|sbatch --parsable --nodelist=gpuh10 probe_capacity_allocator.sbatch
+315724|TIMEOUT|1219|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-1bab6df|gpuh01|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --exclude=gpuh12 capacity_native_paired.sbatch
+315725|FAILED|154|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-977f607|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=24G,node=1|1|sbatch --parsable --exclude=gpuh12 measure_inductor.sbatch
+315729|COMPLETED|718|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/mace-ictc-o2-hp-gbu2-20261120-r1-78231f3|gpuh08|NV_H100|billing=8,cpu=8,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --exclude=gpuh01,gpuh12 --dependency=afternotok:315724 --kill-on-invalid-dep=yes capacity_native_recovery.sbatch
+316085|FAILED|57|billing=4,cpu=4,gres/gpu=1,mem=12G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=12G,node=1|1|sbatch --parsable qualify.sbatch
+316189|FAILED|106|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/3330749|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 stage_h100.sbatch qualify_mace.py b8 --output results/mace-b8.json
+316190|COMPLETED|33|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/3330749|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 stage_h100.sbatch qualify_matrix.py cuda results/cuda-matrix.json
+316353|FAILED|476|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/2089373|gpuh13|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-mace-cuda2-b8 stage_h100.sbatch qualify_mace.py b8 --kernel cuda2 --output results/mace-b8-cuda2.json
+316402|TIMEOUT|1511|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/ffbdba0|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --time=00:25:00 --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-prefix-b8-pairs stage_h100.sbatch paired-prefix b8
+316407|FAILED|47|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/ffbdba0|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --time=00:10:00 --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-scalar-adjoint-diag stage_h100.sbatch diagnose_scalar_adjoint.py results/mace-adjoint-families.json
+316421|COMPLETED|2|billing=2,cpu=2,gres/gpu=1,mem=4G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1|gpuh01|NV_H100|billing=2,cpu=2,gres/gpu=1,mem=4G,node=1|1|sbatch --parsable --dependency=afterany:316402 --partition=NV_H100 --account=phy_gjxia --qos=user_phy_bjxiao --nodes=1 --ntasks=1 --cpus-per-task=2 --gres=gpu:1 --mem=4G --time=00:02:00 --job-name=hpx-prefix-pair-audit --output=cohorts/ffbdba0/logs/hpx-prefix-pair-audit-%j.log --wrap=/public_hw/home/phy_bjxiao/RNA-Au-database/envs/mace_gpu/bin/python /public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/audits/audit-mace-prefix-8705260.py /public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/ffbdba0 b8
+316423|FAILED|35|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/d3ddb6f|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --parsable --time=00:25:00 --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-scalar-b8-pairs stage_h100.sbatch paired-local scalar b8
+316432|COMPLETED|281|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/40af2f8|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-final-b8-pairs --time=00:25:00 stage_h100.sbatch paired-local final b8
+316433|COMPLETED|346|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/40af2f8|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-final-600-pairs --time=00:30:00 stage_h100.sbatch paired-local final n512
+316434|COMPLETED|272|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/fb3dc99|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-input-b8-pairs --time=00:25:00 stage_h100.sbatch paired-local final-input b8
+316435|FAILED|31|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/fb3dc99|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-input-600-pairs --time=00:30:00 stage_h100.sbatch paired-local final-input n512
+316436|COMPLETED|583|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/fb3dc99|gpuh10|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-final-4100-pairs --time=00:45:00 stage_h100.sbatch paired-local final n4096
+316440|COMPLETED|315|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/64dbeb1|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-input-600-pairs --time=00:25:00 stage_h100.sbatch paired-local final-input n512
+316442|COMPLETED|294|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/20df315|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-input-b8-parent-pairs --time=00:20:00 stage_h100.sbatch paired-local final-input b8
+316443|COMPLETED|806|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/20df315|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-input-600-parent-pairs --time=00:25:00 stage_h100.sbatch paired-local final-input n512
+316447|COMPLETED|396|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1/cohorts/20df315|gpuh12|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=20G,node=1|1|sbatch --export=ALL,HPX_STUDY_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/hpx-custom-kernels-20261120-r1 --job-name=hpx-prefix-b8-complete --time=00:10:00 stage_h100.sbatch paired-local prefix b8
+316837|COMPLETED|0|billing=1,cpu=1,gres/gpu=1,mem=5264M,node=1|/public_hw/home/phy_bjxiao|gpuh03|NV_H100|billing=1,cpu=1,gres/gpu=1,mem=5264M,node=1|1|sbatch -p NV_H100 --gres=gpu:1 -t 00:05:00 -J h100-probe -o h100-probe-%j.log --wrap hostname; nvidia-smi -L; python3 -V; python3 -c "import torch;print(torch.__version__, torch.cuda.is_available())" 2>&1 | tail -2
+317086|COMPLETED|876|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|1|sbatch preflight_h100.sbatch
+317096|COMPLETED|286|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-9753ed3|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|1|sbatch preflight_211.sbatch
+317095_0|COMPLETED|785|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-9753ed3|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=0-3 --dependency=afterany:317086 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight campaign_h100.sbatch
+317095_1|COMPLETED|761|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-9753ed3|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=0-3 --dependency=afterany:317086 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight campaign_h100.sbatch
+317095_2|COMPLETED|761|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-9753ed3|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=0-3 --dependency=afterany:317086 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight campaign_h100.sbatch
+317095_3|COMPLETED|88|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-9753ed3|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=0-3 --dependency=afterany:317086 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight campaign_h100.sbatch
+317112|COMPLETED|237|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0a27267|gpuh06|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|1|sbatch preflight_211.sbatch
+317116_3|CANCELLED by 22720|11|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-4bed911|gpuh06|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=3 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight,O2_ROLES=native,official,fork,local-hpx campaign_h100.sbatch
+317117_3|COMPLETED|1152|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-4bed911|gpuh02|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch --array=3 --export=ALL,O2_PREFLIGHT_ROOT=/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-0248ff3/results/preflight,O2_RESULT_SUFFIX=-large campaign_h100.sbatch
+317123|FAILED|19|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-2d64558|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|1|sbatch preflight_211.sbatch
+317128|FAILED|431|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-github-whole-20261121-r1-ad08623|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=32G,node=1|1|sbatch preflight_211.sbatch
+317226|TIMEOUT|2401|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-a674d1c|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=40G,node=1|1|sbatch preflight.sbatch
+317244|TIMEOUT|3601|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-29b2e46|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch tp 4096
+317245|TIMEOUT|3601|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-29b2e46|gpuh06|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch tp 16384
+317267|TIMEOUT|3601|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-29b2e46|gpuh13|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch uvu 16384
+317295|TIMEOUT|3601|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-792023d|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch radial 16384
+317296|COMPLETED|1492|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-792023d|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch so2 16384
+317297|COMPLETED|285|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-792023d|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=00:30:00 campaign.sbatch ictp 4096
+317298|COMPLETED|294|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-792023d|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=00:30:00 campaign.sbatch ictp 16384
+317310|TIMEOUT|2401|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-692de50|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch memory.sbatch tp 4096
+317311|TIMEOUT|2401|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-692de50|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch memory.sbatch tp 16384
+317312|TIMEOUT|2401|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-692de50|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch memory.sbatch uvu 16384
+317313|TIMEOUT|2401|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-692de50|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch memory.sbatch radial 16384
+317360|CANCELLED by 22720|922|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-2f1e68c|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch campaign.sbatch so2 16384
+317361|COMPLETED|1408|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-2f1e68c|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch high_order.sbatch
+317367|CANCELLED by 22720|2577|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch continuation.sbatch tp 4096 4
+317368|CANCELLED by 22720|2577|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch continuation.sbatch tp 16384 4
+317369|TIMEOUT|5400|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch continuation.sbatch uvu 16384 4
+317370|TIMEOUT|5400|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-efa082b|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch continuation.sbatch radial 16384 4
+317373|COMPLETED|2484|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-e048326|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch fixed.sbatch so2 16384
+317374|CANCELLED by 22720|1854|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-e048326|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch fixed.sbatch tp 4096
+317375|CANCELLED by 22720|2217|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-e048326|gpuh09|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch fixed.sbatch tp 16384
+317386|CANCELLED by 22720|959|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-5992a12|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch phase.sbatch both uvu 6 --descending
+317387|CANCELLED by 22720|959|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-5992a12|gpuh04|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch phase.sbatch both radial 4 --descending
+317388|FAILED|31|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-413e044|gpuh13|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=00:12:00 fast.sbatch probe
+317390|COMPLETED|354|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-56d1691|gpuh13|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=00:12:00 fast.sbatch probe
+317398|COMPLETED|5039|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=01:30:00 fast.sbatch tp 4096
+317399|COMPLETED|5063|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=01:30:00 fast.sbatch tp 16384
+317400|TIMEOUT|3604|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch fast.sbatch both uvu 6 --descending
+317401|TIMEOUT|3604|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-38a7043|gpuh14|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch fast.sbatch both radial 4 --descending
+317429|COMPLETED|11|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68|gpuh03|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=03:00:00 --dependency=afterany:317398 night.sbatch tp 4096
+317430|COMPLETED|11|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68|gpuh12|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --time=03:00:00 --dependency=afterany:317399 night.sbatch tp 16384
+317431|COMPLETED|5590|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68|gpuh01|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --dependency=afterany:317369:317400 night.sbatch uvu 16384
+317432|COMPLETED|11604|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|/public_hw/home/phy_bjxiao/o2-benchmark/runs/o2-hp-angular-operators-20261121-r1-d005f68|gpuh12|NV_H100|billing=4,cpu=4,gres/gpu=1,mem=48G,node=1|1|sbatch --dependency=afterany:317370:317401 night.sbatch radial 16384

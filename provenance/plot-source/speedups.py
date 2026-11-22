@@ -1,10 +1,11 @@
 """Only same-equation ratios; no ICTP/O2 or SO2/TP acceleration ratios."""
 import csv
+import importlib
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from plot_helpers import setup, finish
+import plot_helpers
 
 OUT = Path(__file__).resolve().parent
 
@@ -29,6 +30,8 @@ def style(ax, title):
 
 
 def main():
+    helpers = importlib.reload(plot_helpers)
+    setup, finish = helpers.setup, helpers.finish
     setup()
     with (OUT / "data/speedups.csv").open() as stream:
         data=list(csv.DictReader(stream))

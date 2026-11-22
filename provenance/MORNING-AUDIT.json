@@ -1,0 +1,323 @@
+{
+  "passed": true,
+  "accepted_points": 453,
+  "role_status_counts": {
+    "measured": 453,
+    "numerical-failure": 11,
+    "timeout": 12,
+    "unsupported": 20
+  },
+  "terminal_failures": [
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "uvu",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "4",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "4",
+      "parity": "full",
+      "role": "eqx-o2",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "5",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "5",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "5",
+      "parity": "full",
+      "role": "eqx-o2",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "6",
+      "parity": "full",
+      "role": "eqx-o2",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "7",
+      "parity": "full",
+      "role": "eqx-o2",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "public-unfused",
+      "metric": "forward_vjp",
+      "status": "timeout"
+    },
+    {
+      "family": "radial",
+      "rows": "16384",
+      "order": "8",
+      "parity": "full",
+      "role": "eqx-o2",
+      "metric": "forward_vjp",
+      "status": "numerical-failure"
+    }
+  ],
+  "jobs": [
+    {
+      "job": "317369",
+      "state": "TIMEOUT",
+      "seconds": 5400,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317370",
+      "state": "TIMEOUT",
+      "seconds": 5400,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317398",
+      "state": "COMPLETED",
+      "seconds": 5039,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317399",
+      "state": "COMPLETED",
+      "seconds": 5063,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317400",
+      "state": "TIMEOUT",
+      "seconds": 3604,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317401",
+      "state": "TIMEOUT",
+      "seconds": 3604,
+      "node": "gpuh14"
+    },
+    {
+      "job": "317429",
+      "state": "COMPLETED",
+      "seconds": 11,
+      "node": "gpuh03"
+    },
+    {
+      "job": "317430",
+      "state": "COMPLETED",
+      "seconds": 11,
+      "node": "gpuh12"
+    },
+    {
+      "job": "317431",
+      "state": "COMPLETED",
+      "seconds": 5590,
+      "node": "gpuh01"
+    },
+    {
+      "job": "317432",
+      "state": "COMPLETED",
+      "seconds": 11604,
+      "node": "gpuh12"
+    }
+  ],
+  "all_angular_jobs_terminal": true,
+  "all_accepted_points_have_five_repeats_and_memory": true,
+  "all_ratios_have_same_gpu_memory_pairs": true,
+  "max_accepted_relative_l2": 2.2551566871698014e-06,
+  "night_payload_sha256": "97817444301772bcb83c7fdb01724db4e05d38abc82dfac26c5a3b7d21119c87",
+  "night_harness_git_exact": [
+    "models.py",
+    "benchmark.py",
+    "hpx_adapter.py",
+    "cue_adapter.py",
+    "runtime.sh",
+    "verify_sources.py",
+    "fork_prelude.py",
+    "fork_runner.py",
+    "phase_campaign.py",
+    "night_fill.py",
+    "night.sbatch",
+    "CONTRACT.md"
+  ],
+  "night_gpu_upstream_source_seals": [
+    {
+      "receipt": "measurements/overnight-final-d005f68/source-seals/SOURCE-SEAL-317429.json",
+      "files": 828,
+      "sha256": "0f310732886ff24a048699a81b042ddb7f83dba7d53138a770e38c8fe33272df"
+    },
+    {
+      "receipt": "measurements/overnight-final-d005f68/source-seals/SOURCE-SEAL-317430.json",
+      "files": 828,
+      "sha256": "0f310732886ff24a048699a81b042ddb7f83dba7d53138a770e38c8fe33272df"
+    },
+    {
+      "receipt": "measurements/overnight-final-d005f68/source-seals/SOURCE-SEAL-317431.json",
+      "files": 828,
+      "sha256": "0f310732886ff24a048699a81b042ddb7f83dba7d53138a770e38c8fe33272df"
+    },
+    {
+      "receipt": "measurements/overnight-final-d005f68/source-seals/SOURCE-SEAL-317432.json",
+      "files": 828,
+      "sha256": "0f310732886ff24a048699a81b042ddb7f83dba7d53138a770e38c8fe33272df"
+    }
+  ],
+  "provenance_limit": "Night harness verified from frozen transferred payload; fresh remote byte re-download unavailable at collection time."
+}
