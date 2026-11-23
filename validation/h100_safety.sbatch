@@ -21,5 +21,6 @@ case "$1" in
     partialradial) "$py" -S -u validation/g1_partial_radial.py ;;
     tracing) shift; "$py" -S -u validation/g1_trace.py "$@" ;;
     nativehidden) "$py" -S -u validation/trace_native_hidden.py ;;
+    livepolicy) "$py" -S -u validation/g1_live_policy.py ;;
     *) exit 64 ;;
 esac
