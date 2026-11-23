@@ -20,5 +20,6 @@ case "$1" in
     shortprofile) shift; "$py" -S -u validation/diagnose_short_hidden.py "$@" ;;
     partialradial) "$py" -S -u validation/g1_partial_radial.py ;;
     tracing) shift; "$py" -S -u validation/g1_trace.py "$@" ;;
+    nativehidden) "$py" -S -u validation/trace_native_hidden.py ;;
     *) exit 64 ;;
 esac
