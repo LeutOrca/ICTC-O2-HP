@@ -1,5 +1,6 @@
 """Regression of eager-only rejection and native tracing fallback; not AOTI."""
 import json
+import argparse
 import os
 from pathlib import Path
 import sys
@@ -16,6 +17,9 @@ from candidate.bounded_uvu import bounded
 from candidate.live_uvu import live_uvu
 
 configure()
+parser = argparse.ArgumentParser()
+parser.add_argument("--makefx-only", action="store_true")
+args = parser.parse_args()
 spec = Spec("uvu", 1, "full", 37)
 tp = spec.calls["public"]
 records = []
@@ -30,8 +34,10 @@ with FakeTensorMode(allow_non_fake_inputs=True) as mode:
         raise RuntimeError("Explicit raw-kernel entry accepted fake tensors")
 
 function = lambda x, y, w: bounded(tp, x, y, w, policy="auto")
-for name, build in (("make_fx-symbolic", lambda: make_fx(function, tracing_mode="symbolic")(*spec.logical)),
-                    ("compile-eager-backend", lambda: torch.compile(function, backend="eager", dynamic=True, fullgraph=False))):
+builders = [("make_fx-symbolic", lambda: make_fx(function, tracing_mode="symbolic", _allow_non_fake_inputs=True)(*spec.logical))]
+if not args.makefx_only:
+    builders.append(("compile-eager-backend", lambda: torch.compile(function, backend="eager", dynamic=True, fullgraph=False)))
+for name, build in builders:
     try:
         call = build()
         checks = []
@@ -53,6 +59,7 @@ for name, build in (("make_fx-symbolic", lambda: make_fx(function, tracing_mode=
         records.append(dict(mode=name, status="HOLD_TRACING", passed=False,
                             error_type=type(exc).__name__, message=str(exc)[:2500]))
 result = dict(job=os.environ["SLURM_JOB_ID"], cases=records, tf32=False, cuda_graph=False,
+              tested_modes=[r["mode"] for r in records],
               eager_only_entry_refusal_passed=records[0]["passed"],
               native_tracing_passed=all(r["passed"] for r in records[1:]),
               offline_dynamic_aoti_passed=False, graph_breaks_allowed_for_compile_eager_backend=True,
