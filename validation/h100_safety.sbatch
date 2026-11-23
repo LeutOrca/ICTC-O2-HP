@@ -16,5 +16,6 @@ sha256sum --check provenance/approved-execution/BASELINE-CODE.sha256
 case "$1" in
     guards) "$py" -S -u validation/g1_guards.py ;;
     largeoffset) "$py" -S -u validation/g1_largeoffset.py ;;
+    fp64) "$py" -S -u validation/g1_fp64.py ;;
     *) exit 64 ;;
 esac
