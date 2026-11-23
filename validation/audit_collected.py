@@ -1,6 +1,7 @@
 """Read receipts only on a Slurm CPU compute node, preserving all failures."""
 import json
 import os
+from collections import Counter
 from pathlib import Path
 
 assert os.environ.get("SLURM_JOB_ID")
@@ -18,6 +19,7 @@ for path in sorted(root.glob("receipts/9cc0634/results/*/*-original.json")):
 summaries = []
 failed = []
 numeric_cases = 0
+cohort_failures = {}
 for path in sorted(root.glob("receipts/*/results/*/SUMMARY.json")):
     record = json.loads(path.read_text())
     summaries.append(dict(path=str(path.relative_to(root)), **record))
@@ -29,9 +31,13 @@ for path in sorted(root.glob("receipts/*/results/*/SUMMARY.json")):
         case = json.loads(case_path.read_text())
         numeric_cases += 1
         if not case.get("passed"):
+            cohort = path.relative_to(root).parts[1]
+            count = cohort_failures.setdefault(cohort, Counter())
+            count.update(str(c.get("output_index", "unknown")) for c in case.get("checks", []) if not c["passed"])
             failed.append(dict(path=str(case_path.relative_to(root)), error=case.get("error"),
                                failed_checks=[c for c in case.get("checks", []) if not c["passed"]]))
 report = dict(job=os.environ["SLURM_JOB_ID"], original=original, summaries=summaries,
+              failed_output_roles_by_cohort={k: dict(v) for k, v in cohort_failures.items()},
               numerical_cases=numeric_cases, failed=failed,
               numerical_pass=numeric_cases > 0 and not failed,
               whole_model_pass=False)
