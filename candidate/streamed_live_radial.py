@@ -19,9 +19,10 @@ PAGE = 512
 
 
 def hidden_adjoint(values, weight, configuration):
-    # Long-K matching is retained only for the explicit C64/H64/L4..8
-    # qualification profile; small new fixtures use a separately checked GEMM.
-    return scheduled(values, weight, configuration) if len(values) >= 512 and configuration else mm(values, weight)
+    # The reduction length is the TP path-weight width, even for a short
+    # edge page. A small row count does not make that FP32 reduction short.
+    # This profile extension is experimental until both row domains pass.
+    return scheduled(values, weight, configuration) if configuration else mm(values, weight)
 
 
 def add_shared(destination, value):
