@@ -19,5 +19,6 @@ case "$1" in
     fp64) "$py" -S -u validation/g1_fp64.py ;;
     shortprofile) "$py" -S -u validation/diagnose_short_hidden.py ;;
     partialradial) "$py" -S -u validation/g1_partial_radial.py ;;
+    tracing) "$py" -S -u validation/g1_trace.py ;;
     *) exit 64 ;;
 esac
