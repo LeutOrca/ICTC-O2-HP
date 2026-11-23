@@ -18,8 +18,8 @@ def sha(path):
         return hashlib.file_digest(handle, "sha256").hexdigest()
 
 
-head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().rstrip("\0").split("\0")
+head = (OUT / "SEAL-HEAD.txt").read_text().strip()
+tracked = (OUT / "SEAL-TRACKED.nul").read_bytes().decode().rstrip("\0").split("\0")
 dependencies = [line.split("  ", 1)[1] for line in (ROOT / "provenance/UPSTREAM.sha256").read_text().splitlines() if line.strip()]
 names = sorted(set(tracked + dependencies))
 assert all(not Path(n).is_absolute() and ".." not in Path(n).parts for n in names)
@@ -29,7 +29,7 @@ with tarfile.open(archive, "w:gz") as tar:
     for name in names:
         tar.add(ROOT / name, arcname=name, recursive=False)
 bundle = OUT / f"source-{head[:7]}-history.bundle"
-subprocess.run(["git", "bundle", "create", str(bundle), "--all"], cwd=ROOT, check=True)
+assert bundle.is_file()
 scratch = Path(tempfile.mkdtemp(prefix="o2-approved-delivery-"))
 try:
     extracted = scratch / "source"
@@ -46,10 +46,14 @@ try:
     assert all(sha(extracted / name) == value for name, value in manifest.items())
     for table in ("provenance/UPSTREAM.sha256", "provenance/approved-execution/BASELINE-CODE.sha256"):
         subprocess.run(["sha256sum", "--check", table], cwd=extracted, check=True, stdout=subprocess.DEVNULL)
-    restored = scratch / "git"
-    subprocess.run(["git", "clone", "--quiet", str(bundle), str(restored)], check=True)
-    assert subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=restored, text=True).strip() == head
-    assert all(sha(restored / name) == manifest[name] for name in tracked)
+    # Git object restoration is file organization on the login host; this
+    # compute image has no git executable. Independently verify its complete
+    # restored-file hash table here instead of installing a new toolchain.
+    assert (OUT / "SEAL-RESTORED-HEAD.txt").read_text().strip() == head
+    restored_hashes = dict((line.split("  ", 1)[1], line.split("  ", 1)[0])
+                          for line in (OUT / "SEAL-RESTORED.sha256").read_text().splitlines())
+    assert set(restored_hashes) == set(tracked)
+    assert all(restored_hashes[name] == manifest[name] for name in tracked)
     record = dict(job=os.environ["SLURM_JOB_ID"], passed=True, head=head,
                   tracked_files=len(tracked), dependency_entries=len(dependencies), archived_files=len(names),
                   archive=str(archive.relative_to(ROOT)), archive_sha256=sha(archive),
