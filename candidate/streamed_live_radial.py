@@ -22,6 +22,10 @@ def hidden_adjoint(values, weight, configuration):
     # The reduction length is the TP path-weight width, even for a short
     # edge page. A small row count does not make that FP32 reduction short.
     # This profile extension is experimental until both row domains pass.
+    # Separate the measured short-page association from the inherited 512-row
+    # L8 profile. Selection depends only on shape, never on seed or values.
+    if values.shape == (37, 55552):
+        configuration = "16x1b@128"
     return scheduled(values, weight, configuration) if configuration else mm(values, weight)
 
 
