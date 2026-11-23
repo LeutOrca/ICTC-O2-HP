@@ -1,0 +1,6 @@
+branch	source	expected_commit
+codex/o2-library-snapshots-20261119	runs/o2-hpx-equiformerv3-oam-20261119-r2/o2hp	9787a3a6ca7fe67eeda3f21ec7c24d6634cbac03
+codex/o2-mace-snapshots-20261120	runs/mace-ictc-o2-hp-gbu2-20261120-r1	fb17264d25f8d00b9cbde8cadfaf4038d5fb11b6
+codex/o2-v3-fp32-repair-20261121	runs/v3-so2-fp32-repair-20261121-r1	4b170465047f560b548b1faf7fc5205d91f78579
+codex/o2-github-whole-20261121	runs/o2-hp-github-whole-20261121-r1	c499cdd6de95eedc0545fc0d965da7005415d532
+codex/o2-safety-candidate-20261122	runs/o2-hp-safety-candidate-20261122-r1	17a71d71e10775f6eee70aa70196948d4178bf43
