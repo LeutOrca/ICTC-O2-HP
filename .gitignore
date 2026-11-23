@@ -3,6 +3,8 @@ cache/
 results/
 logs/
 measurements/
+receipts/
+submissions/
 *.tgz
 __pycache__/
 provenance/snapshots/*.bundle
