@@ -5,14 +5,21 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
 assert os.environ.get("SLURM_JOB_ID"), "All Python checks require Slurm"
 subprocess.run(["sha256sum", "--check", "provenance/approved-execution/BASELINE-CODE.sha256"], cwd=ROOT, check=True)
 subprocess.run(["sha256sum", "--check", "provenance/UPSTREAM.sha256"], cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
 files = [*ROOT.joinpath("candidate").glob("*.py"), *ROOT.joinpath("validation").glob("*.py")]
 for path in files:
     ast.parse(path.read_text(), filename=str(path))
+from budget import ledger_records,request_gpus
+assert request_gpus('sbatch --gres=gpu:1 broken="',1)==1
+example='1|COMPLETED|60|gres/gpu=1|/o2-benchmark|node|GPU|gres/gpu=1|1|srun bash -c "a\nb"\n2|FAILED|1||/o2-benchmark|node|CPU||1|true\n'
+records=list(ledger_records(example))
+assert len(records)==2 and 'a\nb' in records[0]
 subprocess.run([os.sys.executable, str(ROOT / "budget.py")], cwd=ROOT, check=True)
 budget = json.loads((ROOT / "provenance/BUDGET-AUDIT.json").read_text())
 if budget["remaining_project_gpu_h"] < 2:

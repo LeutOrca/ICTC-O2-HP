@@ -18,7 +18,14 @@ def tres_gpus(value):
 
 
 def request_gpus(text,node_count):
-    words=shlex.split(text)
+    try:
+        words=shlex.split(text)
+    except ValueError:
+        # Slurm may retain a truncated shell command with an open quote.
+        # GPU request options occur in its unambiguous command prefix.
+        words=[]
+        for match in re.finditer(r"(?:^|\s)(--gres|--gpus|--gpus-per-node)(?:=|\s+)([^\s;]+)",text):
+            words.extend((match.group(1),match.group(2).strip("\"'")))
     for index,word in enumerate(words):
         for option in ("--gres","--gpus","--gpus-per-node"):
             value=word.split("=",1)[1] if word.startswith(option+"=") else (
@@ -61,6 +68,22 @@ def infer_gpu_count(allocated,requested,submission,workdir,partition,node_count)
     return 0,"no-gpu-request",{}
 
 
+def ledger_records(text):
+    """Preserve multiline SubmitLine fields instead of parsing their fragments."""
+    record=None
+    for line in text.splitlines():
+        if re.match(r"^\d+(?:_\d+)?\|[^|]*\|\d*\|",line) and line.count("|")>=9:
+            if record is not None:
+                yield record
+            record=line
+        elif record is not None:
+            record += "\n"+line
+        elif line.strip():
+            raise ValueError("Unexpected text before the first Slurm accounting row")
+    if record is not None:
+        yield record
+
+
 def main():
     rows=[]
     seen=set()
@@ -69,7 +92,7 @@ def main():
         if extended.exists() and extended.stat().st_size == 0:
             raise RuntimeError(f"Empty accounting snapshot: {extended}; refresh on login before aggregation")
         source=extended if extended.exists() else ROOT/f"provenance/project-{cluster}-accounting.tsv"
-        for line in source.read_text().splitlines():
+        for line in ledger_records(source.read_text()):
             fields=line.split("|",9)
             if len(fields)<6:
                 continue
