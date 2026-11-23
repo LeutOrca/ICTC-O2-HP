@@ -5,6 +5,7 @@ logs/
 measurements/
 receipts/
 submissions/
+cohorts/
 *.tgz
 __pycache__/
 provenance/snapshots/*.bundle
