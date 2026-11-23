@@ -1,5 +1,6 @@
 """Isolate FP32 long-K association for the two remaining L8 short-page cases."""
 import json
+import argparse
 import os
 from pathlib import Path
 import sys
@@ -19,19 +20,26 @@ from candidate.ordered64 import scheduled
 from ictc_o2_hp import ReferenceUvuTensorProduct
 
 configure()
+parser = argparse.ArgumentParser()
+parser.add_argument("--source-rows", type=int, default=37)
+parser.add_argument("--page-rows", type=int, default=37)
+args = parser.parse_args()
+assert 0 < args.page_rows <= args.source_rows
 configurations = ("-8x1b", "-16x1b", "16x1b@128", "16x1b@256", "8x1b@128", "8x1b@256",
                   "8x1b", "16x1b", "4x1b@128", "32x1b@128", "32x1b@256", "16x1a@128")
 records = []
 for seed in (20261003, 20261004):
-    spec = Spec("radial", 8, "full", 37, seed, 1.)
+    spec = Spec("radial", 8, "full", args.source_rows, seed, 1.)
     tp, linear = spec.calls["public"].tp, spec.diagnostics["linear"]
     linear.requires_grad_(True)
-    x, y, h = spec.logical
+    all_values = [*spec.logical, linear.weight, linear.bias]
+    x, y, h = (v[:args.page_rows] for v in spec.logical)
     values = [x, y, h, linear.weight, linear.bias]
     generator = torch.Generator(device="cuda").manual_seed(20261121)
-    g = (torch.randn(37, tp.representation_dimension, device="cuda", generator=generator) * .1).requires_grad_()
+    g = (torch.randn(args.source_rows, tp.representation_dimension, device="cuda", generator=generator)[:args.page_rows] * .1).requires_grad_()
     generator.manual_seed(20261123)
-    directions = tuple(torch.randn(v.shape, device="cuda", generator=generator) * .1 for v in values)
+    all_directions = tuple(torch.randn(v.shape, device="cuda", generator=generator) * .1 for v in all_values)
+    directions = tuple(v[:args.page_rows] if i < 3 else v for i, v in enumerate(all_directions))
     a, b, _, d_weight, _ = directions
     oracle = ReferenceUvuTensorProduct(64, 1, 8, parity="full", internal_weights=False, shared_weights=False).cuda().float()
     reference = lambda x, y, h, w, bias: oracle(x, y, F.linear(h, w, bias))
@@ -57,6 +65,7 @@ for seed in (20261003, 20261004):
         print(seed, [(r["configuration"], r["passed"]) for r in record["profiles"]], flush=True)
 passing = [c for c in configurations if all(next(r for r in case["profiles"] if r["configuration"] == c)["passed"] for case in records)]
 result = dict(job=os.environ["SLURM_JOB_ID"], scope="diagnostic only; not an automatic profile promotion",
+              source_rows=args.source_rows, page_rows=args.page_rows,
               candidate_dtype="float32", original_gate_unchanged=True, tf32=False, cuda_graph=False,
               passing_both_seeds=passing, cases=records)
 destination = ROOT / "results" / os.environ["SLURM_JOB_ID"]
