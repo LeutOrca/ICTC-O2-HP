@@ -54,6 +54,24 @@ for family in ("uvu", "radial"):
                     checks.append(dict(role=index, **checked))
                 record = dict(family=family, order=order, seed=seed, scale=scale,
                               passed=all(c["passed"] for c in checks), checks=checks)
+                if not record["passed"]:
+                    oracle32 = ReferenceUvuTensorProduct(64, 1, order, parity="full",
+                                internal_weights=False, shared_weights=False).cuda().float()
+                    reference32 = oracle32 if family == "uvu" else lambda x, y, h, w, b: oracle32(x, y, F.linear(h, w, b))
+                    native_values = [v.detach().requires_grad_() for v in values]
+                    native_out, native_first, native_second = derived(reference32, native_values,
+                                            g.detach().requires_grad_(), directions)
+                    control = []
+                    for index, (a, b) in enumerate(zip((native_out, *native_first, *native_second), (expected, *df, *ddf))):
+                        if a is None and b is None:
+                            checked = dict(passed=True, zero_unused=True)
+                        else:
+                            a = torch.zeros_like(b, dtype=torch.float32) if a is None else a
+                            b = torch.zeros_like(a) if b is None else b.float()
+                            checked = error(a, b)
+                        control.append(dict(role=index, **checked))
+                    record["native_fp32_control_against_same_fp64"] = control
+                    record["native_fp32_control_passed"] = all(c["passed"] for c in control)
                 records.append(record)
                 print(family, order, seed, scale, record["passed"], flush=True)
 result = dict(job=os.environ["SLURM_JOB_ID"], passed=all(c["passed"] for c in records),
