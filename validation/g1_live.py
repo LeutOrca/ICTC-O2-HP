@@ -18,6 +18,7 @@ import torch.nn.functional as F
 from benchmark import configure, error
 from models import Spec, digest
 from candidate.live_uvu import live_uvu, live_radial
+from candidate.streamed_live_radial import streamed_live_radial
 
 
 def derived(function, values, g, directions):
@@ -27,7 +28,7 @@ def derived(function, values, g, directions):
     return output, first, second
 
 
-def one_case(family, order, rows, seed, scale, build=False):
+def one_case(family, order, rows, seed, scale, build=False, streamed=False):
     spec = Spec(family, order, "full", rows, seed, scale)
     tp = spec.calls["public"] if family == "uvu" else spec.calls["public"].tp
     if family == "uvu":
@@ -38,7 +39,8 @@ def one_case(family, order, rows, seed, scale, build=False):
         linear = spec.diagnostics["linear"]
         linear.requires_grad_(True)
         values = [*spec.logical, linear.weight, linear.bias]
-        actual = lambda x, y, h, weight, bias: live_radial(tp, linear, x, y, h)
+        operation = streamed_live_radial if streamed else live_radial
+        actual = lambda x, y, h, weight, bias: operation(tp, linear, x, y, h)
         from ictc_o2_hp import ReferenceUvuTensorProduct
         oracle = ReferenceUvuTensorProduct(64, 1, order, parity="full", internal_weights=False, shared_weights=False).cuda().float()
         reference = lambda x, y, h, weight, bias: oracle(x, y, F.linear(h, weight, bias))
@@ -53,7 +55,8 @@ def one_case(family, order, rows, seed, scale, build=False):
                   full_vjp_roles=["left", "angular", "external_weights"] if family == "uvu" else
                       ["left", "angular", "radial_hidden", "affine_weight", "affine_bias"],
                   second_roles="all first-input roles plus incoming output cotangent",
-                  route="own64-uvu-first-and-second" if family == "uvu" else "native-unchanged-affine+own64-uvu-first-and-second",
+                  route="own64-uvu-first-and-second" if family == "uvu" else
+                      ("own64-streamed-live-radial-first-and-second" if streamed else "native-unchanged-affine+own64-uvu-first-and-second"),
                   reference_replay_in_candidate=False, vendor_tp_in_candidate=False,
                   dtype="float32", tf32=False, amp=False, cuda_graph=False)
     if build:
@@ -111,6 +114,8 @@ def main():
     parser.add_argument("stage", choices=("build", "small", "full"))
     parser.add_argument("--family", choices=("uvu", "radial"))
     parser.add_argument("--order", type=int)
+    parser.add_argument("--rows", type=int)
+    parser.add_argument("--streamed", action="store_true")
     args = parser.parse_args()
     configure()
     destination = ROOT / "results" / os.environ["SLURM_JOB_ID"]
@@ -125,8 +130,8 @@ def main():
             for seed in seeds:
                 for scale in scales:
                     try:
-                        result = one_case(family, order, 16384 if args.stage == "full" else 37,
-                                          seed, scale, args.stage == "build")
+                        rows = args.rows or (16384 if args.stage == "full" else 37)
+                        result = one_case(family, order, rows, seed, scale, args.stage == "build", args.streamed)
                     except Exception as exc:
                         result = dict(family=family, order=order, seed=seed, scale=scale, passed=False,
                                       error=str(exc), traceback=traceback.format_exc())
