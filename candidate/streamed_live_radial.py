@@ -137,7 +137,7 @@ class _RadialAdjoint(torch.autograd.Function):
             if (d_weight is not None and needs[2]) or (cc is not None and needs[3]):
                 gw = weight_adjoint(plan, xs, ys, gs)
                 if d_weight is not None and needs[2]:
-                    output[2][start:end].add_(mm(gw, d_weight))
+                    output[2][start:end].add_(hidden_adjoint(gw, d_weight, ctx.configuration))
                 if cc is not None and needs[3]:
                     add_shared(output[3], mm(gw.T, cc))
                 del gw
