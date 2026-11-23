@@ -11,6 +11,7 @@ from torch.autograd.function import once_differentiable
 
 from .contracts import check_features, prepare_cotangent, prepare_uvu, tensor_contract
 from .frozen_state import ForwardState
+from .live_contracts import original_plan, tensor_types
 from .reduction_policy import assert_reduction_context, require_fp32_policy
 from .uvu64_kernels import _forward, _input_grad, _weight_unshared
 
@@ -140,6 +141,8 @@ class _UVU(torch.autograd.Function):
 
 
 def live_uvu(tp, x, y, w):
+    tensor_types(x, y, w)
+    original_plan(tp)
     x, y, w = prepare_uvu(tp, x, y, w)
     require_fp32_policy()
     assert_reduction_context(x)

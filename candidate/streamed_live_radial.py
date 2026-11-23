@@ -12,6 +12,7 @@ from .contracts import check_features, prepare_cotangent, tensor_contract
 from .dense64 import bias_rows, mm, sum_rows
 from .frozen_state import ForwardState
 from .live_uvu import add_private, forward, input_adjoint, weight_adjoint
+from .live_contracts import original_plan, original_linear, tensor_types
 from .ordered64 import scheduled
 from .reduction_policy import COVERAGE, assert_reduction_context, require_fp32_policy
 
@@ -31,8 +32,7 @@ def hidden_adjoint(values, weight, configuration):
     # The reduction length is the TP path-weight width, even for a short
     # edge page. A small row count does not make that FP32 reduction short.
     # This profile extension is experimental until both row domains pass.
-    # Separate the measured short-page association from the inherited 512-row
-    # L8 profile. Selection depends only on shape, never on seed or values.
+    # Select only frozen measured shapes, independently of seed or values.
     configuration = hidden_configuration(*values.shape, configuration)
     return scheduled(values, weight, configuration) if configuration else mm(values, weight)
 
@@ -183,6 +183,9 @@ class _Radial(torch.autograd.Function):
 
 
 def streamed_live_radial(tp, linear, x, y, h):
+    tensor_types(x, y, h)
+    original_plan(tp)
+    original_linear(linear)
     check_features(tp, x, y)
     tensor_contract("radial_hidden", h, device=x.device)
     require_fp32_policy()

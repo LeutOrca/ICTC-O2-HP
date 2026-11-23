@@ -28,7 +28,7 @@ with FakeTensorMode(allow_non_fake_inputs=True) as mode:
     try:
         live_uvu(tp, *fake)
     except RuntimeError as exc:
-        assert "proxy/fake" in str(exc) or "context" in str(exc)
+        assert "proxy/fake" in str(exc) or "context" in str(exc) or "tensor subclasses" in str(exc)
         records.append(dict(mode="explicit-live-fake", status="REFUSED_AS_CONTRACTED", passed=True, message=str(exc)))
     else:
         raise RuntimeError("Explicit raw-kernel entry accepted fake tensors")
