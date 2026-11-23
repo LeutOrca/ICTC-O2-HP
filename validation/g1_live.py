@@ -86,23 +86,51 @@ def one_case(family, order, rows, seed, scale, build=False, streamed=False):
                 checks.append(dict(window=[start, end], output_index=index, **result))
             del reference_values, reference_g, expected, df, ddf, got, want
     else:
-        # Affine parameter gradients sum over edges: use the full workload,
-        # never sum separately rounded 512-row parameter-gradient results.
-        reference_values = [value.detach().requires_grad_() for value in values]
-        reference_g = g.detach().requires_grad_()
-        expected, df, ddf = derived(reference, reference_values, reference_g, directions)
-        for index, (a, b) in enumerate(zip([output, *first, *second], [expected, *df, *ddf])):
-            if a is None and b is None:
-                checks.append(dict(output_index=index, passed=True, zero_unused=True))
+        # Preserve the inherited 512-row forward/input-reference boundary.
+        # The newly introduced shared-parameter roles have no inherited
+        # qualification: define and seal their ascending FP32 page sum before
+        # the first full-load test, and compare only after all pages contribute.
+        shared = {index: torch.zeros_like(value) for index, value in
+                  ((4, first[3]), (5, first[4]), (9, second[3]), (10, second[4])) if value is not None}
+        for start in range(0, rows, 512):
+            end = min(start + 512, rows)
+            reference_values = [value[start:end].detach().requires_grad_() for value in values[:3]] + [
+                value.detach().requires_grad_() for value in values[3:]]
+            reference_g = g[start:end].detach().requires_grad_()
+            ref_directions = tuple(value[start:end] for value in directions[:3]) + directions[3:]
+            expected, df, ddf = derived(reference, reference_values, reference_g, ref_directions)
+            for index, a, b in ((0, output[start:end], expected),
+                                (1, first[0][start:end], df[0]), (2, first[1][start:end], df[1]),
+                                (3, first[2][start:end], df[2]),
+                                (6, None if second[0] is None else second[0][start:end], ddf[0]),
+                                (7, None if second[1] is None else second[1][start:end], ddf[1]),
+                                (8, None if second[2] is None else second[2][start:end], ddf[2]),
+                                (11, None if second[5] is None else second[5][start:end], ddf[5])):
+                if a is None and b is None:
+                    checked = dict(passed=True, zero_unused=True)
+                else:
+                    if a is None:
+                        a = torch.zeros_like(b)
+                    if b is None:
+                        b = torch.zeros_like(a)
+                    checked = error(a, b)
+                checks.append(dict(window=[start, end], output_index=index, **checked))
+            for index, value in ((4, df[3]), (5, df[4]), (9, ddf[3]), (10, ddf[4])):
+                if value is not None:
+                    if index not in shared:
+                        shared[index] = torch.zeros_like(value)
+                    shared[index].add_(value.detach())
+            del reference_values, reference_g, expected, df, ddf
+        for index, actual_shared in ((4, first[3]), (5, first[4]), (9, second[3]), (10, second[4])):
+            if actual_shared is None and index not in shared:
                 continue
-            if a is None:
-                a = torch.zeros_like(b)
-            if b is None:
-                b = torch.zeros_like(a)
+            a = actual_shared if actual_shared is not None else torch.zeros_like(shared[index])
+            b = shared.get(index, torch.zeros_like(a))
             for start in range(0, len(a), 512):
                 end = min(start + 512, len(a))
-                checks.append(dict(window=[start, end], output_index=index, **error(a[start:end], b[start:end])))
-        del reference_values, reference_g, expected, df, ddf
+                checks.append(dict(window=[start, end], output_index=index,
+                                   shared_all_edges=True, **error(a[start:end], b[start:end])))
+        record["shared_parameter_reference"] = "complete ascending FP32 sum of independent 512-edge reference contributions"
     record.update(passed=all(check["passed"] for check in checks), built_only=False, checks=checks,
                   original_gate="benchmark.error byte-identical to 17a71d7",
                   gradient_directions_sha256=digest(directions))
