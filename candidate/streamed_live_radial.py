@@ -18,14 +18,22 @@ from .reduction_policy import COVERAGE, assert_reduction_context, require_fp32_p
 PAGE = 512
 
 
+def hidden_configuration(rows, columns, configuration):
+    # Frozen shape-only profiles measured independently of input values.
+    if (rows, columns) == (37, 55552):
+        return "16x1b@128"
+    if (rows, columns) == (512, 55552):
+        return "-16x1b"
+    return configuration
+
+
 def hidden_adjoint(values, weight, configuration):
     # The reduction length is the TP path-weight width, even for a short
     # edge page. A small row count does not make that FP32 reduction short.
     # This profile extension is experimental until both row domains pass.
     # Separate the measured short-page association from the inherited 512-row
     # L8 profile. Selection depends only on shape, never on seed or values.
-    if values.shape == (37, 55552):
-        configuration = "16x1b@128"
+    configuration = hidden_configuration(*values.shape, configuration)
     return scheduled(values, weight, configuration) if configuration else mm(values, weight)
 
 

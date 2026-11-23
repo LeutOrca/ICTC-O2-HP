@@ -18,7 +18,8 @@ import torch.nn.functional as F
 from benchmark import configure, error
 from models import Spec, digest
 from candidate.live_uvu import live_uvu, live_radial
-from candidate.streamed_live_radial import streamed_live_radial
+from candidate.streamed_live_radial import streamed_live_radial, hidden_configuration, PAGE
+from candidate.reduction_policy import COVERAGE
 
 
 def derived(function, values, g, directions):
@@ -59,6 +60,11 @@ def one_case(family, order, rows, seed, scale, build=False, streamed=False):
                       ("own64-streamed-live-radial-first-and-second" if streamed else "native-unchanged-affine+own64-uvu-first-and-second"),
                   reference_replay_in_candidate=False, vendor_tp_in_candidate=False,
                   dtype="float32", tf32=False, amp=False, cuda_graph=False)
+    if family == "radial" and streamed:
+        sizes = sorted({min(PAGE, rows - start) for start in range(0, rows, PAGE)})
+        base = COVERAGE.get(order, (None, None))[1]
+        record["hidden_adjoint_profiles"] = [dict(rows=size, K=tp.weight_numel,
+            configuration=hidden_configuration(size, tp.weight_numel, base)) for size in sizes]
     if build:
         record.update(passed=True, built_only=True, numerical_pass=False)
         return record
