@@ -6,6 +6,7 @@ measurements/
 receipts/
 submissions/
 cohorts/
+comparisons/
 *.tgz
 __pycache__/
 provenance/snapshots/*.bundle
