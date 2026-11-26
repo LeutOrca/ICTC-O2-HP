@@ -162,8 +162,19 @@ class _Matmul(torch.autograd.Function):
     @staticmethod
     def backward(ctx, grad_output):
         left, right = ctx.saved_tensors
-        dl = _Matmul.apply(grad_output, right.transpose(0, 1)) if ctx.needs_input_grad[0] else None
-        dr = _Matmul.apply(grad_output.transpose(0, 1), left).transpose(0, 1) if ctx.needs_input_grad[1] else None
+        dl = dr = None
+        if ctx.needs_input_grad[0]:
+            # Preserve a transposed operand's physical orientation at every order.
+            # In dK=G.T@X this evaluates dG as X@dK.T, matching the native chain.
+            if left.stride(0) == 1 and left.stride(1) > 1:
+                dl = _Matmul.apply(right, grad_output.transpose(0, 1)).transpose(0, 1)
+            else:
+                dl = _Matmul.apply(grad_output, right.transpose(0, 1))
+        if ctx.needs_input_grad[1]:
+            if right.stride(0) == 1 and right.stride(1) > 1:
+                dr = _Matmul.apply(grad_output.transpose(0, 1), left).transpose(0, 1)
+            else:
+                dr = _Matmul.apply(left.transpose(0, 1), grad_output)
         return dl, dr
 
 
