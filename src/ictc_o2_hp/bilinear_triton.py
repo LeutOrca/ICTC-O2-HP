@@ -74,14 +74,19 @@ class Bilinear(torch.autograd.Function):
             # At most two grid launches, no row loop, chunk list or concatenation.
             # Keep native arithmetic boundaries without charging main blocks for
             # a tail variant's larger shared-memory allocation.
-            four=True;tail=1
-            if (oa,la,lb,h)==(19,19,19,32):tail={4:3,24:4}.get(n%64,1)
-            elif (oa,la,lb,h)==(25,25,25,512):four=False;tail={36:3,24:2}.get(n%64,1)
+            main_parts=1;main_four=True;tail_parts=1;tail_four=True
+            column=(k.stride()==(1,la*lb,la))
+            if (oa,la,lb,h)==(19,19,19,32):
+                main_parts=4 if column else 1
+                tail_parts=({4:1,24:5} if column else {4:3,24:4}).get(n%64,1)
+            elif (oa,la,lb,h)==(25,25,25,512):
+                main_four=column;tail_four=False
+                tail_parts=1 if column else {36:3,24:2}.get(n%64,1)
             main=n//64*64
             if main:
-                _bilinear[(triton.cdiv(oa,32),triton.cdiv(main*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,1,four,num_warps=4)
+                _bilinear[(triton.cdiv(oa,32),triton.cdiv(main*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,main_parts,main_four,num_warps=4)
             if main<n:
-                _bilinear[(triton.cdiv(oa,32),triton.cdiv((n-main)*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail,four,num_warps=4)
+                _bilinear[(triton.cdiv(oa,32),triton.cdiv((n-main)*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail_parts,tail_four,num_warps=4)
         return y
     @staticmethod
     def backward(ctx,g):
