@@ -114,46 +114,6 @@ def _uvw_weight_partials(A, B, P, M: tl.constexpr, N: tl.constexpr, K: tl.conste
 
 
 @triton.jit
-def _fma8_product(A, B, rows, cols, base, start, inner, acc,
-                  M: tl.constexpr, N: tl.constexpr, K: tl.constexpr, SPAN: tl.constexpr,
-                  SAM: tl.constexpr, SAK: tl.constexpr, SBK: tl.constexpr, SBN: tl.constexpr,
-                  LANE: tl.constexpr):
-    local = start + 8 * LANE + inner
-    k = base + local
-    valid = (local < SPAN) & (k < K)
-    a = tl.load(A + rows * SAM + k * SAK, (rows < M) & valid, 0)
-    b = tl.load(B + k * SBK + cols * SBN, (cols < N) & valid, 0)
-    return tl.fma(a[:, None], b[None, :], acc)
-
-
-@triton.jit
-def _uvw_weight_fma8(A, B, P, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
-                     SAM: tl.constexpr, SAK: tl.constexpr, SBK: tl.constexpr, SBN: tl.constexpr,
-                     BM: tl.constexpr, BN: tl.constexpr, PARTS: tl.constexpr):
-    rows = tl.program_id(0).to(tl.int64) * BM + tl.arange(0, BM).to(tl.int64)
-    cols = tl.program_id(1).to(tl.int64) * BN + tl.arange(0, BN).to(tl.int64)
-    part = tl.program_id(2).to(tl.int64)
-    span = tl.cdiv(K, PARTS)
-    base = part * span
-    c0 = tl.full((BM, BN), 0, tl.float32)
-    c1 = tl.full((BM, BN), 0, tl.float32)
-    c2 = tl.full((BM, BN), 0, tl.float32)
-    c3 = tl.full((BM, BN), 0, tl.float32)
-    for start in range(tl.cdiv(span, 32)):
-        q = tl.cast(start, tl.int64) * 32
-        # Keep only the current four products live, not all 32 unrolled loads.
-        for inner in tl.range(8, loop_unroll_factor=1):
-            i = tl.cast(inner, tl.int64)
-            c0 = _fma8_product(A, B, rows, cols, base, q, i, c0, M, N, K, span, SAM, SAK, SBK, SBN, 0)
-            c1 = _fma8_product(A, B, rows, cols, base, q, i, c1, M, N, K, span, SAM, SAK, SBK, SBN, 1)
-            c2 = _fma8_product(A, B, rows, cols, base, q, i, c2, M, N, K, span, SAM, SAK, SBK, SBN, 2)
-            c3 = _fma8_product(A, B, rows, cols, base, q, i, c3, M, N, K, span, SAM, SAK, SBK, SBN, 3)
-    value = _add_rn(_add_rn(c0, c1), _add_rn(c2, c3))
-    tl.store(P + (part * M + rows[:, None]) * N + cols[None, :], value,
-             (rows[:, None] < M) & (cols[None, :] < N))
-
-
-@triton.jit
 def _uvw_weight_reduce(P, C, SIZE: tl.constexpr, PARTS: tl.constexpr, BLOCK: tl.constexpr):
     index = tl.program_id(0).to(tl.int64) * BLOCK + tl.arange(0, BLOCK).to(tl.int64)
     value = tl.load(P + index, index < SIZE, 0)
@@ -189,11 +149,11 @@ class _Matmul(torch.autograd.Function):
         if k == 10504 and (m, n) in weight_parts and left.stride() == (1, m) and right.is_contiguous():
             count = weight_parts[m, n]
             partials = left.new_empty((count, m, n))
+            launched = False
             if (m, n) == (256, 1024):
-                _uvw_weight_fma8[(triton.cdiv(m, 16), triton.cdiv(n, 64), count)](
-                    left, right, partials, m, n, k, *left.stride(), *right.stride(), 16, 64, count, num_warps=8,
-                )
-            else:
+                from ictc_o2_hp.weight_fma8_cuda import weight_partials
+                launched = weight_partials(left, right, partials)
+            if not launched:
                 _uvw_weight_partials[(triton.cdiv(m, 32), triton.cdiv(n, 32), count)](
                     left, right, partials, m, n, k, *left.stride(), *right.stride(), 32, 32, count, num_warps=4,
                 )
