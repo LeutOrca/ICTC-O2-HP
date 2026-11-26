@@ -58,7 +58,10 @@ def _bilinear(K,A,B,Y,OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl.const
     start=tl.program_id(2).to(tl.int64)*64*H+tl.program_id(1).to(tl.int64)*BN
     cols=start+tl.arange(0,BN).to(tl.int64)
     if start<N*H:
-        if (N%64)!=0 and TAIL_PARTS!=1 and tl.program_id(2)==tl.cdiv(N,64)-1:
+        is_tail=tl.full((),False,tl.int1)
+        if (N%64)!=0:
+            if TAIL_PARTS!=1:is_tail=tl.program_id(2)==tl.cdiv(N,64)-1
+        if is_tail:
             value=_region(K,A,B,rows,cols,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,BM,BN,TAIL_PARTS,FOUR)
         else:
             value=_region(K,A,B,rows,cols,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,BM,BN,1,FOUR)
