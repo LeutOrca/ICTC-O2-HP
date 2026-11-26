@@ -122,6 +122,20 @@ def _uvw_weight_reduce(P, C, SIZE: tl.constexpr, PARTS: tl.constexpr, BLOCK: tl.
     tl.store(C + index, value, index < SIZE)
 
 
+def _target_input_grads(ctx, left, right):
+    query = getattr(torch._C, "_will_engine_execute_node", None)
+    if query is None:
+        return ctx.needs_input_grad
+    # PyTorch 2.7 cannot query leaf captures in autograd.grad: keep those
+    # conservatively. Nonleaf edges (including K.T) follow the current task.
+    return tuple(
+        needed and (value.is_leaf or node is None or query(node))
+        for needed, value, (node, _) in zip(
+            ctx.needs_input_grad, (left, right), ctx.next_functions
+        )
+    )
+
+
 class _Matmul(torch.autograd.Function):
     @staticmethod
     def forward(ctx, left, right):
@@ -162,15 +176,16 @@ class _Matmul(torch.autograd.Function):
     @staticmethod
     def backward(ctx, grad_output):
         left, right = ctx.saved_tensors
+        need_left, need_right = _target_input_grads(ctx, left, right)
         dl = dr = None
-        if ctx.needs_input_grad[0]:
+        if need_left:
             # Preserve a transposed operand's physical orientation at every order.
             # In dK=G.T@X this evaluates dG as X@dK.T, matching the native chain.
             if left.stride(0) == 1 and left.stride(1) > 1:
                 dl = _Matmul.apply(right, grad_output.transpose(0, 1)).transpose(0, 1)
             else:
                 dl = _Matmul.apply(grad_output, right.transpose(0, 1))
-        if ctx.needs_input_grad[1]:
+        if need_right:
             if right.stride(0) == 1 and right.stride(1) > 1:
                 dr = _Matmul.apply(grad_output.transpose(0, 1), left).transpose(0, 1)
             else:
