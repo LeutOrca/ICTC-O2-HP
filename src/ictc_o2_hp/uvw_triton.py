@@ -103,7 +103,7 @@ class _Matmul(torch.autograd.Function):
     def backward(ctx, grad_output):
         left, right = ctx.saved_tensors
         dl = _Matmul.apply(grad_output, right.transpose(0, 1)) if ctx.needs_input_grad[0] else None
-        dr = _Matmul.apply(left.transpose(0, 1), grad_output) if ctx.needs_input_grad[1] else None
+        dr = _Matmul.apply(grad_output.transpose(0, 1), left).transpose(0, 1) if ctx.needs_input_grad[1] else None
         return dl, dr
 
 
