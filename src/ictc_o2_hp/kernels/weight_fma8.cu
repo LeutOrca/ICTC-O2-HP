@@ -20,26 +20,24 @@ __device__ __forceinline__ float add_rn(float a, float b) {
 }
 extern "C" __global__ void weight_fma8(const float* __restrict__ A,
     const float* __restrict__ B, float* __restrict__ P) {
-    __shared__ __align__(16) float sa[8 * BM];
-    __shared__ __align__(16) float sb[8 * BN];
+    __shared__ __align__(16) float sa[32 * BM];
+    __shared__ __align__(16) float sb[32 * BN];
     const int tid = threadIdx.x, rm = tid / 16, cn = (tid % 16) * NC;
     const long long row0 = (long long)blockIdx.x * BM;
     const long long col0 = (long long)blockIdx.y * BN;
     const long long part = (long long)blockIdx.z, base = part * SPAN;
     float c[4][MR][NC] = {};
     for (int start = 0; start < SPAN; start += 32) {
-        #pragma unroll
-        for (int chain = 0; chain < 4; ++chain) {
-            for (int idx = tid; idx < 8 * BM; idx += THREADS) {
+            for (int idx = tid; idx < 32 * BM; idx += THREADS) {
                 const int rr = idx % BM, kk = idx / BM;
-                const long long local = (long long)start + chain * 8 + kk;
+                const long long local = (long long)start + kk;
                 const long long k = base + local;
                 sa[kk * BM + rr] = local < SPAN && k < K
                     ? A[k * M + row0 + rr] : 0.0f;
             }
-            for (int idx = tid; idx < 8 * BN / NC; idx += THREADS) {
+            for (int idx = tid; idx < 32 * BN / NC; idx += THREADS) {
                 const int kk = idx / (BN / NC), cc = (idx % (BN / NC)) * NC;
-                const long long local = (long long)start + chain * 8 + kk;
+                const long long local = (long long)start + kk;
                 const long long k = base + local;
                 Vec v = {};
                 if (local < SPAN && k < K)
@@ -47,12 +45,14 @@ extern "C" __global__ void weight_fma8(const float* __restrict__ A,
                 *reinterpret_cast<Vec*>(sb + kk * BN + cc) = v;
             }
             __syncthreads();
+        #pragma unroll
+        for (int chain = 0; chain < 4; ++chain) {
             #pragma unroll K_UNROLL
             for (int kk = 0; kk < 8; ++kk) {
                 float a[MR];
                 #pragma unroll
-                for (int r = 0; r < MR; ++r) a[r] = sa[kk * BM + rm + r * 8];
-                const Vec b = *reinterpret_cast<const Vec*>(sb + kk * BN + cn);
+                for (int r = 0; r < MR; ++r) a[r] = sa[(chain * 8 + kk) * BM + rm + r * 8];
+                const Vec b = *reinterpret_cast<const Vec*>(sb + (chain * 8 + kk) * BN + cn);
                 #pragma unroll
                 for (int r = 0; r < MR; ++r) {
                     #pragma unroll
@@ -60,8 +60,8 @@ extern "C" __global__ void weight_fma8(const float* __restrict__ A,
                         c[chain][r][n] = fma_rn(a[r], b.x[n], c[chain][r][n]);
                 }
             }
-            __syncthreads();
         }
+        __syncthreads();
     }
     #pragma unroll
     for (int r = 0; r < MR; ++r) {
