@@ -8,13 +8,14 @@ def _add(a,b):
     return tl.inline_asm_elementwise('add.rn.f32 $0, $1, $2;',constraints='=f,f,f',args=[a,b],dtype=tl.float32,is_pure=True,pack=1)
 
 @triton.jit
-def _piece(K,A,B,rows,cols,start,acc,
+def _piece(K,A,B,rows,cols,base,start,acc,
            OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl.constexpr,N:tl.constexpr,
            K0:tl.constexpr,K1:tl.constexpr,K2:tl.constexpr,
            A0:tl.constexpr,A1:tl.constexpr,A2:tl.constexpr,
-           B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,LANE:tl.constexpr):
-    q=start+LANE*8+tl.arange(0,16).to(tl.int64)
-    valid=(tl.arange(0,16)<8)&(q<LA*LB)
+           B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,SPAN:tl.constexpr,WIDTH:tl.constexpr,LANE:tl.constexpr):
+    local=start+LANE*WIDTH+tl.arange(0,16).to(tl.int64)
+    q=base+local
+    valid=(tl.arange(0,16)<WIDTH)&(local<SPAN)&(q<LA*LB)
     ia=q//LB;ib=q%LB
     coeff=tl.load(K+rows[:,None]*K0+ia[None,:]*K1+ib[None,:]*K2,(rows[:,None]<OA)&valid[None,:],0)
     n=cols//H;h=cols%H
@@ -24,22 +25,45 @@ def _piece(K,A,B,rows,cols,start,acc,
     return tl.dot(coeff,outer,acc,input_precision='ieee')
 
 @triton.jit
+def _region(K,A,B,rows,cols,OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl.constexpr,N:tl.constexpr,
+              K0:tl.constexpr,K1:tl.constexpr,K2:tl.constexpr,A0:tl.constexpr,A1:tl.constexpr,A2:tl.constexpr,
+              B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,BM:tl.constexpr,BN:tl.constexpr,PARTS:tl.constexpr,FOUR:tl.constexpr):
+    span=tl.cdiv(LA*LB,PARTS)
+    value=tl.full((BM,BN),0,tl.float32)
+    for part in tl.static_range(PARTS):
+        base=tl.full((),part*span,tl.int64)
+        c0=tl.full((BM,BN),0,tl.float32)
+        if FOUR:
+            c1=tl.full((BM,BN),0,tl.float32);c2=tl.full((BM,BN),0,tl.float32);c3=tl.full((BM,BN),0,tl.float32)
+            for block in range(tl.cdiv(span,32)):
+                start=tl.cast(block,tl.int64)*32
+                c0=_piece(K,A,B,rows,cols,base,start,c0,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,span,8,0)
+                c1=_piece(K,A,B,rows,cols,base,start,c1,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,span,8,1)
+                c2=_piece(K,A,B,rows,cols,base,start,c2,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,span,8,2)
+                c3=_piece(K,A,B,rows,cols,base,start,c3,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,span,8,3)
+            c0=_add(_add(c0,c1),_add(c2,c3))
+        else:
+            for block in range(tl.cdiv(span,16)):
+                start=tl.cast(block,tl.int64)*16
+                c0=_piece(K,A,B,rows,cols,base,start,c0,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,span,16,0)
+        if part==0:value=c0
+        else:value=_add(value,c0)
+    return value
+
+@triton.jit
 def _bilinear(K,A,B,Y,OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl.constexpr,N:tl.constexpr,
               K0:tl.constexpr,K1:tl.constexpr,K2:tl.constexpr,A0:tl.constexpr,A1:tl.constexpr,A2:tl.constexpr,
-              B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,BM:tl.constexpr,BN:tl.constexpr):
+              B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,BM:tl.constexpr,BN:tl.constexpr,TAIL_PARTS:tl.constexpr,FOUR:tl.constexpr):
     rows=tl.program_id(0).to(tl.int64)*BM+tl.arange(0,BM).to(tl.int64)
-    cols=tl.program_id(1).to(tl.int64)*BN+tl.arange(0,BN).to(tl.int64)
-    c0=tl.full((BM,BN),0,tl.float32);c1=tl.full((BM,BN),0,tl.float32)
-    c2=tl.full((BM,BN),0,tl.float32);c3=tl.full((BM,BN),0,tl.float32)
-    for block in range(tl.cdiv(LA*LB,32)):
-        start=tl.cast(block,tl.int64)*32
-        c0=_piece(K,A,B,rows,cols,start,c0,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,0)
-        c1=_piece(K,A,B,rows,cols,start,c1,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,1)
-        c2=_piece(K,A,B,rows,cols,start,c2,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,2)
-        c3=_piece(K,A,B,rows,cols,start,c3,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,3)
-    value=_add(_add(c0,c1),_add(c2,c3))
-    n=cols//H;h=cols%H
-    tl.store(Y+(n[None,:]*OA+rows[:,None])*H+h[None,:],value,(rows[:,None]<OA)&(n[None,:]<N))
+    start=tl.program_id(2).to(tl.int64)*64*H+tl.program_id(1).to(tl.int64)*BN
+    cols=start+tl.arange(0,BN).to(tl.int64)
+    if start<N*H:
+        if (N%64)!=0 and TAIL_PARTS!=1 and tl.program_id(2)==tl.cdiv(N,64)-1:
+            value=_region(K,A,B,rows,cols,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,BM,BN,TAIL_PARTS,FOUR)
+        else:
+            value=_region(K,A,B,rows,cols,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,BM,BN,1,FOUR)
+        n=cols//H;h=cols%H
+        tl.store(Y+(n[None,:]*OA+rows[:,None])*H+h[None,:],value,(rows[:,None]<OA)&(n[None,:]<N))
 
 class Bilinear(torch.autograd.Function):
     @staticmethod
@@ -51,7 +75,12 @@ class Bilinear(torch.autograd.Function):
         n,_,h=a.shape;oa,la,lb=k.shape
         y=a.new_empty((n,oa,h))
         if n and h:
-            _bilinear[(triton.cdiv(oa,32),triton.cdiv(n*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,num_warps=4)
+            # Preserve the observed native 64-row primitive arithmetic, with all
+            # row blocks dispatched together and output written directly once.
+            four=True;tail=1
+            if (oa,la,lb,h)==(19,19,19,32):tail={4:3,24:4}.get(n%64,1)
+            elif (oa,la,lb,h)==(25,25,25,512):four=False;tail={36:3,24:2}.get(n%64,1)
+            _bilinear[(triton.cdiv(oa,32),triton.cdiv(64*h,32),triton.cdiv(n,64))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,tail,four,num_warps=4)
         return y
     @staticmethod
     def backward(ctx,g):

@@ -1,0 +1,66 @@
+{
+  "status": "ALL_NATIVE_PLAN_LEAVES_AND_MERGES_MATCH",
+  "rows": [
+    {
+      "L": 25,
+      "Q": 32768,
+      "parts": 1,
+      "four_chains_of_eight": false,
+      "span": 625,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/00-M25-N32768-K625.json",
+      "probe_sha256": "4eb73ae1ff861a703a84230b8fb8d978b1f4ce9d0cc25924263797a92a43c519",
+      "complete_leaf_order_and_add_tree_match": true
+    },
+    {
+      "L": 25,
+      "Q": 18432,
+      "parts": 3,
+      "four_chains_of_eight": false,
+      "span": 209,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/01-M25-N18432-K625.json",
+      "probe_sha256": "7e9681cf67e7132f08635fde5d5a1c552d32ca01b94f287ce94582fb50f79fdf",
+      "complete_leaf_order_and_add_tree_match": true
+    },
+    {
+      "L": 19,
+      "Q": 2048,
+      "parts": 1,
+      "four_chains_of_eight": true,
+      "span": 361,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/02-M19-N2048-K361.json",
+      "probe_sha256": "2aaa159c295f5d7d3d5f19f1058821e429632a26a550eda6f8e0a8555231c964",
+      "complete_leaf_order_and_add_tree_match": true
+    },
+    {
+      "L": 19,
+      "Q": 128,
+      "parts": 3,
+      "four_chains_of_eight": true,
+      "span": 121,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/03-M19-N128-K361.json",
+      "probe_sha256": "120e6cda6d2152651917d1f32a02cc61e40f4d48f500230b56fa1f82a411d1a4",
+      "complete_leaf_order_and_add_tree_match": true
+    },
+    {
+      "L": 19,
+      "Q": 768,
+      "parts": 4,
+      "four_chains_of_eight": true,
+      "span": 91,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/04-M19-N768-K361.json",
+      "probe_sha256": "8e8692a2db88a57833a9e4c2195ea058ec5b0bec401a163fcec02da20a0739c4",
+      "complete_leaf_order_and_add_tree_match": true
+    },
+    {
+      "L": 25,
+      "Q": 12288,
+      "parts": 2,
+      "four_chains_of_eight": false,
+      "span": 313,
+      "probe_receipt": "/public/home/sps-xia/bjxiao/o2-benchmark/runs/o2-bounded-bilinear-a100-20261126-r1/results/bmm-tree-a100-120298/05-M25-N12288-K625.json",
+      "probe_sha256": "aeee130c4dbed2bba2550af9894144876d7db186965dd6196556d7625281367b",
+      "complete_leaf_order_and_add_tree_match": true
+    }
+  ],
+  "precision": "FP32 outer mul.rn, FP32 FMA and explicit add.rn; no reassociation"
+}
