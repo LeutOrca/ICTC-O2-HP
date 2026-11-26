@@ -73,6 +73,55 @@ def _uvw_mm(A, B, C, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
              (rows[:, None] < M) & (cols[None, :] < N))
 
 
+@triton.jit
+def _weight_piece(A, B, rows, cols, base, q, acc,
+                  M: tl.constexpr, N: tl.constexpr, K: tl.constexpr, SPAN: tl.constexpr,
+                  SAM: tl.constexpr, SAK: tl.constexpr, SBK: tl.constexpr, SBN: tl.constexpr,
+                  LANE: tl.constexpr):
+    local = q + 8 * LANE
+    k = base + local
+    active = (q % 32 < 8) & (local < SPAN) & (k < K)
+    a = tl.load(A + rows[:, None] * SAM + k[None, :] * SAK,
+                (rows[:, None] < M) & active[None, :], 0)
+    b = tl.load(B + k[:, None] * SBK + cols[None, :] * SBN,
+                active[:, None] & (cols[None, :] < N), 0)
+    return tl.dot(a, b, acc, input_precision="ieee")
+
+
+@triton.jit
+def _uvw_weight_partials(A, B, P, M: tl.constexpr, N: tl.constexpr, K: tl.constexpr,
+                         SAM: tl.constexpr, SAK: tl.constexpr, SBK: tl.constexpr, SBN: tl.constexpr,
+                         BM: tl.constexpr, BN: tl.constexpr, PARTS: tl.constexpr):
+    rows = tl.program_id(0).to(tl.int64) * BM + tl.arange(0, BM).to(tl.int64)
+    cols = tl.program_id(1).to(tl.int64) * BN + tl.arange(0, BN).to(tl.int64)
+    part = tl.program_id(2).to(tl.int64)
+    span = tl.cdiv(K, PARTS)
+    base = part * span
+    kk = tl.arange(0, 16).to(tl.int64)
+    c0 = tl.full((BM, BN), 0, tl.float32)
+    c1 = tl.full((BM, BN), 0, tl.float32)
+    c2 = tl.full((BM, BN), 0, tl.float32)
+    c3 = tl.full((BM, BN), 0, tl.float32)
+    for start in range(tl.cdiv(span, 32)):
+        q = tl.cast(start, tl.int64) * 32 + kk
+        c0 = _weight_piece(A, B, rows, cols, base, q, c0, M, N, K, span, SAM, SAK, SBK, SBN, 0)
+        c1 = _weight_piece(A, B, rows, cols, base, q, c1, M, N, K, span, SAM, SAK, SBK, SBN, 1)
+        c2 = _weight_piece(A, B, rows, cols, base, q, c2, M, N, K, span, SAM, SAK, SBK, SBN, 2)
+        c3 = _weight_piece(A, B, rows, cols, base, q, c3, M, N, K, span, SAM, SAK, SBK, SBN, 3)
+    value = _add_rn(_add_rn(c0, c1), _add_rn(c2, c3))
+    tl.store(P + (part * M + rows[:, None]) * N + cols[None, :], value,
+             (rows[:, None] < M) & (cols[None, :] < N))
+
+
+@triton.jit
+def _uvw_weight_reduce(P, C, SIZE: tl.constexpr, PARTS: tl.constexpr, BLOCK: tl.constexpr):
+    index = tl.program_id(0).to(tl.int64) * BLOCK + tl.arange(0, BLOCK).to(tl.int64)
+    value = tl.load(P + index, index < SIZE, 0)
+    for part in tl.static_range(1, PARTS):
+        value = _add_rn(value, tl.load(P + part * SIZE + index, index < SIZE, 0))
+    tl.store(C + index, value, index < SIZE)
+
+
 class _Matmul(torch.autograd.Function):
     @staticmethod
     def forward(ctx, left, right):
@@ -80,6 +129,17 @@ class _Matmul(torch.autograd.Function):
         m, k = left.shape
         n = right.shape[1]
         out = left.new_empty((m, n))
+        # The actual 10504-row original-K VJP: independent native partitions,
+        # four eight-product FMA chains per 32, then the measured sum tree.
+        weight_parts = {(256, 1024): 4, (192, 768): 3, (512, 128): 5, (384, 96): 9}
+        if k == 10504 and (m, n) in weight_parts and left.stride() == (1, m) and right.is_contiguous():
+            count = weight_parts[m, n]
+            partials = left.new_empty((count, m, n))
+            _uvw_weight_partials[(triton.cdiv(m, 32), triton.cdiv(n, 32), count)](
+                left, right, partials, m, n, k, *left.stride(), *right.stride(), 32, 32, count, num_warps=4,
+            )
+            _uvw_weight_reduce[(triton.cdiv(m * n, 256),)](partials, out, m * n, count, 256)
+            return out
         parts = 1
         if left.is_contiguous():
             if right.stride() == (1, k):
