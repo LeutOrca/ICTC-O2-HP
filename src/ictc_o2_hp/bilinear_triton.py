@@ -83,10 +83,13 @@ class Bilinear(torch.autograd.Function):
                 main_four=column;tail_four=False
                 tail_parts=1 if column else {36:3,24:2}.get(n%64,1)
             main=n//64*64
+            from .fp32_plans import angular
             if main:
-                _bilinear[(triton.cdiv(main*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,main_parts,main_four,num_warps=4)
+                if not angular(k,a,b,y,0,main):
+                    _bilinear[(triton.cdiv(main*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,main_parts,main_four,num_warps=4)
             if main<n:
-                _bilinear[(triton.cdiv((n-main)*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail_parts,tail_four,num_warps=4)
+                if not angular(k,a,b,y,main,n-main):
+                    _bilinear[(triton.cdiv((n-main)*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail_parts,tail_four,num_warps=4)
         return y
     @staticmethod
     def backward(ctx,g):

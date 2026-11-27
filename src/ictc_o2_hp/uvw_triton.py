@@ -143,6 +143,9 @@ class _Matmul(torch.autograd.Function):
         m, k = left.shape
         n = right.shape[1]
         out = left.new_empty((m, n))
+        from .fp32_plans import channel
+        if channel(left, right, out):
+            return out
         # The actual 10504-row original-K VJP: independent native partitions,
         # four eight-product FMA chains per 32, then the measured sum tree.
         weight_parts = {(256, 1024): 4, (192, 768): 3, (512, 128): 5, (384, 96): 9}
