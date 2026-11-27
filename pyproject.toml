@@ -20,4 +20,4 @@ where = ["src"]
 include = ["ictc_o2_hp", "ictc_o2_hp.*"]
 
 [tool.setuptools.package-data]
-ictc_o2_hp = ["bilinear_plans.json", "kernels/*.cu", "kernels/*.cubin", "kernels/*.ptx", "kernels/*.json"]
+ictc_o2_hp = ["bilinear_plans.json", "fp32_reduction_plans.json", "kernels/*.cu", "kernels/*.cubin", "kernels/*.ptx", "kernels/*.json"]
