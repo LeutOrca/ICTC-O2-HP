@@ -54,8 +54,8 @@ def _region(K,A,B,rows,cols,OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl
 def _bilinear(K,A,B,Y,OA:tl.constexpr,LA:tl.constexpr,LB:tl.constexpr,H:tl.constexpr,N:tl.constexpr,
               K0:tl.constexpr,K1:tl.constexpr,K2:tl.constexpr,A0:tl.constexpr,A1:tl.constexpr,A2:tl.constexpr,
               B0:tl.constexpr,B1:tl.constexpr,B2:tl.constexpr,BM:tl.constexpr,BN:tl.constexpr,OFFSET:tl.constexpr,COUNT:tl.constexpr,PARTS:tl.constexpr,FOUR:tl.constexpr):
-    rows=tl.program_id(0).to(tl.int64)*BM+tl.arange(0,BM).to(tl.int64)
-    start=tl.full((),OFFSET*H,tl.int64)+tl.program_id(1).to(tl.int64)*BN
+    rows=tl.program_id(1).to(tl.int64)*BM+tl.arange(0,BM).to(tl.int64)
+    start=tl.full((),OFFSET*H,tl.int64)+tl.program_id(0).to(tl.int64)*BN
     cols=start+tl.arange(0,BN).to(tl.int64)
     value=_region(K,A,B,rows,cols,OA,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,BM,BN,PARTS,FOUR)
     n=cols//H;h=cols%H
@@ -84,9 +84,9 @@ class Bilinear(torch.autograd.Function):
                 tail_parts=1 if column else {36:3,24:2}.get(n%64,1)
             main=n//64*64
             if main:
-                _bilinear[(triton.cdiv(oa,32),triton.cdiv(main*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,main_parts,main_four,num_warps=4)
+                _bilinear[(triton.cdiv(main*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,0,main,main_parts,main_four,num_warps=4)
             if main<n:
-                _bilinear[(triton.cdiv(oa,32),triton.cdiv((n-main)*h,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail_parts,tail_four,num_warps=4)
+                _bilinear[(triton.cdiv((n-main)*h,32),triton.cdiv(oa,32))](k,a,b,y,oa,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),32,32,main,n-main,tail_parts,tail_four,num_warps=4)
         return y
     @staticmethod
     def backward(ctx,g):
