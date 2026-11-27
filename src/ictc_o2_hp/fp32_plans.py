@@ -89,8 +89,8 @@ def _angular(K,A,B,Y,D,LA,LB,H,N,K0,K1,K2,A0,A1,A2,B0,B1,B2,OFFSET,COUNT,PARTS,F
 def mm_key(left,right):
     return 'mm|'+','.join(map(str,(*left.shape,right.shape[1],*left.stride(),*right.stride())))
 
-def angular_key(k,h,count):
-    return 'angular|'+','.join(map(str,(*k.shape,h,count,*k.stride())))
+def angular_key(k,a,b,count):
+    return 'angular|'+','.join(map(str,(*k.shape,a.shape[-1],count,*k.stride(),*a.stride(),*b.stride())))
 
 @lru_cache(None)
 def plans():
@@ -105,7 +105,7 @@ def channel(left,right,out):
     return True
 
 def angular(k,a,b,out,offset,count):
-    plan=plans().get(angular_key(k,a.shape[-1],64 if count>=64 else count))
+    plan=plans().get(angular_key(k,a,b,64 if count>=64 else count))
     if plan is None:return False
     n,_,h=a.shape;d,la,lb=k.shape
     _angular[(triton.cdiv(count*h,32),triton.cdiv(d,32))](k,a,b,out,d,la,lb,h,n,*k.stride(),*a.stride(),*b.stride(),offset,count,plan['parts'],plan['four'],plan.get('swap',False),num_warps=4)
