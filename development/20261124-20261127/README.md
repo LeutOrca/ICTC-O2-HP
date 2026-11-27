@@ -1,6 +1,6 @@
 # V3-driven O(2) optimization history, 24–27 November 2026
 
-This development snapshot preserves the original optimization commits, including failed candidates, and the receipts needed to interpret them. It is submitted for review as a draft. The latest source has unresolved L7 training and L8 capture gates.
+This development snapshot preserves the original optimization commits, including failed candidates, and the receipts needed to interpret them. Its archived v6 source had unresolved L7 training and L8 capture gates. The [subsequent v7 repair](../20261127-stability/README.md) passed the complete registered original gate matrix with source `13c9328`; additional bounded stability validation is recorded there separately.
 
 ## Git history and recovery
 
@@ -19,7 +19,7 @@ The earlier frozen stage-one baseline `e4763c76bf183499357e40cb39cc0934bb98779b`
 
 The code branch and snapshot tags allow checking out every operator candidate independently. Publishing an upstream PR does not transfer fork tags or the separate baseline branch to upstream automatically. Preserve those refs when retaining the historical record, and use a merge that preserves commits if upstream also needs the original commit sequence.
 
-## Latest qualification, candidate `5764f66`
+## Archived v6 qualification, candidate `5764f66`
 
 These results come from the completed AMD audit **120792**, rather than the older progress notes that still describe running jobs.
 
@@ -68,4 +68,4 @@ The copied controls preserve the original HPC environment and workspace assumpti
 
 Energy outputs and sums use FP64. Other arithmetic, accumulation, derivatives and error statistics use FP32. TF32, AMP, internal half precision and CUDA Graph are disabled. Each role retains both the original componentwise gate `abs(candidate-reference) <= 2e-5 + 2e-5*abs(reference)` and relative L2 `<= 1e-5`; local epsilon gates remain `<= 1e-5`. ULP is descriptive. Backends use their own true-loss cotangents and continuous three-step states, without restoring model, optimizer, EMA, scheduler or RNG inside the trajectory.
 
-Publication checks verify the copied file hashes, preserved Git refs, unchanged operator source tree and whitespace. They do not rerun GPU qualification. L7 correction, a valid L8 retry, and the subsequent fresh-process performance/capacity campaign remain pending.
+The original publication checks verified copied file hashes, preserved Git refs, the unchanged v6 operator source tree and whitespace. They did not rerun GPU qualification. L7 correction and a valid L8 retry were pending at that archived snapshot; current qualification follows the separate v7 receipts. Fresh-process performance/capacity must be remeasured for each new numerical source.
